@@ -1,89 +1,89 @@
-# Demo candidates (from the FINAL held-out test run)
+# Demo candidates (from the held-out test-2 run, Pehchaan v2)
 
-Source: `data/results/report_test_FINAL.json`. Overall, clip by clip, Pehchaan vs (c): **win 49, tie 149, loss 22**.
+Source: `data/results/report_test2_FINAL.json` (test-2 was frozen at tag `test2-frozen` before v2 ran on it). Overall, clip by clip, Pehchaan v2 vs (c): **win 25, tie 62, loss 3**.
 
 Each clip below was picked because Pehchaan and baseline (c) diverge on **both** the clean and the phone recording. Everything is copied from the saved result files by `scripts/make_demo_candidates.py`.
 
-## 1. s104: missed clarification
+## 1. s202: missed clarification
 
-- **Said:** "Call Rohit at 6 PM."
+- **Said:** "Call Lakshmi tomorrow morning."
 - **Expected:** clarify
-- **Why it's a good demo:** Two contacts are called Rohit/Rohith. (c) silently picks one; Pehchaan asks which one.
-- **clean** (`data/testset/audio/clean/s104.wav`), Pehchaan win:
-  - heard: "Call Rohit at 6 p.m."
-  - (c): RESOLVE, action target = Rohith Reddy. "Rohit" -> Rohith Reddy (Rohit is a saved contact, and the context indicates he is the car service advisor.)
-  - Pehchaan: ASKS: Rohit Chaturvedi or Rohith Reddy? "Rohit" -> kept (clarify: 'Rohit' fits Rohit Chaturvedi and Rohith Reddy almost equally, and nothing in the sentence separates them)
-- **phone** (`data/testset/audio/phone/s104.wav`), Pehchaan win:
-  - heard: "Call Rohit at 6 p.m."
-  - (c): RESOLVE, action target = Rohith Reddy. "Rohit" -> Rohith Reddy (Rohit is a saved contact, and the context indicates he is a car service advisor.)
-  - Pehchaan: ASKS: Rohit Chaturvedi or Rohith Reddy? "Rohit" -> kept (clarify: 'Rohit' fits Rohit Chaturvedi and Rohith Reddy almost equally, and nothing in the sentence separates them)
+- **Why it's a good demo:** Three contacts could be 'Lakshmi'. (c) silently picks the sister; Pehchaan asks which one.
+- **clean** (`data/testset/audio/clean/s202.wav`), Pehchaan win:
+  - heard: "Call Lakshmi tomorrow morning."
+  - (c): RESOLVE, action target = Lakshmi Prasanna. "Lakshmi" -> Lakshmi Prasanna (The user referred to 'Lakshmi', which matches the contact 'Lakshmi Prasanna', who is the user's sister.)
+  - Pehchaan: ASKS: Laxmi Devi or Lakshmi Narayanan or Lakshmi Prasanna? "Lakshmi" -> kept (clarify: 'Lakshmi' fits Laxmi Devi and Lakshmi Narayanan and Lakshmi Prasanna almost equally, and nothing in the sentence separates them)
+- **phone** (`data/testset/audio/phone/s202.wav`), Pehchaan win:
+  - heard: "Call Lakshmi tomorrow morning."
+  - (c): RESOLVE, action target = Lakshmi Prasanna. "Lakshmi" -> Lakshmi Prasanna (The user referred to 'Lakshmi', which matches the contact 'Lakshmi Prasanna', who is the user's sister.)
+  - Pehchaan: ASKS: Laxmi Devi or Lakshmi Narayanan or Lakshmi Prasanna? "Lakshmi" -> kept (clarify: 'Lakshmi' fits Laxmi Devi and Lakshmi Narayanan and Lakshmi Prasanna almost equally, and nothing in the sentence separates them)
 
-## 2. s140: clue vs default
+## 2. s208: clue vs default
 
-- **Said:** "Remind me to ask my doctor about the tooth filling on Friday."
+- **Said:** "Call my doctor to fix an appointment for my son's braces."
 - **Expected:** resolve, target Dr. Subramanian
-- **Why it's a good demo:** "tooth filling" is a clue for the dentist. (c) uses the stale default (family doctor).
-- **clean** (`data/testset/audio/clean/s140.wav`), Pehchaan win:
-  - heard: "Remind me to ask my doctor about the tooth filling on Friday."
-  - (c): RESOLVE, action target = Dr. Venkataramana. "my doctor" -> Dr. Venkataramana (The user referred to 'my doctor', which matches the default for doctor in their context.)
-  - Pehchaan: RESOLVE, action target = Dr. Subramanian. "my doctor" -> Dr. Subramanian (resolve: clue 'tooth' -> dentist; clue 'filling' -> dentist)
-- **phone** (`data/testset/audio/phone/s140.wav`), Pehchaan win:
-  - heard: "Remind me to ask my doctor about the tooth filling on Friday."
-  - (c): RESOLVE, action target = Dr. Venkataramana. "my doctor" -> Dr. Venkataramana (The user referred to 'my doctor', which matches the default for doctor, Dr. Venkataramana.)
-  - Pehchaan: RESOLVE, action target = Dr. Subramanian. "my doctor" -> Dr. Subramanian (resolve: clue 'tooth' -> dentist; clue 'filling' -> dentist)
+- **Why it's a good demo:** "braces" is a clue for the dentist. (c) uses the stale default (the family doctor).
+- **clean** (`data/testset/audio/clean/s208.wav`), Pehchaan win:
+  - heard: "Call my doctor to fix an appointment for my son's braces."
+  - (c): RESOLVE, action target = Dr. Venkataramana. "my doctor" -> Dr. Venkataramana (The user referred to 'my doctor' which matches the default for doctor in their context.)
+  - Pehchaan: RESOLVE, action target = Dr. Subramanian. "my doctor" -> Dr. Subramanian (resolve: clue 'braces' -> dentist)
+- **phone** (`data/testset/audio/phone/s208.wav`), Pehchaan win:
+  - heard: "Call my doctor to fix an appointment for my son's braces."
+  - (c): RESOLVE, action target = Dr. Venkataramana. "my doctor" -> Dr. Venkataramana (The user referred to 'my doctor' which matches the default for doctor in their context.)
+  - Pehchaan: RESOLVE, action target = Dr. Subramanian. "my doctor" -> Dr. Subramanian (resolve: clue 'braces' -> dentist)
 
-## 3. s108: type mismatch
+## 3. s203: type mismatch
 
-- **Said:** "Book a table at Venkataramana Restaurant for Sunday lunch."
+- **Said:** "Book a table at Arif Biryani Point tonight."
 - **Expected:** clarify
-- **Why it's a good demo:** You can't book a table at a doctor. (c) maps it to a dental clinic; Pehchaan asks.
-- **clean** (`data/testset/audio/clean/s108.wav`), Pehchaan win:
-  - heard: "Book a table at Venkataramana restaurant for Sunday lunch."
-  - (c): CORRECT, action target = Venkataramana Dental Care. "Venkataramana" -> Venkataramana Dental Care (Venkataramana refers to Venkataramana Dental Care, but in the context of booking a table, it is likely a misheard reference to a restaurant. However, there is no restaurant named Venkataramana in the context, so it remains unresolved.)
-  - Pehchaan: ASKS: Dr. Venkataramana? "Venkataramana" -> kept (clarify: 'Venkataramana restaurant' sounds like a business, but Dr. Venkataramana is your family doctor: asking instead of guessing)
-- **phone** (`data/testset/audio/phone/s108.wav`), Pehchaan win:
-  - heard: "Book a table at Venkataramana restaurant for Sunday lunch."
-  - (c): CORRECT, action target = Venkataramana Dental Care. "Venkataramana" -> Venkataramana Dental Care (Exact match for the restaurant name in the context.)
-  - Pehchaan: ASKS: Dr. Venkataramana? "Venkataramana" -> kept (clarify: 'Venkataramana restaurant' sounds like a business, but Dr. Venkataramana is your family doctor: asking instead of guessing)
-
-## 4. s067: misheard name
-
-- **Said:** "Call Bhagyalakshmi Jewellers in Panjagutta and ask if the earrings are ready."
-- **Expected:** correct, target Bhagyalakshmi Jewellers
-- **Why it's a good demo:** "Padyalakshmi Jewelers" -> Bhagyalakshmi Jewellers by sound. (c) gives up and keeps it.
-- **clean** (`data/testset/audio/clean/s067.wav`), Pehchaan win:
-  - heard: "Call Padyalakshmi Jewelers in Punjabuta and ask if the earrings are ready."
+- **Why it's a good demo:** 'Arif Biryani Point' isn't in the contacts, but Arif is the user's barber. (c) neither acts nor asks; Pehchaan asks before booking anything.
+- **clean** (`data/testset/audio/clean/s203.wav`), Pehchaan win:
+  - heard: "Book a table at Arif Biryani Point tonight."
   - (c): KEEP, no action target
-  - Pehchaan: CORRECT, action target = Bhagyalakshmi Jewellers. "Padyalakshmi Jewelers" -> Bhagyalakshmi Jewellers (resolve: sounds like Bhagyalakshmi Jewellers (0.87), clear lead of 0.26); "Punjabuta" -> Panjagutta (resolve: sounds like Panjagutta (0.88), clear lead of 0.31)
-- **phone** (`data/testset/audio/phone/s067.wav`), Pehchaan win:
-  - heard: "Call Padyalakshmi Jewelers in Panjagutta and ask if the earrings are ready."
+  - Pehchaan: ASKS: Mohammed Arif? "Arif" -> kept (clarify: 'table' needs a business restaurant, but Mohammed Arif is your barber: asking instead of guessing); "Biryani" -> kept (keep: 'table' needs a business restaurant; Pranay Reddy doesn't fit)
+- **phone** (`data/testset/audio/phone/s203.wav`), Pehchaan win:
+  - heard: "Book a table at Arif Biryani Point tonight."
   - (c): KEEP, no action target
-  - Pehchaan: CORRECT, action target = Bhagyalakshmi Jewellers. "Padyalakshmi Jewelers" -> Bhagyalakshmi Jewellers (resolve: sounds like Bhagyalakshmi Jewellers (0.87), clear lead of 0.26); "Panjagutta" -> Panjagutta (resolve: heard exactly 'Panjagutta')
+  - Pehchaan: ASKS: Mohammed Arif? "Arif" -> kept (clarify: 'table' needs a business restaurant, but Mohammed Arif is your barber: asking instead of guessing); "Biryani" -> kept (keep: 'table' needs a business restaurant; Pranay Reddy doesn't fit)
 
-## 5. s125: family word (reference)
+## 4. s199: near-identical contacts
 
-- **Said:** "Bhaiya ko bolo Diwali pe ghar aa jaye."
-- **Expected:** resolve, target Rajat Verma
-- **Why it's a good demo:** "Bhaiya" in Hindi script is the user's elder brother Rajat. (c) picks a different contact.
-- **clean** (`data/testset/audio/clean/s125.wav`), Pehchaan win:
-  - heard: "भैया को बोलो, दिवाली पर घर आ जाएँ।"
-  - (c): RESOLVE, action target = Aditya Rao. "भैया" -> Aditya Rao (The term 'Bhaiya' refers to the user's elder brother, who is identified as Aditya Rao in the context.)
-  - Pehchaan: RESOLVE, action target = Rajat Verma. "भैया" -> Rajat Verma (resolve: family label: Bhaiya); "घर आ जाएँ।" -> kept (keep: 'घर आ जाएँ।' is unclear; best guess Nagarjuna Rao only 0.67)
-- **phone** (`data/testset/audio/phone/s125.wav`), Pehchaan win:
-  - heard: "भइया को बोलो दिवाली पर घर आ जाएँ।"
-  - (c): RESOLVE, action target = Aditya Rao. "भइया" -> Aditya Rao (The term 'Bhaiya' refers to the user's elder brother, Aditya Rao, who is identified as such in the context.)
-  - Pehchaan: RESOLVE, action target = Rajat Verma. "भइया" -> Rajat Verma (resolve: family label: Bhaiya); "घर आ जाएँ।" -> kept (keep: 'घर आ जाएँ।' is unclear; best guess Nagarjuna Rao only 0.67)
+- **Said:** "Text Ravi that I'll be late for dinner."
+- **Expected:** clarify
+- **Why it's a good demo:** Ravi Teja (cousin) and Ravi Tej (badminton partner). (c) guesses one; Pehchaan asks.
+- **clean** (`data/testset/audio/clean/s199.wav`), Pehchaan win:
+  - heard: "Text Ravi that I'll be late for dinner."
+  - (c): RESOLVE, action target = Ravi Teja. "Ravi" -> Ravi Teja (Ravi is a cousin and the only Ravi in the user's contacts.)
+  - Pehchaan: ASKS: Ravi Teja or Ravi Tej? "Ravi" -> kept (clarify: 'dinner' needs a business restaurant, but Ravi Teja is your cousin: asking instead of guessing)
+- **phone** (`data/testset/audio/phone/s199.wav`), Pehchaan win:
+  - heard: "Text Ravi that I'll be late for dinner."
+  - (c): RESOLVE, action target = Ravi Teja. "Ravi" -> Ravi Teja (Ravi is a cousin and fits the context of a family dinner.)
+  - Pehchaan: ASKS: Ravi Teja or Ravi Tej? "Ravi" -> kept (clarify: 'dinner' needs a business restaurant, but Ravi Teja is your cousin: asking instead of guessing)
 
-## Honest failure: s090: over-correction (Pehchaan's honest failure)
+## 5. s206: unfamiliar name
 
-- **Said:** "Ee roju chala vedi ga undi, bayataki vellaku."
+- **Said:** "Tell Anjana the cake order is confirmed."
 - **Expected:** keep
-- **Why it's a good demo:** Telugu "ee roju" (= today) sounds like Dr. Raju at 0.80, just above the confidence bar, so Pehchaan "fixes" an ordinary word into a contact's name. (c) correctly leaves it alone. This is the most common kind of Pehchaan loss on the held-out set (over-correction 11/70 vs (c) 3/70).
-- **clean** (`data/testset/audio/clean/s090.wav`), Pehchaan loss:
-  - heard: "ఈ రోజు చాలా వేడిగా ఉంది. భయాతకి వెళ్ళకో."
-  - (c): KEEP, no action target
-  - Pehchaan: CORRECT, no action target. "రోజు" -> Dr. Raju (resolve: sounds like Dr. Raju (0.80), clear lead of 0.28)
-- **phone** (`data/testset/audio/phone/s090.wav`), Pehchaan loss:
-  - heard: "ఈ రోజు చాలా వేడిగా ఉంది. భయాతకి వెళ్ళకో."
-  - (c): KEEP, no action target
-  - Pehchaan: CORRECT, no action target. "రోజు" -> Dr. Raju (resolve: sounds like Dr. Raju (0.80), clear lead of 0.28)
+- **Why it's a good demo:** 'Anjana' is a real name but not a contact. (c) messages Anjani (the tuition teacher); Pehchaan doesn't act.
+- **clean** (`data/testset/audio/clean/s206.wav`), Pehchaan win:
+  - heard: "Tell Anjana the cake order is confirmed."
+  - (c): RESOLVE, action target = Anjani Mishra. "Anjana" -> Anjani Mishra (The name 'Anjana' closely resembles 'Anjani', who is the user's son's tuition teacher.)
+  - Pehchaan: ASKS: Anjani Mishra or Dr. Ananthapadmanabhan or Anjali Verma? "Anjana" -> kept (clarify: 'cake' needs a business shop, but Anjani Mishra is your son's tuition teacher: asking instead of guessing)
+- **phone** (`data/testset/audio/phone/s206.wav`), Pehchaan win:
+  - heard: "Tell Anjana the cake order is confirmed."
+  - (c): RESOLVE, action target = Anjani Mishra. "Anjana" -> Anjani Mishra (The name 'Anjana' closely resembles 'Anjani', who is the user's son's tuition teacher.)
+  - Pehchaan: ASKS: Anjani Mishra or Dr. Ananthapadmanabhan or Anjali Verma? "Anjana" -> kept (clarify: 'cake' needs a business shop, but Anjani Mishra is your son's tuition teacher: asking instead of guessing)
+
+## Honest failure: s185: wrong target (an honest failure that still exists in v2)
+
+- **Said:** "Tell Dheeraj to bring the projector to the Shadnagar office."
+- **Expected:** keep
+- **Why it's a good demo:** Clean audio: speech-to-text wrote "Dhiraj", which sounds like "Dr. Raju" (0.84), and "Dhiraj" is not in our list of common first names, so Pehchaan v2 links it to Dr. Raju. (c) correctly keeps it. On phone audio v2 gets it right. Over-correction on test-2: v2 2/36, v1 5/36, (c) 3/36.
+- **clean** (`data/testset/audio/clean/s185.wav`), Pehchaan loss:
+  - heard: "Tell Dhiraj to bring the projector to the Shadnagar office."
+  - (c): KEEP, no action target. "Dhiraj" -> kept (Dhiraj is not in the user's contacts.); "Shadnagar" -> kept (Shadnagar is a known place but not in the user's context.)
+  - Pehchaan: CORRECT, action target = Dr. Raju. "Dhiraj" -> Dr. Raju (resolve: sounds like Dr. Raju (0.84), clear lead of 0.21); "Shadnagar" -> kept (keep: LLM: The phrase 'Shadnagar' refers to a specific location that is not among the candidates provided. The candidates are unrelated places.)
+- **phone** (`data/testset/audio/phone/s185.wav`), Pehchaan win:
+  - heard: "Tell Viraj to bring the projector to the Shadnagar office."
+  - (c): KEEP, no action target. "Viraj" -> kept (Viraj is not in the user's contacts.); "Shadnagar" -> Hyderabad (Shadnagar is a known locality, but not explicitly listed in the context.)
+  - Pehchaan: KEEP, no action target. "Viraj" -> kept (keep: LLM: The name 'Viraj' does not match any of the candidates provided.); "Shadnagar" -> kept (keep: LLM: The name 'Shadnagar' does not match any of the candidates provided.)

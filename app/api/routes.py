@@ -68,7 +68,7 @@ VERDICT_WORDS = {"ok": "✓ Correct", "wrong_target": "✗ Wrong target", "misse
 
 @lru_cache(maxsize=1)
 def _ground_truth() -> dict:
-    gt = {s.id: s for s in load_testset()}
+    gt = {s.id: s for s in load_testset(splits=None)}  # incl. test-2, so its demo clips get verdicts too
     gt.update({c.id: c for c in load_realspeech()})
     return gt
 
@@ -274,6 +274,18 @@ def delete_reminders() -> dict:
     return {"deleted": reminder_store.delete_all()}
 
 
+def _v2_summary(pick) -> dict | None:
+    """The v2 fix on test-2: a SECOND held-out set, frozen (tag test2-frozen) before v2 ran on it."""
+    path = RESULTS_DIR / "report_test2_FINAL.json"
+    if not path.exists():
+        return None
+    r = json.loads(path.read_text(encoding="utf-8"))
+    return {"label": "test-2: 45 new sentences x clean + phone = 90 clips, frozen (tag test2-frozen) before "
+                     "Pehchaan v2 ran on it; run once",
+            "overall": {s: pick(r["overall"][s]) for s in ("c", "v1", "v2") if s in r["overall"]},
+            "win_tie_loss": r["comparison"]["counts"] if r.get("comparison") else None}
+
+
 @router.get("/api/metrics")
 def metrics() -> dict:
     """The FINAL held-out test numbers, (c) vs Pehchaan, with raw counts (for the UI scoreboard)."""
@@ -297,5 +309,6 @@ def metrics() -> dict:
                           for a, m in report["per_audio"].items()},
             "win_tie_loss": report["comparison"]["counts"] if report.get("comparison") else None,
             "latency_first_run": first_run_latency,
+            "v2": _v2_summary(pick),
             "latency_note": "first final run; the repeat measured {:.0f} / {:.0f} ms".format(
                 report["overall"]["pehchaan"]["latency_ms_median"], report["overall"]["pehchaan"]["latency_ms_mean"])}

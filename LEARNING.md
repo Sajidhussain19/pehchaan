@@ -1021,3 +1021,92 @@ free HTTPS address, while on the presenting laptop `http://localhost:8000` works
   localhost. As a last resort, the 2-minute recording from `DEMO_SCRIPT.md`.
 - **Why CloudFront and not a load balancer with a certificate?** A certificate needs a domain name, which we don't
   have. CloudFront gives HTTPS on its own address for free, in a few clicks.
+
+---
+
+## v2: fixing over-correction honestly
+
+### The problem
+The held-out run (v1, `final-eval-v1`) showed two weak spots: **over-correction** (11/70 vs the strong AI's 3/70;
+"ee **roju**" → Dr. Raju) and **unnecessary questions** (15/198; "Lakshmi Ganapathi Tiffins" → "which Lakshmi?").
+Once you've looked at a test set's failures, that test set can't prove a fix anymore: you'd be grading yourself
+on the exact answers you studied. So v2 needed a **new** held-out set.
+
+### The order that keeps it honest (every step tagged and pushed to GitHub before the next)
+1. **`test2-frozen`:** 45 new sentences, audio and plain transcripts, written **before any v2 code**.
+   - They don't paraphrase dev/test: max similarity 0.74, and the 4 closer ones were rewritten.
+   - They're weighted toward v1's weak spots *in general*, not the same clips: code-mixed Telugu/Hindi/Tamil/
+     Kannada/Malayalam everyday sentences, businesses containing a contact's first name, unknown callers with a
+     contact's surname, real names not in the KB. Normal cases are kept so regressions can't hide.
+   - test-2 is **sealed**: `load_testset()` only returns dev+test, and the runners refuse test-2 without `--final-test2`.
+2. **`pehchaan-v2`:** the fixes, tuned on **dev only**, 2 rounds.
+   - Round 1 broke the transcript: a long span swallowed "Call"/"in", so WER went from 147 to 170 words.
+   - Round 2 fixed it (WER 145), with wrong targets and missed questions unchanged at 0/146 and 1/16.
+3. **test-2, run once** for the strong AI, v1 (the exact code of tag `final-eval-v1.1`, run from a temporary git
+   worktree) and v2. Then **no tuning**.
+
+### The five fixes (general rules)
+- **Everyday-word guard:** a phrase made only of everyday words (`data/lexicon/indian_everyday_words.txt`, about 400
+  romanised + about 140 native-script) stays as heard, unless it's in a strong name position ("call …", "Dr. …",
+  "to <place>") and scores ≥ 0.95. Words that are part of a KB name are automatically excluded. Spelling variants
+  meet after squashing doubled letters ("chaalaa" = "chala").
+- **Longest match first:** a 2+-word span that confidently (≥ 0.80) matches a 2+-word KB name is chosen before any
+  shorter span inside it. Its first and last words must not be ordinary words that aren't part of the name.
+- **Caller evidence:** "Srinivas Gowd here" from Sreenivas Goud's saved number is Sreenivas Goud. The
+  self-introduction may now have up to two name words before "here".
+- **Unknown-caller surname:** an unknown number that only shares a surname ("Mehta") is never linked.
+- **LLM prefers keep:** "A similar sound is NOT enough"; keep unknown restaurants/towns and type mismatches.
+
+### Results on test-2 (90 clips)
+| | strong AI (c) | v1 | **v2** |
+|---|---|---|---|
+| wrong target | 10/90 | 9/90 | **2/90** |
+| missed clarification | 8/8 | 2/8 | 2/8 |
+| over-correction | 3/36 | 5/36 | **2/36** |
+| unnecessary questions | **0/78** | 5/78 | 4/78 |
+| exact action target | 34/40 | 29/40 | **36/40** |
+
+v2 vs (c): 25 wins, 62 ties, 3 losses. v2 vs v1: 11 wins, 79 ties, **0 losses**.
+v2 on the original test set is reported only as "**already seen**", because we studied those failures.
+
+### What went wrong along the way (disclosed)
+- **The first v1 run on test-2 was invalid.** The temporary worktree had no `.env`, so v1's LLM fallback
+  couldn't run and silently "kept" every unsure span.
+  - We caught it because v1 used the LLM on 0/90 clips (it uses it on ~10% normally).
+  - We discarded the run **before scoring**, fixed the runner (it now passes the key to the child process and
+    refuses to save a run with LLM failures), and re-ran v1.
+- **Lesson:** a "fail-safe" fallback can quietly fail an evaluation, so check the counts, not just the totals.
+
+### What v2 still gets wrong (test-2)
+- **"Dhiraj" → Dr. Raju** (clean audio). "Dhiraj" isn't in our first-name list (only "Dheeraj" is), so the
+  unfamiliar-name guard missed it.
+- **"Cocapet" → Moosapet** (phone): the LLM fallback still picked a place despite the stricter instruction.
+- **"Pinnie"** (speech-to-text's spelling of the family word "Pinni") wasn't recognised as Pinni; the LLM asked
+  about Puneeth/Pune.
+- **"my neighbor"** (American spelling) isn't recognised as a role reference, so no question was asked.
+- **"Ask Mohammed if the car brakes are fixed":** asked instead of using "car" as a clue for the mechanic.
+
+### Key concepts
+- **Fresh held-out set:** data written and frozen *before* the system that it tests existed. It is the only honest
+  way to prove a fix for failures you have already studied.
+- **Pre-registration (light version):** committing the test set (and a timestamped git tag on GitHub) before
+  running the system, so nobody, including you, can quietly change it afterwards.
+- **"Seen" test set:** once you've designed changes by looking at a set's failures, its numbers are optimistic for
+  the changed system. Report them, but label them.
+- **git worktree:** a second checkout of the same repository at another commit, in another folder. We used it to
+  run the *exact* v1 code next to v2.
+- **Code-mixing:** switching between languages within one sentence ("Aaj bahut thand hai"). It's very common in
+  Indian speech, and full of short words that sound like names.
+
+### Questions a judge might ask
+- **Didn't you just tune v2 on the test set?** We designed the fixes after seeing v1's *test* failures, so v2's
+  numbers on that set are labelled "already seen". The proof is test-2. It was written, committed and tagged
+  (`test2-frozen`, pushed to GitHub) **before** v2's code existed. It was run once and nothing was tuned afterwards.
+- **Why keep v1 as the headline?** Because it's the result that was fully held out when we first reported it.
+  v2 is an addition with its own clean proof, not a rewrite of history.
+- **Is v2 better everywhere?** No. Against the strong AI it still asks more unnecessary questions (4/78 vs 0/78)
+  and has 3 losses on test-2. Against v1 it has 0 losses on test-2.
+- **How do you know v1 was run fairly on test-2?** It ran the exact tagged code. When we caught an invalid first run
+  (no API key in the worktree), we discarded it before scoring, fixed the runner and disclosed it.
+- **Why a word list and not a language model for everyday words?** It's fast, transparent and explainable, and it
+  can't invent things. Every word on the list can be read and checked, and KB names are automatically excluded.

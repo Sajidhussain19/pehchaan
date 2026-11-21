@@ -143,6 +143,9 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
   ("Decision-logic freeze" section), then re-record with `python scripts/freeze_logic.py`.
 - Never tune on test results. The final held-out run happened once (Module 9, tag `final-eval-v1`); after the one
   approved change (clue beats saved preference) it was repeated with identical scores (tag `final-eval-v1.1`).
+- v2 (approved unfreeze): test-2 written and frozen first (tag `test2-frozen`), v2 tuned on dev only (tag
+  `pehchaan-v2`), then test-2 run ONCE (`--final-test2`, logged). v1/v1.1 stay the headline and are never
+  overwritten. The fingerprint now covers the v2 logic. test-2 is now also "seen": a v3 would need a new held-out set.
 
 ## Repo layout
 - `app/` — FastAPI app and all project code (`main.py`, `config.py`, `kb/`, `testset/`, `stt/`, `match/`, `decide/`, `api/`, `store/`)

@@ -509,7 +509,39 @@ async function loadScoreboard() {
   fill($("#score-table"), 
     el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Strong AI (c)"), el("th", {}, "Pehchaan"), el("th", {}, "Pehchaan is"))),
     el("tbody", {}, rows));
+  renderV2(m.v2);
   scoreLoaded = true;
+}
+
+/** Second section: the v2 fix on test-2. "Better"/"Worse" compare v2 with the strong AI, in words. */
+function renderV2(v2) {
+  if (!v2) return;
+  const { c, v1, v2: p } = v2.overall;
+  const cell = (x) => (x ? `${x.hits}/${x.total} = ${Math.round(x.rate * 100)}%` : "–");
+  fill($("#score-v2-sub"), v2.label);
+  const w = v2.win_tie_loss || {};
+  fill($("#score-v2-wtl"),
+    el("div", {}, el("strong", {}, w.win ?? "–"), "v2 wins"),
+    el("div", {}, el("strong", {}, w.tie ?? "–"), "ties"),
+    el("div", {}, el("strong", {}, w.loss ?? "–"), "losses"));
+  const rows = SCORE_ROWS.filter(([k]) => c[k] && p[k]).map(([k, label, lowerBetter]) => {
+    const diff = p[k].rate - c[k].rate;
+    const better = lowerBetter ? diff < 0 : diff > 0;
+    const word = Math.abs(diff) < 1e-9 ? ["Same", "cmp-same"] : better ? ["Better", "cmp-better"] : ["Worse", "cmp-worse"];
+    return el("tr", {}, el("td", {}, label), el("td", { class: "num" }, cell(c[k])),
+      el("td", { class: "num" }, cell(v1 && v1[k])), el("td", { class: "num" }, cell(p[k])),
+      el("td", { class: word[1] }, word[0]));
+  });
+  rows.push(el("tr", {}, el("td", {}, "Latency per decision (median / mean)"),
+    el("td", { class: "num" }, `${Math.round(c.latency_ms_median)} / ${Math.round(c.latency_ms_mean)} ms`),
+    el("td", { class: "num" }, v1 ? `${Math.round(v1.latency_ms_median)} / ${Math.round(v1.latency_ms_mean)} ms` : "–"),
+    el("td", { class: "num" }, `${Math.round(p.latency_ms_median)} / ${Math.round(p.latency_ms_mean)} ms`),
+    el("td", { class: "cmp-better" }, "Better")));
+  fill($("#score-v2-table"),
+    el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Strong AI (c)"), el("th", {}, "Pehchaan v1"),
+      el("th", {}, "Pehchaan v2"), el("th", {}, "v2 vs strong AI"))),
+    el("tbody", {}, rows));
+  $("#score-v2").hidden = false;
 }
 
 // ---------- live mic ----------

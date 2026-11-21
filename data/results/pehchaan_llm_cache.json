@@ -1014,5 +1014,338 @@
   ],
   "cost_usd": 9.524999999999998e-05,
   "latency_ms": 1683.098599954974
+ },
+ "7a8671b519f536f4eeb22dc47373b4c8dc8d0d60f0d7024dd9b68a44454fc0d7": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'maja' does not clearly refer to any of the candidates and seems to be an ordinary word."
+   }
+  ],
+  "cost_usd": 9.57e-05,
+  "latency_ms": 1485.553800011985
+ },
+ "401704d1c7d797cb87777e29275f6be95bb66705193a2f64785765280ea2098b": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Shadnagar' refers to a specific location that is not among the candidates provided. The candidates are unrelated places."
+   }
+  ],
+  "cost_usd": 9.495e-05,
+  "latency_ms": 1169.483300007414
+ },
+ "254f50456a5137a031db5802bb200bc29eb7587a9a47df161b6cc03c3e8db2bc": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "clarify",
+    "reason": "Both 'Puneeth Hegde' and 'Princy Varghese' could be misheard as 'Pinnie', but it's unclear which one is intended based on the sentence."
+   }
+  ],
+  "cost_usd": 0.00010214999999999999,
+  "latency_ms": 1315.1479000225663
+ },
+ "8e87e8d9ecc8157aaeb65e5fdf63dc220ac1f87f1b6d98956051e15d19c1dd06": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "place_054",
+    "reason": "Cocapet is likely referring to a place in Hyderabad, and Moosapet is the closest match in the context of the sentence."
+   }
+  ],
+  "cost_usd": 9.719999999999999e-05,
+  "latency_ms": 1238.2148000178859
+ },
+ "c6166df9d5bb065f69a4e9002ce12877b8c10de9c4262d90e05491ef18851d52": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The name 'Viraj' does not match any of the candidates provided."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The name 'Shadnagar' does not match any of the candidates provided."
+   }
+  ],
+  "cost_usd": 0.00012314999999999998,
+  "latency_ms": 1443.2145999744534
+ },
+ "51cddbb29174708d4062a47f5579757d74715de0fb72d0ea86a52b3924ff9ca6": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "clarify",
+    "reason": "Both Dnyaneshwar Patil and Basavaraj Patil have similar sounding names, and the sentence does not clearly indicate which one is being referred to."
+   }
+  ],
+  "cost_usd": 0.00010334999999999999,
+  "latency_ms": 1211.8398000020534
+ },
+ "ca181b44ba810f26014eeaca126b7bca0df6f87b986160a2ae7e3ea73dc2727b": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Garu' is a common honorific in Telugu and does not refer to any specific candidate. It is not a name or place that matches the context."
+   }
+  ],
+  "cost_usd": 0.00010095,
+  "latency_ms": 1562.5803000293672
+ },
+ "f733f368634c1e8e0984e58d4cf06191855d2a551dc515b8dcaa36a4f07c7db8": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_005",
+    "reason": "The phrase 'Roby Tej' closely resembles 'Ravi Tej', who is identified as a badminton partner and plays on Sundays, making it a clear match."
+   }
+  ],
+  "cost_usd": 0.00010455,
+  "latency_ms": 1400.3101999987848
+ },
+ "8da343cad81dbd4127910b679f2ff796386369278d68914c80dd191e8389e36f": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'ka unay' does not clearly refer to any of the candidates and seems to be an ordinary phrase."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'sukarana' does not clearly refer to any of the candidates and seems to be an ordinary word."
+   }
+  ],
+  "cost_usd": 0.0001338,
+  "latency_ms": 1755.143099988345
+ },
+ "668eecb285b30b6620c64329c887ed4ccbc9f54eb938687fc4cb3e4c185f7fcd": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "business_012",
+    "reason": "The phrase clearly refers to Venkataramana Dental Care as it is explicitly mentioned in the sentence."
+   }
+  ],
+  "cost_usd": 9.525e-05,
+  "latency_ms": 1091.2147999624722
+ },
+ "c704ececf3e5e437a11f4f8d5b92716626a001282b64094668297dd28210ff6c": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "Narsingi is a location and does not match any of the candidates, which are all people."
+   }
+  ],
+  "cost_usd": 9.48e-05,
+  "latency_ms": 1148.5894999932498
+ },
+ "773397c56bdda2eb72a00f55457002c7b11dd771a5e8f2f2e56b9c2e97b3a7ea": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Gokul' is part of the restaurant name 'Shree Gokul Bhojnalaya', but none of the candidates match this context."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Bhojnalaya' is part of the restaurant name 'Shree Gokul Bhojnalaya', but none of the candidates match this context."
+   }
+  ],
+  "cost_usd": 0.00013859999999999998,
+  "latency_ms": 1978.8661999627948
+ },
+ "4e08becd2c3241c76ffa0f01f9ee48c1c0a70d1ada5b043cf1e34ea93291b92d": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Bupathi' does not clearly refer to any of the candidates, as it is not a match for either person listed."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'in Shadnagar' does not match any of the listed places, which are all different locations."
+   }
+  ],
+  "cost_usd": 0.00013215,
+  "latency_ms": 1785.1931999903172
+ },
+ "63ccb84240051ffc1d3ecc7baef92ba8a627dbb937b31fa1580b795f98934b11": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Aunt Johnny' does not clearly match any of the candidates, and it seems to refer to a family member rather than a contact."
+   }
+  ],
+  "cost_usd": 0.00010185,
+  "latency_ms": 1320.8742999704555
+ },
+ "c0aeba9b25b3afbdb84188a2feae800e8babfd7b3a8bd99a60b3b1f9397916e1": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' does not clearly refer to any of the candidates, and it is an ordinary word."
+   }
+  ],
+  "cost_usd": 9.51e-05,
+  "latency_ms": 1125.2002999535762
+ },
+ "437a98912903e01055f8eea2785fd809cd19733089a20f41a880520c7d7c346f": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The name 'Praneet' does not clearly match any of the candidates provided, and it is likely a different person."
+   }
+  ],
+  "cost_usd": 9.795e-05,
+  "latency_ms": 1118.7656000256538
+ },
+ "7bbb227d53145b387b2182627914c72885dada54f3fced44a359c3e44ba82ccd": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Kieran Reddy' does not clearly match any of the candidates provided, and it is likely a different person."
+   }
+  ],
+  "cost_usd": 0.0001008,
+  "latency_ms": 1218.6230000224896
+ },
+ "9b2f8b258b15d71b61dbc72c8483e61c92c1aa271a80da7fbb696b919c522700": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Daru' does not clearly refer to any of the candidates. It is part of a name that is not in the list and does not match any specific person or place."
+   }
+  ],
+  "cost_usd": 0.00010649999999999999,
+  "latency_ms": 1429.439299972728
+ },
+ "256e4ae371b38902bf8da0f17429062eb9c1ab25b1608ea5940ebb34d99131b5": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Share A Punjab Tava' does not match any of the candidates clearly, and it seems to refer to an unknown restaurant."
+   }
+  ],
+  "cost_usd": 0.0001002,
+  "latency_ms": 1248.1734000029974
+ },
+ "e7293e8ce18d666b0084d083dd351e12a5e1aa68d21408f02482d521de3ea245": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Bhupathi' does not clearly refer to any of the candidates, as it is a common surname and does not match the provided contacts."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'in Shadnagar' does not match any of the provided places, as Shadnagar is not listed among them."
+   }
+  ],
+  "cost_usd": 0.00013695,
+  "latency_ms": 1815.9116000169888
+ },
+ "3a88f17706fef337c7d7fd393885f2a0ccc3fec55da6253db88a1a3d97b36e9c": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Gottkesar' does not match any of the candidates clearly, and it refers to a railway station which is not listed."
+   }
+  ],
+  "cost_usd": 9.764999999999999e-05,
+  "latency_ms": 1121.04779999936
+ },
+ "bb4cc4e401e49906308f338164a95655e11d1be975fb0473514a81a274d0faed": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Therapore' does not clearly refer to any of the candidates, and it seems to be an ordinary word or a name not listed."
+   }
+  ],
+  "cost_usd": 9.719999999999999e-05,
+  "latency_ms": 1219.8925000266172
+ },
+ "ec333b136403ab58c75c0db289b9b31cef50e6094d5f3ed3e4d7391a3244f6ea": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'India' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 9.3e-05,
+  "latency_ms": 1149.336599977687
+ },
+ "616873d92d80632385b754ae9bddbfc91647dab48db9db1118dd064b6abb597e": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Goa district' refers to a location that is not among the candidates provided. The candidates are places in Hyderabad and Mumbai, which do not match the context of South Goa district."
+   }
+  ],
+  "cost_usd": 0.00010289999999999998,
+  "latency_ms": 1455.2417000522837
+ },
+ "e6480abe9e70b693d5fc329ca83f31cb706974c38b9bdec742d8e559cf2a8a50": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'grammar' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 9.839999999999999e-05,
+  "latency_ms": 1039.9081999785267
+ },
+ "0b8a381fad48c344dfc42a1df3474716ed96ade158c30049697e1aa35b6c3b8d": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'used' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 9.51e-05,
+  "latency_ms": 1106.1544999829493
+ },
+ "2f39a477624ec4c919006e1ef7e7d388b0597ba9011d6193da0cbcc7b3da2c39": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'thirty' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 9.285e-05,
+  "latency_ms": 1134.864200023003
+ },
+ "d417f0bdef7f15cc93598d3dfde16c7fe79b2f43aa09ada1aec41f8c5ca97b86": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Odisha' refers to a state in India and does not match any of the candidates, which are either people or a different place."
+   }
+  ],
+  "cost_usd": 9.869999999999999e-05,
+  "latency_ms": 1261.6378999664448
  }
 }

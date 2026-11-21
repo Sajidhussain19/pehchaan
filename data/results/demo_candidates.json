@@ -1,145 +1,145 @@
 [
   {
-    "clip_id": "s104",
+    "clip_id": "s202",
     "kind": "missed clarification",
-    "why": "Two contacts are called Rohit/Rohith. (c) silently picks one; Pehchaan asks which one.",
-    "text": "Call Rohit at 6 PM.",
+    "why": "Three contacts could be 'Lakshmi'. (c) silently picks the sister; Pehchaan asks which one.",
+    "text": "Call Lakshmi tomorrow morning.",
     "category": "ambiguous",
     "honest_failure": false,
     "audio": {
       "clean": {
-        "path": "data/testset/audio/clean/s104.wav",
+        "path": "data/testset/audio/clean/s202.wav",
         "result": "win",
-        "heard": "Call Rohit at 6 p.m.",
-        "baseline_c": "RESOLVE, action target = Rohith Reddy. \"Rohit\" -> Rohith Reddy (Rohit is a saved contact, and the context indicates he is the car service advisor.)",
-        "pehchaan": "ASKS: Rohit Chaturvedi or Rohith Reddy? \"Rohit\" -> kept (clarify: 'Rohit' fits Rohit Chaturvedi and Rohith Reddy almost equally, and nothing in the sentence separates them)"
+        "heard": "Call Lakshmi tomorrow morning.",
+        "baseline_c": "RESOLVE, action target = Lakshmi Prasanna. \"Lakshmi\" -> Lakshmi Prasanna (The user referred to 'Lakshmi', which matches the contact 'Lakshmi Prasanna', who is the user's sister.)",
+        "pehchaan": "ASKS: Laxmi Devi or Lakshmi Narayanan or Lakshmi Prasanna? \"Lakshmi\" -> kept (clarify: 'Lakshmi' fits Laxmi Devi and Lakshmi Narayanan and Lakshmi Prasanna almost equally, and nothing in the sentence separates them)"
       },
       "phone": {
-        "path": "data/testset/audio/phone/s104.wav",
+        "path": "data/testset/audio/phone/s202.wav",
         "result": "win",
-        "heard": "Call Rohit at 6 p.m.",
-        "baseline_c": "RESOLVE, action target = Rohith Reddy. \"Rohit\" -> Rohith Reddy (Rohit is a saved contact, and the context indicates he is a car service advisor.)",
-        "pehchaan": "ASKS: Rohit Chaturvedi or Rohith Reddy? \"Rohit\" -> kept (clarify: 'Rohit' fits Rohit Chaturvedi and Rohith Reddy almost equally, and nothing in the sentence separates them)"
+        "heard": "Call Lakshmi tomorrow morning.",
+        "baseline_c": "RESOLVE, action target = Lakshmi Prasanna. \"Lakshmi\" -> Lakshmi Prasanna (The user referred to 'Lakshmi', which matches the contact 'Lakshmi Prasanna', who is the user's sister.)",
+        "pehchaan": "ASKS: Laxmi Devi or Lakshmi Narayanan or Lakshmi Prasanna? \"Lakshmi\" -> kept (clarify: 'Lakshmi' fits Laxmi Devi and Lakshmi Narayanan and Lakshmi Prasanna almost equally, and nothing in the sentence separates them)"
       }
     }
   },
   {
-    "clip_id": "s140",
+    "clip_id": "s208",
     "kind": "clue vs default",
-    "why": "\"tooth filling\" is a clue for the dentist. (c) uses the stale default (family doctor).",
-    "text": "Remind me to ask my doctor about the tooth filling on Friday.",
+    "why": "\"braces\" is a clue for the dentist. (c) uses the stale default (the family doctor).",
+    "text": "Call my doctor to fix an appointment for my son's braces.",
     "category": "stale_default",
     "honest_failure": false,
     "audio": {
       "clean": {
-        "path": "data/testset/audio/clean/s140.wav",
+        "path": "data/testset/audio/clean/s208.wav",
         "result": "win",
-        "heard": "Remind me to ask my doctor about the tooth filling on Friday.",
-        "baseline_c": "RESOLVE, action target = Dr. Venkataramana. \"my doctor\" -> Dr. Venkataramana (The user referred to 'my doctor', which matches the default for doctor in their context.)",
-        "pehchaan": "RESOLVE, action target = Dr. Subramanian. \"my doctor\" -> Dr. Subramanian (resolve: clue 'tooth' -> dentist; clue 'filling' -> dentist)"
+        "heard": "Call my doctor to fix an appointment for my son's braces.",
+        "baseline_c": "RESOLVE, action target = Dr. Venkataramana. \"my doctor\" -> Dr. Venkataramana (The user referred to 'my doctor' which matches the default for doctor in their context.)",
+        "pehchaan": "RESOLVE, action target = Dr. Subramanian. \"my doctor\" -> Dr. Subramanian (resolve: clue 'braces' -> dentist)"
       },
       "phone": {
-        "path": "data/testset/audio/phone/s140.wav",
+        "path": "data/testset/audio/phone/s208.wav",
         "result": "win",
-        "heard": "Remind me to ask my doctor about the tooth filling on Friday.",
-        "baseline_c": "RESOLVE, action target = Dr. Venkataramana. \"my doctor\" -> Dr. Venkataramana (The user referred to 'my doctor', which matches the default for doctor, Dr. Venkataramana.)",
-        "pehchaan": "RESOLVE, action target = Dr. Subramanian. \"my doctor\" -> Dr. Subramanian (resolve: clue 'tooth' -> dentist; clue 'filling' -> dentist)"
+        "heard": "Call my doctor to fix an appointment for my son's braces.",
+        "baseline_c": "RESOLVE, action target = Dr. Venkataramana. \"my doctor\" -> Dr. Venkataramana (The user referred to 'my doctor' which matches the default for doctor in their context.)",
+        "pehchaan": "RESOLVE, action target = Dr. Subramanian. \"my doctor\" -> Dr. Subramanian (resolve: clue 'braces' -> dentist)"
       }
     }
   },
   {
-    "clip_id": "s108",
+    "clip_id": "s203",
     "kind": "type mismatch",
-    "why": "You can't book a table at a doctor. (c) maps it to a dental clinic; Pehchaan asks.",
-    "text": "Book a table at Venkataramana Restaurant for Sunday lunch.",
+    "why": "'Arif Biryani Point' isn't in the contacts, but Arif is the user's barber. (c) neither acts nor asks; Pehchaan asks before booking anything.",
+    "text": "Book a table at Arif Biryani Point tonight.",
     "category": "context_mismatch",
     "honest_failure": false,
     "audio": {
       "clean": {
-        "path": "data/testset/audio/clean/s108.wav",
+        "path": "data/testset/audio/clean/s203.wav",
         "result": "win",
-        "heard": "Book a table at Venkataramana restaurant for Sunday lunch.",
-        "baseline_c": "CORRECT, action target = Venkataramana Dental Care. \"Venkataramana\" -> Venkataramana Dental Care (Venkataramana refers to Venkataramana Dental Care, but in the context of booking a table, it is likely a misheard reference to a restaurant. However, there is no restaurant named Venkataramana in the context, so it remains unresolved.)",
-        "pehchaan": "ASKS: Dr. Venkataramana? \"Venkataramana\" -> kept (clarify: 'Venkataramana restaurant' sounds like a business, but Dr. Venkataramana is your family doctor: asking instead of guessing)"
+        "heard": "Book a table at Arif Biryani Point tonight.",
+        "baseline_c": "KEEP, no action target",
+        "pehchaan": "ASKS: Mohammed Arif? \"Arif\" -> kept (clarify: 'table' needs a business restaurant, but Mohammed Arif is your barber: asking instead of guessing); \"Biryani\" -> kept (keep: 'table' needs a business restaurant; Pranay Reddy doesn't fit)"
       },
       "phone": {
-        "path": "data/testset/audio/phone/s108.wav",
+        "path": "data/testset/audio/phone/s203.wav",
         "result": "win",
-        "heard": "Book a table at Venkataramana restaurant for Sunday lunch.",
-        "baseline_c": "CORRECT, action target = Venkataramana Dental Care. \"Venkataramana\" -> Venkataramana Dental Care (Exact match for the restaurant name in the context.)",
-        "pehchaan": "ASKS: Dr. Venkataramana? \"Venkataramana\" -> kept (clarify: 'Venkataramana restaurant' sounds like a business, but Dr. Venkataramana is your family doctor: asking instead of guessing)"
+        "heard": "Book a table at Arif Biryani Point tonight.",
+        "baseline_c": "KEEP, no action target",
+        "pehchaan": "ASKS: Mohammed Arif? \"Arif\" -> kept (clarify: 'table' needs a business restaurant, but Mohammed Arif is your barber: asking instead of guessing); \"Biryani\" -> kept (keep: 'table' needs a business restaurant; Pranay Reddy doesn't fit)"
       }
     }
   },
   {
-    "clip_id": "s067",
-    "kind": "misheard name",
-    "why": "\"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers by sound. (c) gives up and keeps it.",
-    "text": "Call Bhagyalakshmi Jewellers in Panjagutta and ask if the earrings are ready.",
-    "category": "in_kb",
+    "clip_id": "s199",
+    "kind": "near-identical contacts",
+    "why": "Ravi Teja (cousin) and Ravi Tej (badminton partner). (c) guesses one; Pehchaan asks.",
+    "text": "Text Ravi that I'll be late for dinner.",
+    "category": "ambiguous",
     "honest_failure": false,
     "audio": {
       "clean": {
-        "path": "data/testset/audio/clean/s067.wav",
+        "path": "data/testset/audio/clean/s199.wav",
         "result": "win",
-        "heard": "Call Padyalakshmi Jewelers in Punjabuta and ask if the earrings are ready.",
-        "baseline_c": "KEEP, no action target",
-        "pehchaan": "CORRECT, action target = Bhagyalakshmi Jewellers. \"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers (resolve: sounds like Bhagyalakshmi Jewellers (0.87), clear lead of 0.26); \"Punjabuta\" -> Panjagutta (resolve: sounds like Panjagutta (0.88), clear lead of 0.31)"
+        "heard": "Text Ravi that I'll be late for dinner.",
+        "baseline_c": "RESOLVE, action target = Ravi Teja. \"Ravi\" -> Ravi Teja (Ravi is a cousin and the only Ravi in the user's contacts.)",
+        "pehchaan": "ASKS: Ravi Teja or Ravi Tej? \"Ravi\" -> kept (clarify: 'dinner' needs a business restaurant, but Ravi Teja is your cousin: asking instead of guessing)"
       },
       "phone": {
-        "path": "data/testset/audio/phone/s067.wav",
+        "path": "data/testset/audio/phone/s199.wav",
         "result": "win",
-        "heard": "Call Padyalakshmi Jewelers in Panjagutta and ask if the earrings are ready.",
-        "baseline_c": "KEEP, no action target",
-        "pehchaan": "CORRECT, action target = Bhagyalakshmi Jewellers. \"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers (resolve: sounds like Bhagyalakshmi Jewellers (0.87), clear lead of 0.26); \"Panjagutta\" -> Panjagutta (resolve: heard exactly 'Panjagutta')"
+        "heard": "Text Ravi that I'll be late for dinner.",
+        "baseline_c": "RESOLVE, action target = Ravi Teja. \"Ravi\" -> Ravi Teja (Ravi is a cousin and fits the context of a family dinner.)",
+        "pehchaan": "ASKS: Ravi Teja or Ravi Tej? \"Ravi\" -> kept (clarify: 'dinner' needs a business restaurant, but Ravi Teja is your cousin: asking instead of guessing)"
       }
     }
   },
   {
-    "clip_id": "s125",
-    "kind": "family word (reference)",
-    "why": "\"Bhaiya\" in Hindi script is the user's elder brother Rajat. (c) picks a different contact.",
-    "text": "Bhaiya ko bolo Diwali pe ghar aa jaye.",
-    "category": "reference",
+    "clip_id": "s206",
+    "kind": "unfamiliar name",
+    "why": "'Anjana' is a real name but not a contact. (c) messages Anjani (the tuition teacher); Pehchaan doesn't act.",
+    "text": "Tell Anjana the cake order is confirmed.",
+    "category": "unfamiliar_near_match",
     "honest_failure": false,
     "audio": {
       "clean": {
-        "path": "data/testset/audio/clean/s125.wav",
+        "path": "data/testset/audio/clean/s206.wav",
         "result": "win",
-        "heard": "भैया को बोलो, दिवाली पर घर आ जाएँ।",
-        "baseline_c": "RESOLVE, action target = Aditya Rao. \"भैया\" -> Aditya Rao (The term 'Bhaiya' refers to the user's elder brother, who is identified as Aditya Rao in the context.)",
-        "pehchaan": "RESOLVE, action target = Rajat Verma. \"भैया\" -> Rajat Verma (resolve: family label: Bhaiya); \"घर आ जाएँ।\" -> kept (keep: 'घर आ जाएँ।' is unclear; best guess Nagarjuna Rao only 0.67)"
+        "heard": "Tell Anjana the cake order is confirmed.",
+        "baseline_c": "RESOLVE, action target = Anjani Mishra. \"Anjana\" -> Anjani Mishra (The name 'Anjana' closely resembles 'Anjani', who is the user's son's tuition teacher.)",
+        "pehchaan": "ASKS: Anjani Mishra or Dr. Ananthapadmanabhan or Anjali Verma? \"Anjana\" -> kept (clarify: 'cake' needs a business shop, but Anjani Mishra is your son's tuition teacher: asking instead of guessing)"
       },
       "phone": {
-        "path": "data/testset/audio/phone/s125.wav",
+        "path": "data/testset/audio/phone/s206.wav",
         "result": "win",
-        "heard": "भइया को बोलो दिवाली पर घर आ जाएँ।",
-        "baseline_c": "RESOLVE, action target = Aditya Rao. \"भइया\" -> Aditya Rao (The term 'Bhaiya' refers to the user's elder brother, Aditya Rao, who is identified as such in the context.)",
-        "pehchaan": "RESOLVE, action target = Rajat Verma. \"भइया\" -> Rajat Verma (resolve: family label: Bhaiya); \"घर आ जाएँ।\" -> kept (keep: 'घर आ जाएँ।' is unclear; best guess Nagarjuna Rao only 0.67)"
+        "heard": "Tell Anjana the cake order is confirmed.",
+        "baseline_c": "RESOLVE, action target = Anjani Mishra. \"Anjana\" -> Anjani Mishra (The name 'Anjana' closely resembles 'Anjani', who is the user's son's tuition teacher.)",
+        "pehchaan": "ASKS: Anjani Mishra or Dr. Ananthapadmanabhan or Anjali Verma? \"Anjana\" -> kept (clarify: 'cake' needs a business shop, but Anjani Mishra is your son's tuition teacher: asking instead of guessing)"
       }
     }
   },
   {
-    "clip_id": "s090",
-    "kind": "over-correction (Pehchaan's honest failure)",
-    "why": "Telugu \"ee roju\" (= today) sounds like Dr. Raju at 0.80, just above the confidence bar, so Pehchaan \"fixes\" an ordinary word into a contact's name. (c) correctly leaves it alone. This is the most common kind of Pehchaan loss on the held-out set (over-correction 11/70 vs (c) 3/70).",
-    "text": "Ee roju chala vedi ga undi, bayataki vellaku.",
-    "category": "control",
+    "clip_id": "s185",
+    "kind": "wrong target (an honest failure that still exists in v2)",
+    "why": "Clean audio: speech-to-text wrote \"Dhiraj\", which sounds like \"Dr. Raju\" (0.84), and \"Dhiraj\" is not in our list of common first names, so Pehchaan v2 links it to Dr. Raju. (c) correctly keeps it. On phone audio v2 gets it right. Over-correction on test-2: v2 2/36, v1 5/36, (c) 3/36.",
+    "text": "Tell Dheeraj to bring the projector to the Shadnagar office.",
+    "category": "out_of_kb",
     "honest_failure": true,
     "audio": {
       "clean": {
-        "path": "data/testset/audio/clean/s090.wav",
+        "path": "data/testset/audio/clean/s185.wav",
         "result": "loss",
-        "heard": "ఈ రోజు చాలా వేడిగా ఉంది. భయాతకి వెళ్ళకో.",
-        "baseline_c": "KEEP, no action target",
-        "pehchaan": "CORRECT, no action target. \"రోజు\" -> Dr. Raju (resolve: sounds like Dr. Raju (0.80), clear lead of 0.28)"
+        "heard": "Tell Dhiraj to bring the projector to the Shadnagar office.",
+        "baseline_c": "KEEP, no action target. \"Dhiraj\" -> kept (Dhiraj is not in the user's contacts.); \"Shadnagar\" -> kept (Shadnagar is a known place but not in the user's context.)",
+        "pehchaan": "CORRECT, action target = Dr. Raju. \"Dhiraj\" -> Dr. Raju (resolve: sounds like Dr. Raju (0.84), clear lead of 0.21); \"Shadnagar\" -> kept (keep: LLM: The phrase 'Shadnagar' refers to a specific location that is not among the candidates provided. The candidates are unrelated places.)"
       },
       "phone": {
-        "path": "data/testset/audio/phone/s090.wav",
-        "result": "loss",
-        "heard": "ఈ రోజు చాలా వేడిగా ఉంది. భయాతకి వెళ్ళకో.",
-        "baseline_c": "KEEP, no action target",
-        "pehchaan": "CORRECT, no action target. \"రోజు\" -> Dr. Raju (resolve: sounds like Dr. Raju (0.80), clear lead of 0.28)"
+        "path": "data/testset/audio/phone/s185.wav",
+        "result": "win",
+        "heard": "Tell Viraj to bring the projector to the Shadnagar office.",
+        "baseline_c": "KEEP, no action target. \"Viraj\" -> kept (Viraj is not in the user's contacts.); \"Shadnagar\" -> Hyderabad (Shadnagar is a known locality, but not explicitly listed in the context.)",
+        "pehchaan": "KEEP, no action target. \"Viraj\" -> kept (keep: LLM: The name 'Viraj' does not match any of the candidates provided.); \"Shadnagar\" -> kept (keep: LLM: The name 'Shadnagar' does not match any of the candidates provided.)"
       }
     }
   }

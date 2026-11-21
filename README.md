@@ -54,6 +54,57 @@ Baseline (c) is one GPT-4o-mini call that gets the same transcript and the user'
 should; its weak spots are **over-correction** (e.g. Telugu "ee roju", *today*, turned into "Dr. Raju") and asking
 when a business name contains a contact's first name ("Lakshmi Ganapathi Tiffins"). Both are reported as they are:
 nothing was tuned after this run. On dev we had seen 0/34 over-corrections; the test split showed that was optimistic.
+Those two weak spots are what **v2** fixes, proven on a second, fresh held-out set (see "v2 changes" below).
+
+## v2 changes (over-correction fixes, proven on a fresh held-out set)
+
+The headline above (v1, tags `final-eval-v1` / `v1.1`) is **never overwritten**. v2 fixes the two weak spots that
+held-out run exposed, and it is proven on **test-2**: a brand-new held-out set.
+
+**How it was proven (in this order, each step tagged in git and pushed before the next):**
+1. **`test2-frozen`:** 45 new sentences (s164–s208) were written, with clean + phone audio and plain transcripts,
+   **before any v2 code existed**. They don't paraphrase any dev/test sentence (max similarity 0.74; four closer
+   ones were rewritten). They are weighted toward v1's general weak spots (code-mixed sentences with no names,
+   businesses containing a contact's first name, unknown callers with a contact's surname, real names not in the
+   KB), plus normal cases so improvements can't hide regressions.
+2. **`pehchaan-v2`:** the fixes, tuned on **dev only** (2 rounds). On dev v2 kept wrong targets at 0/146 and
+   missed clarifications at 1/16.
+3. **test-2, run once** behind `--final-test2` (logged in `data/results/test_runs.log`): strong AI (c), v1 (the
+   exact code of tag `final-eval-v1.1`, run from a git worktree) and v2. Nothing was tuned afterwards.
+   Report: `data/results/report_test2_FINAL.md`.
+
+**What changed (general rules, not per-clip patches):**
+| Fix | Why (v1's failure, in general) |
+|---|---|
+| Everyday-word guard: a phrase made only of everyday Telugu/Hindi/Tamil/Kannada/Malayalam words (`data/lexicon/indian_everyday_words.txt`, romanised + native script) is never turned into a name, unless it is in a strong name position ("call …", "Dr. …", "to <place>") and matches ≥ 0.95 | "ee roju" (*today*) became "Dr. Raju" |
+| Longest match first: a multi-word span that confidently matches a multi-word KB name wins over a first name inside it (and must not start or end with an ordinary word) | "Lakshmi Ganapathi Tiffins" → "which Lakshmi?" |
+| Caller evidence: a known caller introducing themself ("Srinivas Gowd here") is the caller | asked "which Srinivas?" on the caller's own number |
+| Unknown-caller surname: an unknown number sharing only a surname is never linked | "Harshal Mehta" → Dr. Alok Mehta |
+| LLM fallback answers "keep" unless the sentence clearly refers to a candidate | "Gokul" → Mangaluru |
+
+**test-2 results (90 clips: 45 × clean + phone; raw counts):**
+| | (c) strong LLM baseline | Pehchaan v1 | **Pehchaan v2** |
+|---|---|---|---|
+| wrong-target rate | 10/90 = 11% | 9/90 = 10% | **2/90 = 2%** |
+| missed clarifications | 8/8 = 100% | 2/8 = 25% | **2/8 = 25%** |
+| over-correction | 3/36 = 8% | 5/36 = 14% | **2/36 = 6%** |
+| unnecessary questions | **0/78 = 0%** | 5/78 = 6% | 4/78 = 5% (still worse than (c)) |
+| reference resolution | 10/14 = 71% | 11/14 = 79% | 11/14 = 79% |
+| exact action target | 34/40 = 85% | 29/40 = 72% | **36/40 = 90%** |
+| entity accuracy | 47/52 = 90% | 45/52 = 87% | **49/52 = 94%** |
+| decided with no LLM | 0/90 | 83/90 = 92% | 84/90 = 93% |
+| latency median / mean | 1670 / 1728 ms | 13 / 250 ms | 11 / 188 ms |
+
+Clip by clip: **v2 vs (c): 25 wins, 62 ties, 3 losses. v2 vs v1: 11 wins, 79 ties, 0 losses.**
+
+**v2 on the ORIGINAL test set: already seen, NOT a clean held-out result** (v2's fixes were designed after looking
+at v1's losses there; `data/results/report_test_v2_SEEN.md`): wrong targets 8/220 (v1 11), over-correction 4/70
+(v1 11, (c) 3), unnecessary questions 5/198 (v1 15, (c) 0), entity accuracy 130/148 (v1 118).
+
+**Disclosed:** the first v1 run on test-2 was invalid. The temporary worktree had no `.env`, so v1's LLM fallback
+could not run and "kept" those spans. It was discarded **before any scoring**, the runner was fixed (it now passes
+the key to the child process and refuses to save a run with LLM failures), and v1 was run again. The demo now runs
+v2; its demo clips come from test-2 (`data/results/demo_candidates.md`).
 
 ## The 4 levels
 
@@ -334,6 +385,7 @@ fails if any of them changes. Any later change needs explicit approval, a repeat
 | Tag | Change | Approved | Effect on the held-out numbers |
 |---|---|---|---|
 | `final-eval-v1.1` | **A clue in the sentence beats a saved preference** (rule: clue -> saved preference -> default -> ask). Before, "Always use Dr. Subramanian for 'my doctor'" also sent "call my doctor about my **fever**" to the dentist; now the clue "fever" picks the GP. Only for references ("my doctor"); learned answers for plain names are unchanged. | yes, by the developer (Module 10) | Re-ran the final evaluation once with `--final`: **all 366 decisions (dev + test, every audio) identical**, every scored metric identical (evaluation uses no saved preferences). Only latency was re-measured (Pehchaan mean 298 -> 170 ms, median 10.9 -> 9.4 ms; cached LLM answers reuse their recorded time). The Results table keeps the first, more conservative latency. |
+| `pehchaan-v2` | **v2: over-correction fixes** (everyday-word guard, longest match first, caller evidence, unknown-caller surname, LLM prefers keep). Developer-approved unfreeze. | yes (v2 brief) | The v1 headline is unchanged and still reproducible from `final-eval-v1.1`. v2 is proven on the fresh test-2 set (see "v2 changes"); on the original test set it is reported only as "already seen". |
 
 *Made just before the freeze (Module 9 plumbing, no logic change):* the KB-derived caches in `app/match` and
 `app/decide` became per-contact-book caches, and `resolve()` gained a `book=` argument. Re-running Pehchaan on all

@@ -1,0 +1,2687 @@
+{
+  "split": "test2",
+  "audio": "all",
+  "systems": [
+    "a",
+    "c",
+    "v1",
+    "v2"
+  ],
+  "overall": {
+    "a": {
+      "entity_accuracy": {
+        "hits": 36,
+        "total": 52,
+        "rate": 0.6923076923076923
+      },
+      "over_correction_rate": {
+        "hits": 0,
+        "total": 36,
+        "rate": 0.0
+      },
+      "wer": {
+        "hits": 349,
+        "total": 956,
+        "rate": 0.36506276150627615
+      }
+    },
+    "c": {
+      "entity_accuracy": {
+        "hits": 47,
+        "total": 52,
+        "rate": 0.9038461538461539
+      },
+      "over_correction_rate": {
+        "hits": 3,
+        "total": 36,
+        "rate": 0.08333333333333333
+      },
+      "wer": {
+        "hits": 237,
+        "total": 956,
+        "rate": 0.24790794979079497
+      },
+      "behaviour_accuracy": {
+        "hits": 69,
+        "total": 90,
+        "rate": 0.7666666666666667
+      },
+      "exact_action_target_accuracy": {
+        "hits": 34,
+        "total": 40,
+        "rate": 0.85
+      },
+      "time_accuracy": {
+        "hits": 16,
+        "total": 16,
+        "rate": 1.0
+      },
+      "wrong_target_rate": {
+        "hits": 10,
+        "total": 90,
+        "rate": 0.1111111111111111
+      },
+      "unnecessary_question_rate": {
+        "hits": 0,
+        "total": 78,
+        "rate": 0.0
+      },
+      "missed_clarification_rate": {
+        "hits": 8,
+        "total": 8,
+        "rate": 1.0
+      },
+      "clarify_candidates_ok": {
+        "hits": 0,
+        "total": 0,
+        "rate": null
+      },
+      "reference_resolution_accuracy": {
+        "hits": 10,
+        "total": 14,
+        "rate": 0.7142857142857143
+      },
+      "no_llm_rate": {
+        "hits": 0,
+        "total": 90,
+        "rate": 0.0
+      },
+      "latency_ms_mean": 1727.5,
+      "latency_ms_median": 1669.8,
+      "cost_usd_mean": 0.000998
+    },
+    "v1": {
+      "entity_accuracy": {
+        "hits": 45,
+        "total": 52,
+        "rate": 0.8653846153846154
+      },
+      "over_correction_rate": {
+        "hits": 5,
+        "total": 36,
+        "rate": 0.1388888888888889
+      },
+      "wer": {
+        "hits": 204,
+        "total": 956,
+        "rate": 0.21338912133891214
+      },
+      "behaviour_accuracy": {
+        "hits": 78,
+        "total": 90,
+        "rate": 0.8666666666666667
+      },
+      "exact_action_target_accuracy": {
+        "hits": 29,
+        "total": 40,
+        "rate": 0.725
+      },
+      "time_accuracy": {
+        "hits": 15,
+        "total": 16,
+        "rate": 0.9375
+      },
+      "wrong_target_rate": {
+        "hits": 9,
+        "total": 90,
+        "rate": 0.1
+      },
+      "unnecessary_question_rate": {
+        "hits": 5,
+        "total": 78,
+        "rate": 0.0641025641025641
+      },
+      "missed_clarification_rate": {
+        "hits": 2,
+        "total": 8,
+        "rate": 0.25
+      },
+      "clarify_candidates_ok": {
+        "hits": 6,
+        "total": 6,
+        "rate": 1.0
+      },
+      "reference_resolution_accuracy": {
+        "hits": 11,
+        "total": 14,
+        "rate": 0.7857142857142857
+      },
+      "no_llm_rate": {
+        "hits": 83,
+        "total": 90,
+        "rate": 0.9222222222222223
+      },
+      "latency_ms_mean": 249.7,
+      "latency_ms_median": 12.7,
+      "cost_usd_mean": 7e-06
+    },
+    "v2": {
+      "entity_accuracy": {
+        "hits": 49,
+        "total": 52,
+        "rate": 0.9423076923076923
+      },
+      "over_correction_rate": {
+        "hits": 2,
+        "total": 36,
+        "rate": 0.05555555555555555
+      },
+      "wer": {
+        "hits": 196,
+        "total": 956,
+        "rate": 0.20502092050209206
+      },
+      "behaviour_accuracy": {
+        "hits": 82,
+        "total": 90,
+        "rate": 0.9111111111111111
+      },
+      "exact_action_target_accuracy": {
+        "hits": 36,
+        "total": 40,
+        "rate": 0.9
+      },
+      "time_accuracy": {
+        "hits": 16,
+        "total": 16,
+        "rate": 1.0
+      },
+      "wrong_target_rate": {
+        "hits": 2,
+        "total": 90,
+        "rate": 0.022222222222222223
+      },
+      "unnecessary_question_rate": {
+        "hits": 4,
+        "total": 78,
+        "rate": 0.05128205128205128
+      },
+      "missed_clarification_rate": {
+        "hits": 2,
+        "total": 8,
+        "rate": 0.25
+      },
+      "clarify_candidates_ok": {
+        "hits": 6,
+        "total": 6,
+        "rate": 1.0
+      },
+      "reference_resolution_accuracy": {
+        "hits": 11,
+        "total": 14,
+        "rate": 0.7857142857142857
+      },
+      "no_llm_rate": {
+        "hits": 84,
+        "total": 90,
+        "rate": 0.9333333333333333
+      },
+      "latency_ms_mean": 187.5,
+      "latency_ms_median": 10.8,
+      "cost_usd_mean": 7e-06
+    }
+  },
+  "per_audio": {
+    "clean": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 17,
+          "total": 26,
+          "rate": 0.6538461538461539
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 18,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 173,
+          "total": 478,
+          "rate": 0.3619246861924686
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 24,
+          "total": 26,
+          "rate": 0.9230769230769231
+        },
+        "over_correction_rate": {
+          "hits": 1,
+          "total": 18,
+          "rate": 0.05555555555555555
+        },
+        "wer": {
+          "hits": 119,
+          "total": 478,
+          "rate": 0.2489539748953975
+        },
+        "behaviour_accuracy": {
+          "hits": 35,
+          "total": 45,
+          "rate": 0.7777777777777778
+        },
+        "exact_action_target_accuracy": {
+          "hits": 17,
+          "total": 20,
+          "rate": 0.85
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 5,
+          "total": 45,
+          "rate": 0.1111111111111111
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 39,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 5,
+          "total": 7,
+          "rate": 0.7142857142857143
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 45,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1717.0,
+        "latency_ms_median": 1637.2,
+        "cost_usd_mean": 0.001044
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 22,
+          "total": 26,
+          "rate": 0.8461538461538461
+        },
+        "over_correction_rate": {
+          "hits": 2,
+          "total": 18,
+          "rate": 0.1111111111111111
+        },
+        "wer": {
+          "hits": 103,
+          "total": 478,
+          "rate": 0.21548117154811716
+        },
+        "behaviour_accuracy": {
+          "hits": 39,
+          "total": 45,
+          "rate": 0.8666666666666667
+        },
+        "exact_action_target_accuracy": {
+          "hits": 14,
+          "total": 20,
+          "rate": 0.7
+        },
+        "time_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "wrong_target_rate": {
+          "hits": 4,
+          "total": 45,
+          "rate": 0.08888888888888889
+        },
+        "unnecessary_question_rate": {
+          "hits": 3,
+          "total": 39,
+          "rate": 0.07692307692307693
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "clarify_candidates_ok": {
+          "hits": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 5,
+          "total": 7,
+          "rate": 0.7142857142857143
+        },
+        "no_llm_rate": {
+          "hits": 41,
+          "total": 45,
+          "rate": 0.9111111111111111
+        },
+        "latency_ms_mean": 286.7,
+        "latency_ms_median": 13.2,
+        "cost_usd_mean": 8e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 24,
+          "total": 26,
+          "rate": 0.9230769230769231
+        },
+        "over_correction_rate": {
+          "hits": 1,
+          "total": 18,
+          "rate": 0.05555555555555555
+        },
+        "wer": {
+          "hits": 99,
+          "total": 478,
+          "rate": 0.20711297071129708
+        },
+        "behaviour_accuracy": {
+          "hits": 41,
+          "total": 45,
+          "rate": 0.9111111111111111
+        },
+        "exact_action_target_accuracy": {
+          "hits": 18,
+          "total": 20,
+          "rate": 0.9
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 1,
+          "total": 45,
+          "rate": 0.022222222222222223
+        },
+        "unnecessary_question_rate": {
+          "hits": 2,
+          "total": 39,
+          "rate": 0.05128205128205128
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "clarify_candidates_ok": {
+          "hits": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 5,
+          "total": 7,
+          "rate": 0.7142857142857143
+        },
+        "no_llm_rate": {
+          "hits": 42,
+          "total": 45,
+          "rate": 0.9333333333333333
+        },
+        "latency_ms_mean": 192.5,
+        "latency_ms_median": 12.4,
+        "cost_usd_mean": 7e-06
+      }
+    },
+    "phone": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 19,
+          "total": 26,
+          "rate": 0.7307692307692307
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 18,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 176,
+          "total": 478,
+          "rate": 0.3682008368200837
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 23,
+          "total": 26,
+          "rate": 0.8846153846153846
+        },
+        "over_correction_rate": {
+          "hits": 2,
+          "total": 18,
+          "rate": 0.1111111111111111
+        },
+        "wer": {
+          "hits": 118,
+          "total": 478,
+          "rate": 0.24686192468619247
+        },
+        "behaviour_accuracy": {
+          "hits": 34,
+          "total": 45,
+          "rate": 0.7555555555555555
+        },
+        "exact_action_target_accuracy": {
+          "hits": 17,
+          "total": 20,
+          "rate": 0.85
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 5,
+          "total": 45,
+          "rate": 0.1111111111111111
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 39,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 5,
+          "total": 7,
+          "rate": 0.7142857142857143
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 45,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1738.1,
+        "latency_ms_median": 1679.6,
+        "cost_usd_mean": 0.000952
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 23,
+          "total": 26,
+          "rate": 0.8846153846153846
+        },
+        "over_correction_rate": {
+          "hits": 3,
+          "total": 18,
+          "rate": 0.16666666666666666
+        },
+        "wer": {
+          "hits": 101,
+          "total": 478,
+          "rate": 0.2112970711297071
+        },
+        "behaviour_accuracy": {
+          "hits": 39,
+          "total": 45,
+          "rate": 0.8666666666666667
+        },
+        "exact_action_target_accuracy": {
+          "hits": 15,
+          "total": 20,
+          "rate": 0.75
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 5,
+          "total": 45,
+          "rate": 0.1111111111111111
+        },
+        "unnecessary_question_rate": {
+          "hits": 2,
+          "total": 39,
+          "rate": 0.05128205128205128
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "clarify_candidates_ok": {
+          "hits": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 6,
+          "total": 7,
+          "rate": 0.8571428571428571
+        },
+        "no_llm_rate": {
+          "hits": 42,
+          "total": 45,
+          "rate": 0.9333333333333333
+        },
+        "latency_ms_mean": 212.8,
+        "latency_ms_median": 10.6,
+        "cost_usd_mean": 7e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 25,
+          "total": 26,
+          "rate": 0.9615384615384616
+        },
+        "over_correction_rate": {
+          "hits": 1,
+          "total": 18,
+          "rate": 0.05555555555555555
+        },
+        "wer": {
+          "hits": 97,
+          "total": 478,
+          "rate": 0.20292887029288703
+        },
+        "behaviour_accuracy": {
+          "hits": 41,
+          "total": 45,
+          "rate": 0.9111111111111111
+        },
+        "exact_action_target_accuracy": {
+          "hits": 18,
+          "total": 20,
+          "rate": 0.9
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 1,
+          "total": 45,
+          "rate": 0.022222222222222223
+        },
+        "unnecessary_question_rate": {
+          "hits": 2,
+          "total": 39,
+          "rate": 0.05128205128205128
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "clarify_candidates_ok": {
+          "hits": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 6,
+          "total": 7,
+          "rate": 0.8571428571428571
+        },
+        "no_llm_rate": {
+          "hits": 42,
+          "total": 45,
+          "rate": 0.9333333333333333
+        },
+        "latency_ms_mean": 182.5,
+        "latency_ms_median": 9.4,
+        "cost_usd_mean": 7e-06
+      }
+    }
+  },
+  "per_category": {
+    "ambiguous": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 4,
+          "total": 60,
+          "rate": 0.06666666666666667
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 4,
+          "total": 60,
+          "rate": 0.06666666666666667
+        },
+        "behaviour_accuracy": {
+          "hits": 2,
+          "total": 8,
+          "rate": 0.25
+        },
+        "exact_action_target_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 4,
+          "total": 8,
+          "rate": 0.5
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1776.6,
+        "latency_ms_median": 1707.2,
+        "cost_usd_mean": 0.000956
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 4,
+          "total": 60,
+          "rate": 0.06666666666666667
+        },
+        "behaviour_accuracy": {
+          "hits": 6,
+          "total": 8,
+          "rate": 0.75
+        },
+        "exact_action_target_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.2,
+        "latency_ms_median": 7.4,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 4,
+          "total": 60,
+          "rate": 0.06666666666666667
+        },
+        "behaviour_accuracy": {
+          "hits": 6,
+          "total": 8,
+          "rate": 0.75
+        },
+        "exact_action_target_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 6.7,
+        "latency_ms_median": 6.7,
+        "cost_usd_mean": 0.0
+      }
+    },
+    "context_mismatch": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 38,
+          "rate": 0.05263157894736842
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 38,
+          "rate": 0.05263157894736842
+        },
+        "behaviour_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1349.3,
+        "latency_ms_median": 1221.8,
+        "cost_usd_mean": 0.000932
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 38,
+          "rate": 0.05263157894736842
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.6,
+        "latency_ms_median": 9.1,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 38,
+          "rate": 0.05263157894736842
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.6,
+        "latency_ms_median": 8.2,
+        "cost_usd_mean": 0.0
+      }
+    },
+    "control": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 220,
+          "total": 110,
+          "rate": 2.0
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 119,
+          "total": 110,
+          "rate": 1.0818181818181818
+        },
+        "behaviour_accuracy": {
+          "hits": 16,
+          "total": 16,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1531.4,
+        "latency_ms_median": 1313.2,
+        "cost_usd_mean": 0.001124
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 2,
+          "total": 16,
+          "rate": 0.125
+        },
+        "wer": {
+          "hits": 125,
+          "total": 110,
+          "rate": 1.1363636363636365
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 16,
+          "rate": 0.875
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 15,
+          "total": 16,
+          "rate": 0.9375
+        },
+        "latency_ms_mean": 302.2,
+        "latency_ms_median": 11.4,
+        "cost_usd_mean": 8e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 123,
+          "total": 110,
+          "rate": 1.1181818181818182
+        },
+        "behaviour_accuracy": {
+          "hits": 16,
+          "total": 16,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 15,
+          "total": 16,
+          "rate": 0.9375
+        },
+        "latency_ms_mean": 203.8,
+        "latency_ms_median": 7.1,
+        "cost_usd_mean": 6e-06
+      }
+    },
+    "in_kb": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 32,
+          "total": 48,
+          "rate": 0.6666666666666666
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 32,
+          "total": 380,
+          "rate": 0.08421052631578947
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 43,
+          "total": 48,
+          "rate": 0.8958333333333334
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 19,
+          "total": 380,
+          "rate": 0.05
+        },
+        "behaviour_accuracy": {
+          "hits": 19,
+          "total": 28,
+          "rate": 0.6785714285714286
+        },
+        "exact_action_target_accuracy": {
+          "hits": 20,
+          "total": 24,
+          "rate": 0.8333333333333334
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 28,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 28,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 28,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1923.4,
+        "latency_ms_median": 1950.8,
+        "cost_usd_mean": 0.000971
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 41,
+          "total": 48,
+          "rate": 0.8541666666666666
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 22,
+          "total": 380,
+          "rate": 0.05789473684210526
+        },
+        "behaviour_accuracy": {
+          "hits": 26,
+          "total": 28,
+          "rate": 0.9285714285714286
+        },
+        "exact_action_target_accuracy": {
+          "hits": 16,
+          "total": 24,
+          "rate": 0.6666666666666666
+        },
+        "time_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "wrong_target_rate": {
+          "hits": 6,
+          "total": 28,
+          "rate": 0.21428571428571427
+        },
+        "unnecessary_question_rate": {
+          "hits": 2,
+          "total": 28,
+          "rate": 0.07142857142857142
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 26,
+          "total": 28,
+          "rate": 0.9285714285714286
+        },
+        "latency_ms_mean": 202.8,
+        "latency_ms_median": 14.5,
+        "cost_usd_mean": 6e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 45,
+          "total": 48,
+          "rate": 0.9375
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 17,
+          "total": 380,
+          "rate": 0.04473684210526316
+        },
+        "behaviour_accuracy": {
+          "hits": 27,
+          "total": 28,
+          "rate": 0.9642857142857143
+        },
+        "exact_action_target_accuracy": {
+          "hits": 23,
+          "total": 24,
+          "rate": 0.9583333333333334
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 28,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 28,
+          "rate": 0.03571428571428571
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 27,
+          "total": 28,
+          "rate": 0.9642857142857143
+        },
+        "latency_ms_mean": 100.5,
+        "latency_ms_median": 13.1,
+        "cost_usd_mean": 4e-06
+      }
+    },
+    "out_of_kb": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 77,
+          "total": 194,
+          "rate": 0.39690721649484534
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 1,
+          "total": 16,
+          "rate": 0.0625
+        },
+        "wer": {
+          "hits": 72,
+          "total": 194,
+          "rate": 0.3711340206185567
+        },
+        "behaviour_accuracy": {
+          "hits": 16,
+          "total": 16,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1664.6,
+        "latency_ms_median": 1579.9,
+        "cost_usd_mean": 0.000952
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 3,
+          "total": 16,
+          "rate": 0.1875
+        },
+        "wer": {
+          "hits": 37,
+          "total": 194,
+          "rate": 0.19072164948453607
+        },
+        "behaviour_accuracy": {
+          "hits": 13,
+          "total": 16,
+          "rate": 0.8125
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 3,
+          "total": 16,
+          "rate": 0.1875
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 13,
+          "total": 16,
+          "rate": 0.8125
+        },
+        "latency_ms_mean": 558.5,
+        "latency_ms_median": 15.0,
+        "cost_usd_mean": 1.8e-05
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 2,
+          "total": 16,
+          "rate": 0.125
+        },
+        "wer": {
+          "hits": 36,
+          "total": 194,
+          "rate": 0.18556701030927836
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 16,
+          "rate": 0.875
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 2,
+          "total": 16,
+          "rate": 0.125
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 16,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 13,
+          "total": 16,
+          "rate": 0.8125
+        },
+        "latency_ms_mean": 494.4,
+        "latency_ms_median": 12.9,
+        "cost_usd_mean": 2e-05
+      }
+    },
+    "reference": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 12,
+          "total": 104,
+          "rate": 0.11538461538461539
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 13,
+          "total": 104,
+          "rate": 0.125
+        },
+        "behaviour_accuracy": {
+          "hits": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "exact_action_target_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 2,
+          "total": 10,
+          "rate": 0.2
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1665.5,
+        "latency_ms_median": 1641.3,
+        "cost_usd_mean": 0.000958
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 12,
+          "total": 104,
+          "rate": 0.11538461538461539
+        },
+        "behaviour_accuracy": {
+          "hits": 7,
+          "total": 10,
+          "rate": 0.7
+        },
+        "exact_action_target_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "time_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "missed_clarification_rate": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 7,
+          "total": 10,
+          "rate": 0.7
+        },
+        "no_llm_rate": {
+          "hits": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "latency_ms_mean": 287.0,
+        "latency_ms_median": 8.9,
+        "cost_usd_mean": 9e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 12,
+          "total": 104,
+          "rate": 0.11538461538461539
+        },
+        "behaviour_accuracy": {
+          "hits": 7,
+          "total": 10,
+          "rate": 0.7
+        },
+        "exact_action_target_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "time_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "missed_clarification_rate": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 7,
+          "total": 10,
+          "rate": 0.7
+        },
+        "no_llm_rate": {
+          "hits": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "latency_ms_mean": 273.9,
+        "latency_ms_median": 11.0,
+        "cost_usd_mean": 1e-05
+      }
+    },
+    "stale_default": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 0,
+          "total": 38,
+          "rate": 0.0
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 4,
+          "total": 38,
+          "rate": 0.10526315789473684
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1766.3,
+        "latency_ms_median": 1685.3,
+        "cost_usd_mean": 0.000954
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 0,
+          "total": 38,
+          "rate": 0.0
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.8,
+        "latency_ms_median": 8.9,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 0,
+          "total": 38,
+          "rate": 0.0
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.4,
+        "latency_ms_median": 8.2,
+        "cost_usd_mean": 0.0
+      }
+    },
+    "unfamiliar_near_match": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 2,
+          "total": 32,
+          "rate": 0.0625
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "wer": {
+          "hits": 4,
+          "total": 32,
+          "rate": 0.125
+        },
+        "behaviour_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1789.4,
+        "latency_ms_median": 1649.5,
+        "cost_usd_mean": 0.001171
+      },
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 2,
+          "total": 32,
+          "rate": 0.0625
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.3,
+        "latency_ms_median": 7.3,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 2,
+          "total": 32,
+          "rate": 0.0625
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.2,
+        "latency_ms_median": 7.6,
+        "cost_usd_mean": 0.0
+      }
+    }
+  },
+  "comparison": {
+    "a": "v2",
+    "b": "c",
+    "counts": {
+      "tie": 62,
+      "win": 25,
+      "loss": 3
+    },
+    "clips": [
+      {
+        "clip": "s174",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_action",
+        "said": "Remind me to pick up the BP tablets from Manjunatha Medicals in Jayanagar tomorrow at 7 PM.",
+        "v2_text": "Remind me to pick up the BP tablets from Manjunatha Medicals in Jayanagar tomorrow at 7 p.m.",
+        "c_text": "Remind me to pick up the BP tablets from Manjunatha Medicals in Jayanagar tomorrow at 7 p.m."
+      },
+      {
+        "clip": "s176",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "entity_miss",
+        "said": "Ask Sree Durga Bhavani Medicals in LB Nagar to keep the insulin ready by 6 PM.",
+        "v2_text": "Ask Sree Durga Bhavani Medicals in LB Nagar to keep the insulin ready by 6 p.m.",
+        "c_text": "Ask Sri Durga Bhavani Medicals in LB Nagar to keep the insulin ready by 18:00."
+      },
+      {
+        "clip": "s185",
+        "audio": "clean",
+        "category": "out_of_kb",
+        "result": "loss",
+        "v2": "wrong_target",
+        "c": "ok",
+        "said": "Tell Dheeraj to bring the projector to the Shadnagar office.",
+        "v2_text": "Tell Dr. Raju to bring the projector to the Shadnagar office.",
+        "c_text": "Tell Dhiraj to bring the projector to the Shadnagar office."
+      },
+      {
+        "clip": "s186",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "Call Thirumalai Selvan and ask when he will pay the rent.",
+        "v2_text": "Call Thirumalai Selvan and ask when he will pay the rent.",
+        "c_text": "Call Thirumalai Selvan and ask when he will pay the rent."
+      },
+      {
+        "clip": "s187",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "Remind me to meet Unnikrishnan Nair at Kochi airport on Monday at 10 AM.",
+        "v2_text": "Remind me to meet Unnikrishnan Nair at Kochi airport on Monday at 10 a.m.",
+        "c_text": "Remind me to meet Unnikrishnan Nair at Kochi airport on Monday at 10:00."
+      },
+      {
+        "clip": "s191",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "How long does it take from Hitech City to Golconda Fort in the evening?",
+        "v2_text": "How long does it take from Hitech City to Golconda Fort in the evening?",
+        "c_text": "How long does it take from Hitech City to Golconda Fort in the evening?"
+      },
+      {
+        "clip": "s192",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "Call Smruti Rekha Behera and ask about the night shift on Wednesday.",
+        "v2_text": "Call Smruti Rekha Behera and ask about the night shift on Wednesday.",
+        "c_text": "Call Smruti Rekha Behera and ask about the night shift on Wednesday."
+      },
+      {
+        "clip": "s194",
+        "audio": "clean",
+        "category": "reference",
+        "result": "loss",
+        "v2": "unnecessary_question",
+        "c": "ok",
+        "said": "Tell Pinni I will visit her on Sunday evening.",
+        "v2_text": "Tell Pinnie I will visit her on Sunday evening.",
+        "c_text": "Tell Pinnie I will visit her on Sunday evening."
+      },
+      {
+        "clip": "s198",
+        "audio": "clean",
+        "category": "reference",
+        "result": "win",
+        "v2": "missed_clarification",
+        "c": "wrong_target",
+        "said": "Ask my neighbour to collect the courier while I'm away.",
+        "v2_text": "Ask my neighbor to collect the courier while I'm away.",
+        "c_text": "Ask my neighbour to collect the courier while I'm away."
+      },
+      {
+        "clip": "s199",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Text Ravi that I'll be late for dinner.",
+        "v2_text": "Text Ravi that I'll be late for dinner.",
+        "c_text": "Text Ravi that I'll be late for dinner."
+      },
+      {
+        "clip": "s202",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Call Lakshmi tomorrow morning.",
+        "v2_text": "Call Lakshmi tomorrow morning.",
+        "c_text": "Call Lakshmi tomorrow morning."
+      },
+      {
+        "clip": "s203",
+        "audio": "clean",
+        "category": "context_mismatch",
+        "result": "win",
+        "v2": "ok",
+        "c": "missed_clarification",
+        "said": "Book a table at Arif Biryani Point tonight.",
+        "v2_text": "Book a table at Arif Biryani Point tonight.",
+        "c_text": "Book a table at Arif Biryani Point tonight."
+      },
+      {
+        "clip": "s206",
+        "audio": "clean",
+        "category": "unfamiliar_near_match",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Tell Anjana the cake order is confirmed.",
+        "v2_text": "Tell Anjana the cake order is confirmed.",
+        "c_text": "Tell Anjani the cake order is confirmed."
+      },
+      {
+        "clip": "s208",
+        "audio": "clean",
+        "category": "stale_default",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Call my doctor to fix an appointment for my son's braces.",
+        "v2_text": "Call my doctor to fix an appointment for my son's braces.",
+        "c_text": "Call my doctor to fix an appointment for my son's braces."
+      },
+      {
+        "clip": "s176",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "entity_miss",
+        "said": "Ask Sree Durga Bhavani Medicals in LB Nagar to keep the insulin ready by 6 PM.",
+        "v2_text": "Ask Sree Durga Bhavani Medicals in LB Nagar to keep the insulin ready by 6 PM.",
+        "c_text": "Ask Sri Durga Bhavani Medicals in LB Nagar to keep the insulin ready by 18:00."
+      },
+      {
+        "clip": "s183",
+        "audio": "phone",
+        "category": "out_of_kb",
+        "result": "loss",
+        "v2": "wrong_target",
+        "c": "ok",
+        "said": "Message Farhan that the cricket nets are booked at Kokapet.",
+        "v2_text": "Message Farhan that the cricket nets are booked at Moosapet.",
+        "c_text": "Message Farhan that the cricket nets are booked at Cocapet."
+      },
+      {
+        "clip": "s185",
+        "audio": "phone",
+        "category": "out_of_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "over_corrected",
+        "said": "Tell Dheeraj to bring the projector to the Shadnagar office.",
+        "v2_text": "Tell Viraj to bring the projector to the Shadnagar office.",
+        "c_text": "Tell Viraj to bring the projector to the Shadnagar office."
+      },
+      {
+        "clip": "s186",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "Call Thirumalai Selvan and ask when he will pay the rent.",
+        "v2_text": "Call Thirumalai Selvan and ask when he will pay the rent.",
+        "c_text": "Call Thirumalai Selvan and ask when he will pay the rent."
+      },
+      {
+        "clip": "s187",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "Remind me to meet Unnikrishnan Nair at Kochi airport on Monday at 10 AM.",
+        "v2_text": "Remind me to meet Unnikrishnan Nair at Kochi Airport on Monday at 10 AM.",
+        "c_text": "Remind me to meet Unnikrishnan Nair at Kochi Airport on Monday at 10:00."
+      },
+      {
+        "clip": "s188",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "entity_miss",
+        "said": "Message Subhashis Chattopadhyay that the thesis draft is ready.",
+        "v2_text": "Message Subhashis Chattopadhyay that the thesis draft is ready.",
+        "c_text": "Message Subhasis Chattopadhyay that the thesis draft is ready."
+      },
+      {
+        "clip": "s191",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "How long does it take from Hitech City to Golconda Fort in the evening?",
+        "v2_text": "How long does it take from Hitech City to Golconda Fort in the evening?",
+        "c_text": "How long does it take from Hitech City to Golconda Fort in the evening?"
+      },
+      {
+        "clip": "s192",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_behaviour",
+        "said": "Call Smruti Rekha Behera and ask about the night shift on Wednesday.",
+        "v2_text": "Call Smruti Rekha Behera and ask about the night shift on Wednesday.",
+        "c_text": "Call Smruti Rekha Behera and ask about the night shift on Wednesday."
+      },
+      {
+        "clip": "s198",
+        "audio": "phone",
+        "category": "reference",
+        "result": "win",
+        "v2": "missed_clarification",
+        "c": "wrong_target",
+        "said": "Ask my neighbour to collect the courier while I'm away.",
+        "v2_text": "Ask my neighbor to collect the courier while I'm away.",
+        "c_text": "Ask my neighbor to collect the courier while I'm away."
+      },
+      {
+        "clip": "s199",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Text Ravi that I'll be late for dinner.",
+        "v2_text": "Text Ravi that I'll be late for dinner.",
+        "c_text": "Text Ravi that I'll be late for dinner."
+      },
+      {
+        "clip": "s202",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Call Lakshmi tomorrow morning.",
+        "v2_text": "Call Lakshmi tomorrow morning.",
+        "c_text": "Call Lakshmi tomorrow morning."
+      },
+      {
+        "clip": "s203",
+        "audio": "phone",
+        "category": "context_mismatch",
+        "result": "win",
+        "v2": "ok",
+        "c": "missed_clarification",
+        "said": "Book a table at Arif Biryani Point tonight.",
+        "v2_text": "Book a table at Arif Biryani Point tonight.",
+        "c_text": "Book a table at Arif Biryani Point tonight."
+      },
+      {
+        "clip": "s206",
+        "audio": "phone",
+        "category": "unfamiliar_near_match",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Tell Anjana the cake order is confirmed.",
+        "v2_text": "Tell Anjana the cake order is confirmed.",
+        "c_text": "Tell Anjani the cake order is confirmed."
+      },
+      {
+        "clip": "s208",
+        "audio": "phone",
+        "category": "stale_default",
+        "result": "win",
+        "v2": "ok",
+        "c": "wrong_target",
+        "said": "Call my doctor to fix an appointment for my son's braces.",
+        "v2_text": "Call my doctor to fix an appointment for my son's braces.",
+        "c_text": "Call my doctor to fix an appointment for my son's braces."
+      }
+    ]
+  }
+}

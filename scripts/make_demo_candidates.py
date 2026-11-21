@@ -1,10 +1,11 @@
 """
-scripts/make_demo_candidates.py — writes data/results/demo_candidates.md (+ .json) from the FINAL test results.
+scripts/make_demo_candidates.py — writes data/results/demo_candidates.md (+ .json) from the FINAL test-2 results.
 
 WHAT: For a short, hand-picked list of held-out test clips it pulls, straight from the saved result files:
       what was said, what speech-to-text heard, what baseline (c) did and what Pehchaan did (with reasons),
-      for both the clean and the phone recording. The picks are 5 clips where Pehchaan is right and (c) is
-      wrong on BOTH recordings, one per failure type, plus 1 honest Pehchaan failure.
+      for both the clean and the phone recording. The picks are 5 clips where Pehchaan v2 is right and (c) is
+      wrong on BOTH recordings, one per failure type, plus 1 honest failure that still exists in v2.
+      Since v2, the source is test-2 (the fresh held-out set, frozen before v2 ran on it) and the demo runs v2.
 WHY:  The demo centrepiece must be a real held-out clip where the two systems diverge, shown with the
       overall win / tie / loss counts. Generating the page from the result files (not typing it by hand)
       means the demo can't quietly drift from the reported numbers. The API (GET /api/clips) reads the JSON.
@@ -23,24 +24,25 @@ from app.kb.loader import get_by_id  # noqa: E402
 from app.stt.baseline import RESULTS_DIR  # noqa: E402
 from app.testset.validate import load_testset  # noqa: E402
 
-# (clip id, failure type of baseline (c), why it is a good demo). Chosen from report_test_FINAL.json:
-# Pehchaan "ok" and (c) wrong on BOTH clean and phone audio, one clip per failure type.
+# (clip id, failure type of baseline (c), why it is a good demo). Chosen from report_test2_FINAL.json:
+# Pehchaan v2 "ok" and (c) wrong on BOTH clean and phone audio, one clip per failure type.
 PICKS = [
-    ("s104", "missed clarification",
-     "Two contacts are called Rohit/Rohith. (c) silently picks one; Pehchaan asks which one."),
-    ("s140", "clue vs default",
-     "\"tooth filling\" is a clue for the dentist. (c) uses the stale default (family doctor)."),
-    ("s108", "type mismatch",
-     "You can't book a table at a doctor. (c) maps it to a dental clinic; Pehchaan asks."),
-    ("s067", "misheard name",
-     "\"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers by sound. (c) gives up and keeps it."),
-    ("s125", "family word (reference)",
-     "\"Bhaiya\" in Hindi script is the user's elder brother Rajat. (c) picks a different contact."),
+    ("s202", "missed clarification",
+     "Three contacts could be 'Lakshmi'. (c) silently picks the sister; Pehchaan asks which one."),
+    ("s208", "clue vs default",
+     "\"braces\" is a clue for the dentist. (c) uses the stale default (the family doctor)."),
+    ("s203", "type mismatch",
+     "'Arif Biryani Point' isn't in the contacts, but Arif is the user's barber. (c) neither acts nor asks; "
+     "Pehchaan asks before booking anything."),
+    ("s199", "near-identical contacts",
+     "Ravi Teja (cousin) and Ravi Tej (badminton partner). (c) guesses one; Pehchaan asks."),
+    ("s206", "unfamiliar name",
+     "'Anjana' is a real name but not a contact. (c) messages Anjani (the tuition teacher); Pehchaan doesn't act."),
 ]
-FAILURE = ("s090", "over-correction (Pehchaan's honest failure)",
-           "Telugu \"ee roju\" (= today) sounds like Dr. Raju at 0.80, just above the confidence bar, so Pehchaan "
-           "\"fixes\" an ordinary word into a contact's name. (c) correctly leaves it alone. This is the most common "
-           "kind of Pehchaan loss on the held-out set (over-correction 11/70 vs (c) 3/70).")
+FAILURE = ("s185", "wrong target (an honest failure that still exists in v2)",
+           "Clean audio: speech-to-text wrote \"Dhiraj\", which sounds like \"Dr. Raju\" (0.84), and \"Dhiraj\" is not in "
+           "our list of common first names, so Pehchaan v2 links it to Dr. Raju. (c) correctly keeps it. On phone "
+           "audio v2 gets it right. Over-correction on test-2: v2 2/36, v1 5/36, (c) 3/36.")
 
 
 def _name(entity_id):
@@ -63,16 +65,17 @@ def _did(d: dict) -> str:
 
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    report = json.loads((RESULTS_DIR / "report_test_FINAL.json").read_text(encoding="utf-8"))
+    report = json.loads((RESULTS_DIR / "report_test2_FINAL.json").read_text(encoding="utf-8"))
     outcome = {(c["clip"], c["audio"]): c for c in report["comparison"]["clips"]}
-    sentences = {s.id: s for s in load_testset()}
+    sentences = {s.id: s for s in load_testset(splits=None)}
     files = {a: {"c": json.loads((RESULTS_DIR / f"llm_baseline_{a}_gpt-4o-mini.json").read_text(encoding="utf-8"))["clips"],
-                 "p": json.loads((RESULTS_DIR / f"pehchaan_{a}_v1.json").read_text(encoding="utf-8"))["clips"]}
+                 "p": json.loads((RESULTS_DIR / f"pehchaan_{a}_v2.json").read_text(encoding="utf-8"))["clips"]}
              for a in ("clean", "phone")}
 
     counts = report["comparison"]["counts"]
-    md = ["# Demo candidates (from the FINAL held-out test run)", "",
-          f"Source: `data/results/report_test_FINAL.json`. Overall, clip by clip, Pehchaan vs (c): "
+    md = ["# Demo candidates (from the held-out test-2 run, Pehchaan v2)", "",
+          f"Source: `data/results/report_test2_FINAL.json` (test-2 was frozen at tag `test2-frozen` before v2 ran on it). "
+          f"Overall, clip by clip, Pehchaan v2 vs (c): "
           f"**win {counts.get('win', 0)}, tie {counts.get('tie', 0)}, loss {counts.get('loss', 0)}**.", "",
           "Each clip below was picked because Pehchaan and baseline (c) diverge on **both** the clean and the phone "
           "recording. Everything is copied from the saved result files by `scripts/make_demo_candidates.py`."]
