@@ -1,0 +1,941 @@
+[
+  {
+    "id": "business_001",
+    "name": "Sri Venkateswara Pharmacy",
+    "type": "business",
+    "aliases": [
+      "Venkateswara Pharmacy",
+      "Sri Venkateshwara Medicals"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "pharmacy",
+      "area": "Kukatpally",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_002",
+    "name": "Sri Venkateswara Fancy Store",
+    "type": "business",
+    "aliases": [
+      "Venkateswara Fancy Store",
+      "Sri Venkateshwara Fancy"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "shop",
+      "area": "Kukatpally",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_003",
+    "name": "Lakshmi Ganapathi Tiffins",
+    "type": "business",
+    "aliases": [
+      "Laxmi Ganapathi Tiffins",
+      "Lakshmi Ganapati Tiffin Centre"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "restaurant",
+      "area": "Ameerpet",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_004",
+    "name": "Dr. Mehta's Clinic",
+    "type": "business",
+    "aliases": [
+      "Mehta Clinic",
+      "Dr Mehtas Clinic"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "category": "clinic",
+      "area": "Begumpet",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_005",
+    "name": "Sri Sai Balaji Hospital",
+    "type": "business",
+    "aliases": [
+      "Sai Balaji Hospital"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "hospital",
+      "area": "Miyapur",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_006",
+    "name": "Kakatiya Kitchen",
+    "type": "business",
+    "aliases": [
+      "Kakatiya Restaurant"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Madhapur",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_007",
+    "name": "Annapurna Mess",
+    "type": "business",
+    "aliases": [
+      "Annapoorna Mess"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Dilsukhnagar",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_008",
+    "name": "Nawab Zaika Biryani House",
+    "type": "business",
+    "aliases": [
+      "Nawab Zaika Biryani",
+      "Zaika Biryani"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Tolichowki",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_009",
+    "name": "Hyderabadi Dum Ghar",
+    "type": "business",
+    "aliases": [
+      "Dum Ghar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "category": "restaurant",
+      "area": "Mehdipatnam",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_010",
+    "name": "Sree Durga Bhavani Medicals",
+    "type": "business",
+    "aliases": [
+      "Durga Bhavani Medical Store",
+      "Sri Durga Bhavani Medicals"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "pharmacy",
+      "area": "LB Nagar",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_011",
+    "name": "Gowri Shankar Kirana",
+    "type": "business",
+    "aliases": [
+      "Gouri Shankar Kirana",
+      "Gowrishankar Kirana Store"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Kondapur",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_012",
+    "name": "Venkataramana Dental Care",
+    "type": "business",
+    "aliases": [
+      "Venkata Ramana Dental",
+      "Venkataramana Dental Clinic"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "clinic",
+      "area": "Gachibowli",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_013",
+    "name": "Vijaya Durga Supermarket",
+    "type": "business",
+    "aliases": [
+      "Vijayadurga Supermarket"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Kompally",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_014",
+    "name": "Saraswathi Vidya Niketan",
+    "type": "business",
+    "aliases": [
+      "Saraswati Vidya Niketan",
+      "Saraswathi School"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "category": "school",
+      "area": "Uppal",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_015",
+    "name": "Little Lotus Play School",
+    "type": "business",
+    "aliases": [
+      "Little Lotus Preschool"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "category": "school",
+      "area": "Jubilee Hills",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_016",
+    "name": "Naaz Beauty Parlour",
+    "type": "business",
+    "aliases": [
+      "Naz Beauty Parlour",
+      "Naaz Salon"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "salon",
+      "area": "Tolichowki",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_017",
+    "name": "Royal Gents Saloon",
+    "type": "business",
+    "aliases": [
+      "Royal Hair Saloon"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "category": "salon",
+      "area": "Secunderabad",
+      "city": "Secunderabad"
+    }
+  },
+  {
+    "id": "business_018",
+    "name": "Ruchi Andhra Bhojanam",
+    "type": "business",
+    "aliases": [
+      "Ruchi Andhra Meals"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Kukatpally",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_019",
+    "name": "Hanuman Tyres and Batteries",
+    "type": "business",
+    "aliases": [
+      "Hanuman Tyres"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "category": "shop",
+      "area": "Bowenpally",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_020",
+    "name": "Afreen Opticals",
+    "type": "business",
+    "aliases": [
+      "Afreen Optical"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Charminar",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_021",
+    "name": "Moazzam Book House",
+    "type": "business",
+    "aliases": [
+      "Moazzam Books",
+      "Muazzam Book House"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "category": "shop",
+      "area": "Abids",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_022",
+    "name": "Sri Ramakrishna Eye Hospital",
+    "type": "business",
+    "aliases": [
+      "Ramakrishna Eye Hospital",
+      "Sri Rama Krishna Eye Hospital"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "hospital",
+      "area": "Himayatnagar",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_023",
+    "name": "Padmavathi Nursing Home",
+    "type": "business",
+    "aliases": [
+      "Padmavati Nursing Home"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "hospital",
+      "area": "Malakpet",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_024",
+    "name": "Srinivasa Diagnostics",
+    "type": "business",
+    "aliases": [
+      "Sreenivasa Diagnostics",
+      "Srinivas Diagnostics"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "clinic",
+      "area": "SR Nagar",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_025",
+    "name": "Agarwal Mithai Bhandar",
+    "type": "business",
+    "aliases": [
+      "Aggarwal Mithai Bhandar",
+      "Agarwal Sweets"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Koti",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_026",
+    "name": "Gulshan Irani Cafe",
+    "type": "business",
+    "aliases": [
+      "Gulshan Cafe"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Lakdikapul",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_027",
+    "name": "Sree Dhanwantari Ayurveda Clinic",
+    "type": "business",
+    "aliases": [
+      "Dhanwantari Ayurveda",
+      "Sri Dhanvantari Clinic"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "clinic",
+      "area": "Tarnaka",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_028",
+    "name": "Sri Krishna Dental Clinic",
+    "type": "business",
+    "aliases": [
+      "Krishna Dental Clinic"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "clinic",
+      "area": "Kondapur",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_029",
+    "name": "Navodaya Children's Hospital",
+    "type": "business",
+    "aliases": [
+      "Navodaya Kids Hospital"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "category": "hospital",
+      "area": "Nizampet",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_030",
+    "name": "Sneha Ladies Beauty Parlour",
+    "type": "business",
+    "aliases": [
+      "Sneha Beauty Parlour"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "category": "salon",
+      "area": "Chandanagar",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_031",
+    "name": "Style Zone Unisex Salon",
+    "type": "business",
+    "aliases": [
+      "Stylezone Salon"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "category": "salon",
+      "area": "Madhapur",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_032",
+    "name": "Ganesh Photo Studio",
+    "type": "business",
+    "aliases": [
+      "Ganesh Studio"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "category": "shop",
+      "area": "Erragadda",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_033",
+    "name": "Bismillah Chicken Centre",
+    "type": "business",
+    "aliases": [
+      "Bismilla Chicken Center"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Mehdipatnam",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_034",
+    "name": "Al Noor Bakery",
+    "type": "business",
+    "aliases": [
+      "Alnoor Bakery",
+      "Al-Noor Bakers"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Yousufguda",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_035",
+    "name": "Kaveri Kids School",
+    "type": "business",
+    "aliases": [
+      "Cauvery Kids School"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "category": "school",
+      "area": "Kothaguda",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_036",
+    "name": "Gnana Jyothi High School",
+    "type": "business",
+    "aliases": [
+      "Gnanajyothi High School",
+      "Gnana Jyoti School"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "school",
+      "area": "Vanasthalipuram",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_037",
+    "name": "Bhagyalakshmi Jewellers",
+    "type": "business",
+    "aliases": [
+      "Bhagya Lakshmi Jewellers",
+      "Bhagyalaxmi Jewellers"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "shop",
+      "area": "Panjagutta",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_038",
+    "name": "Thirumala Rice Depot",
+    "type": "business",
+    "aliases": [
+      "Tirumala Rice Depot"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Habsiguda",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_039",
+    "name": "Ramulu Tea Stall",
+    "type": "business",
+    "aliases": [
+      "Ramulu Chai Stall"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Nampally",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_040",
+    "name": "Balaji Physiotherapy Centre",
+    "type": "business",
+    "aliases": [
+      "Balaji Physio"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "category": "clinic",
+      "area": "Alwal",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_041",
+    "name": "Deccan Biryani Darbar",
+    "type": "business",
+    "aliases": [
+      "Deccan Darbar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Khairatabad",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_042",
+    "name": "Sher-e-Punjab Dhaba",
+    "type": "business",
+    "aliases": [
+      "Sher E Punjab Dhaba",
+      "Shere Punjab Dhaba"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Gachibowli",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_043",
+    "name": "Gurukripa Hardware",
+    "type": "business",
+    "aliases": [
+      "Guru Kripa Hardware"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "Moosapet",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_044",
+    "name": "Patel Kirana Bhandar",
+    "type": "business",
+    "aliases": [
+      "Patel Kirana"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "easy",
+    "context": {
+      "category": "shop",
+      "area": "Begumpet",
+      "city": "Hyderabad"
+    }
+  },
+  {
+    "id": "business_045",
+    "name": "St. Joseph's Convent School",
+    "type": "business",
+    "aliases": [
+      "St Josephs Convent",
+      "Saint Joseph's Convent School"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "category": "school",
+      "area": "Secunderabad",
+      "city": "Secunderabad"
+    }
+  },
+  {
+    "id": "business_046",
+    "name": "Holy Family Clinic",
+    "type": "business",
+    "aliases": [
+      "Holy Family Medical Centre"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "easy",
+    "context": {
+      "category": "clinic",
+      "area": "Trimulgherry",
+      "city": "Secunderabad"
+    }
+  },
+  {
+    "id": "business_047",
+    "name": "Sri Kanaka Durga Hospital",
+    "type": "business",
+    "aliases": [
+      "Kanaka Durga Hospital",
+      "Kanakadurga Hospital"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "category": "hospital",
+      "area": "Vijayawada",
+      "city": "Vijayawada"
+    }
+  },
+  {
+    "id": "business_048",
+    "name": "Chettinad Spice Kitchen",
+    "type": "business",
+    "aliases": [
+      "Chettinad Kitchen"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Velachery",
+      "city": "Chennai"
+    }
+  },
+  {
+    "id": "business_049",
+    "name": "Kumaran Tiffin Centre",
+    "type": "business",
+    "aliases": [
+      "Kumaran Tiffins"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Mylapore",
+      "city": "Chennai"
+    }
+  },
+  {
+    "id": "business_050",
+    "name": "Meenakshi Silks",
+    "type": "business",
+    "aliases": [
+      "Meenakshi Silk House"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "category": "shop",
+      "area": "T. Nagar",
+      "city": "Chennai"
+    }
+  },
+  {
+    "id": "business_051",
+    "name": "Udupi Krishna Bhavan",
+    "type": "business",
+    "aliases": [
+      "Udupi Sri Krishna Bhavan",
+      "Krishna Bhavan"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Basavanagudi",
+      "city": "Bengaluru"
+    }
+  },
+  {
+    "id": "business_052",
+    "name": "Manjunatha Medicals",
+    "type": "business",
+    "aliases": [
+      "Manjunath Medical Stores"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "category": "pharmacy",
+      "area": "Jayanagar",
+      "city": "Bengaluru"
+    }
+  },
+  {
+    "id": "business_053",
+    "name": "Namma Ooru Darshini",
+    "type": "business",
+    "aliases": [
+      "Namma Ooru Darshini Hotel"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "hard",
+    "context": {
+      "category": "restaurant",
+      "area": "Malleshwaram",
+      "city": "Bengaluru"
+    }
+  },
+  {
+    "id": "business_054",
+    "name": "Malabar Fish Point",
+    "type": "business",
+    "aliases": [
+      "Malabar Fish Restaurant"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "easy",
+    "context": {
+      "category": "restaurant",
+      "area": "Kochi",
+      "city": "Kochi"
+    }
+  },
+  {
+    "id": "business_055",
+    "name": "Bengal Sweet House",
+    "type": "business",
+    "aliases": [
+      "Bengali Sweet House"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "easy",
+    "context": {
+      "category": "shop",
+      "area": "Salt Lake",
+      "city": "Kolkata"
+    }
+  },
+  {
+    "id": "business_056",
+    "name": "Maa Tara Medical Store",
+    "type": "business",
+    "aliases": [
+      "Ma Tara Medicals"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "category": "pharmacy",
+      "area": "Howrah",
+      "city": "Howrah"
+    }
+  },
+  {
+    "id": "business_057",
+    "name": "Shree Ambica Khakhra House",
+    "type": "business",
+    "aliases": [
+      "Shri Ambika Khakhra",
+      "Ambica Khakhra"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "hard",
+    "context": {
+      "category": "shop",
+      "area": "Ahmedabad",
+      "city": "Ahmedabad"
+    }
+  },
+  {
+    "id": "business_058",
+    "name": "Jagannath Bhojanalaya",
+    "type": "business",
+    "aliases": [
+      "Jagannatha Bhojanalaya"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Bhubaneswar",
+      "city": "Bhubaneswar"
+    }
+  },
+  {
+    "id": "business_059",
+    "name": "Utkal Mishtanna Bhandar",
+    "type": "business",
+    "aliases": [
+      "Utkal Sweet Shop"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "hard",
+    "context": {
+      "category": "shop",
+      "area": "Cuttack",
+      "city": "Cuttack"
+    }
+  },
+  {
+    "id": "business_060",
+    "name": "Siddhivinayak Medical Store",
+    "type": "business",
+    "aliases": [
+      "Siddhi Vinayak Medicals"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "category": "pharmacy",
+      "area": "Andheri",
+      "city": "Mumbai"
+    }
+  },
+  {
+    "id": "business_061",
+    "name": "Vitthal Vada Pav Centre",
+    "type": "business",
+    "aliases": [
+      "Vitthal Vadapav",
+      "Vittal Vada Pav"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "category": "restaurant",
+      "area": "Dadar",
+      "city": "Mumbai"
+    }
+  }
+]

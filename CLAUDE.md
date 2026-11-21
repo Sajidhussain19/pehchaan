@@ -46,7 +46,7 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 
 ## The 10 modules
 1. Setup  (DONE)
-2. Knowledge base
+2. Knowledge base  (DONE)
 3. Test set builder
 4. Baseline transcription
 5. Evaluation

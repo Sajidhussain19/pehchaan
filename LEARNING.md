@@ -63,3 +63,81 @@ We also pinned `anyio==4.8.0`. A newer anyio caused a deprecation warning inside
   change and compare them, without touching code.
 - **Why write tests in a 28-hour hackathon?** Each module builds on the last. A quick test catches a broken
   import or config immediately, which is cheaper than finding it during the demo.
+
+---
+
+## Module 2 — Knowledge base
+
+### What we built
+- `data/kb/contacts.json` (121 fictional contacts), `places.json` (145 places), `businesses.json` (61 fictional businesses): **327 entities, 481 aliases**.
+- `app/kb/models.py`: Pydantic models. An `Entity` has id, name, type, aliases, language_origin, difficulty and context.
+  Each type also has a context model: `PersonContext`, `PlaceContext`, `BusinessContext`.
+- `app/kb/loader.py`: `load_kb()`, `get_by_type()`, `get_by_id()`, `all_surface_forms()`, plus whole-KB validation and caching.
+- `scripts/kb_stats.py`: a friendly summary of the KB.
+- `tests/test_kb.py`: 14 tests, covering both good data and deliberately broken data.
+
+### How it works
+1. `load_kb()` reads the three JSON files and turns each row into an `Entity`. Pydantic checks every field.
+   It rejects a wrong type, a missing field, a real-looking phone number, or a typo in a context key.
+2. `validate_entities()` then checks rules that need the whole KB at once:
+   - ids are unique
+   - no empty names
+   - no two entities share a canonical name
+   - no alias equals another entity's canonical name
+   - every business `area` exists in `places.json`
+   It collects *all* problems and reports them together.
+3. The result is cached with `lru_cache`, so the disk is read once, however often the KB is asked for.
+4. `all_surface_forms()` builds the lookup later modules will match against. It maps every name and alias
+   (lower-cased) to entity ids: `{"kukatpalli": ["place_002"], ...}`.
+
+### Why a knowledge base is needed
+A speech-to-text model has never heard of *your* doctor, Dr. Venkataramana, or the pharmacy at the end of your street.
+It guesses from common English sounds, so "Kukatpally" becomes "cook at Polly". No model can know your personal contacts.
+The KB is the "personal context" in Equal AI's *context -> intent -> action*. It is the list of correct answers we
+correct towards. The KB's quality sets the ceiling on how well Pehchaan can correct names.
+
+### Why we add hard cases and near-duplicates on purpose
+If the KB held only easy, distinct names, any matcher would look great. That would be a dishonest test.
+Real phone books are messy, so we built the KB to be messy too:
+- **Long names** (Ananthapadmanabhan, Thiruvananthapuram) that speech-to-text splits into pieces.
+- **English-sounding names** (Kukatpally, Begumpet, Hitech City) that get rewritten as English words.
+- **Near-duplicates** (Srinivas Reddy / Sreenivas Goud / Srinivasan Iyer, Ravi Teja / Ravi Tej, Lakshmi / Laxmi).
+  A matcher that is too loose will pick the wrong person, so these are where false corrections show up.
+- **Honorifics** (Dr., Smt., Sri, Garu, Anna, Ji) that come and go in speech.
+- **Cross-type traps**: "Venkataramana Dental Care" is a business, "Dr. Venkataramana" is a person,
+  and "Ramulu Tea Stall" is not "Ramulu Anna".
+
+### Why the data is fictional
+Hackathon rules (and basic privacy) say: use only data you have permission to use. So every person and business is invented.
+Phone numbers follow one fake pattern (`+91-90000-0XXXX`), and the model *rejects* anything else, so a real number
+can't sneak in. Place names are public geography, so real names are fine there.
+
+### Key concepts
+- **Entity:** one thing we can recognise, here a person, place or business.
+- **Canonical name:** the one correct spelling we want in the final transcript.
+- **Alias:** another common way of writing the same entity (Laxmi for Lakshmi, Vizag for Visakhapatnam).
+- **Surface form:** any text string that refers to an entity, i.e. the canonical name or an alias.
+- **Near-duplicate:** two *different* entities whose names look or sound alike.
+- **Pydantic validation:** Pydantic checks data against a typed model and raises a clear error if it doesn't fit.
+  `Literal["person", "place", "business"]` allows only those exact values.
+- **`lru_cache`:** a Python decorator that remembers a function's result, so the second call returns instantly.
+- **Negative test:** a test that feeds *bad* data and checks it is rejected. It proves our safety checks work.
+- **`language_origin`:** we use "Urdu" for Muslim names and "Biblical" for Christian names. They are name origins,
+  which lets Module 5 report accuracy per origin (e.g. "we improved most on Telugu names").
+
+### Questions a judge might ask about this module
+- **Why not just put the names in the speech-to-text prompt?** We will test exactly that as baseline 2.
+  A prompt can hold only a few names. A real phone book has hundreds, plus places and businesses. A KB scales and lets us score confidence.
+- **Is this real user data?** No. Every person and business is fictional, and phone numbers use a fake pattern the code enforces.
+  Only public place names are real.
+- **How did you make it representative of India?** 12 name origins: 10 regional languages plus Urdu and Biblical
+  names (a 13th, Konkani, appears once, for Panaji). There are also English-origin place names.
+  Places lean towards Hyderabad because that is where the demo is.
+- **Why include confusing near-duplicates?** To test honestly. A correction system's worst failure is
+  confidently changing a name to the *wrong* person. Near-duplicates measure that.
+- **What stops the data from going bad when someone edits it?** Pydantic plus whole-KB validation runs on every load,
+  and 14 tests run with `pytest`, including tests that feed broken data to prove the checks fire.
+- **Why can one surface form map to several ids?** Short aliases (like a first name) can belong to more than one person.
+  We surface that ambiguity instead of hiding it, and the LangGraph pipeline resolves it with context. Today, no form is ambiguous.
+- **How would this work for a real user?** Swap the JSON for their actual phone contacts and saved places (with consent).
+  The loader and models stay the same.

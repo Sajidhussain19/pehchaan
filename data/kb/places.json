@@ -1,0 +1,2223 @@
+[
+  {
+    "id": "place_001",
+    "name": "Hyderabad",
+    "type": "place",
+    "aliases": [
+      "Hyderbad",
+      "Bhagyanagar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_002",
+    "name": "Kukatpally",
+    "type": "place",
+    "aliases": [
+      "Kukatpalli"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_003",
+    "name": "Gachibowli",
+    "type": "place",
+    "aliases": [
+      "Gachibowly",
+      "Gachchibowli"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_004",
+    "name": "Secunderabad",
+    "type": "place",
+    "aliases": [
+      "Sikandarabad",
+      "Secunderbad"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Secunderabad",
+      "state": "Telangana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_005",
+    "name": "Ameerpet",
+    "type": "place",
+    "aliases": [
+      "Amirpet",
+      "Ameerpeth"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_006",
+    "name": "Madhapur",
+    "type": "place",
+    "aliases": [
+      "Madapur"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_007",
+    "name": "Kondapur",
+    "type": "place",
+    "aliases": [
+      "Kondaapur"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_008",
+    "name": "Miyapur",
+    "type": "place",
+    "aliases": [
+      "Miyaapur"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_009",
+    "name": "Dilsukhnagar",
+    "type": "place",
+    "aliases": [
+      "Dilsukh Nagar",
+      "DSNR"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_010",
+    "name": "LB Nagar",
+    "type": "place",
+    "aliases": [
+      "L.B. Nagar",
+      "Lal Bahadur Nagar",
+      "Elbee Nagar"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_011",
+    "name": "Banjara Hills",
+    "type": "place",
+    "aliases": [
+      "Banjarahills"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_012",
+    "name": "Jubilee Hills",
+    "type": "place",
+    "aliases": [
+      "Jublee Hills",
+      "Jubli Hills"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_013",
+    "name": "Begumpet",
+    "type": "place",
+    "aliases": [
+      "Begampet",
+      "Begumpeth"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_014",
+    "name": "Tolichowki",
+    "type": "place",
+    "aliases": [
+      "Tolichowk",
+      "Toli Chowki"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_015",
+    "name": "Mehdipatnam",
+    "type": "place",
+    "aliases": [
+      "Mehdipatanam",
+      "Mehdipattanam"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_016",
+    "name": "Uppal",
+    "type": "place",
+    "aliases": [
+      "Uppalu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_017",
+    "name": "Kompally",
+    "type": "place",
+    "aliases": [
+      "Kompalli"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_018",
+    "name": "Hitech City",
+    "type": "place",
+    "aliases": [
+      "HITEC City",
+      "Hi-Tech City",
+      "Hitec City"
+    ],
+    "language_origin": "English",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_019",
+    "name": "Kothaguda",
+    "type": "place",
+    "aliases": [
+      "Kotha Guda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_020",
+    "name": "Manikonda",
+    "type": "place",
+    "aliases": [
+      "Manikonda Jagir"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_021",
+    "name": "Nanakramguda",
+    "type": "place",
+    "aliases": [
+      "Nanakram Guda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_022",
+    "name": "Financial District",
+    "type": "place",
+    "aliases": [
+      "Fin District"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_023",
+    "name": "Somajiguda",
+    "type": "place",
+    "aliases": [
+      "Somaji Guda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_024",
+    "name": "Panjagutta",
+    "type": "place",
+    "aliases": [
+      "Punjagutta"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_025",
+    "name": "Khairatabad",
+    "type": "place",
+    "aliases": [
+      "Khairtabad"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_026",
+    "name": "Lakdikapul",
+    "type": "place",
+    "aliases": [
+      "Lakdi Ka Pul",
+      "Lakdi Ka Pool"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_027",
+    "name": "Nampally",
+    "type": "place",
+    "aliases": [
+      "Nampalli"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_028",
+    "name": "Abids",
+    "type": "place",
+    "aliases": [
+      "Abid Road"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_029",
+    "name": "Koti",
+    "type": "place",
+    "aliases": [
+      "Kothi"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_030",
+    "name": "Charminar",
+    "type": "place",
+    "aliases": [
+      "Char Minar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_031",
+    "name": "Golconda Fort",
+    "type": "place",
+    "aliases": [
+      "Golkonda Fort",
+      "Golconda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_032",
+    "name": "Hussain Sagar",
+    "type": "place",
+    "aliases": [
+      "Hussainsagar",
+      "Husain Sagar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_033",
+    "name": "Tank Bund",
+    "type": "place",
+    "aliases": [
+      "Tankbund"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_034",
+    "name": "Malakpet",
+    "type": "place",
+    "aliases": [
+      "Malakpeth"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_035",
+    "name": "Chaitanyapuri",
+    "type": "place",
+    "aliases": [
+      "Chaitanya Puri"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_036",
+    "name": "Kachiguda",
+    "type": "place",
+    "aliases": [
+      "Kacheguda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_037",
+    "name": "Himayatnagar",
+    "type": "place",
+    "aliases": [
+      "Himayat Nagar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_038",
+    "name": "Narayanguda",
+    "type": "place",
+    "aliases": [
+      "Narayana Guda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_039",
+    "name": "Musheerabad",
+    "type": "place",
+    "aliases": [
+      "Mushirabad"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_040",
+    "name": "Tarnaka",
+    "type": "place",
+    "aliases": [
+      "Tarnaka X Roads"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_041",
+    "name": "Habsiguda",
+    "type": "place",
+    "aliases": [
+      "Habsi Guda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_042",
+    "name": "Nacharam",
+    "type": "place",
+    "aliases": [
+      "Nacharam IDA"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_043",
+    "name": "ECIL",
+    "type": "place",
+    "aliases": [
+      "E.C.I.L.",
+      "ECIL X Roads"
+    ],
+    "language_origin": "English",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_044",
+    "name": "Alwal",
+    "type": "place",
+    "aliases": [
+      "Alwaal"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_045",
+    "name": "Bowenpally",
+    "type": "place",
+    "aliases": [
+      "Bowenpalli",
+      "Bowinpally"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_046",
+    "name": "Trimulgherry",
+    "type": "place",
+    "aliases": [
+      "Tirumalagiri",
+      "Trimulgiri"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Secunderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_047",
+    "name": "Shamshabad",
+    "type": "place",
+    "aliases": [
+      "Shamsabad"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_048",
+    "name": "Attapur",
+    "type": "place",
+    "aliases": [
+      "Atapur"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_049",
+    "name": "Rajendranagar",
+    "type": "place",
+    "aliases": [
+      "Rajendra Nagar"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_050",
+    "name": "Chandanagar",
+    "type": "place",
+    "aliases": [
+      "Chanda Nagar"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_051",
+    "name": "Lingampally",
+    "type": "place",
+    "aliases": [
+      "Lingampalli"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_052",
+    "name": "Nizampet",
+    "type": "place",
+    "aliases": [
+      "Nizampeth"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_053",
+    "name": "Bachupally",
+    "type": "place",
+    "aliases": [
+      "Bachupalli"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_054",
+    "name": "Moosapet",
+    "type": "place",
+    "aliases": [
+      "Musapet"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_055",
+    "name": "Erragadda",
+    "type": "place",
+    "aliases": [
+      "Yerragadda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_056",
+    "name": "SR Nagar",
+    "type": "place",
+    "aliases": [
+      "S.R. Nagar",
+      "Sanjeeva Reddy Nagar"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_057",
+    "name": "Yousufguda",
+    "type": "place",
+    "aliases": [
+      "Yusufguda",
+      "Yousuf Guda"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_058",
+    "name": "Borabanda",
+    "type": "place",
+    "aliases": [
+      "Bora Banda"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_059",
+    "name": "Vanasthalipuram",
+    "type": "place",
+    "aliases": [
+      "Vanasthali Puram"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_060",
+    "name": "Saroornagar",
+    "type": "place",
+    "aliases": [
+      "Saroor Nagar",
+      "Sarurnagar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_061",
+    "name": "Hayathnagar",
+    "type": "place",
+    "aliases": [
+      "Hayat Nagar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_062",
+    "name": "Boduppal",
+    "type": "place",
+    "aliases": [
+      "Bodupal"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_063",
+    "name": "Sainikpuri",
+    "type": "place",
+    "aliases": [
+      "Sainik Puri"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Secunderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_064",
+    "name": "Kapra",
+    "type": "place",
+    "aliases": [
+      "Kaapra"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_065",
+    "name": "Shamirpet",
+    "type": "place",
+    "aliases": [
+      "Shameerpet"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_066",
+    "name": "Ramoji Film City",
+    "type": "place",
+    "aliases": [
+      "Ramoji Filmcity"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_067",
+    "name": "Rajiv Gandhi International Airport",
+    "type": "place",
+    "aliases": [
+      "RGIA",
+      "Shamshabad Airport",
+      "Hyderabad Airport"
+    ],
+    "language_origin": "English",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "kind": "landmark"
+    }
+  },
+  {
+    "id": "place_068",
+    "name": "Warangal",
+    "type": "place",
+    "aliases": [
+      "Orugallu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Warangal",
+      "state": "Telangana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_069",
+    "name": "Karimnagar",
+    "type": "place",
+    "aliases": [
+      "Karim Nagar"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Karimnagar",
+      "state": "Telangana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_070",
+    "name": "Nizamabad",
+    "type": "place",
+    "aliases": [
+      "Nizamabaad"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Nizamabad",
+      "state": "Telangana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_071",
+    "name": "Khammam",
+    "type": "place",
+    "aliases": [
+      "Kammam"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Khammam",
+      "state": "Telangana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_072",
+    "name": "Visakhapatnam",
+    "type": "place",
+    "aliases": [
+      "Vizag",
+      "Vishakhapatnam",
+      "Visakha"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_073",
+    "name": "Vijayawada",
+    "type": "place",
+    "aliases": [
+      "Bezawada",
+      "Vijaywada"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Vijayawada",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_074",
+    "name": "Tirupati",
+    "type": "place",
+    "aliases": [
+      "Tirupathi",
+      "Thirupathi"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Tirupati",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_075",
+    "name": "Guntur",
+    "type": "place",
+    "aliases": [
+      "Gunturu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Guntur",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_076",
+    "name": "Rajahmundry",
+    "type": "place",
+    "aliases": [
+      "Rajamahendravaram",
+      "Rajamundry"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Rajahmundry",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_077",
+    "name": "Nellore",
+    "type": "place",
+    "aliases": [
+      "Nelluru"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "city": "Nellore",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_078",
+    "name": "Kurnool",
+    "type": "place",
+    "aliases": [
+      "Karnool"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Kurnool",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_079",
+    "name": "Kakinada",
+    "type": "place",
+    "aliases": [
+      "Kakinaada"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Kakinada",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_080",
+    "name": "Srikakulam",
+    "type": "place",
+    "aliases": [
+      "Shrikakulam"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "city": "Srikakulam",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_081",
+    "name": "Anantapur",
+    "type": "place",
+    "aliases": [
+      "Ananthapur",
+      "Anantapuramu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "city": "Anantapur",
+      "state": "Andhra Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_082",
+    "name": "Chennai",
+    "type": "place",
+    "aliases": [
+      "Madras"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "easy",
+    "context": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_083",
+    "name": "T. Nagar",
+    "type": "place",
+    "aliases": [
+      "T Nagar",
+      "Thyagaraya Nagar"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_084",
+    "name": "Mylapore",
+    "type": "place",
+    "aliases": [
+      "Mylapur"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_085",
+    "name": "Velachery",
+    "type": "place",
+    "aliases": [
+      "Velacheri"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_086",
+    "name": "Tiruchirappalli",
+    "type": "place",
+    "aliases": [
+      "Trichy",
+      "Tiruchirapalli",
+      "Thiruchirappalli"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "city": "Tiruchirappalli",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_087",
+    "name": "Coimbatore",
+    "type": "place",
+    "aliases": [
+      "Kovai",
+      "Coimbatur"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "city": "Coimbatore",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_088",
+    "name": "Madurai",
+    "type": "place",
+    "aliases": [
+      "Madura"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "easy",
+    "context": {
+      "city": "Madurai",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_089",
+    "name": "Kanchipuram",
+    "type": "place",
+    "aliases": [
+      "Kanchi",
+      "Kancheepuram"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "city": "Kanchipuram",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_090",
+    "name": "Thanjavur",
+    "type": "place",
+    "aliases": [
+      "Tanjore"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "city": "Thanjavur",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_091",
+    "name": "Tirunelveli",
+    "type": "place",
+    "aliases": [
+      "Nellai",
+      "Thirunelveli"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "city": "Tirunelveli",
+      "state": "Tamil Nadu",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_092",
+    "name": "Bengaluru",
+    "type": "place",
+    "aliases": [
+      "Bangalore",
+      "Bengalooru"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "easy",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_093",
+    "name": "Koramangala",
+    "type": "place",
+    "aliases": [
+      "Kormangala"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_094",
+    "name": "Indiranagar",
+    "type": "place",
+    "aliases": [
+      "Indira Nagar"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_095",
+    "name": "Whitefield",
+    "type": "place",
+    "aliases": [
+      "White Field"
+    ],
+    "language_origin": "English",
+    "difficulty": "easy",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_096",
+    "name": "Jayanagar",
+    "type": "place",
+    "aliases": [
+      "Jaya Nagar"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "easy",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_097",
+    "name": "Malleshwaram",
+    "type": "place",
+    "aliases": [
+      "Malleswaram"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "hard",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_098",
+    "name": "Basavanagudi",
+    "type": "place",
+    "aliases": [
+      "Basavangudi"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "hard",
+    "context": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_099",
+    "name": "Mysuru",
+    "type": "place",
+    "aliases": [
+      "Mysore"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "easy",
+    "context": {
+      "city": "Mysuru",
+      "state": "Karnataka",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_100",
+    "name": "Mangaluru",
+    "type": "place",
+    "aliases": [
+      "Mangalore",
+      "Kudla"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "city": "Mangaluru",
+      "state": "Karnataka",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_101",
+    "name": "Hubballi",
+    "type": "place",
+    "aliases": [
+      "Hubli"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "city": "Hubballi",
+      "state": "Karnataka",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_102",
+    "name": "Belagavi",
+    "type": "place",
+    "aliases": [
+      "Belgaum"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "city": "Belagavi",
+      "state": "Karnataka",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_103",
+    "name": "Thiruvananthapuram",
+    "type": "place",
+    "aliases": [
+      "Trivandrum",
+      "Thiruvanantapuram"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "hard",
+    "context": {
+      "city": "Thiruvananthapuram",
+      "state": "Kerala",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_104",
+    "name": "Kochi",
+    "type": "place",
+    "aliases": [
+      "Cochin"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "easy",
+    "context": {
+      "city": "Kochi",
+      "state": "Kerala",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_105",
+    "name": "Kozhikode",
+    "type": "place",
+    "aliases": [
+      "Calicut"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "medium",
+    "context": {
+      "city": "Kozhikode",
+      "state": "Kerala",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_106",
+    "name": "Thrissur",
+    "type": "place",
+    "aliases": [
+      "Trichur"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "medium",
+    "context": {
+      "city": "Thrissur",
+      "state": "Kerala",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_107",
+    "name": "Alappuzha",
+    "type": "place",
+    "aliases": [
+      "Alleppey"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "medium",
+    "context": {
+      "city": "Alappuzha",
+      "state": "Kerala",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_108",
+    "name": "Kottayam",
+    "type": "place",
+    "aliases": [
+      "Kotayam"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "easy",
+    "context": {
+      "city": "Kottayam",
+      "state": "Kerala",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_109",
+    "name": "Mumbai",
+    "type": "place",
+    "aliases": [
+      "Bombay"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_110",
+    "name": "Andheri",
+    "type": "place",
+    "aliases": [
+      "Andheri West",
+      "Andheri East"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_111",
+    "name": "Dadar",
+    "type": "place",
+    "aliases": [
+      "Daadar"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_112",
+    "name": "Ghatkopar",
+    "type": "place",
+    "aliases": [
+      "Ghatkoper"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_113",
+    "name": "Pune",
+    "type": "place",
+    "aliases": [
+      "Poona"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_114",
+    "name": "Nagpur",
+    "type": "place",
+    "aliases": [
+      "Nagpure"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_115",
+    "name": "Chhatrapati Sambhajinagar",
+    "type": "place",
+    "aliases": [
+      "Aurangabad",
+      "Sambhajinagar"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "hard",
+    "context": {
+      "city": "Chhatrapati Sambhajinagar",
+      "state": "Maharashtra",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_116",
+    "name": "Kolhapur",
+    "type": "place",
+    "aliases": [
+      "Kolhapoor"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Kolhapur",
+      "state": "Maharashtra",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_117",
+    "name": "Kolkata",
+    "type": "place",
+    "aliases": [
+      "Calcutta"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "easy",
+    "context": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_118",
+    "name": "Howrah",
+    "type": "place",
+    "aliases": [
+      "Haora"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "easy",
+    "context": {
+      "city": "Howrah",
+      "state": "West Bengal",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_119",
+    "name": "Salt Lake",
+    "type": "place",
+    "aliases": [
+      "Bidhannagar",
+      "Salt Lake Sector 5"
+    ],
+    "language_origin": "English",
+    "difficulty": "medium",
+    "context": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_120",
+    "name": "Durgapur",
+    "type": "place",
+    "aliases": [
+      "Durgapore"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "easy",
+    "context": {
+      "city": "Durgapur",
+      "state": "West Bengal",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_121",
+    "name": "Siliguri",
+    "type": "place",
+    "aliases": [
+      "Shiliguri"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "city": "Siliguri",
+      "state": "West Bengal",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_122",
+    "name": "New Delhi",
+    "type": "place",
+    "aliases": [
+      "Delhi",
+      "Dilli"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_123",
+    "name": "Chandni Chowk",
+    "type": "place",
+    "aliases": [
+      "Chandni Chauk"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_124",
+    "name": "Connaught Place",
+    "type": "place",
+    "aliases": [
+      "CP",
+      "Rajiv Chowk"
+    ],
+    "language_origin": "English",
+    "difficulty": "medium",
+    "context": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "kind": "locality"
+    }
+  },
+  {
+    "id": "place_125",
+    "name": "Gurugram",
+    "type": "place",
+    "aliases": [
+      "Gurgaon"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_126",
+    "name": "Noida",
+    "type": "place",
+    "aliases": [
+      "Noyda"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_127",
+    "name": "Lucknow",
+    "type": "place",
+    "aliases": [
+      "Lakhnau"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_128",
+    "name": "Varanasi",
+    "type": "place",
+    "aliases": [
+      "Banaras",
+      "Kashi",
+      "Benares"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Varanasi",
+      "state": "Uttar Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_129",
+    "name": "Prayagraj",
+    "type": "place",
+    "aliases": [
+      "Allahabad"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Prayagraj",
+      "state": "Uttar Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_130",
+    "name": "Jaipur",
+    "type": "place",
+    "aliases": [
+      "Jaypur"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_131",
+    "name": "Bhopal",
+    "type": "place",
+    "aliases": [
+      "Bhopaal"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Bhopal",
+      "state": "Madhya Pradesh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_132",
+    "name": "Patna",
+    "type": "place",
+    "aliases": [
+      "Pataliputra"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Patna",
+      "state": "Bihar",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_133",
+    "name": "Amritsar",
+    "type": "place",
+    "aliases": [
+      "Ambarsar"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Amritsar",
+      "state": "Punjab",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_134",
+    "name": "Ludhiana",
+    "type": "place",
+    "aliases": [
+      "Ludhiyana"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Ludhiana",
+      "state": "Punjab",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_135",
+    "name": "Chandigarh",
+    "type": "place",
+    "aliases": [
+      "Chandigad"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "easy",
+    "context": {
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_136",
+    "name": "Jalandhar",
+    "type": "place",
+    "aliases": [
+      "Jullundur"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "city": "Jalandhar",
+      "state": "Punjab",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_137",
+    "name": "Ahmedabad",
+    "type": "place",
+    "aliases": [
+      "Amdavad"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "easy",
+    "context": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_138",
+    "name": "Vadodara",
+    "type": "place",
+    "aliases": [
+      "Baroda"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "city": "Vadodara",
+      "state": "Gujarat",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_139",
+    "name": "Surat",
+    "type": "place",
+    "aliases": [
+      "Soorat"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "easy",
+    "context": {
+      "city": "Surat",
+      "state": "Gujarat",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_140",
+    "name": "Rajkot",
+    "type": "place",
+    "aliases": [
+      "Rajkote"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "easy",
+    "context": {
+      "city": "Rajkot",
+      "state": "Gujarat",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_141",
+    "name": "Bhubaneswar",
+    "type": "place",
+    "aliases": [
+      "Bhubaneshwar"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "city": "Bhubaneswar",
+      "state": "Odisha",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_142",
+    "name": "Cuttack",
+    "type": "place",
+    "aliases": [
+      "Katak"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "city": "Cuttack",
+      "state": "Odisha",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_143",
+    "name": "Puri",
+    "type": "place",
+    "aliases": [
+      "Jagannath Puri"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "easy",
+    "context": {
+      "city": "Puri",
+      "state": "Odisha",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_144",
+    "name": "Sambalpur",
+    "type": "place",
+    "aliases": [
+      "Sambalpore"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "city": "Sambalpur",
+      "state": "Odisha",
+      "kind": "city"
+    }
+  },
+  {
+    "id": "place_145",
+    "name": "Panaji",
+    "type": "place",
+    "aliases": [
+      "Panjim"
+    ],
+    "language_origin": "Konkani",
+    "difficulty": "medium",
+    "context": {
+      "city": "Panaji",
+      "state": "Goa",
+      "kind": "city"
+    }
+  }
+]

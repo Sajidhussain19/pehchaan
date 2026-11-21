@@ -66,6 +66,30 @@ tests/          pytest tests
 web/            demo page
 ```
 
+## Knowledge Base
+
+Pehchaan corrects names by matching them against things *you* actually know. Those live in `data/kb/`:
+
+| File | What | Count |
+|------|------|-------|
+| `contacts.json`   | personal contacts: doctors, family, colleagues, drivers, shopkeepers | 121 |
+| `places.json`     | Hyderabad localities (heavy), plus cities and localities across India | 145 |
+| `businesses.json` | local clinics, pharmacies, restaurants, salons, schools, shops | 61 |
+
+Each entry has a canonical spelling, common alternate spellings (`aliases`), a language of origin
+(Telugu, Tamil, Kannada, Malayalam, Hindi, Marathi, Bengali, Punjabi, Gujarati, Odia, Urdu, Biblical, ...),
+a difficulty, and context (relation + phone for people, city/state for places, category + area for businesses).
+It deliberately includes **hard cases**: long names (*Thiruvananthapuram*), English-sounding places
+(*Kukatpally*, *Begumpet*), near-duplicates that must not be confused (*Srinivas Reddy / Sreenivas Goud /
+Srinivasan Iyer*, *Ravi Teja / Ravi Tej*), and honorifics (*Dr., Smt., Garu, Anna, Ji*).
+
+**All people and businesses are fictional** and every phone number uses the fake pattern `+91-90000-0XXXX`.
+Only public place names are real. We use only data we have permission to use.
+
+```powershell
+python scripts/kb_stats.py   # summary: counts by type / language / difficulty
+```
+
 ## How it works
 *Coming in later modules (6-9).*
 

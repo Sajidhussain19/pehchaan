@@ -1,0 +1,116 @@
+"""
+app/kb/models.py — Pydantic data models for the knowledge base.
+
+WHAT: Defines what one knowledge-base entry (an `Entity`) looks like: its id, correct
+      spelling, type, alternate spellings, language of origin, difficulty, and extra context.
+      Also defines the shape of the context for each type (person / place / business).
+WHY:  The KB is hand-written JSON, and hand-written data has typos. Pydantic checks every
+      entry when it is loaded. A missing field, a misspelled type ("persn") or a bad phone
+      number fails loudly at load time, not in the middle of a demo.
+"""
+
+import re
+from typing import Literal
+
+from pydantic import BaseModel, Field, field_validator, model_validator
+
+# `Literal` limits a field to a fixed set of values. Anything else is a validation error.
+EntityType = Literal["person", "place", "business"]
+Difficulty = Literal["easy", "medium", "hard"]
+
+# All phone numbers are FAKE and follow one pattern: +91-90000-0XXXX.
+# Checking the pattern makes sure no real-looking number slips into the data by accident.
+FAKE_PHONE_PATTERN = re.compile(r"^\+91-90000-0\d{4}$")
+
+
+# ---------------------------------------------------------------------------
+# Context models: the extra info each type carries.
+# extra="forbid" means an unknown key (e.g. a typo like "relaton") is an error.
+# ---------------------------------------------------------------------------
+
+class PersonContext(BaseModel):
+    """Extra info about a contact. Later modules use it for actions like 'call'."""
+
+    model_config = {"extra": "forbid"}
+
+    relation: str  # how the user knows them, e.g. "your doctor", "cousin"
+    phone: str  # fake number, used by the "call" action in Module 9
+    notes: str = ""  # free text, can help the LLM check context in Module 8
+
+    @field_validator("phone")
+    @classmethod
+    def phone_must_be_fake(cls, value: str) -> str:
+        # Reject anything that is not in our fake-number format.
+        if not FAKE_PHONE_PATTERN.match(value):
+            raise ValueError(f"phone {value!r} must match the fake format +91-90000-0XXXX")
+        return value
+
+
+class PlaceContext(BaseModel):
+    """Where a place is. 'kind' tells a whole city apart from a locality inside it."""
+
+    model_config = {"extra": "forbid"}
+
+    city: str
+    state: str
+    kind: Literal["locality", "city", "landmark"]
+
+
+class BusinessContext(BaseModel):
+    """What a business is and where. 'area' must be a place name from places.json."""
+
+    model_config = {"extra": "forbid"}
+
+    category: Literal["clinic", "hospital", "pharmacy", "restaurant", "salon", "school", "shop"]
+    area: str
+    city: str
+
+
+# Maps each entity type to the context model that validates it.
+CONTEXT_MODELS: dict[str, type[BaseModel]] = {
+    "person": PersonContext,
+    "place": PlaceContext,
+    "business": BusinessContext,
+}
+
+
+class Entity(BaseModel):
+    """One thing Pehchaan can recognise: a person, a place or a business."""
+
+    id: str = Field(pattern=r"^(person|place|business)_\d{3}$")  # e.g. "person_001"
+    name: str = Field(min_length=1)  # the canonical (correct) spelling
+    type: EntityType
+    aliases: list[str] = []  # other common spellings, e.g. "Laxmi" for "Lakshmi"
+    language_origin: str  # e.g. "Telugu", "Urdu"; useful for per-language results later
+    difficulty: Difficulty  # how hard we expect speech-to-text to find it
+    context: dict  # type-specific extra info, checked by the validator below
+
+    @field_validator("name", "aliases")
+    @classmethod
+    def strip_and_reject_blank(cls, value):
+        # Remove stray spaces at the ends and reject empty strings.
+        # This runs on the name (a str) and on the aliases (a list of str).
+        items = [value] if isinstance(value, str) else value
+        cleaned = [item.strip() for item in items]
+        if any(not item for item in cleaned):
+            raise ValueError("names and aliases must not be empty")
+        return cleaned[0] if isinstance(value, str) else cleaned
+
+    @model_validator(mode="after")
+    def check_context_and_id(self):
+        # 1. The id prefix must match the type ("place_007" must have type "place").
+        if not self.id.startswith(self.type + "_"):
+            raise ValueError(f"id {self.id!r} does not match type {self.type!r}")
+        # 2. Validate the context dict with the model for this type.
+        #    We keep `context` as a plain dict (simple to read and to save as JSON),
+        #    but we still check its shape strictly.
+        CONTEXT_MODELS[self.type].model_validate(self.context)
+        # 3. An alias that equals the name adds nothing, so treat it as a data mistake.
+        if any(alias.lower() == self.name.lower() for alias in self.aliases):
+            raise ValueError(f"{self.id}: an alias repeats the canonical name {self.name!r}")
+        return self
+
+    @property
+    def surface_forms(self) -> list[str]:
+        """Every way this entity may be written: the canonical name first, then the aliases."""
+        return [self.name, *self.aliases]

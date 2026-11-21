@@ -1,0 +1,1901 @@
+[
+  {
+    "id": "person_001",
+    "name": "Dr. Venkataramana",
+    "type": "person",
+    "aliases": [
+      "Venkataramana",
+      "Dr. Venkat Ramana",
+      "Dr. Venkata Ramana",
+      "Dr. Venkatramana"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "your doctor",
+      "phone": "+91-90000-00001",
+      "notes": "General physician, consults in the evenings"
+    }
+  },
+  {
+    "id": "person_002",
+    "name": "Srinivas Reddy",
+    "type": "person",
+    "aliases": [
+      "Srinivas Reddi",
+      "Sreenivas Reddy",
+      "Srini"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00002",
+      "notes": "Backend team lead"
+    }
+  },
+  {
+    "id": "person_003",
+    "name": "Sreenivas Goud",
+    "type": "person",
+    "aliases": [
+      "Srinivas Goud",
+      "Sreenu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "driver",
+      "phone": "+91-90000-00003",
+      "notes": "Weekday office pickup at 8:30"
+    }
+  },
+  {
+    "id": "person_004",
+    "name": "Ravi Teja",
+    "type": "person",
+    "aliases": [
+      "Raviteja",
+      "Ravi Theja"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00004",
+      "notes": "Lives in Warangal"
+    }
+  },
+  {
+    "id": "person_005",
+    "name": "Ravi Tej",
+    "type": "person",
+    "aliases": [
+      "Ravitej"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "gym trainer",
+      "phone": "+91-90000-00005",
+      "notes": "Morning batch trainer"
+    }
+  },
+  {
+    "id": "person_006",
+    "name": "Lakshmi Prasanna",
+    "type": "person",
+    "aliases": [
+      "Laxmi Prasanna",
+      "Lakshmi Prasana"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "sister",
+      "phone": "+91-90000-00006",
+      "notes": "Elder sister"
+    }
+  },
+  {
+    "id": "person_007",
+    "name": "Smt. Padmavathi",
+    "type": "person",
+    "aliases": [
+      "Padmavathi",
+      "Padmavati",
+      "Padmavathi Garu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "neighbour aunty",
+      "phone": "+91-90000-00007",
+      "notes": "Flat 302"
+    }
+  },
+  {
+    "id": "person_008",
+    "name": "Subrahmanyam Garu",
+    "type": "person",
+    "aliases": [
+      "Subrahmanyam",
+      "Subramanyam",
+      "Subbu Garu",
+      "Subramaniam Garu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "landlord",
+      "phone": "+91-90000-00008",
+      "notes": "Rent due on the 5th"
+    }
+  },
+  {
+    "id": "person_009",
+    "name": "Nagarjuna Rao",
+    "type": "person",
+    "aliases": [
+      "Nagarjun Rao"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "uncle",
+      "phone": "+91-90000-00009",
+      "notes": "Father's younger brother"
+    }
+  },
+  {
+    "id": "person_010",
+    "name": "Sai Kiran",
+    "type": "person",
+    "aliases": [
+      "Saikiran",
+      "Sai Kiran Kumar"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00010",
+      "notes": "School friend"
+    }
+  },
+  {
+    "id": "person_011",
+    "name": "Bhavani Shankar",
+    "type": "person",
+    "aliases": [
+      "Bhavanishankar"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "plumber",
+      "phone": "+91-90000-00011",
+      "notes": "Call for leaks"
+    }
+  },
+  {
+    "id": "person_012",
+    "name": "Chaitanya Varma",
+    "type": "person",
+    "aliases": [
+      "Chaitanya",
+      "Chaitu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "college friend",
+      "phone": "+91-90000-00012",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_013",
+    "name": "Ramulu Anna",
+    "type": "person",
+    "aliases": [
+      "Ramulu",
+      "Ramulanna"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "vegetable vendor",
+      "phone": "+91-90000-00013",
+      "notes": "Comes by cart every morning"
+    }
+  },
+  {
+    "id": "person_014",
+    "name": "Durga Prasad",
+    "type": "person",
+    "aliases": [
+      "Durgaprasad"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "relation": "electrician",
+      "phone": "+91-90000-00014",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_015",
+    "name": "Vijayalakshmi",
+    "type": "person",
+    "aliases": [
+      "Vijaya Lakshmi",
+      "Vijayalaxmi"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "aunt",
+      "phone": "+91-90000-00015",
+      "notes": "Mother's sister"
+    }
+  },
+  {
+    "id": "person_016",
+    "name": "Tirupathi Rao",
+    "type": "person",
+    "aliases": [
+      "Tirupati Rao",
+      "Thirupathi Rao"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "auto driver",
+      "phone": "+91-90000-00016",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_017",
+    "name": "Sravani Kondapalli",
+    "type": "person",
+    "aliases": [
+      "Shravani Kondapalli",
+      "Sravani"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00017",
+      "notes": "QA team"
+    }
+  },
+  {
+    "id": "person_018",
+    "name": "Anjaneyulu",
+    "type": "person",
+    "aliases": [
+      "Anjaneyulu Garu",
+      "Anji"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "watchman",
+      "phone": "+91-90000-00018",
+      "notes": "Apartment gate"
+    }
+  },
+  {
+    "id": "person_019",
+    "name": "Keerthi Reddy",
+    "type": "person",
+    "aliases": [
+      "Keerthy Reddy",
+      "Kirti Reddy"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "manager",
+      "phone": "+91-90000-00019",
+      "notes": "Reporting manager"
+    }
+  },
+  {
+    "id": "person_020",
+    "name": "Dr. Prameela Rani",
+    "type": "person",
+    "aliases": [
+      "Prameela Rani",
+      "Dr. Pramila Rani"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "your mother's doctor",
+      "phone": "+91-90000-00020",
+      "notes": "Gynaecologist"
+    }
+  },
+  {
+    "id": "person_021",
+    "name": "Venkatesh Naidu",
+    "type": "person",
+    "aliases": [
+      "Venkatesh",
+      "Venky"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "brother-in-law",
+      "phone": "+91-90000-00021",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_022",
+    "name": "Satyanarayana Murthy",
+    "type": "person",
+    "aliases": [
+      "Satyanarayana",
+      "Satya Narayana Murthy",
+      "Satyam"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "grandfather",
+      "phone": "+91-90000-00022",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_023",
+    "name": "Srilakshmi Kota",
+    "type": "person",
+    "aliases": [
+      "Sri Lakshmi Kota",
+      "Srilaxmi Kota"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00023",
+      "notes": "Design team"
+    }
+  },
+  {
+    "id": "person_024",
+    "name": "Lokesh Anna",
+    "type": "person",
+    "aliases": [
+      "Lokesh",
+      "Lokeshanna"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "fruit vendor",
+      "phone": "+91-90000-00024",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_025",
+    "name": "Swathi Chowdary",
+    "type": "person",
+    "aliases": [
+      "Swati Chowdary",
+      "Swathi Choudary"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00025",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_026",
+    "name": "Hanumanth Rao",
+    "type": "person",
+    "aliases": [
+      "Hanumantha Rao",
+      "Hanmanth Rao"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "milk supplier",
+      "phone": "+91-90000-00026",
+      "notes": "Two packets daily"
+    }
+  },
+  {
+    "id": "person_027",
+    "name": "Srinivasan Iyer",
+    "type": "person",
+    "aliases": [
+      "Srinivasan",
+      "Shrinivasan Iyer",
+      "Seenu Iyer"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "relation": "father's friend",
+      "phone": "+91-90000-00027",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_028",
+    "name": "Dr. Subramanian",
+    "type": "person",
+    "aliases": [
+      "Subramanian",
+      "Dr. Subramaniyan"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "relation": "dentist",
+      "phone": "+91-90000-00028",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_029",
+    "name": "Karthikeyan",
+    "type": "person",
+    "aliases": [
+      "Karthikeyan R",
+      "Karthik"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00029",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_030",
+    "name": "Meenakshi Sundaram",
+    "type": "person",
+    "aliases": [
+      "Meenakshisundaram",
+      "Meenakshi"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "relation": "accountant",
+      "phone": "+91-90000-00030",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_031",
+    "name": "Thirumalai Selvan",
+    "type": "person",
+    "aliases": [
+      "Tirumalai Selvan",
+      "Selvan"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "relation": "tenant",
+      "phone": "+91-90000-00031",
+      "notes": "Ground floor"
+    }
+  },
+  {
+    "id": "person_032",
+    "name": "Lakshmi Narayanan",
+    "type": "person",
+    "aliases": [
+      "Laxmi Narayanan"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "hard",
+    "context": {
+      "relation": "chartered accountant",
+      "phone": "+91-90000-00032",
+      "notes": "Files income tax"
+    }
+  },
+  {
+    "id": "person_033",
+    "name": "Priya Dharshini",
+    "type": "person",
+    "aliases": [
+      "Priyadharshini",
+      "Priyadarshini"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00033",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_034",
+    "name": "Arul Murugan",
+    "type": "person",
+    "aliases": [
+      "Arulmurugan"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "relation": "driver",
+      "phone": "+91-90000-00034",
+      "notes": "Outstation trips"
+    }
+  },
+  {
+    "id": "person_035",
+    "name": "Anbuselvi",
+    "type": "person",
+    "aliases": [
+      "Anbu Selvi"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "relation": "house help",
+      "phone": "+91-90000-00035",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_036",
+    "name": "Velu Anna",
+    "type": "person",
+    "aliases": [
+      "Velu",
+      "Velanna"
+    ],
+    "language_origin": "Tamil",
+    "difficulty": "medium",
+    "context": {
+      "relation": "tea stall owner",
+      "phone": "+91-90000-00036",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_037",
+    "name": "Manjunath Gowda",
+    "type": "person",
+    "aliases": [
+      "Manjunatha Gowda",
+      "Manju"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "cab driver",
+      "phone": "+91-90000-00037",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_038",
+    "name": "Shivakumar Swamy",
+    "type": "person",
+    "aliases": [
+      "Shiva Kumar Swamy",
+      "Shivu"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00038",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_039",
+    "name": "Puneeth Hegde",
+    "type": "person",
+    "aliases": [
+      "Puneet Hegde"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00039",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_040",
+    "name": "Shreyas Kulkarni",
+    "type": "person",
+    "aliases": [
+      "Sreyas Kulkarni"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "easy",
+    "context": {
+      "relation": "neighbour",
+      "phone": "+91-90000-00040",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_041",
+    "name": "Nagaveni",
+    "type": "person",
+    "aliases": [
+      "Naga Veni",
+      "Nagaveni Akka"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "aunt",
+      "phone": "+91-90000-00041",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_042",
+    "name": "Raghavendra Bhat",
+    "type": "person",
+    "aliases": [
+      "Raghavendra Bhatt",
+      "Raghu Bhat"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "family priest",
+      "phone": "+91-90000-00042",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_043",
+    "name": "Yashodhara",
+    "type": "person",
+    "aliases": [
+      "Yashodha",
+      "Yashoda"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "son's teacher",
+      "phone": "+91-90000-00043",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_044",
+    "name": "Chikkanna",
+    "type": "person",
+    "aliases": [
+      "Chikkana"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "hard",
+    "context": {
+      "relation": "gardener",
+      "phone": "+91-90000-00044",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_045",
+    "name": "Basavaraj Patil",
+    "type": "person",
+    "aliases": [
+      "Basavaraju Patil",
+      "Basavraj Patil"
+    ],
+    "language_origin": "Kannada",
+    "difficulty": "medium",
+    "context": {
+      "relation": "contractor",
+      "phone": "+91-90000-00045",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_046",
+    "name": "Unnikrishnan Nair",
+    "type": "person",
+    "aliases": [
+      "Unni Krishnan Nair",
+      "Unni"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "hard",
+    "context": {
+      "relation": "senior colleague",
+      "phone": "+91-90000-00046",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_047",
+    "name": "Sreekumar Menon",
+    "type": "person",
+    "aliases": [
+      "Srikumar Menon",
+      "Sreekumar"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "hard",
+    "context": {
+      "relation": "uncle",
+      "phone": "+91-90000-00047",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_048",
+    "name": "Dr. Ananthapadmanabhan",
+    "type": "person",
+    "aliases": [
+      "Ananthapadmanabhan",
+      "Dr. Anantha Padmanabhan",
+      "Dr. Padmanabhan"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "hard",
+    "context": {
+      "relation": "cardiologist",
+      "phone": "+91-90000-00048",
+      "notes": "Follow-up every 3 months"
+    }
+  },
+  {
+    "id": "person_049",
+    "name": "Aswathy Pillai",
+    "type": "person",
+    "aliases": [
+      "Ashwathy Pillai",
+      "Aswathi Pillai"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "medium",
+    "context": {
+      "relation": "HR colleague",
+      "phone": "+91-90000-00049",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_050",
+    "name": "Gopikrishnan",
+    "type": "person",
+    "aliases": [
+      "Gopi Krishnan",
+      "Gopi"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00050",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_051",
+    "name": "Haridas Kurup",
+    "type": "person",
+    "aliases": [
+      "Haridaas Kurup"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "medium",
+    "context": {
+      "relation": "travel agent",
+      "phone": "+91-90000-00051",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_052",
+    "name": "Jayalakshmi Warrier",
+    "type": "person",
+    "aliases": [
+      "Jayalaxmi Warrier",
+      "Jaya Lakshmi Warrier"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "hard",
+    "context": {
+      "relation": "music teacher",
+      "phone": "+91-90000-00052",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_053",
+    "name": "Vishnu Namboothiri",
+    "type": "person",
+    "aliases": [
+      "Vishnu Namboodiri",
+      "Vishnu Nambudiri"
+    ],
+    "language_origin": "Malayalam",
+    "difficulty": "hard",
+    "context": {
+      "relation": "astrologer",
+      "phone": "+91-90000-00053",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_054",
+    "name": "Sharma Ji",
+    "type": "person",
+    "aliases": [
+      "Sharmaji",
+      "Mr. Sharma"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "building secretary",
+      "phone": "+91-90000-00054",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_055",
+    "name": "Rajesh Kumar Singh",
+    "type": "person",
+    "aliases": [
+      "Rajesh Singh",
+      "Rajesh Kumar"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00055",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_056",
+    "name": "Anjali Verma",
+    "type": "person",
+    "aliases": [
+      "Anjali"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00056",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_057",
+    "name": "Pankaj Dwivedi",
+    "type": "person",
+    "aliases": [
+      "Pankaj Dwivedi Ji"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "insurance agent",
+      "phone": "+91-90000-00057",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_058",
+    "name": "Sunita Agarwal",
+    "type": "person",
+    "aliases": [
+      "Sunita Aggarwal",
+      "Sunita Agrawal"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "family CA",
+      "phone": "+91-90000-00058",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_059",
+    "name": "Rohit Chaturvedi",
+    "type": "person",
+    "aliases": [
+      "Rohit Chaturvedy"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "manager",
+      "phone": "+91-90000-00059",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_060",
+    "name": "Laxmi Devi",
+    "type": "person",
+    "aliases": [
+      "Lakshmi Devi"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "cook",
+      "phone": "+91-90000-00060",
+      "notes": "Comes at 7 am"
+    }
+  },
+  {
+    "id": "person_061",
+    "name": "Kavita Saxena",
+    "type": "person",
+    "aliases": [
+      "Kavitha Saxena"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "yoga instructor",
+      "phone": "+91-90000-00061",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_062",
+    "name": "Manoj Yadav",
+    "type": "person",
+    "aliases": [
+      "Manoj"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "milkman",
+      "phone": "+91-90000-00062",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_063",
+    "name": "Pooja Srivastava",
+    "type": "person",
+    "aliases": [
+      "Puja Srivastava",
+      "Pooja Shrivastava"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00063",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_064",
+    "name": "Deepak Bhardwaj",
+    "type": "person",
+    "aliases": [
+      "Deepak Bharadwaj"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00064",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_065",
+    "name": "Siddharth Deshpande",
+    "type": "person",
+    "aliases": [
+      "Siddharth Despande",
+      "Sid"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "college friend",
+      "phone": "+91-90000-00065",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_066",
+    "name": "Ashwini Kulkarni",
+    "type": "person",
+    "aliases": [
+      "Ashvini Kulkarni"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00066",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_067",
+    "name": "Dnyaneshwar Patil",
+    "type": "person",
+    "aliases": [
+      "Gyaneshwar Patil",
+      "Dnyanesh Patil"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "carpenter",
+      "phone": "+91-90000-00067",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_068",
+    "name": "Madhuri Joshi",
+    "type": "person",
+    "aliases": [
+      "Madhuri"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00068",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_069",
+    "name": "Tanaji Shinde",
+    "type": "person",
+    "aliases": [
+      "Tanaji Shinde Ji"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "security supervisor",
+      "phone": "+91-90000-00069",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_070",
+    "name": "Vaishnavi Gokhale",
+    "type": "person",
+    "aliases": [
+      "Vaishnavi Gokhle"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "neighbour",
+      "phone": "+91-90000-00070",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_071",
+    "name": "Aniruddha Phadke",
+    "type": "person",
+    "aliases": [
+      "Anirudh Phadke",
+      "Aniruddh Phadke"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "architect",
+      "phone": "+91-90000-00071",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_072",
+    "name": "Prajakta Bhosale",
+    "type": "person",
+    "aliases": [
+      "Prajakta Bhonsale"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00072",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_073",
+    "name": "Subhashis Chattopadhyay",
+    "type": "person",
+    "aliases": [
+      "Subhasish Chatterjee",
+      "Subhashis Chatterjee"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "hard",
+    "context": {
+      "relation": "professor",
+      "phone": "+91-90000-00073",
+      "notes": "PhD guide"
+    }
+  },
+  {
+    "id": "person_074",
+    "name": "Debjani Mukherjee",
+    "type": "person",
+    "aliases": [
+      "Debjani Mukhopadhyay"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00074",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_075",
+    "name": "Arindam Banerjee",
+    "type": "person",
+    "aliases": [
+      "Arindam Bannerjee"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00075",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_076",
+    "name": "Soumitra Ghosh",
+    "type": "person",
+    "aliases": [
+      "Soumitro Ghosh",
+      "Saumitra Ghosh"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "relation": "uncle",
+      "phone": "+91-90000-00076",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_077",
+    "name": "Dr. Tanushree Sen",
+    "type": "person",
+    "aliases": [
+      "Tanushree Sen",
+      "Dr. Tanusree Sen"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "relation": "dermatologist",
+      "phone": "+91-90000-00077",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_078",
+    "name": "Rituparna Das",
+    "type": "person",
+    "aliases": [
+      "Rituparna"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00078",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_079",
+    "name": "Biswajit Bose",
+    "type": "person",
+    "aliases": [
+      "Bishwajit Bose",
+      "Biswajit Basu"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "medium",
+    "context": {
+      "relation": "electrician",
+      "phone": "+91-90000-00079",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_080",
+    "name": "Moumita Dutta",
+    "type": "person",
+    "aliases": [
+      "Moumita Datta",
+      "Mou"
+    ],
+    "language_origin": "Bengali",
+    "difficulty": "easy",
+    "context": {
+      "relation": "college friend",
+      "phone": "+91-90000-00080",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_081",
+    "name": "Gurpreet Singh",
+    "type": "person",
+    "aliases": [
+      "Gurpreet",
+      "Gurpreet Singh Ji"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "driver",
+      "phone": "+91-90000-00081",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_082",
+    "name": "Harjeet Kaur",
+    "type": "person",
+    "aliases": [
+      "Harjit Kaur"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "aunt",
+      "phone": "+91-90000-00082",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_083",
+    "name": "Manpreet Sandhu",
+    "type": "person",
+    "aliases": [
+      "Manpreet"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00083",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_084",
+    "name": "Jaswinder Gill",
+    "type": "person",
+    "aliases": [
+      "Jasvinder Gill"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "neighbour",
+      "phone": "+91-90000-00084",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_085",
+    "name": "Paramjit Dhillon",
+    "type": "person",
+    "aliases": [
+      "Paramjeet Dhillon"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00085",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_086",
+    "name": "Navjot Grewal",
+    "type": "person",
+    "aliases": [
+      "Navjot"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00086",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_087",
+    "name": "Sukhwinder Bajwa",
+    "type": "person",
+    "aliases": [
+      "Sukhvinder Bajwa"
+    ],
+    "language_origin": "Punjabi",
+    "difficulty": "medium",
+    "context": {
+      "relation": "truck owner",
+      "phone": "+91-90000-00087",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_088",
+    "name": "Dr. Alok Mehta",
+    "type": "person",
+    "aliases": [
+      "Alok Mehta",
+      "Dr. Mehta"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "relation": "family doctor",
+      "phone": "+91-90000-00088",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_089",
+    "name": "Hiral Patel",
+    "type": "person",
+    "aliases": [
+      "Hiral"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "easy",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00089",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_090",
+    "name": "Jignesh Shah",
+    "type": "person",
+    "aliases": [
+      "Jignesh Bhai",
+      "Jignesh Shah Ji"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "relation": "shopkeeper",
+      "phone": "+91-90000-00090",
+      "notes": "Stationery shop"
+    }
+  },
+  {
+    "id": "person_091",
+    "name": "Falguni Desai",
+    "type": "person",
+    "aliases": [
+      "Phalguni Desai"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00091",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_092",
+    "name": "Bhavesh Thakkar",
+    "type": "person",
+    "aliases": [
+      "Bhavesh Thakar"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "relation": "jeweller",
+      "phone": "+91-90000-00092",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_093",
+    "name": "Nirali Trivedi",
+    "type": "person",
+    "aliases": [
+      "Nirali"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "easy",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00093",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_094",
+    "name": "Ketan Vora",
+    "type": "person",
+    "aliases": [
+      "Ketan Vohra",
+      "Ketan Bohra"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "medium",
+    "context": {
+      "relation": "stock broker",
+      "phone": "+91-90000-00094",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_095",
+    "name": "Debasish Mohapatra",
+    "type": "person",
+    "aliases": [
+      "Debashish Mahapatra",
+      "Debasis Mohapatra"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "hard",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00095",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_096",
+    "name": "Sasmita Pattnaik",
+    "type": "person",
+    "aliases": [
+      "Sasmita Patnaik"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00096",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_097",
+    "name": "Jagannath Panda",
+    "type": "person",
+    "aliases": [
+      "Jagannatha Panda"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "relation": "uncle",
+      "phone": "+91-90000-00097",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_098",
+    "name": "Itishree Mishra",
+    "type": "person",
+    "aliases": [
+      "Itishri Mishra"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "medium",
+    "context": {
+      "relation": "teacher",
+      "phone": "+91-90000-00098",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_099",
+    "name": "Bibhuti Bhusan Sahoo",
+    "type": "person",
+    "aliases": [
+      "Bibhuti Sahoo",
+      "Bibhuti Bhushan Sahoo"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "hard",
+    "context": {
+      "relation": "driver",
+      "phone": "+91-90000-00099",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_100",
+    "name": "Smruti Rekha Behera",
+    "type": "person",
+    "aliases": [
+      "Smrutirekha Behera",
+      "Smriti Rekha Behera"
+    ],
+    "language_origin": "Odia",
+    "difficulty": "hard",
+    "context": {
+      "relation": "nurse",
+      "phone": "+91-90000-00100",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_101",
+    "name": "Mohammed Abdul Khader",
+    "type": "person",
+    "aliases": [
+      "Mohd Abdul Khader",
+      "Abdul Qadir",
+      "Md Abdul Kader"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "car mechanic",
+      "phone": "+91-90000-00101",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_102",
+    "name": "Syed Imtiaz Hussain",
+    "type": "person",
+    "aliases": [
+      "Syed Imtiyaz Hussain",
+      "Imtiaz Bhai"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00102",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_103",
+    "name": "Dr. Fatima Zehra",
+    "type": "person",
+    "aliases": [
+      "Fatima Zehra",
+      "Dr. Fathima Zahra"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "paediatrician",
+      "phone": "+91-90000-00103",
+      "notes": "Kids' doctor"
+    }
+  },
+  {
+    "id": "person_104",
+    "name": "Mohammed Arif",
+    "type": "person",
+    "aliases": [
+      "Mohd Arif",
+      "Arif Bhai"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "relation": "barber",
+      "phone": "+91-90000-00104",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_105",
+    "name": "Ayesha Siddiqua",
+    "type": "person",
+    "aliases": [
+      "Ayesha Siddiqa",
+      "Aisha Siddiqua"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00105",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_106",
+    "name": "Shaik Khaja Moinuddin",
+    "type": "person",
+    "aliases": [
+      "Khaja Moinuddin",
+      "Shaik Khaja"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "AC technician",
+      "phone": "+91-90000-00106",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_107",
+    "name": "Naseeruddin Qureshi",
+    "type": "person",
+    "aliases": [
+      "Nasiruddin Qureshi",
+      "Naseer Bhai"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "butcher",
+      "phone": "+91-90000-00107",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_108",
+    "name": "Zubair Ahmed",
+    "type": "person",
+    "aliases": [
+      "Zubair"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "easy",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00108",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_109",
+    "name": "Rukhsana Begum",
+    "type": "person",
+    "aliases": [
+      "Rukhsana Begam"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "tailor",
+      "phone": "+91-90000-00109",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_110",
+    "name": "Mir Ghulam Ali",
+    "type": "person",
+    "aliases": [
+      "Mir Gulam Ali"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "uncle",
+      "phone": "+91-90000-00110",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_111",
+    "name": "Tabassum Farooqui",
+    "type": "person",
+    "aliases": [
+      "Tabassum Faruqi"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "teacher",
+      "phone": "+91-90000-00111",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_112",
+    "name": "Asifa Jabeen",
+    "type": "person",
+    "aliases": [
+      "Asifa Jabin"
+    ],
+    "language_origin": "Urdu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "neighbour",
+      "phone": "+91-90000-00112",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_113",
+    "name": "Joseph Mathew",
+    "type": "person",
+    "aliases": [
+      "Joseph Mathews",
+      "Jose Mathew"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00113",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_114",
+    "name": "Lijo Thomas",
+    "type": "person",
+    "aliases": [
+      "Lijo"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "relation": "friend",
+      "phone": "+91-90000-00114",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_115",
+    "name": "Sister Mary Fernandes",
+    "type": "person",
+    "aliases": [
+      "Mary Fernandes",
+      "Sr. Mary"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "relation": "school principal",
+      "phone": "+91-90000-00115",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_116",
+    "name": "Fr. Anthony Raj",
+    "type": "person",
+    "aliases": [
+      "Father Anthony Raj",
+      "Anthony Raj"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "relation": "parish priest",
+      "phone": "+91-90000-00116",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_117",
+    "name": "Princy Varghese",
+    "type": "person",
+    "aliases": [
+      "Princy Verghese",
+      "Prinsy Varghese"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "relation": "nurse",
+      "phone": "+91-90000-00117",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_118",
+    "name": "Samuel Prabhakar",
+    "type": "person",
+    "aliases": [
+      "Sam Prabhakar"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "easy",
+    "context": {
+      "relation": "driving instructor",
+      "phone": "+91-90000-00118",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_119",
+    "name": "Rachel D'Souza",
+    "type": "person",
+    "aliases": [
+      "Rachel Dsouza",
+      "Rachel De Souza"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "medium",
+    "context": {
+      "relation": "colleague",
+      "phone": "+91-90000-00119",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_120",
+    "name": "Dr. Benjamin Jebakumar",
+    "type": "person",
+    "aliases": [
+      "Benjamin Jebakumar",
+      "Dr. Jebakumar"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "hard",
+    "context": {
+      "relation": "orthopaedic surgeon",
+      "phone": "+91-90000-00120",
+      "notes": ""
+    }
+  },
+  {
+    "id": "person_121",
+    "name": "Sheeba Joseph",
+    "type": "person",
+    "aliases": [
+      "Sheba Joseph"
+    ],
+    "language_origin": "Biblical",
+    "difficulty": "easy",
+    "context": {
+      "relation": "cousin",
+      "phone": "+91-90000-00121",
+      "notes": ""
+    }
+  }
+]
