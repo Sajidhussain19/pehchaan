@@ -22,11 +22,12 @@ can't be turned into a real action. Voice assistants like Equal AI's call assist
 
 ## The idea (in one breath)
 
-After speech-to-text, Pehchaan finds the name and place spans in the transcript. It matches them
-against a knowledge base (your contacts + Indian places + local businesses) using phonetic, fuzzy,
-BM25 and embedding matching, then scores its confidence:
-**high confidence -> replace, unsure -> an LLM checks with context, unknown -> keep and flag.**
-The corrected transcript becomes a structured action: call / book / remind / message.
+After speech-to-text, Pehchaan finds name/place spans and personal references in the transcript.
+It matches them against your knowledge base (your contacts + Indian places + local businesses) with simple
+phonetic + fuzzy matching and a confidence score. An LLM is used only when it's unsure:
+**high confidence -> resolve, unsure -> LLM check or ask, unknown -> keep and flag.**
+It never hides what it heard: every result shows *heard -> resolved -> confidence -> reason*.
+The one real action is **Remind**: a stored reminder with the person, time and place, plus heard vs resolved.
 
 ## The 4 levels
 
@@ -35,7 +36,7 @@ The corrected transcript becomes a structured action: call / book / remind / mes
 | 1. Misheard names | "call cook at Polly clinic" | **Kukatpally** |
 | 2. Personal references | "call my doctor", "remind me to call Amma", "the usual pharmacy" | the exact contact or business |
 | 3. Ambiguity | "call Harshit" (Harshit or Harshil?), "ask my colleague" (19 colleagues) | use clues, otherwise **ask once** |
-| 4. Learning | the user answers "Harshil" | remembered, so it resolves automatically next time |
+| 4. Learning | the user picks "Always use Harshil for 'my colleague'" | remembered (only with that consent); "Use Harshil this time" changes nothing |
 
 **Resolution rule:** first a clue in the sentence ("tooth" -> the dentist), then the user's default
 ("my doctor" -> the family doctor), and if it's still unclear, ask once and remember the answer.
@@ -105,12 +106,12 @@ python scripts/kb_stats.py   # summary: counts by type / language / difficulty
 
 ## Test Set
 
-The "same recordings" every system is compared on live in `data/testset/`: **132 short phone-call and voice-note lines**.
-They include incoming calls and outgoing commands, some Hinglish / Tenglish, and **10.8 minutes of audio**.
+The "same recordings" every system is compared on live in `data/testset/`: **142 short phone-call and voice-note lines**.
+They include incoming calls and outgoing commands, some Hinglish / Tenglish, and **11.6 minutes of audio**.
 Each line has ground truth: the KB ids of the names in it, what Pehchaan should do, and the expected action
 (call / book / remind / message / none).
 
-**6 categories.** Most of the non-headline ones exist to catch *wrong* corrections, not just count successes:
+**8 categories.** Most of the non-headline ones exist to catch *wrong* corrections, not just count successes:
 
 | Category | Lines | Example | Expected |
 |---|---|---|---|
@@ -120,11 +121,13 @@ Each line has ground truth: the KB ids of the names in it, what Pehchaan should 
 | `ambiguous` | 11 | "Ask Harshil to send the invoice" / "Call Harshit at 5." | resolve / clarify |
 | `context_mismatch` | 8 | "Book a table at Raju Hotel…" / unknown caller: "I'm Raju from the bank" | clarify / keep |
 | `reference` | 19 | "Call my doctor, my tooth is paining" / "Order Amma's tablets from the usual pharmacy" / "Ask my colleague to join the call" | resolve / clarify |
+| `unfamiliar_near_match` | 6 | "Remind me to call Rohan…" (Rohan is not a contact; Rohit is) / unknown caller "Harshil Mehta" | keep (clarify also OK), never resolve |
+| `stale_default` | 4 | "Call my doctor about my eye drops" -> the eye specialist, not the default family doctor | resolve |
 
 **4 expected behaviours:** **correct** (fix a known name), **keep** (leave unknown names and ordinary words alone),
 **resolve** (pick the right look-alike contact, or work out who "my doctor" means, using context), **clarify** (ask the user instead of guessing).
 
-**Dev / test split:** 42 **dev** lines may be inspected while tuning. 90 **test** lines are held out and used only
+**Dev / test split:** 45 **dev** lines may be inspected while tuning. 97 **test** lines are held out and used only
 for the final numbers. The split is stratified, so every category appears in both.
 
 **Audio:** every line was spoken by OpenAI text-to-speech (`gpt-4o-mini-tts`, Indian English accent, 8 rotating voices,
@@ -132,11 +135,25 @@ for the final numbers. The split is stratified, so every category appears in bot
 - `audio/clean/` (24 kHz)
 - `audio/phone/`: 8 kHz, 300-3400 Hz band-pass, light noise, i.e. what a phone call actually carries
 
-`manifest.json` lists every clip. The audio (41 MB) is committed so you can listen to it.
+`manifest.json` lists every clip. The audio (43 MB) is committed so you can listen to it.
 
 **Honest limitation:** this is *synthetic* TTS audio. Real human recordings, with hesitations, background chatter
 and strong regional accents, would be harder, so absolute error rates here are optimistic. The comparison between
 systems is still fair, because every system hears exactly the same audio.
+
+### Real speakers (over-correction check)
+
+`data/realspeech/` holds a small sample (~40 clips, one per speaker, < 50 MB) of **real Indian-accented English**
+from **Svarah** by AI4Bharat (IIT Madras): https://huggingface.co/datasets/ai4bharat/Svarah.
+These clips rarely contain our KB names, so the expected behaviour is "keep". They test whether Pehchaan
+makes real transcripts *worse*.
+
+- **Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). We use unmodified clips and their
+  reference transcripts for evaluation only.
+- **Attribution:** Tahir Javed et al., *"Svarah: Evaluating English ASR Systems on Indian Accents"*,
+  INTERSPEECH 2023 (arXiv:2305.15760).
+- **Access:** the dataset is *gated* on Hugging Face. Accept its conditions with your HF account, put a read token
+  in `.env` as `HF_TOKEN`, then run `python scripts/fetch_real_speech.py`.
 
 ```powershell
 python -m app.testset.validate     # check the answer key against the KB
@@ -147,9 +164,25 @@ python scripts/build_audio.py      # (re)build audio; existing clips are skipped
 ## How it works
 *Coming in later modules (6-9).*
 
-## Results: entity error rate, WER, action accuracy
-*Coming in Module 5.* We will compare plain speech-to-text, speech-to-text with name hints, and Pehchaan
-on the same 60-80 recordings.
+## Evaluation plan
+Four systems run on the same recordings, and results are reported on the **held-out test split**:
+- (a) plain speech-to-text
+- (b) speech-to-text with name hints in the prompt
+- (c) a **strong LLM baseline**: one GPT-4o-mini call with the transcript plus the same contacts, roles, defaults,
+  places and businesses, allowed to ask
+- (d) Pehchaan
+
+We report **per-case wins / ties / losses vs (c)**, not just averages. Each metric is reported separately:
+- action-target accuracy
+- wrong-target rate
+- unnecessary-question rate
+- over-correction rate
+- missed-clarification rate
+- reference-resolution accuracy
+- latency and cost per call
+- the share of cases resolved with no LLM call
+
+*Results come in Module 5.*
 
 ## Demo
 *Coming in Module 10.*

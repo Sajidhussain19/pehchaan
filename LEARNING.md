@@ -335,3 +335,27 @@ This is exactly why we match whole names before guessing at labels.
   timestamp in a readable file. Wrong or old preferences can be seen and deleted.
 - **Is this private?** All data here is fictional. In a real product this context stays on the user's side,
   next to their phone book. It isn't trained into a model.
+
+---
+
+## Plan update after a strict judge review
+
+What changed, and why:
+- **A stronger opponent.** Beating plain speech-to-text is easy. The real question is: does Pehchaan beat *one GPT-4o-mini
+  call that gets the same contacts and is allowed to ask*? That's baseline (c), built in Module 5. We report per-case
+  **wins / ties / losses** against it, because an average can hide where we lose.
+- **Simpler matching.** Phonetic + fuzzy with a confidence score, and an LLM only when unsure. Extra methods (BM25,
+  embeddings) must *earn* their place on dev results. Fewer parts are easier to explain and debug.
+- **Never hide what was heard.** Every decision shows heard -> resolved -> confidence -> reason. A low-confidence match
+  is flagged or asked about, never silently replaced.
+- **Separate metrics.** One blended score can hide a dangerous failure, such as calling the wrong person.
+  So wrong-target rate, unnecessary questions, over-correction and missed clarifications are each reported on their own.
+- **One real action: Remind.** A real stored reminder beats three half-built ones (call/book).
+- **Learning needs consent.** "Use X this time" vs "Always use X for '<phrase>'". Only the second is remembered.
+- **New test cases:**
+  - *unfamiliar near-match*: "Rohan" is not your contact Rohit, so we must not "fix" him into Rohit
+  - *stale default*: "my doctor about my eye drops" must go to the eye specialist, even though the default doctor is
+    the family doctor
+- **Real speakers.** Svarah (AI4Bharat, CC BY 4.0) gives real Indian-accented speech. It mostly has none of our names,
+  so it checks that Pehchaan doesn't make real transcripts *worse*. It is gated, so access needs the developer's own
+  Hugging Face account and token.

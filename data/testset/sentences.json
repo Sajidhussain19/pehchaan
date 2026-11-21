@@ -3104,5 +3104,257 @@
       "target_entity_id": null,
       "time": null
     }
+  },
+  {
+    "id": "s133",
+    "split": "dev",
+    "category": "unfamiliar_near_match",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Rohan about the cricket match on Saturday.",
+    "entities": [
+      {
+        "surface": "Rohan",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "also_acceptable": [
+      "clarify"
+    ],
+    "candidate_ids": [
+      "person_059",
+      "person_124"
+    ],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "Saturday"
+    }
+  },
+  {
+    "id": "s134",
+    "split": "test",
+    "category": "unfamiliar_near_match",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hi, this is Harshil Mehta from the insurance company, calling about your renewal.",
+    "entities": [
+      {
+        "surface": "Harshil Mehta",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "also_acceptable": [
+      "clarify"
+    ],
+    "candidate_ids": [
+      "person_123"
+    ],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s135",
+    "split": "test",
+    "category": "unfamiliar_near_match",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to send the documents to Pranit tomorrow.",
+    "entities": [
+      {
+        "surface": "Pranit",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "also_acceptable": [
+      "clarify"
+    ],
+    "candidate_ids": [
+      "person_127",
+      "person_128"
+    ],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "tomorrow"
+    }
+  },
+  {
+    "id": "s136",
+    "split": "dev",
+    "category": "unfamiliar_near_match",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Sravanthi about the wedding card.",
+    "entities": [
+      {
+        "surface": "Sravanthi",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "also_acceptable": [
+      "clarify"
+    ],
+    "candidate_ids": [
+      "person_017"
+    ],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s137",
+    "split": "test",
+    "category": "unfamiliar_near_match",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to pay Ramudu for the coconuts on Sunday.",
+    "entities": [
+      {
+        "surface": "Ramudu",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "also_acceptable": [
+      "clarify"
+    ],
+    "candidate_ids": [
+      "person_013"
+    ],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "Sunday"
+    }
+  },
+  {
+    "id": "s138",
+    "split": "test",
+    "category": "unfamiliar_near_match",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Kiran Reddy about the flat visit at 5 PM.",
+    "entities": [
+      {
+        "surface": "Kiran Reddy",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "also_acceptable": [
+      "clarify"
+    ],
+    "candidate_ids": [
+      "person_019"
+    ],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "5 PM"
+    }
+  },
+  {
+    "id": "s139",
+    "split": "dev",
+    "category": "stale_default",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call my doctor about my eye drops.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my doctor",
+        "resolved_entity_id": "person_130",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_130",
+      "time": null
+    }
+  },
+  {
+    "id": "s140",
+    "split": "test",
+    "category": "stale_default",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to ask my doctor about the tooth filling on Friday.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my doctor",
+        "resolved_entity_id": "person_028",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_028",
+      "time": "Friday"
+    }
+  },
+  {
+    "id": "s141",
+    "split": "test",
+    "category": "stale_default",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to send the sales numbers to my manager before the Monday review.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my manager",
+        "resolved_entity_id": "person_059",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_059",
+      "time": "Monday"
+    }
+  },
+  {
+    "id": "s142",
+    "split": "test",
+    "category": "stale_default",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to ask my accountant whether the GST papers are ready.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my accountant",
+        "resolved_entity_id": "person_030",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_030",
+      "time": null
+    }
   }
 ]

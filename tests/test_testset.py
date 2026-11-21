@@ -12,8 +12,14 @@ Run with:  pytest -v
 import pytest
 
 from app.kb.loader import _normalise, all_surface_forms, load_kb
-from app.testset.models import Sentence
-from app.testset.validate import TestsetValidationError, load_testset, validate_testset
+from app.testset.models import RealSpeechClip, Sentence
+from app.testset.validate import (
+    TestsetValidationError,
+    load_realspeech,
+    load_testset,
+    validate_realspeech,
+    validate_testset,
+)
 
 KB_ID = {e.name: e.id for e in load_kb()}
 
@@ -39,7 +45,7 @@ def test_every_entity_id_exists_in_kb():
 
 def test_size_and_split():
     sentences = load_testset()
-    assert 120 <= len(sentences) <= 140
+    assert 135 <= len(sentences) <= 150
     dev = [s for s in sentences if s.split == "dev"]
     assert 35 <= len(dev) <= 50  # roughly a third held for tuning; the rest held out
 
@@ -48,7 +54,8 @@ def test_every_category_in_both_splits():
     sentences = load_testset()
     for split in ("dev", "test"):
         cats = {s.category for s in sentences if s.split == split}
-        assert cats == {"in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch", "reference"}
+        assert cats == {"in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch", "reference",
+                        "unfamiliar_near_match", "stale_default"}
 
 
 def test_category_sizes():
@@ -60,6 +67,8 @@ def test_category_sizes():
     assert 8 <= count("ambiguous") <= 12
     assert 6 <= count("context_mismatch") <= 10
     assert 14 <= count("reference") <= 20
+    assert 5 <= count("unfamiliar_near_match") <= 8
+    assert 3 <= count("stale_default") <= 6
 
 
 def test_out_of_kb_names_are_really_unknown():
@@ -206,9 +215,9 @@ def test_reference_ambiguous_colleague_asks_with_all_colleagues():
     assert set(s.candidate_ids) == {e.id for e in load_kb() if "colleague" in e.context.get("roles", [])}
 
 
-def test_references_only_in_reference_category():
+def test_references_only_in_reference_style_categories():
     for s in load_testset():
-        assert (s.category == "reference") == bool(s.references), s.id
+        assert (s.category in ("reference", "stale_default")) == bool(s.references), s.id
 
 
 def test_validator_rejects_wrong_reason():
@@ -230,3 +239,52 @@ def test_model_rejects_ambiguous_reference_with_an_answer():
             references=[{"surface": "my doctor", "resolved_entity_id": KB_ID["Dr. Raju"],
                          "resolution_reason": "ambiguous"}],
         ))
+
+
+# --- Judge review: unfamiliar near-matches, stale defaults, real speech ---
+
+def test_unfamiliar_near_match_is_never_resolved():
+    # "Rohan" is one sound away from contact Rohit, but is NOT a contact:
+    # keep it (or clarify), never link it, never give the action a KB target.
+    forms = all_surface_forms()
+    near = [s for s in load_testset() if s.category == "unfamiliar_near_match"]
+    assert near
+    for s in near:
+        assert s.expected_behaviour == "keep" and "clarify" in s.also_acceptable
+        assert all(span.entity_id is None for span in s.entities)
+        assert all(_normalise(span.surface) not in forms for span in s.entities)
+        assert s.expected_action.target_entity_id is None
+
+
+def test_harshil_mehta_is_not_harshil_patel():
+    s = by_text("Harshil Mehta")
+    assert s.entities[0].entity_id is None
+    assert s.candidate_ids == [KB_ID["Harshil Patel"]]
+
+
+def test_stale_default_clue_beats_default_doctor():
+    s, r = ref_of("eye drops")
+    assert s.category == "stale_default"
+    assert (r.resolved_entity_id, r.resolution_reason) == (KB_ID["Dr. Raju"], "clue")
+    assert r.resolved_entity_id != KB_ID["Dr. Venkataramana"]  # the (stale) default
+
+
+def test_model_rejects_candidates_when_clarify_not_acceptable():
+    with pytest.raises(ValueError, match="only allowed when clarify"):
+        Sentence.model_validate(base(candidate_ids=[KB_ID["Dr. Raju"]]))
+
+
+def test_realspeech_manifest_is_valid_if_present():
+    # The sample needs a gated download (HF token), so it may not exist yet.
+    validate_realspeech(load_realspeech())
+
+
+def test_realspeech_validator_needs_audio_and_several_speakers(tmp_path):
+    (tmp_path / "a.wav").write_bytes(b"")
+    clips = [RealSpeechClip(id=f"r00{i}", split="test", text="hello", speaker_id="same", audio_path="a.wav",
+                            duration_seconds=2.0, source="ai4bharat/Svarah", source_id=str(i)) for i in range(1, 7)]
+    with pytest.raises(TestsetValidationError, match="different speakers"):
+        validate_realspeech(clips, root=tmp_path)
+    missing = [clips[0].model_copy(update={"audio_path": "nope.wav"})]
+    with pytest.raises(TestsetValidationError, match="audio file missing"):
+        validate_realspeech(missing, root=tmp_path)

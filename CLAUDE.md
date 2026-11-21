@@ -18,20 +18,24 @@ General speech-to-text models mis-transcribe Indian names, places and businesses
 (e.g. "Kukatpally" -> "cook at Polly", "Dr. Venkataramana" -> "doctor Venkat Ramana").
 This breaks call summaries and actions in voice assistants like Equal AI's AI call assistant.
 
-### Solution
-A correction layer that runs after speech-to-text. It finds name/place spans in the transcript and
-matches them against a knowledge base (personal contacts + Indian places + local businesses).
-Matching is a hybrid of phonetic, fuzzy, BM25 and embedding methods, followed by reranking and a confidence score.
-Then a LangGraph pipeline decides what to do:
-- high confidence -> replace
-- unsure -> an LLM checks the candidate using the context
-- unknown -> keep the original and flag it
-
-It also resolves personal references ("my doctor", "Amma", "the usual pharmacy") with the resolution rule below.
-The corrected transcript becomes a structured action (call / book / remind / message).
+### Solution (updated after the judge review)
+A layer that runs after speech-to-text. It finds name/place spans and personal references in the transcript and
+resolves them against the user's knowledge base (contacts + Indian places + local businesses).
+- **Matching is simple:** phonetic + fuzzy matching with a confidence score. An LLM is used **only when unsure**.
+  No BM25 or embeddings unless they measurably improve the **dev** results.
+- **Routing:** a small LangGraph pipeline decides:
+  - high confidence -> resolve
+  - unsure -> the LLM checks with context, or we clarify
+  - unknown -> keep the original and flag it
+- **Personal references** ("my doctor", "Amma", "the usual pharmacy") use the resolution rule below.
+- **Never hide what was heard:** every resolved entity shows *heard text -> resolved entity -> confidence -> reason*.
+  Low confidence means flag or clarify, **never a silent replace**.
+- **One real action only: Remind.** It creates a real stored reminder (person, time, place, heard vs resolved),
+  listed and openable in the UI. Call and Book are **out of scope**. The test set still annotates
+  call/book/message targets, and those targets are scored for action-target accuracy.
 
 ## Vision: "the personal ear"
-Pehchaan is no longer just a name corrector. It understands WHO or WHAT the user means, using personal context.
+Pehchaan is not just a name corrector. It understands WHO or WHAT the user means, using personal context.
 
 **Pitch:** "AI assistants hear words. Pehchaan understands who you mean. No speech model can know YOUR contacts —
 personal context has to live outside the model."
@@ -43,11 +47,15 @@ personal context has to live outside the model."
 4. **Learning:** remember the user's answer, so the same request resolves automatically next time
 
 ### Resolution rule (for references and ambiguity, in this order)
-a) **Clue in the sentence**, e.g. "tooth" -> dentist, "invoice" -> the accounts colleague
+a) **Clue in the sentence**, e.g. "tooth" -> dentist, "invoice" -> the accounts colleague.
+   A clue beats a stale default ("my doctor about my eye drops" -> eye specialist, not the family doctor).
 b) **The user's default / primary entity** for that role (e.g. the contact marked primary family doctor),
    or the most recent interaction
 c) **Still unclear -> ask once (clarify)**, listing the candidates with their roles
-d) **Store the answer as a preference** (`data/kb/preferences.json`) and use it next time
+d) **Learning needs consent.** A clarify answer offers two buttons:
+   - **"Use X this time"**: only this reminder; nothing is learned
+   - **"Always use X for '<phrase>'"**: saves a preference in `data/kb/preferences.json`
+   Only the second one changes future behaviour.
 
 Example, the user has 3 doctors (Dr. Venkataramana = family doctor and default, Dr. Subramanian = dentist,
 Dr. Raju = eye specialist):
@@ -56,30 +64,44 @@ Dr. Raju = eye specialist):
 - "Ask my colleague to join" -> 19 colleagues, no default, no clue -> ask
 
 KB support: person context has `roles`, `is_primary_for`, `family_label` and `last_interaction`;
-business context has `is_usual` and `usual_for`. The test set has a `reference` category.
+business context has `is_usual` and `usual_for`.
 
-### Demo upgrades (only AFTER core Modules 4-8 work)
-- Module 9: learning from corrections shown live; latency and cost per call.
-- Module 10: a call-screen UI with before/after names and action cards; a "try it yourself" mic button.
-- Optional: Hindi/Telugu code-mixed names.
+## Proof: baselines and metrics (updated after the judge review)
+**Baselines.** All are run on the same recordings, and we report on the **held-out test split**:
+- (a) plain speech-to-text
+- (b) speech-to-text with name hints in the prompt
+- (c) **STRONG LLM BASELINE** (built in Module 5): one GPT-4o-mini call given the raw transcript plus the same
+  contacts, roles, defaults, places and businesses, and allowed to answer "clarify"
+- (d) Pehchaan
 
-### Proof
-The same recordings (data/testset: 132 lines, 10.8 min) are run through:
-1. plain OpenAI speech-to-text
-2. speech-to-text with name hints in the prompt
-3. Pehchaan
+We report **per-case wins / ties / losses of Pehchaan vs (c)**, not only averages.
 
-Evaluation reports **separate scores for each of the three systems**:
-- entity accuracy (headline: entity error rate)
+**Metrics.** Each is reported separately; there is never one blended number.
+- exact action-target accuracy
+- wrong-target rate
+- unnecessary-question rate
 - over-correction rate
-- ambiguity handling
-- context-mismatch handling
-- reference resolution accuracy
-- action accuracy
-- latency
-- cost
+- missed-clarification rate
+- reference-resolution accuracy
+- latency and cost per call: the whole interaction, up to the reminder being created
+- how many cases Pehchaan resolves WITHOUT any LLM call
+- WER and entity error rate, as supporting numbers
 
-WER is also reported.
+**Test data:** `data/testset/` (synthetic TTS, clean + phone quality) plus `data/realspeech/`
+(real Indian-accented speakers from AI4Bharat Svarah, CC BY 4.0). The real clips test the main safety question:
+does Pehchaan make real transcripts WORSE (over-correction)?
+
+## Demo plan
+- Keep the two-contact-books doctor demo **short**.
+- **Centrepiece:** a held-out clip where Pehchaan and baseline (c) actually diverge, shown with the overall
+  win / tie / loss counts.
+- Live mic ("try it yourself").
+- One **honest failure case**.
+- Later polish (only after core modules work): a call-screen UI with heard -> resolved, reminder cards,
+  live learning with consent, and latency and cost per call.
+
+**Cut list (cut in this order if short of time):** extra matching methods -> LLM-as-judge -> deployment polish.
+**NEVER cut:** strong-baseline evaluation, the real Remind action, the live mic, held-out results.
 
 Judges score: a working end-to-end demo, how AI-native it is, presentation and craft.
 
@@ -91,28 +113,33 @@ Judges score: a working end-to-end demo, how AI-native it is, presentation and c
    The same name from an unknown caller is a different person.)
 4. When the top two matches are too close (Harshit vs Harshil) and context doesn't separate them,
    ask instead of guessing. A wrong action is worse than a question.
+5. A name one sound away from a contact ("Rohan" vs contact "Rohit") may simply be someone else:
+   keep or clarify, never silently resolve.
+6. Never hide what was heard. Always show heard -> resolved -> confidence -> reason.
 
 ## Tech stack
-Python 3.11+ (venv uses 3.12), FastAPI, Pydantic, Uvicorn, OpenAI SDK (transcription, TTS, GPT-4o-mini,
-embeddings), LangGraph (only for the routing pipeline), RapidFuzz, a phonetic library, rank_bm25,
+Python 3.11+ (venv uses 3.12), FastAPI, Pydantic, Uvicorn, OpenAI SDK (transcription, TTS, GPT-4o-mini),
+LangGraph (only for the routing pipeline), RapidFuzz, a phonetic library, numpy/scipy/soundfile (audio),
 pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
+(BM25 / embeddings only if they measurably help on dev.)
 
 ## The 10 modules
 1. Setup  (DONE)
 2. Knowledge base  (DONE)
 3. Test set builder  (DONE)
-4. Baseline transcription
-5. Evaluation
+4. Baseline transcription: baselines (a) and (b)
+5. Evaluation, including the strong LLM baseline (c) and win/tie/loss reporting
 6. Entity span detection
-7. Matching engine
+7. Matching engine (phonetic + fuzzy + confidence)
 8. LangGraph correction pipeline
-9. Action extraction + API
-10. Demo UI + AWS deploy
+9. Remind action + API (real stored reminders, learning with consent, latency/cost per call)
+10. Demo UI + live mic + AWS deploy
 
 ## Repo layout
-- `app/` — FastAPI app and all project code (`main.py`, `config.py`)
-- `data/kb/` — knowledge base files (Module 2)
-- `data/testset/` — test sentences + audio (Module 3)
+- `app/` — FastAPI app and all project code (`main.py`, `config.py`, `kb/`, `testset/`, `stt/`)
+- `data/kb/` — knowledge base files (Module 2) + `preferences.json`
+- `data/testset/` — test sentences + synthetic audio (Module 3)
+- `data/realspeech/` — real-speaker clips (Svarah sample) + manifest
 - `data/results/` — transcripts and evaluation reports
 - `scripts/` — runnable scripts (e.g. `check_openai.py`)
 - `tests/` — pytest tests

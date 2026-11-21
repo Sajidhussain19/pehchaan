@@ -7,13 +7,19 @@ WHAT: Describes a test sentence: its text, category, call direction, which entit
 WHY:  The test set is the "answer key" for the whole project. These models reject a malformed
       entry (a typo in a category, a missing field, a clarify without candidates) at load time.
       Checks that need the knowledge base live in validate.py.
+      `RealSpeechClip` describes one real-speaker clip (data/realspeech/manifest.json).
 """
 
 from typing import Literal
 
 from pydantic import BaseModel, Field, model_validator
 
-Category = Literal["in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch", "reference"]
+Category = Literal[
+    "in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch", "reference",
+    # Added after the judge review:
+    "unfamiliar_near_match",  # a name one sound away from a contact, but NOT a contact ("Rohan" vs "Rohit")
+    "stale_default",  # a clue in the sentence beats the user's default ("my doctor about my eye drops")
+]
 
 # Why a personal reference ("my doctor", "Amma") points to a particular entity:
 #   clue         -> a word in the sentence picks the role ("tooth" -> the dentist)
@@ -91,7 +97,13 @@ class Sentence(BaseModel):
     # Personal references ("my doctor", "Amma"). Only used by the "reference" category.
     references: list[ReferenceSpan] = []
     expected_behaviour: Behaviour
-    candidate_ids: list[str] = []  # only for "clarify": the KB ids we should ask about
+    # Other behaviours that also count as correct. Example: for "Remind me to call Rohan"
+    # (Rohan is not a contact, Rohit is), keeping "Rohan" is expected, but asking
+    # "did you mean Rohit?" is also fine. Silently resolving to Rohit is NOT.
+    also_acceptable: list[Behaviour] = []
+    # The KB ids to ask about when clarifying (required for clarify; allowed when
+    # clarify is one of the acceptable behaviours).
+    candidate_ids: list[str] = []
     expected_action: ExpectedAction
 
     @model_validator(mode="after")
@@ -109,10 +121,35 @@ class Sentence(BaseModel):
         # Candidates are only meaningful when the answer is "ask the user".
         if self.expected_behaviour == "clarify" and not self.candidate_ids:
             raise ValueError(f"{self.id}: clarify needs at least one candidate id")
-        if self.expected_behaviour != "clarify" and self.candidate_ids:
-            raise ValueError(f"{self.id}: candidate_ids are only allowed for clarify")
+        clarify_ok = self.expected_behaviour == "clarify" or "clarify" in self.also_acceptable
+        if self.candidate_ids and not clarify_ok:
+            raise ValueError(f"{self.id}: candidate_ids are only allowed when clarify is acceptable")
+        if self.expected_behaviour in self.also_acceptable:
+            raise ValueError(f"{self.id}: also_acceptable must not repeat expected_behaviour")
 
         # When we must ask first, the action cannot already have a target.
         if self.expected_behaviour == "clarify" and self.expected_action.target_entity_id is not None:
             raise ValueError(f"{self.id}: a clarify sentence cannot have an action target yet")
         return self
+
+
+class RealSpeechClip(BaseModel):
+    """One clip of REAL human speech (AI4Bharat Svarah sample), listed in data/realspeech/manifest.json.
+
+    These are not our sentences: they are real Indian-accented speakers saying everyday English.
+    They mostly contain none of our KB names, so the expected behaviour is "keep". They test the
+    key safety question: does Pehchaan make a real transcript WORSE (over-correction)?
+    """
+
+    model_config = {"extra": "forbid"}
+
+    id: str = Field(pattern=r"^r\d{3}$")  # "r001"
+    split: Literal["dev", "test"]
+    category: Literal["real_speech"] = "real_speech"
+    text: str = Field(min_length=1)  # the dataset's human reference transcript
+    speaker_id: str = Field(min_length=1)
+    audio_path: str  # relative to the project root, forward slashes
+    duration_seconds: float = Field(gt=0)
+    expected_behaviour: Behaviour = "keep"
+    source: str  # e.g. "ai4bharat/Svarah"
+    source_id: str  # the row / file id in the source dataset, for attribution and traceability

@@ -20,8 +20,8 @@ from collections import Counter
 from pathlib import Path
 
 from app.config import PROJECT_ROOT
-from app.kb.loader import _normalise, all_surface_forms, get_by_id
-from app.testset.models import Sentence
+from app.kb.loader import _normalise, all_surface_forms, get_by_id, get_primary_for
+from app.testset.models import RealSpeechClip, Sentence
 
 TESTSET_PATH = PROJECT_ROOT / "data" / "testset" / "sentences.json"
 
@@ -33,7 +33,13 @@ EXPECTED_SIZES = {
     "ambiguous": (8, 12),
     "context_mismatch": (6, 10),
     "reference": (14, 20),
+    "unfamiliar_near_match": (5, 8),
+    "stale_default": (3, 6),
 }
+
+# Real speakers (AI4Bharat Svarah sample), fetched by scripts/fetch_real_speech.py.
+REALSPEECH_DIR = PROJECT_ROOT / "data" / "realspeech"
+REALSPEECH_MANIFEST = REALSPEECH_DIR / "manifest.json"
 
 
 class TestsetValidationError(ValueError):
@@ -102,6 +108,50 @@ def _check_reference_sentence(problems: list[str], s: Sentence, linked: list) ->
         problems.append(f"{s.id}: action target {target} is not among the resolved references or entities")
 
 
+def _check_stale_default(problems: list[str], s: Sentence) -> None:
+    """A stale-default line: the user HAS a default for the role, but a clue points elsewhere.
+
+    Example: "Call my doctor about my eye drops". The default doctor is Dr. Venkataramana,
+    but "eye drops" means the eye specialist, Dr. Raju. We check that, for each resolved person:
+      - the reason is "clue" (the clue must win), and
+      - they are NOT the default, while someone ELSE is the default for one of their roles.
+    If no competing default existed, the line would not test anything "stale".
+    """
+    if s.expected_behaviour != "resolve":
+        problems.append(f"{s.id}: stale_default needs behaviour 'resolve'")
+    for ref in s.references:
+        entity = get_by_id(ref.resolved_entity_id) if ref.resolved_entity_id else None
+        if ref.resolution_reason != "clue" or entity is None:
+            problems.append(f"{s.id}: stale_default references must be resolved by a 'clue'")
+            continue
+        others_default = [
+            role for role in entity.context.get("roles", [])
+            if (default := get_primary_for(role)) is not None and default.id != entity.id
+        ]
+        if not others_default:
+            problems.append(f"{s.id}: {entity.name} has no competing default, so this is not a stale-default case")
+
+
+def _check_unfamiliar_near_match(problems: list[str], s: Sentence, linked: list, kb_forms: dict) -> None:
+    """A name ONE sound away from a contact, but not a contact ("Rohan" vs contact "Rohit").
+
+    Expected: keep it (it's probably someone else), or clarify with the nearby contact.
+    Never silently resolve. So: nothing linked, the name is truly absent from the KB,
+    clarify is listed as acceptable, and the nearby contacts are given as candidates.
+    """
+    if s.expected_behaviour != "keep" or "clarify" not in s.also_acceptable:
+        problems.append(f"{s.id}: unfamiliar_near_match expects 'keep' with 'clarify' also acceptable")
+    if not s.entities or linked:
+        problems.append(f"{s.id}: unfamiliar_near_match names must not be linked to the KB")
+    for span in s.entities:
+        if _normalise(span.surface) in kb_forms:
+            problems.append(f"{s.id}: near-match name {span.surface!r} IS in the KB")
+    if not s.candidate_ids:
+        problems.append(f"{s.id}: list the nearby contact(s) in candidate_ids")
+    if s.expected_action.target_entity_id is not None:
+        problems.append(f"{s.id}: an unfamiliar name must not have a KB action target")
+
+
 def validate_testset(sentences: list[Sentence]) -> None:
     """Whole-set checks. Collects every problem and raises them together."""
     problems: list[str] = []
@@ -155,10 +205,15 @@ def validate_testset(sentences: list[Sentence]) -> None:
                 problems.append(f"{s.id}: context_mismatch needs 'clarify' or 'keep' and no linked entities")
         elif s.category == "reference":
             _check_reference_sentence(problems, s, linked)
+        elif s.category == "stale_default":
+            _check_reference_sentence(problems, s, linked)
+            _check_stale_default(problems, s)
+        elif s.category == "unfamiliar_near_match":
+            _check_unfamiliar_near_match(problems, s, linked, kb_forms)
 
-        # Personal references belong only to the "reference" category.
-        if s.references and s.category != "reference":
-            problems.append(f"{s.id}: only 'reference' sentences may have references")
+        # Personal references belong only to the reference-style categories.
+        if s.references and s.category not in ("reference", "stale_default"):
+            problems.append(f"{s.id}: only 'reference' / 'stale_default' sentences may have references")
 
         # 4. In the ambiguous category, "resolve" must name exactly one KB entity,
         #    and the action must point at it.
@@ -191,27 +246,55 @@ def validate_testset(sentences: list[Sentence]) -> None:
         raise TestsetValidationError("Test set is invalid:\n  - " + "\n  - ".join(problems))
 
 
+def load_realspeech(path: Path = REALSPEECH_MANIFEST) -> list[RealSpeechClip]:
+    """Read the real-speech manifest. Returns [] if the sample has not been fetched yet."""
+    if not path.exists():
+        return []
+    return [RealSpeechClip.model_validate(row) for row in json.loads(path.read_text(encoding="utf-8"))]
+
+
+def validate_realspeech(clips: list[RealSpeechClip], root: Path = PROJECT_ROOT) -> None:
+    """Checks for the real-speech sample: unique ids, audio files exist, several different speakers."""
+    problems: list[str] = []
+    counts = Counter(c.id for c in clips)
+    problems += [f"duplicate real-speech id {cid}" for cid, n in counts.items() if n > 1]
+    for c in clips:
+        if not (root / c.audio_path).exists():
+            problems.append(f"{c.id}: audio file missing: {c.audio_path}")
+    # The point is to test REAL variety; one speaker would just test one voice.
+    if clips and len({c.speaker_id for c in clips}) < min(5, len(clips)):
+        problems.append("real-speech sample should come from at least 5 different speakers")
+    if problems:
+        raise TestsetValidationError("Real-speech sample is invalid:\n  - " + "\n  - ".join(problems))
+
+
 def main() -> int:
     """Load, validate and print a short summary table."""
     try:
         sentences = load_testset()
         validate_testset(sentences)
+        real = load_realspeech()
+        validate_realspeech(real)
     except (TestsetValidationError, ValueError) as err:
         print(f"[ERROR] {err}")
         return 1
 
     print(f"Pehchaan test set: {len(sentences)} sentences\n")
-    print(f"  {'category':<18}{'dev':>5}{'test':>6}{'total':>7}")
+    print(f"  {'category':<24}{'dev':>5}{'test':>6}{'total':>7}")
     for cat in EXPECTED_SIZES:
         dev = sum(s.category == cat and s.split == "dev" for s in sentences)
         test = sum(s.category == cat and s.split == "test" for s in sentences)
-        print(f"  {cat:<18}{dev:>5}{test:>6}{dev + test:>7}")
+        print(f"  {cat:<24}{dev:>5}{test:>6}{dev + test:>7}")
     dev_total = sum(s.split == "dev" for s in sentences)
-    print(f"  {'TOTAL':<18}{dev_total:>5}{len(sentences) - dev_total:>6}{len(sentences):>7}")
+    print(f"  {'TOTAL':<24}{dev_total:>5}{len(sentences) - dev_total:>6}{len(sentences):>7}")
 
     print("\nBy expected behaviour:", dict(Counter(s.expected_behaviour for s in sentences)))
     print("By direction:", dict(Counter(s.direction for s in sentences)))
     print("Entity mentions:", sum(len(s.entities) for s in sentences))
+    if real:
+        print(f"\nReal speech: {len(real)} clips from {len({c.speaker_id for c in real})} speakers")
+    else:
+        print("\nReal speech: not fetched yet (python scripts/fetch_real_speech.py)")
     print("\n[OK] Test set loaded and validated against the knowledge base.")
     return 0
 

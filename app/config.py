@@ -36,6 +36,9 @@ class Settings(BaseSettings):
     # It is Optional (None by default) so the server and tests still start
     # without a key. Only the scripts that call OpenAI need it.
     openai_api_key: SecretStr | None = None
+    # Hugging Face access token, only needed to download the gated real-speech sample
+    # (AI4Bharat Svarah). Create one at https://huggingface.co/settings/tokens.
+    hf_token: SecretStr | None = None
 
     # --- Model names (sensible defaults, change them in .env if needed) ---
     # Speech-to-text model used for transcription (Module 4).
