@@ -26,6 +26,7 @@ import argparse
 import io
 import json
 import sys
+import time
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -43,11 +44,18 @@ OUT_DIR = PROJECT_ROOT / "data" / "realspeech"
 AUDIO_DIR = OUT_DIR / "audio"
 MAX_TOTAL_BYTES = 50 * 1024 * 1024  # stay under 50 MB so the sample can live in git
 MAX_CLIP_SECONDS = 15.0  # short clips keep transcription cheap and the sample varied
+MIN_CLIP_SECONDS = 2.0  # skip one-word clips like "Wow": too short to test anything
 PAGE_SIZE = 100  # the dataset-viewer API returns at most 100 rows per request
 
 # Column names differ between datasets, so we accept a few common spellings.
 TEXT_COLUMNS = ("text", "transcript", "transcription", "sentence")
 SPEAKER_COLUMNS = ("speaker_id", "speaker", "spk_id", "client_id")
+# The Hugging Face copy of Svarah has NO speaker-id column, only speaker metadata. So we build a
+# speaker key from the full profile (first language, state, district, gender, age, education, job).
+# Two clips with the same profile are treated as the same speaker. That's very likely right,
+# and it's conservative: we never count one person twice as two "different" speakers on purpose.
+PROFILE_COLUMNS = ("primary_language", "native_place_state", "native_place_district", "gender",
+                   "age-group", "highest_qualification", "job_category", "occupation_domain")
 DURATION_COLUMNS = ("duration", "audio_duration")
 
 ATTRIBUTION = """# Real-speech sample: attribution
@@ -66,8 +74,13 @@ Tahir Javed et al., "Svarah: Evaluating English ASR Systems on Indian Accents", 
 
 
 def get_json(client: httpx.Client, path: str, **params) -> dict:
-    """Call the dataset-viewer API and explain the usual errors in plain words."""
-    response = client.get(f"{API}/{path}", params={"dataset": DATASET, **params})
+    """Call the dataset-viewer API and explain the usual errors in plain words.
+    Temporary server errors (5xx, e.g. "502 Bad Gateway") are retried with a growing wait."""
+    for attempt in range(4):
+        response = client.get(f"{API}/{path}", params={"dataset": DATASET, **params})
+        if response.status_code < 500:
+            break
+        time.sleep(2 ** attempt)
     if response.status_code in (401, 403):
         raise SystemExit(
             "[ERROR] Hugging Face refused access (HTTP %d). Make sure you accepted the dataset conditions at\n"
@@ -81,6 +94,17 @@ def get_json(client: httpx.Client, path: str, **params) -> dict:
 def pick_column(row: dict, candidates: tuple[str, ...]) -> str | None:
     """Return the first column name from `candidates` that exists in this row."""
     return next((c for c in candidates if c in row), None)
+
+
+def speaker_key(row: dict) -> str | None:
+    """A speaker id: the real one if the dataset has it, otherwise a readable profile key,
+    e.g. "Kannada|Karnataka|Hassan|Female|18-30|Post Graduate|Full Time|Technology and Services"."""
+    col = pick_column(row, SPEAKER_COLUMNS)
+    if col is not None:
+        return str(row[col])
+    if all(c in row for c in PROFILE_COLUMNS):
+        return "|".join(str(row[c]) for c in PROFILE_COLUMNS)
+    return None
 
 
 def main() -> int:
@@ -114,15 +138,14 @@ def main() -> int:
             for item in rows:
                 row = item["row"]
                 text_col = pick_column(row, TEXT_COLUMNS)
-                speaker_col = pick_column(row, SPEAKER_COLUMNS)
-                if text_col is None or speaker_col is None or not row.get(audio_col):
+                speaker = speaker_key(row)
+                if text_col is None or speaker is None or not row.get(audio_col):
                     continue
-                speaker = str(row[speaker_col])
                 # One clip per speaker: 40 voices tell us more than 40 clips of one voice.
                 if speaker in speakers_seen:
                     continue
                 duration_col = pick_column(row, DURATION_COLUMNS)
-                if duration_col and float(row[duration_col]) > MAX_CLIP_SECONDS:
+                if duration_col and not MIN_CLIP_SECONDS <= float(row[duration_col]) <= MAX_CLIP_SECONDS:
                     continue
 
                 # Step 3: download this one clip. The signed URL is on a Hugging Face host;
@@ -141,7 +164,7 @@ def main() -> int:
                     duration = info.frames / info.samplerate
                 except Exception:  # noqa: BLE001 (format soundfile can't read: fall back to metadata)
                     duration = float(row[duration_col]) if duration_col else 0.0
-                if duration <= 0 or duration > MAX_CLIP_SECONDS:
+                if not MIN_CLIP_SECONDS <= duration <= MAX_CLIP_SECONDS:
                     continue
 
                 clip_id = f"r{len(clips) + 1:03d}"

@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "variant": "plain",
+    "audio": "real",
+    "model": "gpt-4o-mini-transcribe",
+    "hint_prompt": null
+  },
+  "clips": {
+    "r004": {
+      "reference_text": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+      "transcript": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+      "latency_ms": 1685.8,
+      "cost_estimate_usd": 0.000185,
+      "split": "dev"
+    },
+    "r003": {
+      "reference_text": "Nipah virus belongs to  the",
+      "transcript": "Nipah virus belongs to the",
+      "latency_ms": 2001.1,
+      "cost_estimate_usd": 0.000136,
+      "split": "test"
+    },
+    "r002": {
+      "reference_text": "There is a gradual shift in the mentality",
+      "transcript": "There is a gradual shift in the mentality.",
+      "latency_ms": 2055.7,
+      "cost_estimate_usd": 0.000155,
+      "split": "test"
+    },
+    "r001": {
+      "reference_text": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
+      "transcript": "Our district Hassan was the land of the great Hoysala dynasty who ruled over this region from eleventh to fourteenth century CE.",
+      "latency_ms": 2167.9,
+      "cost_estimate_usd": 0.000438,
+      "split": "dev"
+    },
+    "r005": {
+      "reference_text": "Govinda has received 12 Filmfare Award nominations and 4 Zee Cine Awards.",
+      "transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
+      "latency_ms": 1038.8,
+      "cost_estimate_usd": 0.000426,
+      "split": "test"
+    },
+    "r007": {
+      "reference_text": "There have been many attempts recently to make sure that the people maintain their",
+      "transcript": "There have been many attempts recently to make sure that the people maintain their",
+      "latency_ms": 886.9,
+      "cost_estimate_usd": 0.000398,
+      "split": "dev"
+    },
+    "r006": {
+      "reference_text": "where it is joined by other branches to form the Brahmaputra",
+      "transcript": "where it is joined by other branches to form the Brahmaputra.",
+      "latency_ms": 1088.1,
+      "cost_estimate_usd": 0.000198,
+      "split": "test"
+    },
+    "r008": {
+      "reference_text": "Jammu, Samba, Kathua, Rajouri, Poonch",
+      "transcript": "जम्मू, सांबा, कठुआ, रजौरी, पुंछ",
+      "latency_ms": 1103.9,
+      "cost_estimate_usd": 0.000197,
+      "split": "test"
+    },
+    "r009": {
+      "reference_text": "Among the poets, I remember William Wordsworth, T.S.",
+      "transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
+      "latency_ms": 924.7,
+      "cost_estimate_usd": 0.000274,
+      "split": "test"
+    },
+    "r011": {
+      "reference_text": "normal competitions what we have.",
+      "transcript": "the normal competitions what we have.",
+      "latency_ms": 753.2,
+      "cost_estimate_usd": 0.000127,
+      "split": "test"
+    },
+    "r010": {
+      "reference_text": "What are the main social welfare and development programs and initiatives in your district?",
+      "transcript": "What are the main social welfare and development programs and initiatives in your district?",
+      "latency_ms": 1061.3,
+      "cost_estimate_usd": 0.000305,
+      "split": "dev"
+    },
+    "r012": {
+      "reference_text": "what is an usual word and what is unusual words and phrases",
+      "transcript": "What is an usual word and what is unusual words and phrases.",
+      "latency_ms": 817.3,
+      "cost_estimate_usd": 0.000193,
+      "split": "test"
+    },
+    "r013": {
+      "reference_text": "see this track as my professionalism but I used to manage some time in writing as my",
+      "transcript": "You see, I distract as my professionalism, but I used to manage some time in writing as well.",
+      "latency_ms": 791.2,
+      "cost_estimate_usd": 0.000556,
+      "split": "dev"
+    },
+    "r016": {
+      "reference_text": "it is something which gives you warmth and the flavours are very different from the kind of food we as North Indians eat.",
+      "transcript": "It is something which gives you warmth and the flavors are very different from the kind of food we as North Indians eat.",
+      "latency_ms": 925.6,
+      "cost_estimate_usd": 0.000677,
+      "split": "dev"
+    },
+    "r015": {
+      "reference_text": "literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathize with them.",
+      "transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
+      "latency_ms": 1044.0,
+      "cost_estimate_usd": 0.000605,
+      "split": "test"
+    },
+    "r014": {
+      "reference_text": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
+      "transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
+      "latency_ms": 1334.4,
+      "cost_estimate_usd": 0.000399,
+      "split": "test"
+    },
+    "r017": {
+      "reference_text": "So, as in our state, the government is launching a lot of programs and schemes for business, dealers and owners to make the traditional way of business into digitalization as it is more easier",
+      "transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
+      "latency_ms": 1424.4,
+      "cost_estimate_usd": 0.000705,
+      "split": "test"
+    },
+    "r018": {
+      "reference_text": "on each and every subject and he definitely deals with, handles all the good part of the happenings around the world.",
+      "transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
+      "latency_ms": 961.0,
+      "cost_estimate_usd": 0.000609,
+      "split": "test"
+    },
+    "r019": {
+      "reference_text": "English breaks the communication barriers between people of diverse cultural backgrounds and it creates a new community where people come together and share their cultures and ideas with broader audience.",
+      "transcript": "English breaks the communication barriers between people of diverse cultural background and it creates a new community where people come together and share their cultures and ideas with broader audience.",
+      "latency_ms": 952.0,
+      "cost_estimate_usd": 0.000732,
+      "split": "dev"
+    },
+    "r020": {
+      "reference_text": "And also, people speaking English have different accents in different regions.",
+      "transcript": "And also, people speaking English have different accents in different regions.",
+      "latency_ms": 835.6,
+      "cost_estimate_usd": 0.000404,
+      "split": "test"
+    },
+    "r021": {
+      "reference_text": "Education, Health, Care, Poverty, Reduction, Women's Empowerment",
+      "transcript": "डिस्ट्रिक्ट एजुकेशन, हेल्थ, केयर, पावर्टी रिडक्शन, वोमेन्स इम्पावरमेंट",
+      "latency_ms": 819.5,
+      "cost_estimate_usd": 0.00035,
+      "split": "test"
+    },
+    "r024": {
+      "reference_text": "Are there any vaccination centres available in South Goa district for age group 18+ years",
+      "transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
+      "latency_ms": 787.2,
+      "cost_estimate_usd": 0.000355,
+      "split": "test"
+    },
+    "r023": {
+      "reference_text": "our local traditions and beliefs by giving an opportunity",
+      "transcript": "are local traditions and beliefs by giving an opportunity.",
+      "latency_ms": 829.3,
+      "cost_estimate_usd": 0.000195,
+      "split": "test"
+    },
+    "r022": {
+      "reference_text": "Through poetry, I can put my thoughts on a display more creatively.",
+      "transcript": "To poetry, I can put my thoughts on a display more creatively than",
+      "latency_ms": 878.8,
+      "cost_estimate_usd": 0.000254,
+      "split": "dev"
+    },
+    "r025": {
+      "reference_text": "hang on the rock. I find it useful and best because it helps me that we climb faster.",
+      "transcript": "hang on the rock and I find it useful and best because it helped me climb fast.",
+      "latency_ms": 623.8,
+      "cost_estimate_usd": 0.000477,
+      "split": "dev"
+    },
+    "r028": {
+      "reference_text": "send a complaint to consumer service of this company",
+      "transcript": "Sand a complaint to consumer service of this company.",
+      "latency_ms": 730.4,
+      "cost_estimate_usd": 0.000167,
+      "split": "dev"
+    },
+    "r026": {
+      "reference_text": "Can you list all the vaccination centres where First Dose of COVAXIN is available for age groups 15-17 years",
+      "transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
+      "latency_ms": 799.8,
+      "cost_estimate_usd": 0.000485,
+      "split": "test"
+    },
+    "r027": {
+      "reference_text": "and they went off into the space when earth was burning up or being destroyed",
+      "transcript": "They went off into the space when Earth was burning up or being destroyed.",
+      "latency_ms": 780.2,
+      "cost_estimate_usd": 0.00025,
+      "split": "test"
+    },
+    "r029": {
+      "reference_text": "Book a HP gas cylinder using my registered contact number 79083174897",
+      "transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
+      "latency_ms": 785.2,
+      "cost_estimate_usd": 0.000342,
+      "split": "test"
+    },
+    "r030": {
+      "reference_text": "the colleges of art literature",
+      "transcript": "The colleges of art, literature",
+      "latency_ms": 780.3,
+      "cost_estimate_usd": 0.000145,
+      "split": "test"
+    },
+    "r031": {
+      "reference_text": "Show my DTH bill readings from the last 6 months.",
+      "transcript": "Show my DTH bill readings from the last six months.",
+      "latency_ms": 960.8,
+      "cost_estimate_usd": 0.000152,
+      "split": "dev"
+    },
+    "r032": {
+      "reference_text": "And not much is left at the behest of the writer or author and grammar punctuation is very well structured and written and documented as well",
+      "transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
+      "latency_ms": 1016.7,
+      "cost_estimate_usd": 0.000624,
+      "split": "test"
+    },
+    "r034": {
+      "reference_text": "You are 2 hours late than the delivery time for my products Pantene Bamboo Shampoo and 24 Mantra Chana Dal",
+      "transcript": "You are two hours late than the delivery time for my products Pantene Bamboo Shampoo and 24 Mantra Chana Dal.",
+      "latency_ms": 811.8,
+      "cost_estimate_usd": 0.000461,
+      "split": "dev"
+    },
+    "r035": {
+      "reference_text": "List all items from Pet food items.",
+      "transcript": "List all items from pet food items.",
+      "latency_ms": 844.3,
+      "cost_estimate_usd": 0.000147,
+      "split": "test"
+    },
+    "r033": {
+      "reference_text": "The radiation, the chemotherapy, everything, every every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
+      "transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
+      "latency_ms": 1379.0,
+      "cost_estimate_usd": 0.000718,
+      "split": "test"
+    },
+    "r036": {
+      "reference_text": "show me what day the thirty first is on",
+      "transcript": "Show me what day the thirty-first is on.",
+      "latency_ms": 827.2,
+      "cost_estimate_usd": 0.000129,
+      "split": "test"
+    },
+    "r037": {
+      "reference_text": "It's about an abused Malayali migrant worker employed in Saudi Arabia as a Goddard against his will.",
+      "transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "latency_ms": 798.1,
+      "cost_estimate_usd": 0.000447,
+      "split": "dev"
+    },
+    "r040": {
+      "reference_text": "Some of the other regional languages are Tulu, Kodava, Konkani, Bihari and Urdu.",
+      "transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "latency_ms": 797.2,
+      "cost_estimate_usd": 0.000306,
+      "split": "dev"
+    },
+    "r038": {
+      "reference_text": "So there are a lot of beaches throughout the eastern coastline of Odisha.",
+      "transcript": "So there are a lot of beaches throughout the eastern coastline of Odisha.",
+      "latency_ms": 1076.6,
+      "cost_estimate_usd": 0.000328,
+      "split": "test"
+    },
+    "r039": {
+      "reference_text": "and after that we celebrate Chaitra Dasai and after that we celebrate Dasai",
+      "transcript": "And after that, we celebrate Chaitra Dasai, and after that, we celebrate Dasai.",
+      "latency_ms": 1096.6,
+      "cost_estimate_usd": 0.000421,
+      "split": "test"
+    }
+  }
+}

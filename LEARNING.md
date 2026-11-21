@@ -404,7 +404,11 @@ We record how many entities were included vs excluded in each results file (`met
 - **Phone (8 kHz, band-pass, noise):** what a call assistant really hears. Plain STT missed **52%** of KB names on phone
   audio vs 44% on clean, because the lost high frequencies blur sounds like "dh" and "gh" ("Madhapur" became "Maghapur").
 - **Real speech (Svarah):** real people and real accents. It mostly has none of our names, so it checks that we don't
-  make transcripts *worse*. Waiting on access: the dataset is gated, so `fetch_real_speech.py` needs your HF token.
+  make transcripts *worse*. We fetched 40 clips from 40 different speakers (first languages from Kannada to Bodo to
+  Kashmiri). Rough WER: **plain 9.5%, hints 6.6%**, and the hints **never inserted a KB name** into a real transcript.
+  So, for baseline (b), hints didn't over-correct real speech. Pehchaan must pass the same test.
+  Note: the Hugging Face copy of Svarah has no speaker-id column, so our `speaker_id` is the speaker's full profile
+  (language | state | district | gender | age | education | job). A distinct profile is very likely a distinct person.
 
 ### A finding: code-mixed speech comes back in Indian scripts
 "Ravi Teja ko call karo…" came back as "रवी तेजक को कॉल करो…", and "Kukatpally nunchi Begumpet…" came back in Telugu script.

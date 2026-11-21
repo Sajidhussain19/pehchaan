@@ -143,8 +143,10 @@ systems is still fair, because every system hears exactly the same audio.
 
 ### Real speakers (over-correction check)
 
-`data/realspeech/` holds a small sample (~40 clips, one per speaker, < 50 MB) of **real Indian-accented English**
+`data/realspeech/` holds a small sample (40 clips from 40 speakers, 4.8 min, 9.3 MB) of **real Indian-accented English**
 from **Svarah** by AI4Bharat (IIT Madras): https://huggingface.co/datasets/ai4bharat/Svarah.
+The speakers' first languages range from Kannada and Telugu to Bodo, Dogri and Kashmiri. The HF copy has no speaker-id
+column, so `speaker_id` is the speaker's profile (language, state, district, gender, age, education, job).
 These clips rarely contain our KB names, so the expected behaviour is "keep". They test whether Pehchaan
 makes real transcripts *worse*.
 
@@ -181,6 +183,9 @@ Every clip is transcribed by OpenAI speech-to-text, **`gpt-4o-mini-transcribe`**
 | plain, phone audio | 55 / 106 (52%) |
 | hints, clean audio | 25 / 106 (24%) |
 | hints, phone audio | 25 / 106 (24%) |
+
+On **real speech** (40 Svarah clips, no KB names): rough WER is plain 9.5% vs hints 6.6%, and the hints inserted
+**no** KB names into real transcripts.
 
 Examples from plain speech-to-text:
 - "Thirumalai Selvan" -> "The roomer Life Selvan"
