@@ -20,8 +20,11 @@ class DecideConfig(BaseModel):
     # "Call Harshit at 5" resolve with a 0.16 lead over Harshil; 0.20 turns it into a close call.
     margin: float = 0.20
     low: float = 0.65  # below this, a candidate is too weak to even ask about: keep as heard
+    # v2: an everyday word ("roju", "aaj") may only become a name if it matches almost perfectly AND sits in a
+    # strong name position ("call ...", "Dr. ...", "to <place>").
+    very_high: float = 0.95
     llm_model: str = "gpt-4o-mini"
 
 
 DEFAULT = DecideConfig()
-VERSION = "v1"
+VERSION = "v2"  # v1 = final-eval-v1/v1.1 (frozen headline); v2 = over-correction fixes

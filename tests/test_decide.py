@@ -138,3 +138,45 @@ def test_saved_preference_still_used_without_a_clue():
     # The preference also beats the DEFAULT in the default book (family doctor is the default there).
     d = resolve("Remind me to call my doctor at 6 PM.", preferences=[pref])
     assert d.action.target_entity_id == KB_ID["Dr. Subramanian"]
+
+
+# --- Pehchaan v2: over-correction fixes (fresh sentences, not from any test set) ------------------------
+
+def test_v2_everyday_words_are_never_turned_into_names():
+    # "ee roju" = "today" (Telugu); v1 turned "roju" into Dr. Raju. Same in Devanagari Hindi.
+    for text in ("Ee roju chala busy ga unnanu, saayantram call chesta.", "आज बहुत गर्मी है, बाहर मत जाओ।"):
+        d = resolve(text, preferences=[])
+        assert d.behaviour == "keep" and not any(e.resolved_entity_id for e in d.entities), text
+
+
+def test_v2_everyday_guard_keeps_real_names_and_exact_matches():
+    assert resolve("Call Dr. Raju about my eye drops.", preferences=[]).action.target_entity_id == KB_ID["Dr. Raju"]
+
+
+def test_v2_longest_match_prefers_the_business_over_a_first_name_inside_it():
+    # v1 asked "which Lakshmi?" because the exact first name beat the slightly misheard business name.
+    d = resolve("Order two plates of idli from Lakshmi Ganapati Tiffins.", preferences=[])
+    assert d.behaviour != "clarify" and d.action.target_entity_id == KB_ID["Lakshmi Ganapathi Tiffins"]
+
+
+def test_v2_longest_match_does_not_swallow_neighbouring_words():
+    # Dev round 2: "Call Srinivasan Iyer" must not become one span (the correction would drop "Call").
+    d = resolve("Call Srinivasan Iyer and wish him a happy birthday.", preferences=[])
+    assert d.output_transcript.startswith("Call Srinivasan Iyer")
+
+
+def test_v2_known_caller_introducing_themself_is_the_caller():
+    d = resolve("Sir, Srinivas Gowd here, the car is washed and ready.", direction="incoming",
+                caller_contact_id=KB_ID["Sreenivas Goud"], preferences=[])
+    assert d.behaviour != "clarify" and d.entities[0].resolved_entity_id == KB_ID["Sreenivas Goud"]
+
+
+def test_v2_unknown_caller_sharing_a_surname_is_not_linked():
+    d = resolve("Hi, Ramesh Mehta from the bank, your loan papers are ready.", direction="incoming", preferences=[])
+    assert not any(e.resolved_entity_id for e in d.entities) and d.action.target_entity_id is None
+
+
+def test_v2_close_names_still_ask_and_llm_prompt_prefers_keep():
+    from app.decide.llm_fallback import INSTRUCTIONS
+    assert resolve("Call Harshit at 5.", preferences=[]).behaviour == "clarify"  # unchanged safety behaviour
+    assert "A similar sound is" in INSTRUCTIONS and "keep" in INSTRUCTIONS

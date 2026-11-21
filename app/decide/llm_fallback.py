@@ -32,6 +32,9 @@ from the user's own contacts, places and businesses. Decide, using the whole sen
 - "keep", if the phrase is probably NOT any of them (ordinary words, or a different person/place)
 - "clarify", if two candidates fit equally well
 Be conservative: a wrong person is worse than asking or keeping.
+Pick a candidate ONLY if the sentence clearly refers to that exact contact, place or business. A similar sound is
+NOT enough. Answer "keep" when the phrase is part of a name that is not in the list (an unknown restaurant, shop,
+person or town), when the candidate's type does not fit (a restaurant name is not a city), or when you are unsure.
 A family word (Amma, Nanna, Akka, Anna, Bhaiya...) means that family member HIMSELF/HERSELF, never someone
 whose relation merely mentions them (e.g. "Nanna's cardiologist" is NOT "Nanna"). Ordinary words are "keep"."""
 

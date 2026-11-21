@@ -168,7 +168,34 @@ def references_node(state: State) -> dict:
 def _is_self_intro(state: State, span: Span) -> bool:
     before = normalise(state["transcript"][:span.start])
     after = normalise(state["transcript"][span.end:]).split()
-    return any(before.endswith(p) for p in SELF_INTRO_BEFORE) or (bool(after) and after[0] in SELF_INTRO_AFTER)
+    # v2: up to two more name words may sit between the span and "here" ("Srinivas | Gowd here").
+    return any(before.endswith(p) for p in SELF_INTRO_BEFORE) or any(w in SELF_INTRO_AFTER for w in after[:3])
+
+
+PLACE_PREPS = {"to", "in", "at", "near", "from", "ki", "lo", "se", "ko"}
+
+
+def _strong_name_position(state: State, span: Span, entity) -> bool:
+    """v2: right after a request verb ("call", "tell", "ask", "remind", "meet"...), an honorific ("Dr."), or a
+    place preposition followed by a matching PLACE ("to Kukatpally")."""
+    before = normalise(state["transcript"][:span.start]).split()
+    if not before:
+        return False
+    prev = before[-1]
+    return prev in INTENT_WORDS or prev in HONORIFIC_WORDS or (prev in PLACE_PREPS and entity.type == "place")
+
+
+def _surname_only(span: Span, entity) -> bool:
+    """v2: the heard words match the contact's SURNAME but not their first name ("Mehta" ~ Dr. Alok Mehta)."""
+    names = [normalise(n).split() for n in (entity.name, *entity.aliases)]
+    names = [[w for w in n if w not in HONORIFIC_WORDS] for n in names]
+    firsts = {n[0] for n in names if len(n) >= 2}
+    lasts = {n[-1] for n in names if len(n) >= 2}
+    if not lasts:
+        return False
+    words = [w for w in normalise(span.heard_text).split() if w not in HONORIFIC_WORDS]
+    like = lambda w, targets: any(phonetic_similarity(w, t) >= 0.85 for t in targets)  # noqa: E731
+    return any(like(w, lasts) for w in words) and not any(like(w, firsts) for w in words)
 
 
 def context_check_node(state: State) -> dict:
@@ -183,6 +210,28 @@ def context_check_node(state: State) -> dict:
             continue
         top = span.candidates[0]
         entity = get_by_id(top.entity_id)
+        # v2 (a) EVERYDAY-WORD GUARD: "ee roju chala vedi" is "today it's very hot", not Dr. Raju. A phrase made
+        # only of everyday Telugu/Hindi/Tamil/Kannada/Malayalam words stays as heard, unless it is in a strong
+        # name position ("call ...", "Dr. ...", "to <place>") AND matches almost perfectly.
+        if lexicons.all_everyday(span.heard_text) and not (
+                _strong_name_position(state, span, entity) and top.score >= cfg.very_high):
+            item.set("keep", "everyday", f"'{span.heard_text}' is everyday speech, not a name "
+                     f"(best guess {top.name} {top.score:.2f})")
+            continue
+        unknown_caller = state["direction"] == "incoming" and not caller
+        # v2 (d) UNKNOWN-CALLER SURNAME: "Hi, this is Nikhil Kulkarni from the courier": sharing a surname with
+        # Shreyas Kulkarni does not make an unknown number Shreyas. Surname-only matches never link.
+        if unknown_caller and entity.type == "person" and _surname_only(span, entity):
+            item.set("keep", "unknown_caller", f"an unknown number; '{span.heard_text}' only shares a surname "
+                     f"with your {entity.name}")
+            continue
+        # v2 (c) CALLER EVIDENCE: the call comes from a saved number and the speaker introduces themself with
+        # a name that sounds like that contact ("Srinivas Gowd here" from Sreenivas Goud's number).
+        if caller and state["direction"] == "incoming" and entity.type == "person" and _is_self_intro(state, span) \
+                and (caller.id in {c.entity_id for c in span.candidates if c.score >= cfg.low}
+                     or phonetic_similarity(span.heard_text, caller.name) >= cfg.low):
+            item.set("resolve", "caller", f"the call comes from {caller.name}'s saved number", caller.id, 0.97)
+            continue
         if state["direction"] == "incoming" and _is_self_intro(state, span) and entity.type == "person":
             if caller and (caller.id in {c.entity_id for c in span.candidates}
                            or phonetic_similarity(span.heard_text, caller.name) >= cfg.low):

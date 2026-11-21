@@ -17,6 +17,7 @@ import re
 from functools import lru_cache
 
 from app.config import PROJECT_ROOT
+from app.match.translit import transliterate
 from app.kb.loader import get_by_type, per_book_cache
 from app.match.candidates import form_index
 from app.match.phonetic import indian_phonetic_key, normalise
@@ -57,6 +58,54 @@ def indian_first_names() -> frozenset[str]:
 def kb_name_words() -> frozenset[str]:
     """Every word that is part of some KB name or alias (so "Harshil" or "Mehta" count as known)."""
     return frozenset(w for f in form_index()[0] for w in f.text.split())
+
+
+def _squash(word: str) -> str:
+    """Lower-case and collapse doubled letters, so spelling variants meet: "chaalaa" -> "chala", "rooju" -> "roju"."""
+    out = []
+    for ch in word.lower():
+        if not out or out[-1] != ch:
+            out.append(ch)
+    return "".join(out)
+
+
+@lru_cache(maxsize=1)
+def everyday_words() -> tuple[frozenset[str], frozenset[str]]:
+    """(romanised words squashed, native-script words) from data/lexicon/indian_everyday_words.txt.
+
+    v2: any word that is also part of a KB name is dropped from the list, so a real contact's name can never
+    be treated as an everyday word.
+    """
+    roman, native = set(), set()
+    for line in (LEXICON / "indian_everyday_words.txt").read_text(encoding="utf-8").splitlines():
+        if line.startswith("#"):
+            continue
+        for w in line.split():
+            (roman if w.isascii() else native).add(_squash(w) if w.isascii() else w)
+    return frozenset(roman), frozenset(native)
+
+
+@per_book_cache
+def _kb_words_squashed() -> frozenset[str]:
+    """Every KB name word, squashed: computed once per contact book (v2 round 2: was rebuilt per token)."""
+    return frozenset(_squash(w) for w in kb_name_words())
+
+
+def is_everyday(token: str) -> bool:
+    roman, native = everyday_words()
+    token = token.strip(".,!?;:'\"()-।")
+    if not token:
+        return True  # punctuation only
+    if not token.isascii():
+        return token in native or _squash(transliterate(token)) in roman
+    squashed = _squash(token)
+    return squashed in roman and squashed not in _kb_words_squashed()
+
+
+def all_everyday(text: str) -> bool:
+    """True if EVERY word of the phrase is an everyday Indian-language word ("ee roju", "chala", "aaj")."""
+    tokens = [t for t in text.split() if t.strip(".,!?;:'\"()-।")]
+    return bool(tokens) and all(is_everyday(t) for t in tokens)
 
 
 def clues_in(sentence_norm: str, exclude: str = "") -> list[tuple[str, str]]:

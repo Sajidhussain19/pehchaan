@@ -1,0 +1,54 @@
+# Everyday words in Telugu, Hindi, Tamil, Kannada and Malayalam (romanised and native script), written fresh
+# for Pehchaan v2. Used by the EVERYDAY-WORD GUARD (app/decide/lexicons.py): a span made ONLY of these words is
+# ordinary speech ("ee roju chala vedi" = "today it's very hot"), so it is never turned into a contact, place or
+# business unless it sits in a strong name position AND matches almost perfectly.
+# Family words (Amma, Nanna, Akka, Anna, Bhaiya, Pinni, Thatha...) are deliberately NOT here: they DO refer
+# to people (see the reference rules). Spelling variants are matched after squashing doubled letters
+# ("chaalaa" == "chala"), so one spelling per word is enough.
+
+## Telugu (romanised)
+ee aa roju eeroju ivala ninna repu ippudu ippude tarvata mundu appudu eppudu ikkada akkada ekkada chala baga
+bagundi undi unnadi unnayi unnaru ledu levu kaadu avunu emi enti endhuku ela nenu nuvvu meeru memu manam
+vaadu aame intlo illu intiki bayata bayataki lopala pani panulu annam tinnava tinu tinnanu tagu neellu neeru
+vedi vediga challaga vastunna vastanu vachanu vellu vellaku veltunna cheppu cheyyi cheyi chey cheyandi
+matladadam matladu matladali kavali vaddu konchem ekkuva takkuva manchi chedu pedda chinna kotha paata mari
+kuda inka sare ayindi avutundi raa randi vachindi teesuko kosam valla gurinchi varsham endaga udayam
+sayantram ratri madhyanam ganta nimishalu tvaraga nemmadiga jagratta santosham kopam pillalu ivvu techchu
+nunchi lo ki ga oka rendu moodu chesthunna chesanu chusava chudu vinu poyindi vasthava rava
+
+## Hindi (romanised)
+aaj kal parson abhi baad pehle bahut thoda zyada kam accha achha theek thik hai hain tha thi hoon ho hoga
+jaana jao aana aao karo karna kar bolo batao dekho suno chalo ruko ghar bahar andar khana paani chai thand
+garmi barish dhoop subah shaam raat dopahar din jaldi der yaar kya kyun kaise kahan kab kaun nahi nahin haan
+mat bilkul sach sab kuch koi mera meri tera aapka aapki uska hum tum aap woh yeh aur lekin phir sirf bas
+chahiye raha rahi rahe gaya gayi diya liya milna uthna sona bana banana dena lena thanda garam saaf naya
+purana bada chota jaayega jaayegi bazaar dukaan kaam paisa rupaye kitna itna sabzi doodh roti chawal mein
+se ko par ka ki ke hi bhi tak wala wali gaadi pakka zaroor
+
+## Tamil (romanised)
+inniki innaiku naalaiku nethu romba konjam nalla illa irukku irukken vaa po poi saapadu saapittiya thanni
+veyil mazhai veedu veetla velila enna eppadi enga eppo naan nee neenga avan aval kudi kudikka seri sari aama
+venda vendam venum paaru sollu kelu kaalai saayangalam raathiri mathiyam sikkiram methuva kadai kaasu panam
+velai neraya kammi periya puthu pazhaya vanakkam theriyum pochu vandhu varen
+
+## Kannada (romanised)
+naale ivattu ninne bega banni baa hogi hogu oota neeru mane maneli horage olage chennagide chennagi ide
+beku beda swalpa tumba jaasti yaake hege elli yaavaga naanu neevu avanu avalu maadi maadu helu keli nodi
+nodu sanje beligge raatri madhyaana kelasa angadi duddu barthini hogona
+
+## Malayalam (romanised)
+innu innale mazha peyyum eduthu varu veettil purathu akathu vellam choru kazhicho kazhikku valare kurachu
+kooduthal und undu venam enthu engane evide eppol njan ningal cheyyu para kelku nokku raavile vaikunneram
+raathri uchakku vegam pinne sheri ente ninte
+
+## Native script (Telugu, Hindi/Devanagari, Tamil, Kannada, Malayalam)
+ఈ ఆ రోజు ఈరోజు ఇవాళ నిన్న రేపు ఇప్పుడు ఇప్పుడే తర్వాత ముందు చాలా బాగా బాగుంది ఉంది ఉన్నాయి లేదు కాదు అవును
+ఏమి ఏంటి ఎందుకు ఎలా ఎక్కడ ఎప్పుడు నేను నువ్వు మీరు మేము మనం ఇంట్లో ఇల్లు ఇంటికి బయట బయటకి లోపల పని అన్నం
+తిన్నావా నీళ్ళు వేడి వేడిగా వస్తున్నా వస్తాను వెళ్ళు వెళ్ళకు వెళ్ళకో చెప్పు చేయి మాట్లాడదాం కావాలి వద్దు కొంచెం
+ఎక్కువ తక్కువ మంచి పెద్ద చిన్న కొత్త వర్షం ఉదయం సాయంత్రం రాత్రి త్వరగా నుంచి తర్వాత
+आज कल परसों अभी बाद पहले बहुत थोड़ा ज़्यादा कम अच्छा ठीक है हैं था थी हूँ हो जाना आना करो बोलो बताओ
+देखो चलो घर बाहर खाना पानी चाय ठंड गर्मी बारिश सुबह शाम रात जल्दी देर यार क्या क्यों कैसे कहाँ कब नहीं
+हाँ मत को पर से में और
+இன்னிக்கு ரொம்ப வெயில் தண்ணி நிறைய குடி நாளைக்கு நல்ல இல்ல இருக்கு சாப்பாடு வீடு
+ನಾಳೆ ಬೇಗ ಬನ್ನಿ ಊಟ ಇದೆ ಮನೆ ತುಂಬಾ
+ഇന്ന് മഴ പെയ്യും കുട എടുത്തു നാളെ വീട്

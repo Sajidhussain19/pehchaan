@@ -2,46 +2,11 @@
   "split": "dev",
   "audio": "all",
   "systems": [
-    "a",
-    "b",
     "c",
-    "pehchaan"
+    "v1",
+    "v2"
   ],
   "overall": {
-    "a": {
-      "entity_accuracy": {
-        "hits": 58,
-        "total": 98,
-        "rate": 0.5918367346938775
-      },
-      "over_correction_rate": {
-        "hits": 0,
-        "total": 34,
-        "rate": 0.0
-      },
-      "wer": {
-        "hits": 322,
-        "total": 1575,
-        "rate": 0.20444444444444446
-      }
-    },
-    "b": {
-      "entity_accuracy": {
-        "hits": 79,
-        "total": 98,
-        "rate": 0.8061224489795918
-      },
-      "over_correction_rate": {
-        "hits": 0,
-        "total": 34,
-        "rate": 0.0
-      },
-      "wer": {
-        "hits": 271,
-        "total": 1575,
-        "rate": 0.17206349206349206
-      }
-    },
     "c": {
       "entity_accuracy": {
         "hits": 81,
@@ -107,7 +72,7 @@
       "latency_ms_median": 1561.6,
       "cost_usd_mean": 0.000978
     },
-    "pehchaan": {
+    "v1": {
       "entity_accuracy": {
         "hits": 96,
         "total": 98,
@@ -168,47 +133,78 @@
         "total": 146,
         "rate": 0.9041095890410958
       },
-      "latency_ms_mean": 135.8,
-      "latency_ms_median": 9.4,
+      "latency_ms_mean": 135.1,
+      "latency_ms_median": 9.2,
       "cost_usd_mean": 1e-05
+    },
+    "v2": {
+      "entity_accuracy": {
+        "hits": 97,
+        "total": 98,
+        "rate": 0.9897959183673469
+      },
+      "over_correction_rate": {
+        "hits": 0,
+        "total": 34,
+        "rate": 0.0
+      },
+      "wer": {
+        "hits": 145,
+        "total": 1575,
+        "rate": 0.09206349206349207
+      },
+      "behaviour_accuracy": {
+        "hits": 138,
+        "total": 146,
+        "rate": 0.9452054794520548
+      },
+      "exact_action_target_accuracy": {
+        "hits": 84,
+        "total": 86,
+        "rate": 0.9767441860465116
+      },
+      "time_accuracy": {
+        "hits": 26,
+        "total": 26,
+        "rate": 1.0
+      },
+      "wrong_target_rate": {
+        "hits": 0,
+        "total": 146,
+        "rate": 0.0
+      },
+      "unnecessary_question_rate": {
+        "hits": 0,
+        "total": 126,
+        "rate": 0.0
+      },
+      "missed_clarification_rate": {
+        "hits": 1,
+        "total": 16,
+        "rate": 0.0625
+      },
+      "clarify_candidates_ok": {
+        "hits": 13,
+        "total": 15,
+        "rate": 0.8666666666666667
+      },
+      "reference_resolution_accuracy": {
+        "hits": 23,
+        "total": 24,
+        "rate": 0.9583333333333334
+      },
+      "no_llm_rate": {
+        "hits": 132,
+        "total": 146,
+        "rate": 0.9041095890410958
+      },
+      "latency_ms_mean": 182.1,
+      "latency_ms_median": 8.9,
+      "cost_usd_mean": 1.1e-05
     }
   },
   "per_audio": {
     "clean": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 32,
-          "total": 49,
-          "rate": 0.6530612244897959
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 10,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 144,
-          "total": 672,
-          "rate": 0.21428571428571427
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 39,
-          "total": 49,
-          "rate": 0.7959183673469388
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 10,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 127,
-          "total": 672,
-          "rate": 0.18898809523809523
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 43,
@@ -274,7 +270,7 @@
         "latency_ms_median": 1600.7,
         "cost_usd_mean": 0.000959
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 49,
           "total": 49,
@@ -335,46 +331,77 @@
           "total": 66,
           "rate": 0.9393939393939394
         },
-        "latency_ms_mean": 93.0,
-        "latency_ms_median": 9.3,
+        "latency_ms_mean": 92.9,
+        "latency_ms_median": 8.6,
         "cost_usd_mean": 6e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 49,
+          "total": 49,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 59,
+          "total": 672,
+          "rate": 0.08779761904761904
+        },
+        "behaviour_accuracy": {
+          "hits": 64,
+          "total": 66,
+          "rate": 0.9696969696969697
+        },
+        "exact_action_target_accuracy": {
+          "hits": 43,
+          "total": 43,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 13,
+          "total": 13,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 66,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 56,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "reference_resolution_accuracy": {
+          "hits": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 62,
+          "total": 66,
+          "rate": 0.9393939393939394
+        },
+        "latency_ms_mean": 140.8,
+        "latency_ms_median": 9.0,
+        "cost_usd_mean": 7e-06
       }
     },
     "phone": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 26,
-          "total": 49,
-          "rate": 0.5306122448979592
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 10,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 153,
-          "total": 672,
-          "rate": 0.22767857142857142
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 40,
-          "total": 49,
-          "rate": 0.8163265306122449
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 10,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 127,
-          "total": 672,
-          "rate": 0.18898809523809523
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 38,
@@ -440,7 +467,7 @@
         "latency_ms_median": 1571.8,
         "cost_usd_mean": 0.001005
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 47,
           "total": 49,
@@ -502,45 +529,76 @@
           "rate": 0.9393939393939394
         },
         "latency_ms_mean": 83.3,
-        "latency_ms_median": 9.1,
+        "latency_ms_median": 8.8,
+        "cost_usd_mean": 6e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 48,
+          "total": 49,
+          "rate": 0.9795918367346939
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 61,
+          "total": 672,
+          "rate": 0.09077380952380952
+        },
+        "behaviour_accuracy": {
+          "hits": 60,
+          "total": 66,
+          "rate": 0.9090909090909091
+        },
+        "exact_action_target_accuracy": {
+          "hits": 41,
+          "total": 43,
+          "rate": 0.9534883720930233
+        },
+        "time_accuracy": {
+          "hits": 13,
+          "total": 13,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 66,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 56,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "clarify_candidates_ok": {
+          "hits": 6,
+          "total": 7,
+          "rate": 0.8571428571428571
+        },
+        "reference_resolution_accuracy": {
+          "hits": 11,
+          "total": 12,
+          "rate": 0.9166666666666666
+        },
+        "no_llm_rate": {
+          "hits": 62,
+          "total": 66,
+          "rate": 0.9393939393939394
+        },
+        "latency_ms_mean": 108.2,
+        "latency_ms_median": 8.1,
         "cost_usd_mean": 6e-06
       }
     },
     "real": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 14,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 25,
-          "total": 231,
-          "rate": 0.10822510822510822
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 14,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 17,
-          "total": 231,
-          "rate": 0.0735930735930736
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -606,7 +664,7 @@
         "latency_ms_median": 1136.2,
         "cost_usd_mean": 0.000938
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -667,48 +725,79 @@
           "total": 14,
           "rate": 0.5714285714285714
         },
-        "latency_ms_mean": 585.0,
-        "latency_ms_median": 38.2,
+        "latency_ms_mean": 578.3,
+        "latency_ms_median": 20.2,
         "cost_usd_mean": 4.4e-05
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 14,
+          "rate": 0.5714285714285714
+        },
+        "latency_ms_mean": 724.6,
+        "latency_ms_median": 22.8,
+        "cost_usd_mean": 4.9e-05
       }
     }
   },
   "per_category": {
     "ambiguous": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 3,
-          "total": 8,
-          "rate": 0.375
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 8,
-          "total": 116,
-          "rate": 0.06896551724137931
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 4,
-          "total": 8,
-          "rate": 0.5
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 5,
-          "total": 116,
-          "rate": 0.04310344827586207
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 5,
@@ -774,7 +863,7 @@
         "latency_ms_median": 1582.5,
         "cost_usd_mean": 0.000952
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 7,
           "total": 8,
@@ -835,46 +924,77 @@
           "total": 14,
           "rate": 1.0
         },
-        "latency_ms_mean": 8.0,
-        "latency_ms_median": 7.6,
+        "latency_ms_mean": 8.2,
+        "latency_ms_median": 7.1,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 3,
+          "total": 116,
+          "rate": 0.02586206896551724
+        },
+        "behaviour_accuracy": {
+          "hits": 13,
+          "total": 14,
+          "rate": 0.9285714285714286
+        },
+        "exact_action_target_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 4,
+          "total": 6,
+          "rate": 0.6666666666666666
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.3,
+        "latency_ms_median": 7.0,
         "cost_usd_mean": 0.0
       }
     },
     "context_mismatch": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 9,
-          "total": 102,
-          "rate": 0.08823529411764706
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 8,
-          "total": 102,
-          "rate": 0.0784313725490196
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -940,7 +1060,7 @@
         "latency_ms_median": 1229.8,
         "cost_usd_mean": 0.000938
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -1001,46 +1121,77 @@
           "total": 10,
           "rate": 0.8
         },
-        "latency_ms_mean": 240.5,
-        "latency_ms_median": 10.9,
+        "latency_ms_mean": 239.8,
+        "latency_ms_median": 9.2,
         "cost_usd_mean": 1.7e-05
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 9,
+          "total": 102,
+          "rate": 0.08823529411764706
+        },
+        "behaviour_accuracy": {
+          "hits": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 6,
+          "rate": 0.16666666666666666
+        },
+        "clarify_candidates_ok": {
+          "hits": 5,
+          "total": 5,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "latency_ms_mean": 276.7,
+        "latency_ms_median": 9.1,
+        "cost_usd_mean": 1.9e-05
       }
     },
     "control": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 8,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 4,
-          "total": 76,
-          "rate": 0.05263157894736842
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 8,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 4,
-          "total": 76,
-          "rate": 0.05263157894736842
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -1106,7 +1257,7 @@
         "latency_ms_median": 1070.4,
         "cost_usd_mean": 0.000929
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -1168,45 +1319,76 @@
           "rate": 1.0
         },
         "latency_ms_mean": 7.9,
-        "latency_ms_median": 7.9,
+        "latency_ms_median": 6.9,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 4,
+          "total": 76,
+          "rate": 0.05263157894736842
+        },
+        "behaviour_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.7,
+        "latency_ms_median": 7.2,
         "cost_usd_mean": 0.0
       }
     },
     "in_kb": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 53,
-          "total": 88,
-          "rate": 0.6022727272727273
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 177,
-          "total": 718,
-          "rate": 0.24651810584958217
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 73,
-          "total": 88,
-          "rate": 0.8295454545454546
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 143,
-          "total": 718,
-          "rate": 0.1991643454038997
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 74,
@@ -1272,7 +1454,7 @@
         "latency_ms_median": 1821.1,
         "cost_usd_mean": 0.001003
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 87,
           "total": 88,
@@ -1334,45 +1516,76 @@
           "rate": 0.9375
         },
         "latency_ms_mean": 81.0,
-        "latency_ms_median": 10.4,
+        "latency_ms_median": 10.2,
         "cost_usd_mean": 5e-06
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 88,
+          "total": 88,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 60,
+          "total": 718,
+          "rate": 0.08356545961002786
+        },
+        "behaviour_accuracy": {
+          "hits": 59,
+          "total": 64,
+          "rate": 0.921875
+        },
+        "exact_action_target_accuracy": {
+          "hits": 58,
+          "total": 58,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 64,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 64,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 60,
+          "total": 64,
+          "rate": 0.9375
+        },
+        "latency_ms_mean": 135.4,
+        "latency_ms_median": 9.8,
+        "cost_usd_mean": 6e-06
       }
     },
     "out_of_kb": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 8,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 35,
-          "total": 72,
-          "rate": 0.4861111111111111
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 8,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 32,
-          "total": 72,
-          "rate": 0.4444444444444444
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -1438,7 +1651,7 @@
         "latency_ms_median": 1436.9,
         "cost_usd_mean": 0.000957
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -1499,46 +1712,77 @@
           "total": 8,
           "rate": 0.75
         },
-        "latency_ms_mean": 454.6,
-        "latency_ms_median": 8.4,
+        "latency_ms_mean": 453.6,
+        "latency_ms_median": 7.4,
         "cost_usd_mean": 3.6e-05
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 15,
+          "total": 72,
+          "rate": 0.20833333333333334
+        },
+        "behaviour_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 6,
+          "total": 8,
+          "rate": 0.75
+        },
+        "latency_ms_mean": 577.5,
+        "latency_ms_median": 7.7,
+        "cost_usd_mean": 4e-05
       }
     },
     "real_speech": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 14,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 25,
-          "total": 231,
-          "rate": 0.10822510822510822
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 14,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 17,
-          "total": 231,
-          "rate": 0.0735930735930736
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -1604,7 +1848,7 @@
         "latency_ms_median": 1136.2,
         "cost_usd_mean": 0.000938
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -1665,46 +1909,77 @@
           "total": 14,
           "rate": 0.5714285714285714
         },
-        "latency_ms_mean": 585.0,
-        "latency_ms_median": 38.2,
+        "latency_ms_mean": 578.3,
+        "latency_ms_median": 20.2,
         "cost_usd_mean": 4.4e-05
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 14,
+          "rate": 0.5714285714285714
+        },
+        "latency_ms_mean": 724.6,
+        "latency_ms_median": 22.8,
+        "cost_usd_mean": 4.9e-05
       }
     },
     "reference": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 62,
-          "total": 162,
-          "rate": 0.38271604938271603
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 58,
-          "total": 162,
-          "rate": 0.35802469135802467
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -1770,7 +2045,7 @@
         "latency_ms_median": 1529.1,
         "cost_usd_mean": 0.001006
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -1832,45 +2107,76 @@
           "rate": 1.0
         },
         "latency_ms_mean": 8.4,
-        "latency_ms_median": 7.8,
+        "latency_ms_median": 8.3,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 27,
+          "total": 162,
+          "rate": 0.16666666666666666
+        },
+        "behaviour_accuracy": {
+          "hits": 17,
+          "total": 18,
+          "rate": 0.9444444444444444
+        },
+        "exact_action_target_accuracy": {
+          "hits": 13,
+          "total": 14,
+          "rate": 0.9285714285714286
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 18,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 17,
+          "total": 18,
+          "rate": 0.9444444444444444
+        },
+        "no_llm_rate": {
+          "hits": 18,
+          "total": 18,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.8,
+        "latency_ms_median": 7.4,
         "cost_usd_mean": 0.0
       }
     },
     "stale_default": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 2,
-          "total": 2,
-          "rate": 1.0
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 2,
-          "total": 58,
-          "rate": 0.034482758620689655
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 2,
-          "total": 2,
-          "rate": 1.0
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 4,
-          "total": 58,
-          "rate": 0.06896551724137931
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 2,
@@ -1936,7 +2242,7 @@
         "latency_ms_median": 1584.8,
         "cost_usd_mean": 0.000958
       },
-      "pehchaan": {
+      "v1": {
         "entity_accuracy": {
           "hits": 2,
           "total": 2,
@@ -1997,46 +2303,77 @@
           "total": 6,
           "rate": 1.0
         },
-        "latency_ms_mean": 8.1,
-        "latency_ms_median": 8.4,
+        "latency_ms_mean": 10.4,
+        "latency_ms_median": 9.6,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
+        "entity_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 58,
+          "rate": 0.034482758620689655
+        },
+        "behaviour_accuracy": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.8,
+        "latency_ms_median": 8.8,
         "cost_usd_mean": 0.0
       }
     },
     "unfamiliar_near_match": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 4,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 0,
-          "total": 40,
-          "rate": 0.0
-        }
-      },
-      "b": {
-        "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 4,
-          "rate": 0.0
-        },
-        "wer": {
-          "hits": 0,
-          "total": 40,
-          "rate": 0.0
-        }
-      },
       "c": {
         "entity_accuracy": {
           "hits": 0,
@@ -2102,7 +2439,72 @@
         "latency_ms_median": 1366.5,
         "cost_usd_mean": 0.000945
       },
-      "pehchaan": {
+      "v1": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 0,
+          "total": 40,
+          "rate": 0.0
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.8,
+        "latency_ms_median": 7.7,
+        "cost_usd_mean": 0.0
+      },
+      "v2": {
         "entity_accuracy": {
           "hits": 0,
           "total": 0,
@@ -2170,11 +2572,11 @@
     }
   },
   "comparison": {
-    "a": "c",
-    "b": "pehchaan",
+    "a": "v2",
+    "b": "c",
     "counts": {
-      "loss": 54,
-      "win": 4,
+      "win": 54,
+      "loss": 4,
       "tie": 88
     },
     "clips": [
@@ -2182,639 +2584,639 @@
         "clip": "s001",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "unnecessary_question",
-        "pehchaan": "ok",
         "said": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally, your appointment is tomorrow at 10 AM.",
-        "c_text": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally. Your appointment is tomorrow at 10:00.",
-        "pehchaan_text": "Hello, calling from Dr. Venkataramana clinic in Kukatpally. Your appointment is tomorrow at 10 a.m."
+        "v2_text": "Hello, calling from Dr. Venkataramana clinic in Kukatpally. Your appointment is tomorrow at 10 a.m.",
+        "c_text": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally. Your appointment is tomorrow at 10:00."
       },
       {
         "clip": "s004",
         "audio": "clean",
         "category": "in_kb",
-        "result": "win",
+        "result": "loss",
+        "v2": "wrong_behaviour",
         "c": "ok",
-        "pehchaan": "wrong_behaviour",
         "said": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
-        "c_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
-        "pehchaan_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli."
+        "v2_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+        "c_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli."
       },
       {
         "clip": "s007",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "entity_miss",
-        "pehchaan": "ok",
         "said": "Call Srinivasan Iyer and wish him a happy birthday.",
-        "c_text": "Call Srinivas Iyer and wish him a happy birthday.",
-        "pehchaan_text": "Call Srinivasan Iyer and wish him a happy birthday."
+        "v2_text": "Call Srinivasan Iyer and wish him a happy birthday.",
+        "c_text": "Call Srinivas Iyer and wish him a happy birthday."
       },
       {
         "clip": "s017",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_action",
-        "pehchaan": "ok",
         "said": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
-        "c_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
-        "pehchaan_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m."
+        "v2_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
+        "c_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m."
       },
       {
         "clip": "s020",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
-        "c_text": "Call Vijayalakshmi and ask for the Dilsukhnagar address.",
-        "pehchaan_text": "Call Vijayalakshmi auntie and ask for the Dilsukhnagar address."
+        "v2_text": "Call Vijayalakshmi auntie and ask for the Dilsukhnagar address.",
+        "c_text": "Call Vijayalakshmi and ask for the Dilsukhnagar address."
       },
       {
         "clip": "s088",
         "audio": "clean",
         "category": "control",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Wake me up at six thirty tomorrow morning.",
-        "c_text": "Wake me up at 6:30 tomorrow morning.",
-        "pehchaan_text": "Wake me up at 6:30 tomorrow morning."
+        "v2_text": "Wake me up at 6:30 tomorrow morning.",
+        "c_text": "Wake me up at 6:30 tomorrow morning."
       },
       {
         "clip": "s095",
         "audio": "clean",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Ask Harshil to send the invoice by Friday.",
-        "c_text": "Ask Harshal to send the invoice by Friday.",
-        "pehchaan_text": "Ask Harshil to send the invoice by Friday."
+        "v2_text": "Ask Harshil to send the invoice by Friday.",
+        "c_text": "Ask Harshal to send the invoice by Friday."
       },
       {
         "clip": "s098",
         "audio": "clean",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to send the project deck to Pranay before the client call on Monday.",
-        "c_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
-        "pehchaan_text": "Remind me to send the project deck to Pranay before the client call on Monday."
+        "v2_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
+        "c_text": "Remind me to send the project deck to Pranay before the client call on Monday."
       },
       {
         "clip": "s103",
         "audio": "clean",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Remind me to call Pranav tomorrow morning.",
-        "c_text": "Remind me to call Pranav tomorrow morning.",
-        "pehchaan_text": "Remind me to call Pranav tomorrow morning."
+        "v2_text": "Remind me to call Pranav tomorrow morning.",
+        "c_text": "Remind me to call Pranav tomorrow morning."
       },
       {
         "clip": "s106",
         "audio": "clean",
         "category": "context_mismatch",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Book a table at Raju Hotel tomorrow at 9 AM.",
-        "c_text": "Book a table at Raju Hotel tomorrow at 9 a.m.",
-        "pehchaan_text": "Book a table at Raju Hotel tomorrow at 9 a.m."
+        "v2_text": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+        "c_text": "Book a table at Raju Hotel tomorrow at 9 a.m."
       },
       {
         "clip": "s114",
         "audio": "clean",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Call my doctor, my tooth is paining.",
-        "c_text": "Call my doctor, my tooth is paining.",
-        "pehchaan_text": "Call my doctor, my tooth is paining."
+        "v2_text": "Call my doctor, my tooth is paining.",
+        "c_text": "Call my doctor, my tooth is paining."
       },
       {
         "clip": "s126",
         "audio": "clean",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_action",
-        "pehchaan": "ok",
         "said": "Order Amma's tablets from the usual pharmacy.",
-        "c_text": "Order Amas tablets from the usual pharmacy.",
-        "pehchaan_text": "Order Amas tablets from the usual pharmacy."
+        "v2_text": "Order Amas tablets from the usual pharmacy.",
+        "c_text": "Order Amas tablets from the usual pharmacy."
       },
       {
         "clip": "s130",
         "audio": "clean",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "missed_clarification",
-        "pehchaan": "ok",
         "said": "Ask my colleague to join the call.",
-        "c_text": "Ask my colleague to join the call.",
-        "pehchaan_text": "Ask my colleague to join the call."
+        "v2_text": "Ask my colleague to join the call.",
+        "c_text": "Ask my colleague to join the call."
       },
       {
         "clip": "s143",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to call Anbuselvi about the Sunday cleaning.",
-        "c_text": "remind me to call Unde Selvi about the Sunday cleaning.",
-        "pehchaan_text": "remind me to call Anbuselvi about the Sunday cleaning."
+        "v2_text": "remind me to call Anbuselvi about the Sunday cleaning.",
+        "c_text": "remind me to call Unde Selvi about the Sunday cleaning."
       },
       {
         "clip": "s144",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Tell Velu Anna to keep two cups of tea ready at 4 PM.",
-        "c_text": "Tell Velu Anna to keep two cups of tea ready at 16:00.",
-        "pehchaan_text": "Tell Velu Anna to keep two cups of tea ready at 4 p.m."
+        "v2_text": "Tell Velu Anna to keep two cups of tea ready at 4 p.m.",
+        "c_text": "Tell Velu Anna to keep two cups of tea ready at 16:00."
       },
       {
         "clip": "s146",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Message Nagaveni that we will visit on Sunday.",
-        "c_text": "Message Nagaveni that we will visit on Sunday.",
-        "pehchaan_text": "Message Nagaveni that we will visit on Sunday."
+        "v2_text": "Message Nagaveni that we will visit on Sunday.",
+        "c_text": "Message Nagaveni that we will visit on Sunday."
       },
       {
         "clip": "s151",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM.",
-        "c_text": "Remind me to meet Gopikrishna near Habsiguda at 19:00.",
-        "pehchaan_text": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM."
+        "v2_text": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM.",
+        "c_text": "Remind me to meet Gopikrishna near Habsiguda at 19:00."
       },
       {
         "clip": "s153",
         "audio": "clean",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
-        "c_text": "Remind me to wish Subhasis Chattopadhyay for Durga Puja.",
-        "pehchaan_text": "Remind me to wish Subhashis Chattopadhyay for Durga Puja."
+        "v2_text": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
+        "c_text": "Remind me to wish Subhasis Chattopadhyay for Durga Puja."
       },
       {
         "clip": "s154",
         "audio": "clean",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Tell Swathi the college reunion is on Saturday.",
-        "c_text": "Tell Swathi the college reunion is on Saturday.",
-        "pehchaan_text": "Tell Swathi the college reunion is on Saturday."
+        "v2_text": "Tell Swathi the college reunion is on Saturday.",
+        "c_text": "Tell Swathi the college reunion is on Saturday."
       },
       {
         "clip": "s156",
         "audio": "clean",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Remind me to call Anjali tomorrow.",
-        "c_text": "Remind me to call Anjali tomorrow.",
-        "pehchaan_text": "Remind me to call Anjali tomorrow."
+        "v2_text": "Remind me to call Anjali tomorrow.",
+        "c_text": "Remind me to call Anjali tomorrow."
       },
       {
         "clip": "s157",
         "audio": "clean",
         "category": "stale_default",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Ask my driver to bring the cab to Koramangala at 9 AM.",
-        "c_text": "Ask my driver to bring the cab to Koramangala at 09:00.",
-        "pehchaan_text": "Ask my driver to bring the cab to Koramangala at 9 a.m."
+        "v2_text": "Ask my driver to bring the cab to Koramangala at 9 a.m.",
+        "c_text": "Ask my driver to bring the cab to Koramangala at 09:00."
       },
       {
         "clip": "s158",
         "audio": "clean",
         "category": "stale_default",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Ask my accountant whether the income tax refund has come.",
-        "c_text": "Ask my accountant whether the income tax refund has come.",
-        "pehchaan_text": "Ask my accountant whether the income tax refund has come."
+        "v2_text": "Ask my accountant whether the income tax refund has come.",
+        "c_text": "Ask my accountant whether the income tax refund has come."
       },
       {
         "clip": "s161",
         "audio": "clean",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Ask my cousin to pick me up from the station.",
-        "c_text": "Ask my cousin to pick me up from the station.",
-        "pehchaan_text": "Ask my cousin to pick me up from the station."
+        "v2_text": "Ask my cousin to pick me up from the station.",
+        "c_text": "Ask my cousin to pick me up from the station."
       },
       {
         "clip": "s162",
         "audio": "clean",
         "category": "context_mismatch",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "missed_clarification",
-        "pehchaan": "ok",
         "said": "Order dinner from Hotel Subramanian tonight.",
-        "c_text": "Order dinner from Hotel Subramanian tonight.",
-        "pehchaan_text": "Order dinner from Hotel Subramanian tonight."
+        "v2_text": "Order dinner from Hotel Subramanian tonight.",
+        "c_text": "Order dinner from Hotel Subramanian tonight."
       },
       {
         "clip": "s163",
         "audio": "clean",
         "category": "context_mismatch",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Get me a haircut slot at Venkatesh Salon on Sunday.",
-        "c_text": "Get me a haircut slot at Venkatesh Salon on Sunday.",
-        "pehchaan_text": "Get me a haircut slot at Venkatesh Salon on Sunday."
+        "v2_text": "Get me a haircut slot at Venkatesh Salon on Sunday.",
+        "c_text": "Get me a haircut slot at Venkatesh Salon on Sunday."
       },
       {
         "clip": "s004",
         "audio": "phone",
         "category": "in_kb",
-        "result": "win",
+        "result": "loss",
+        "v2": "wrong_behaviour",
         "c": "ok",
-        "pehchaan": "wrong_behaviour",
         "said": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
-        "c_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
-        "pehchaan_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli."
+        "v2_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+        "c_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli."
       },
       {
         "clip": "s010",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "wrong_behaviour",
         "c": "wrong_target",
-        "pehchaan": "wrong_behaviour",
         "said": "Ravi Teja ko call karo, pucho Warangal pahunch gaya ya nahi.",
-        "c_text": "Ravi Tej ko call karo, poochho Warangal pahunch gaya ya nahi.",
-        "pehchaan_text": "Ravi tejak ko kol karo, puuchho Warangal pahunch gayaa yaa nahiin."
+        "v2_text": "Ravi Teja ko kol karo, puuchho Warangal pahunch gayaa yaa nahiin.",
+        "c_text": "Ravi Tej ko call karo, poochho Warangal pahunch gaya ya nahi."
       },
       {
         "clip": "s017",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_action",
-        "pehchaan": "ok",
         "said": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
-        "c_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
-        "pehchaan_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m."
+        "v2_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
+        "c_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m."
       },
       {
         "clip": "s020",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
-        "c_text": "Call Vijayalakshmi and ask for the Dilshuknagar address.",
-        "pehchaan_text": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address."
+        "v2_text": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address.",
+        "c_text": "Call Vijayalakshmi and ask for the Dilshuknagar address."
       },
       {
         "clip": "s023",
         "audio": "phone",
         "category": "in_kb",
-        "result": "win",
+        "result": "loss",
+        "v2": "wrong_behaviour",
         "c": "ok",
-        "pehchaan": "wrong_behaviour",
         "said": "Call Dr. Subramanian and move the root canal to Monday.",
-        "c_text": "Call Dr. Subramanian and move the root canal to Monday.",
-        "pehchaan_text": "Call Doctor Subramanian and move the root canal to Monday."
+        "v2_text": "Call Doctor Subramanian and move the root canal to Monday.",
+        "c_text": "Call Dr. Subramanian and move the root canal to Monday."
       },
       {
         "clip": "s033",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
-        "c_text": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at seven.",
-        "pehchaan_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at seven."
+        "v2_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at seven.",
+        "c_text": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at seven."
       },
       {
         "clip": "s039",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "entity_miss",
-        "pehchaan": "ok",
         "said": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
-        "c_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Kothi for Friday.",
-        "pehchaan_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday."
+        "v2_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
+        "c_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Kothi for Friday."
       },
       {
         "clip": "s052",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Book a table at Jagannath Bhojanalaya for Sunday lunch.",
-        "c_text": "Book a table at Juggernaut Bhojanalaya for Sunday lunch.",
-        "pehchaan_text": "Book a table at Jagannath Bhojanalaya for Sunday lunch."
+        "v2_text": "Book a table at Jagannath Bhojanalaya for Sunday lunch.",
+        "c_text": "Book a table at Juggernaut Bhojanalaya for Sunday lunch."
       },
       {
         "clip": "s069",
         "audio": "phone",
         "category": "out_of_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "over_corrected",
-        "pehchaan": "ok",
         "said": "Call Tejaswini and ask if she reached Nalgonda.",
-        "c_text": "Call Paige Sweeney and ask if she reached Nalgonda.",
-        "pehchaan_text": "Call Paige Sweeney and ask if she reached Nalgonda."
+        "v2_text": "Call Paige Sweeney and ask if she reached Nalgonda.",
+        "c_text": "Call Paige Sweeney and ask if she reached Nalgonda."
       },
       {
         "clip": "s088",
         "audio": "phone",
         "category": "control",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Wake me up at six thirty tomorrow morning.",
-        "c_text": "Wake me up at 6:30 tomorrow morning.",
-        "pehchaan_text": "Wake me up at 6:30 tomorrow morning."
+        "v2_text": "Wake me up at 6:30 tomorrow morning.",
+        "c_text": "Wake me up at 6:30 tomorrow morning."
       },
       {
         "clip": "s095",
         "audio": "phone",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "unnecessary_question",
-        "pehchaan": "ok",
         "said": "Ask Harshil to send the invoice by Friday.",
-        "c_text": "Ask Harshel to send the invoice by Friday.",
-        "pehchaan_text": "Ask Harshil to send the invoice by Friday."
+        "v2_text": "Ask Harshil to send the invoice by Friday.",
+        "c_text": "Ask Harshel to send the invoice by Friday."
       },
       {
         "clip": "s098",
         "audio": "phone",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to send the project deck to Pranay before the client call on Monday.",
-        "c_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
-        "pehchaan_text": "Remind me to send the project deck to Pranay before the client call on Monday."
+        "v2_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
+        "c_text": "Remind me to send the project deck to Pranay before the client call on Monday."
       },
       {
         "clip": "s101",
         "audio": "phone",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Call Harshit at 5.",
-        "c_text": "Call Harshit at five.",
-        "pehchaan_text": "Call Harshit at five."
+        "v2_text": "Call Harshit at five.",
+        "c_text": "Call Harshit at five."
       },
       {
         "clip": "s103",
         "audio": "phone",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Remind me to call Pranav tomorrow morning.",
-        "c_text": "Remind me to call Pranav tomorrow morning.",
-        "pehchaan_text": "Remind me to call Pranav tomorrow morning."
+        "v2_text": "Remind me to call Pranav tomorrow morning.",
+        "c_text": "Remind me to call Pranav tomorrow morning."
       },
       {
         "clip": "s106",
         "audio": "phone",
         "category": "context_mismatch",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Book a table at Raju Hotel tomorrow at 9 AM.",
-        "c_text": "Book a table at Raju Hotel tomorrow at 9 a.m.",
-        "pehchaan_text": "Book a table at Raju Hotel tomorrow at 9 a.m."
+        "v2_text": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+        "c_text": "Book a table at Raju Hotel tomorrow at 9 a.m."
       },
       {
         "clip": "s114",
         "audio": "phone",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Call my doctor, my tooth is paining.",
-        "c_text": "Call Dr. Venkataramana, my tooth is paining.",
-        "pehchaan_text": "Call my doctor, my tooth is paining."
+        "v2_text": "Call my doctor, my tooth is paining.",
+        "c_text": "Call Dr. Venkataramana, my tooth is paining."
       },
       {
         "clip": "s123",
         "audio": "phone",
         "category": "reference",
-        "result": "win",
+        "result": "loss",
+        "v2": "wrong_behaviour",
         "c": "ok",
-        "pehchaan": "wrong_behaviour",
         "said": "Nanna ki call cheyyi, BP tablets teesukunnara ani adugu.",
-        "c_text": "nannotthi kaalcheyyi BP tablets teesukunnaraa ani adugu.",
-        "pehchaan_text": "nannotti kaalcheyyi biipii tyaablets tiisukunnaaraa ani adugu."
+        "v2_text": "nannotti kaalcheyyi biipii tyaablets tiisukunnaaraa ani adugu.",
+        "c_text": "nannotthi kaalcheyyi BP tablets teesukunnaraa ani adugu."
       },
       {
         "clip": "s126",
         "audio": "phone",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Order Amma's tablets from the usual pharmacy.",
-        "c_text": "Order Amma's tablets from the usual pharmacy.",
-        "pehchaan_text": "Order Amas tablets from the usual pharmacy."
+        "v2_text": "Order Amas tablets from the usual pharmacy.",
+        "c_text": "Order Amma's tablets from the usual pharmacy."
       },
       {
         "clip": "s130",
         "audio": "phone",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "missed_clarification",
-        "pehchaan": "ok",
         "said": "Ask my colleague to join the call.",
-        "c_text": "Ask my colleague to join the call.",
-        "pehchaan_text": "Ask my colleague to join the call."
+        "v2_text": "Ask my colleague to join the call.",
+        "c_text": "Ask my colleague to join the call."
       },
       {
         "clip": "s143",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to call Anbuselvi about the Sunday cleaning.",
-        "c_text": "Remind me to call Anbuselvi about the Sunday cleaning.",
-        "pehchaan_text": "Remind me to call Anbuselvi about the Sunday cleaning."
+        "v2_text": "Remind me to call Anbuselvi about the Sunday cleaning.",
+        "c_text": "Remind me to call Anbuselvi about the Sunday cleaning."
       },
       {
         "clip": "s144",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Tell Velu Anna to keep two cups of tea ready at 4 PM.",
-        "c_text": "Tell Velu Anna to keep two cups of tea ready at 16:00.",
-        "pehchaan_text": "Tell Velu Anna to keep two cups of tea ready at four p.m."
+        "v2_text": "Tell Velu Anna to keep two cups of tea ready at four p.m.",
+        "c_text": "Tell Velu Anna to keep two cups of tea ready at 16:00."
       },
       {
         "clip": "s145",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "entity_miss",
-        "pehchaan": "ok",
         "said": "Remind me to call Puneeth Hegde about the cricket tickets.",
-        "c_text": "Remind me to call Puneet Hegde about the cricket tickets.",
-        "pehchaan_text": "Remind me to call Puneeth Hegde about the cricket tickets."
+        "v2_text": "Remind me to call Puneeth Hegde about the cricket tickets.",
+        "c_text": "Remind me to call Puneet Hegde about the cricket tickets."
       },
       {
         "clip": "s146",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Message Nagaveni that we will visit on Sunday.",
-        "c_text": "Message Nagaveni that we will visit on Sunday.",
-        "pehchaan_text": "Message Nagaveni that we will visit on Sunday."
+        "v2_text": "Message Nagaveni that we will visit on Sunday.",
+        "c_text": "Message Nagaveni that we will visit on Sunday."
       },
       {
         "clip": "s150",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Call Itishree Mishra and ask about the exam results.",
-        "c_text": "Call Itishree Mishra and ask about the exam results.",
-        "pehchaan_text": "Call Itishree Mishra and ask about the exam results."
+        "v2_text": "Call Itishree Mishra and ask about the exam results.",
+        "c_text": "Call Itishree Mishra and ask about the exam results."
       },
       {
         "clip": "s151",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM.",
-        "c_text": "Remind me to meet Gopi Krishna near Habsiguda at 19:00.",
-        "pehchaan_text": "Remind me to meet Gopikrishnan Habsiguda at 7 PM."
+        "v2_text": "Remind me to meet Gopikrishnan Habsiguda at 7 PM.",
+        "c_text": "Remind me to meet Gopi Krishna near Habsiguda at 19:00."
       },
       {
         "clip": "s152",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "entity_miss",
-        "pehchaan": "ok",
         "said": "Ask Sasmita Pattnaik to send the photos tonight.",
-        "c_text": "Ask Sasmita Patnaik to send the photos tonight.",
-        "pehchaan_text": "Ask Sasmita Pattnaik to send the photos tonight."
+        "v2_text": "Ask Sasmita Pattnaik to send the photos tonight.",
+        "c_text": "Ask Sasmita Patnaik to send the photos tonight."
       },
       {
         "clip": "s153",
         "audio": "phone",
         "category": "in_kb",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
-        "c_text": "Remind me to wish Subhashis Chatopadhyay for Durga Puja.",
-        "pehchaan_text": "Remind me to wish Subhashis Chattopadhyay for Durga Puja."
+        "v2_text": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
+        "c_text": "Remind me to wish Subhashis Chatopadhyay for Durga Puja."
       },
       {
         "clip": "s154",
         "audio": "phone",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_behaviour",
-        "pehchaan": "ok",
         "said": "Tell Swathi the college reunion is on Saturday.",
-        "c_text": "Tell Swathi the college reunion is on Saturday.",
-        "pehchaan_text": "Tell Swathi the college reunion is on Saturday."
+        "v2_text": "Tell Swathi the college reunion is on Saturday.",
+        "c_text": "Tell Swathi the college reunion is on Saturday."
       },
       {
         "clip": "s156",
         "audio": "phone",
         "category": "ambiguous",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Remind me to call Anjali tomorrow.",
-        "c_text": "Remind me to call Anjali tomorrow.",
-        "pehchaan_text": "Remind me to call Anjali tomorrow."
+        "v2_text": "Remind me to call Anjali tomorrow.",
+        "c_text": "Remind me to call Anjali tomorrow."
       },
       {
         "clip": "s157",
         "audio": "phone",
         "category": "stale_default",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Ask my driver to bring the cab to Koramangala at 9 AM.",
-        "c_text": "Ask my driver to bring the cab to Koramangala at 09:00.",
-        "pehchaan_text": "Ask my driver to bring the cab to Koramangala at 9 AM."
+        "v2_text": "Ask my driver to bring the cab to Koramangala at 9 AM.",
+        "c_text": "Ask my driver to bring the cab to Koramangala at 09:00."
       },
       {
         "clip": "s158",
         "audio": "phone",
         "category": "stale_default",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Ask my accountant whether the income tax refund has come.",
-        "c_text": "Ask my accountant whether the income tax refund has come.",
-        "pehchaan_text": "Ask my accountant whether the income tax refund has come."
+        "v2_text": "Ask my accountant whether the income tax refund has come.",
+        "c_text": "Ask my accountant whether the income tax refund has come."
       },
       {
         "clip": "s161",
         "audio": "phone",
         "category": "reference",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "wrong_target",
-        "pehchaan": "ok",
         "said": "Ask my cousin to pick me up from the station.",
-        "c_text": "Ask my cousin to pick me up from the station.",
-        "pehchaan_text": "Ask my cousin to pick me up from the station."
+        "v2_text": "Ask my cousin to pick me up from the station.",
+        "c_text": "Ask my cousin to pick me up from the station."
       },
       {
         "clip": "s162",
         "audio": "phone",
         "category": "context_mismatch",
-        "result": "loss",
+        "result": "win",
+        "v2": "ok",
         "c": "missed_clarification",
-        "pehchaan": "ok",
         "said": "Order dinner from Hotel Subramanian tonight.",
-        "c_text": "Order dinner from Hotel Subramanian tonight.",
-        "pehchaan_text": "Order dinner from Hotel Subramanian tonight."
+        "v2_text": "Order dinner from Hotel Subramanian tonight.",
+        "c_text": "Order dinner from Hotel Subramanian tonight."
       }
     ]
   }

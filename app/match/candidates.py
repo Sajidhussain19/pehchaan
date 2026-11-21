@@ -26,7 +26,7 @@ from rapidfuzz import fuzz, process
 from app.kb.loader import get_by_id, load_kb, per_book_cache
 from app.match.config import DEFAULT, MatchWeights
 from app.match.phonetic import indian_phonetic_key, metaphone_keys, metaphone_similarity, normalise, INDIAN_KEY_SHARE
-from app.match.spans import RawSpan, name_spans, reference_spans, tokenize
+from app.match.spans import is_common, RawSpan, name_spans, reference_spans, tokenize
 
 LEADING_HONORIFICS = {"dr", "doctor", "smt", "sri", "shri", "sree", "shree", "fr", "father", "sister", "sr",
                       "mr", "mrs", "ms"}  # "Father Anthony Raj" must not give the first name "father"
@@ -202,11 +202,35 @@ def find_candidates(transcript: str, weights: MatchWeights = DEFAULT) -> list[Sp
         scored.append(Span(start=raw.start, end=raw.end, heard_text=transcript[raw.start:raw.end], kind="name",
                            type_hint=raw.type_hint, candidates=cands, margin=round(margin, 3),
                            all_common=raw.all_common))
-    # Ties go to the longer span ("Thirumalai Selvan" beats "Selvan" at equal score).
+    # v2 LONGEST MATCH FIRST: a multi-word span that strongly matches a multi-word KB name (a business, or a
+    # person's full name) is chosen BEFORE any shorter span inside it. Otherwise "Lakshmi" (an exact first name,
+    # score 1.0) beat "Lakshmi Ganapati Tiffins" (0.9) and we asked "which Lakshmi?" about a restaurant.
+    for span in sorted((s for s in scored if _long_and_strong(s)),
+                       key=lambda s: (len(s.heard_text.split()), s.candidates[0].score), reverse=True):
+        if not any(_overlaps(span, k) for k in kept):
+            kept.append(span)
+    # Then everything else, best first. Ties go to the longer span ("Thirumalai Selvan" beats "Selvan").
     for span in sorted(scored, key=lambda s: (s.candidates[0].score, s.end - s.start), reverse=True):
         if not any(_overlaps(span, k) for k in kept):
             kept.append(span)
     return sorted(kept, key=lambda s: s.start)
+
+
+LONG_MATCH_MIN = 0.80  # v2: same bar as "confident" in the decision layer (HIGH_CONFIDENCE)
+
+
+def _long_and_strong(span: Span) -> bool:
+    """2+ heard words that match a 2+-word KB name (business or full name) with a confident score."""
+    top = span.candidates[0]
+    entity = get_by_id(top.entity_id)
+    name_words = _strip_honorifics(normalise(entity.name).split())
+    form_words = normalise(top.form or "").split()
+    # v2 round 2 (dev): the long span must not START or END with an ordinary word that isn't part of the name.
+    # Otherwise "Call Srinivasan Iyer" or "Ruchi Andhra Pojanam in" won, and the correction swallowed "Call"/"in".
+    heard = normalise(span.heard_text).split()
+    edges_ok = all(not is_common(w) or w in form_words for w in (heard[0], heard[-1])) if heard else False
+    return (len(span.heard_text.split()) >= 2 and top.score >= LONG_MATCH_MIN and entity.type != "place"
+            and len(name_words) >= 2 and len(form_words) >= 2 and edges_ok)
 
 
 def timed_find_candidates(transcript: str, weights: MatchWeights = DEFAULT) -> tuple[list[Span], float]:

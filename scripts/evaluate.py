@@ -39,7 +39,8 @@ from app.stt.baseline import RESULTS_DIR  # noqa: E402
 from app.testset.validate import load_realspeech, load_testset  # noqa: E402
 
 AUDIO_KINDS = ("clean", "phone", "real")
-SYSTEM_LABELS = {"a": "(a) plain STT", "b": "(b) STT + hints", "c": "(c) LLM baseline", "pehchaan": "Pehchaan"}
+SYSTEM_LABELS = {"a": "(a) plain STT", "b": "(b) STT + hints", "c": "(c) LLM baseline", "pehchaan": "Pehchaan",
+                 "v1": "Pehchaan v1", "v2": "Pehchaan v2"}
 TEST_LOG = RESULTS_DIR / "test_runs.log"
 
 TRANSCRIPT_METRICS = ("entity_accuracy", "wer", "over_correction_rate")
@@ -55,6 +56,8 @@ def load_system(system: str, audio: str) -> dict:
         return {cid: (t, None) for cid, t in load_transcripts("plain" if system == "a" else "hints", audio).items()}
     if system == "c":
         decisions = load_decision_objects("llm_baseline", audio, settings.chat_model)
+    elif system in ("v1", "v2"):  # a specific Pehchaan version (v1 = the frozen headline system)
+        decisions = load_decision_objects("pehchaan", audio, system)
     else:  # pehchaan: whatever model/version tag its results file uses
         files = sorted(RESULTS_DIR.glob(f"pehchaan_{audio}_*.json"))
         decisions = load_decision_objects("pehchaan", audio, files[-1].stem.split("_", 2)[2]) if files else {}
@@ -90,15 +93,26 @@ def table(title: str, systems: list[str], scores: dict, metric_names: tuple) -> 
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="Score all systems on the same clips.")
-    parser.add_argument("--split", choices=["dev", "test"], default="dev")
+    parser.add_argument("--split", choices=["dev", "test", "test2"], default="dev")
+    parser.add_argument("--final-test2", action="store_true", help="required for the sealed test-2 split")
     parser.add_argument("--audio", choices=[*AUDIO_KINDS, "all"], default="all")
     parser.add_argument("--systems", nargs="+", default=["a", "b", "c", "pehchaan"], choices=list(SYSTEM_LABELS))
     parser.add_argument("--compare", nargs=2, metavar=("A", "B"), default=None,
                         help="two systems to compare clip by clip (default: c pehchaan, else c b)")
     parser.add_argument("--final", action="store_true", help="required for --split test")
+    parser.add_argument("--out", default=None, help="report file name (without extension) instead of the default")
+    parser.add_argument("--title", default=None, help="extra line under the report title (e.g. 'already seen')")
     args = parser.parse_args()
 
-    # The held-out rule.
+    # The held-out rules. test2 (sealed at tag test2-frozen) needs --final-test2 and is logged too.
+    if args.split == "test2":
+        if not args.final_test2:
+            print("[STOP] test-2 is a sealed held-out set. Re-run with --final-test2 only for its one final scoring.")
+            return 1
+        print("[WARNING] Scoring the HELD-OUT test-2 split. Do not change anything based on these results.")
+        with TEST_LOG.open("a", encoding="utf-8") as log:
+            log.write(f"{datetime.now().isoformat(timespec='seconds')}  split=test2 evaluate "
+                      f"systems={' '.join(args.systems)}\n")
     if args.split == "test":
         if not args.final:
             print("[STOP] The test split is held out for FINAL numbers. Re-run with --final if that's what this is.")
@@ -110,7 +124,7 @@ def main() -> int:
                       f"systems={' '.join(args.systems)}\n")
 
     audios = AUDIO_KINDS if args.audio == "all" else (args.audio,)
-    gt = {s.id: s for s in load_testset()}
+    gt = {s.id: s for s in load_testset(splits=None)}
     gt.update({c.id: c for c in load_realspeech()})
 
     # rows[system][audio] = [(gt, text, decision)] for clips in this split.
@@ -130,6 +144,9 @@ def main() -> int:
           + ", ".join(SYSTEM_LABELS[s] for s in systems)
           + (f". Not available yet: {', '.join(SYSTEM_LABELS[s] for s in missing)}." if missing else "."),
           "\nEvery number is shown with raw counts. A clarify decision takes no action until the user answers."]
+    if args.title:
+        md.insert(1, f"\n**{args.title}**")
+        report["note"] = args.title
 
     # 1. Overall (all chosen audio kinds together).
     overall = {s: score([r for a in audios for r in rows[s][a]]) for s in systems}
@@ -185,7 +202,10 @@ def main() -> int:
         report["comparison"] = {"a": a_sys, "b": b_sys, "counts": dict(tally), "clips": details}
 
     # The one final held-out report gets a name that can't be confused with a dev report.
-    name = "report_test_FINAL" if args.split == "test" and args.audio == "all" else f"report_{args.split}_{args.audio}"
+    name = (f"report_{args.split}_FINAL" if args.split in ("test", "test2") and args.audio == "all"
+            else f"report_{args.split}_{args.audio}")
+    if args.out:
+        name = args.out  # e.g. v2 on the ORIGINAL test set (already seen): a clearly different file name
     out = RESULTS_DIR / name
     out.with_suffix(".md").write_text("\n".join(md) + "\n", encoding="utf-8")
     out.with_suffix(".json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
