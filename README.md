@@ -106,8 +106,8 @@ python scripts/kb_stats.py   # summary: counts by type / language / difficulty
 
 ## Test Set
 
-The "same recordings" every system is compared on live in `data/testset/`: **142 short phone-call and voice-note lines**.
-They include incoming calls and outgoing commands, some Hinglish / Tenglish, and **11.6 minutes of audio**.
+The "same recordings" every system is compared on live in `data/testset/`: **163 short phone-call and voice-note lines**.
+They include incoming calls and outgoing commands, some Hinglish / Tenglish, and **13.1 minutes of audio**.
 Each line has ground truth: the KB ids of the names in it, what Pehchaan should do, and the expected action
 (call / book / remind / message / none).
 
@@ -115,19 +115,19 @@ Each line has ground truth: the KB ids of the names in it, what Pehchaan should 
 
 | Category | Lines | Example | Expected |
 |---|---|---|---|
-| `in_kb` | 68 | "Call Dr. Venkataramana and ask if he is free this evening." | correct |
+| `in_kb` | 79 | "Call Dr. Venkataramana and ask if he is free this evening." | correct |
 | `out_of_kb` | 13 | "Call Tejaswini and ask if she reached Nalgonda." | keep |
 | `control` | 13 | "The cook at the polling booth said lunch is ready." | keep |
-| `ambiguous` | 11 | "Ask Harshil to send the invoice" / "Call Harshit at 5." | resolve / clarify |
-| `context_mismatch` | 8 | "Book a table at Raju Hotel…" / unknown caller: "I'm Raju from the bank" | clarify / keep |
-| `reference` | 19 | "Call my doctor, my tooth is paining" / "Order Amma's tablets from the usual pharmacy" / "Ask my colleague to join the call" | resolve / clarify |
+| `ambiguous` | 14 | "Ask Harshil to send the invoice" / "Call Harshit at 5." | resolve / clarify |
+| `context_mismatch` | 10 | "Book a table at Raju Hotel…" / unknown caller: "I'm Raju from the bank" | clarify / keep |
+| `reference` | 22 | "Call my doctor, my tooth is paining" / "Order Amma's tablets from the usual pharmacy" / "Ask my colleague to join the call" | resolve / clarify |
 | `unfamiliar_near_match` | 6 | "Remind me to call Rohan…" (Rohan is not a contact; Rohit is) / unknown caller "Harshil Mehta" | keep (clarify also OK), never resolve |
-| `stale_default` | 4 | "Call my doctor about my eye drops" -> the eye specialist, not the default family doctor | resolve |
+| `stale_default` | 6 | "Call my doctor about my eye drops" -> the eye specialist, not the default family doctor | resolve |
 
 **4 expected behaviours:** **correct** (fix a known name), **keep** (leave unknown names and ordinary words alone),
 **resolve** (pick the right look-alike contact, or work out who "my doctor" means, using context), **clarify** (ask the user instead of guessing).
 
-**Dev / test split:** 45 **dev** lines may be inspected while tuning. 97 **test** lines are held out and used only
+**Dev / test split:** 66 **dev** lines (incl. 21 hard dev-only lines added before Module 8) may be inspected while tuning. 97 **test** lines are held out and used only
 for the final numbers. The split is stratified, so every category appears in both.
 
 **Audio:** every line was spoken by OpenAI text-to-speech (`gpt-4o-mini-tts`, Indian English accent, 8 rotating voices,

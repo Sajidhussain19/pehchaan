@@ -42,12 +42,18 @@ INITIAL = MatchWeights()
 # Recall was already 100% on dev, so the grid was decided by "separation": right candidates stand
 # further above the runner-up (margin 0.26 -> 0.33), and clips with no KB names look less tempting
 # (their best wrong candidate 0.56 -> 0.42). Recall and false alarms did not change.
+#
+# RETUNE (Module 8, Step 0): 21 hard dev-only sentences were added. On the bigger dev set the
+# grid moved weight back to SOUND (0.45 -> 0.75): one new misheard name ("Cyclomar" for "Sai Kumar")
+# was only found that way. recall@3 97/98 -> 98/98, misheard recall@3 39/40 -> 40/40, false alarms
+# unchanged (2/34). Cost: separation got worse (keep-clip best wrong score 0.42 -> 0.53), which
+# Module 8's guards (type check, unfamiliar-name guard, margins) must absorb.
 TUNED = MatchWeights(
-    w_phonetic=0.45,  # was 0.6: sound alone flatters wrong names a little too much...
-    w_fuzzy=0.55,  # was 0.4: ...so spelling gets more say once a name is shortlisted by sound
+    w_phonetic=0.75,  # retune: 0.45 -> 0.75 (sound finds badly misheard names)
+    w_fuzzy=0.25,  # retune: 0.55 -> 0.25
     length_penalty=0.5,  # was 0.3: short English words matching long names are punished harder
     type_bonus=0.0,  # was 0.08: the person/place hints didn't help on dev, so they no longer add score
-    common_penalty=0.15,  # was 0.25: lighter, because the stricter length penalty already does the work
+    common_penalty=0.25,  # retune: back to 0.25 (protects ordinary English when sound weighs more)
     min_span_score=0.6,  # was 0.55: drops weak, noisy spans before Module 8 ever sees them
 )
 

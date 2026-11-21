@@ -45,9 +45,9 @@ def test_every_entity_id_exists_in_kb():
 
 def test_size_and_split():
     sentences = load_testset()
-    assert 135 <= len(sentences) <= 150
+    assert 160 <= len(sentences) <= 170
     dev = [s for s in sentences if s.split == "dev"]
-    assert 35 <= len(dev) <= 50  # roughly a third held for tuning; the rest held out
+    assert 60 <= len(dev) <= 70  # roughly a third held for tuning; the rest held out
 
 
 def test_every_category_in_both_splits():
@@ -61,14 +61,14 @@ def test_every_category_in_both_splits():
 def test_category_sizes():
     sentences = load_testset()
     count = lambda c: sum(s.category == c for s in sentences)  # noqa: E731
-    assert 60 <= count("in_kb") <= 70
+    assert 75 <= count("in_kb") <= 85
     assert 10 <= count("out_of_kb") <= 15
     assert 10 <= count("control") <= 15
-    assert 8 <= count("ambiguous") <= 12
-    assert 6 <= count("context_mismatch") <= 10
-    assert 14 <= count("reference") <= 20
+    assert 12 <= count("ambiguous") <= 16
+    assert 8 <= count("context_mismatch") <= 12
+    assert 19 <= count("reference") <= 25
     assert 5 <= count("unfamiliar_near_match") <= 8
-    assert 3 <= count("stale_default") <= 6
+    assert 5 <= count("stale_default") <= 8
 
 
 def test_out_of_kb_names_are_really_unknown():

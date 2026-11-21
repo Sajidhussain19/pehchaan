@@ -171,13 +171,13 @@ def main() -> int:
     find_candidates("warm up")
     print(f"Dev clips: {len(rows)} (clean + phone + real). HIGH_CONFIDENCE = {HIGH_CONFIDENCE}")
     if args.tune:
-        before = evaluate(INITIAL, rows)
-        report(before, "BEFORE tuning (INITIAL weights)")
+        before = evaluate(DEFAULT, rows)  # the weights currently in use
+        report(before, "BEFORE tuning (current DEFAULT weights)")
         best = tune(rows, before)
         after = evaluate(best, rows)
         report(after, "AFTER tuning (best grid weights)")
-        changed = {k: (getattr(INITIAL, k), v) for k, v in best.model_dump().items() if getattr(INITIAL, k) != v}
-        print(f"\nChanged weights (initial -> tuned): {changed}")
+        changed = {k: (getattr(DEFAULT, k), v) for k, v in best.model_dump().items() if getattr(DEFAULT, k) != v}
+        print(f"\nChanged weights (current -> tuned): {changed}")
         print("Copy these into TUNED in app/match/config.py.")
     else:
         report(evaluate(DEFAULT, rows), "Current weights (DEFAULT)")

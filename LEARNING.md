@@ -670,3 +670,22 @@ mishearings in **dev** (new TTS sentences), so future tuning can see them.
   the 23 *misheard* ones separately. And we say plainly that dev has too few hard mishearings to tune recall.
 - **Did you tune on the test set?** No. `eval_candidates.py` only reads dev. We looked at 4 test clips only to show
   the dramatic examples, and changed nothing because of them.
+
+---
+
+## Step 0 before Module 8 — hard dev sentences + retune
+
+Recall on the old dev split was already 100%, so tuning couldn't learn anything about hard names. We added
+**21 new dev-only sentences** that are hard in the ways real failures were:
+- long or split names ("Anbuselvi" -> "un Bucelvi", "Subhashis Chattopadhyay")
+- greeting-like short names ("Velu Anna")
+- near-identical pairs ("Swathi", "Sai Kumar", "Anjali")
+- clues that beat defaults ("my driver … the cab" -> the cab driver; "my accountant … income tax" -> the CA)
+- type mismatches ("Hotel Subramanian", "Venkatesh Salon")
+
+None copies a test sentence: the highest similarity to any test sentence is 0.74, from a shared "Remind me to
+call…" template. The test split is unchanged (97 lines). Cost: about $0.11 (audio + baselines (a), (b), (c)).
+
+Retune on the bigger dev set: recall@3 went from 97/98 to **98/98**, and misheard-name recall@3 from 39/40 to **40/40**.
+The one rescued name: "Cyclomar" (Sai Kumar). False alarms stayed at 2/34. The price: separation fell
+(the most tempting wrong candidate on keep-type clips went from 0.42 to 0.53). Module 8's guards have to absorb that.

@@ -25,16 +25,16 @@ from app.testset.models import RealSpeechClip, Sentence
 
 TESTSET_PATH = PROJECT_ROOT / "data" / "testset" / "sentences.json"
 
-# Planned size of each category (min, max), from the Module 3 design.
+# Planned size of each category (min, max). Grew in Module 8's Step 0 (21 hard dev-only sentences).
 EXPECTED_SIZES = {
-    "in_kb": (60, 70),
+    "in_kb": (75, 85),
     "out_of_kb": (10, 15),
     "control": (10, 15),
-    "ambiguous": (8, 12),
-    "context_mismatch": (6, 10),
-    "reference": (14, 20),
+    "ambiguous": (12, 16),
+    "context_mismatch": (8, 12),
+    "reference": (19, 25),
     "unfamiliar_near_match": (5, 8),
-    "stale_default": (3, 6),
+    "stale_default": (5, 8),
 }
 
 # Real speakers (AI4Bharat Svarah sample), fetched by scripts/fetch_real_speech.py.
@@ -231,8 +231,8 @@ def validate_testset(sentences: list[Sentence]) -> None:
             if not low <= n <= high:
                 problems.append(f"category {cat!r} has {n} sentences, expected {low}-{high}")
         n_dev = sum(s.split == "dev" for s in sentences)
-        if not 35 <= n_dev <= 50:
-            problems.append(f"dev split has {n_dev} sentences, expected 35-50")
+        if not 60 <= n_dev <= 70:
+            problems.append(f"dev split has {n_dev} sentences, expected 60-70")
 
     # 6. Stratified split: dev and test must each contain every category,
     #    otherwise tuning on dev would never see some kinds of sentence.
