@@ -8,3 +8,9 @@ The people, places and businesses Pehchaan matches mis-heard names against (buil
 
 The files are loaded and validated by `app/kb/loader.py`. After editing them, run `pytest` and
 `python scripts/kb_stats.py` to confirm the data still follows the rules.
+
+Personal-reference fields (vision upgrade):
+- people: `roles` (e.g. `["doctor", "dentist"]`), `is_primary_for` (the user's default for a role),
+  `family_label` (Amma, Nanna, Akka, Anna, Bhaiya, ...), `last_interaction` (fake ISO date)
+- businesses: `is_usual` + `usual_for` (e.g. the usual `pharmacy`, `groceries`, `salon`)
+- `preferences.json`: learned answers (`phrase_pattern`, `entity_id`, `created_at`); starts empty, filled in Module 9

@@ -1004,7 +1004,7 @@
     "category": "in_kb",
     "direction": "incoming",
     "caller_contact_id": "person_077",
-    "text": "Hello, Dr. Tanushree Sen here, your skin test results are normal.",
+    "text": "Hello, Dr. Tanushree Sen here, your sister's skin test results are normal.",
     "entities": [
       {
         "surface": "Dr. Tanushree Sen",
@@ -1462,7 +1462,7 @@
     "category": "in_kb",
     "direction": "incoming",
     "caller_contact_id": "person_120",
-    "text": "This is Dr. Benjamin Jebakumar, please bring your knee X-ray on Monday.",
+    "text": "This is Dr. Benjamin Jebakumar, please bring your father's knee X-ray on Monday.",
     "entities": [
       {
         "surface": "Dr. Benjamin Jebakumar",
@@ -2615,6 +2615,492 @@
     "candidate_ids": [],
     "expected_action": {
       "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s114",
+    "split": "dev",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call my doctor, my tooth is paining.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my doctor",
+        "resolved_entity_id": "person_028",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_028",
+      "time": null
+    }
+  },
+  {
+    "id": "s115",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book my eye checkup with my doctor in Kukatpally.",
+    "entities": [
+      {
+        "surface": "Kukatpally",
+        "entity_id": "place_002",
+        "type": "place"
+      }
+    ],
+    "references": [
+      {
+        "surface": "my doctor",
+        "resolved_entity_id": "person_130",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "person_130",
+      "time": null
+    }
+  },
+  {
+    "id": "s116",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ask my colleague to send the invoice before Friday.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my colleague",
+        "resolved_entity_id": "person_123",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_123",
+      "time": "before Friday"
+    }
+  },
+  {
+    "id": "s117",
+    "split": "dev",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message my son's teacher that he has maths doubts for tonight's tuition.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my son's teacher",
+        "resolved_entity_id": "person_126",
+        "resolution_reason": "clue"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_126",
+      "time": "tonight"
+    }
+  },
+  {
+    "id": "s118",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call my doctor.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my doctor",
+        "resolved_entity_id": "person_001",
+        "resolution_reason": "primary"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_001",
+      "time": null
+    }
+  },
+  {
+    "id": "s119",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book an appointment with my doctor for Saturday morning.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my doctor",
+        "resolved_entity_id": "person_001",
+        "resolution_reason": "primary"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "person_001",
+      "time": "Saturday morning"
+    }
+  },
+  {
+    "id": "s120",
+    "split": "dev",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ask my driver to come at 8:30 tomorrow.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my driver",
+        "resolved_entity_id": "person_003",
+        "resolution_reason": "primary"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_003",
+      "time": "8:30 tomorrow"
+    }
+  },
+  {
+    "id": "s121",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Tell my manager I'm on leave tomorrow.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my manager",
+        "resolved_entity_id": "person_019",
+        "resolution_reason": "primary"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_019",
+      "time": "tomorrow"
+    }
+  },
+  {
+    "id": "s122",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Amma at 7.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "Amma",
+        "resolved_entity_id": "person_131",
+        "resolution_reason": "family_label"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_131",
+      "time": "7"
+    }
+  },
+  {
+    "id": "s123",
+    "split": "dev",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Nanna ki call cheyyi, BP tablets teesukunnara ani adugu.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "Nanna",
+        "resolved_entity_id": "person_132",
+        "resolution_reason": "family_label"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_132",
+      "time": null
+    }
+  },
+  {
+    "id": "s124",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Akka that I'll come to Secunderabad on Saturday.",
+    "entities": [
+      {
+        "surface": "Secunderabad",
+        "entity_id": "place_004",
+        "type": "place"
+      }
+    ],
+    "references": [
+      {
+        "surface": "Akka",
+        "resolved_entity_id": "person_006",
+        "resolution_reason": "family_label"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_006",
+      "time": "Saturday"
+    }
+  },
+  {
+    "id": "s125",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Bhaiya ko bolo Diwali pe ghar aa jaye.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "Bhaiya",
+        "resolved_entity_id": "person_134",
+        "resolution_reason": "family_label"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_134",
+      "time": "Diwali"
+    }
+  },
+  {
+    "id": "s126",
+    "split": "dev",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Order Amma's tablets from the usual pharmacy.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "Amma",
+        "resolved_entity_id": "person_131",
+        "resolution_reason": "family_label"
+      },
+      {
+        "surface": "the usual pharmacy",
+        "resolved_entity_id": "business_001",
+        "resolution_reason": "usual"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_001",
+      "time": null
+    }
+  },
+  {
+    "id": "s127",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a haircut at the usual salon for Sunday evening.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "the usual salon",
+        "resolved_entity_id": "business_031",
+        "resolution_reason": "usual"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_031",
+      "time": "Sunday evening"
+    }
+  },
+  {
+    "id": "s128",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call the usual kirana shop and order rice and dal.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "the usual kirana shop",
+        "resolved_entity_id": "business_011",
+        "resolution_reason": "usual"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_011",
+      "time": null
+    }
+  },
+  {
+    "id": "s129",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to take Nanna to Dr. Ananthapadmanabhan on Tuesday.",
+    "entities": [
+      {
+        "surface": "Dr. Ananthapadmanabhan",
+        "entity_id": "person_048",
+        "type": "person"
+      }
+    ],
+    "references": [
+      {
+        "surface": "Nanna",
+        "resolved_entity_id": "person_132",
+        "resolution_reason": "family_label"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_048",
+      "time": "Tuesday"
+    }
+  },
+  {
+    "id": "s130",
+    "split": "dev",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ask my colleague to join the call.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my colleague",
+        "resolved_entity_id": null,
+        "resolution_reason": "ambiguous"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_002",
+      "person_017",
+      "person_023",
+      "person_029",
+      "person_038",
+      "person_046",
+      "person_049",
+      "person_055",
+      "person_063",
+      "person_066",
+      "person_074",
+      "person_083",
+      "person_089",
+      "person_095",
+      "person_102",
+      "person_105",
+      "person_113",
+      "person_119",
+      "person_123"
+    ],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s131",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call the electrician, the fan is not working.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "the electrician",
+        "resolved_entity_id": null,
+        "resolution_reason": "ambiguous"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_014",
+      "person_079"
+    ],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s132",
+    "split": "test",
+    "category": "reference",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call my son's teacher.",
+    "entities": [],
+    "references": [
+      {
+        "surface": "my son's teacher",
+        "resolved_entity_id": null,
+        "resolution_reason": "ambiguous"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_043",
+      "person_126"
+    ],
+    "expected_action": {
+      "type": "call",
       "target_entity_id": null,
       "time": null
     }

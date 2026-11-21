@@ -32,6 +32,7 @@ EXPECTED_SIZES = {
     "control": (10, 15),
     "ambiguous": (8, 12),
     "context_mismatch": (6, 10),
+    "reference": (14, 20),
 }
 
 
@@ -54,6 +55,51 @@ def _check_id(problems: list[str], sid: str, what: str, entity_id: str, expected
         problems.append(f"{sid}: {what} {entity_id!r} is not in the KB")
     elif expected_type and entity.type != expected_type:
         problems.append(f"{sid}: {what} {entity_id!r} is a {entity.type}, expected {expected_type}")
+
+
+def _check_reference_sentence(problems: list[str], s: Sentence, linked: list) -> None:
+    """Rules for the "reference" category ("my doctor", "Amma", "the usual pharmacy").
+
+    The ground truth must agree with the KB: if we say "primary", that person really is a
+    default for some role; "family_label" really is their family word; "usual" really is
+    a usual business. Otherwise the answer key would quietly disagree with the data.
+    """
+    if s.expected_behaviour not in ("resolve", "clarify"):
+        problems.append(f"{s.id}: reference needs behaviour 'resolve' or 'clarify'")
+    if not s.references:
+        problems.append(f"{s.id}: reference sentence needs at least one reference")
+    # Names that appear alongside the reference ("…in Kukatpally") must be linked to the KB.
+    if len(linked) != len(s.entities):
+        problems.append(f"{s.id}: named entities in a reference sentence must be linked to the KB")
+
+    ambiguous = [r for r in s.references if r.resolution_reason == "ambiguous"]
+    if s.expected_behaviour == "clarify" and (not ambiguous or len(s.candidate_ids) < 2):
+        problems.append(f"{s.id}: reference clarify needs an ambiguous reference and 2+ candidates")
+    if s.expected_behaviour == "resolve" and ambiguous:
+        problems.append(f"{s.id}: a resolved reference sentence cannot contain an ambiguous reference")
+
+    for ref in s.references:
+        if ref.resolved_entity_id is None:
+            continue
+        _check_id(problems, s.id, "resolved_entity_id", ref.resolved_entity_id)
+        entity = get_by_id(ref.resolved_entity_id)
+        if entity is None:
+            continue
+        ctx = entity.context
+        if ref.resolution_reason == "primary" and not ctx.get("is_primary_for"):
+            problems.append(f"{s.id}: {entity.name} is not a default for any role (reason 'primary')")
+        if ref.resolution_reason == "family_label":
+            label = ctx.get("family_label")
+            if not label or _normalise(label) not in _normalise(ref.surface):
+                problems.append(f"{s.id}: {ref.surface!r} does not use {entity.name}'s family label")
+        if ref.resolution_reason == "usual" and not ctx.get("is_usual"):
+            problems.append(f"{s.id}: {entity.name} is not a usual business (reason 'usual')")
+
+    # The action must point at someone the sentence actually refers to.
+    target = s.expected_action.target_entity_id
+    allowed = {r.resolved_entity_id for r in s.references} | {span.entity_id for span in linked}
+    if target is not None and target not in allowed:
+        problems.append(f"{s.id}: action target {target} is not among the resolved references or entities")
 
 
 def validate_testset(sentences: list[Sentence]) -> None:
@@ -107,9 +153,16 @@ def validate_testset(sentences: list[Sentence]) -> None:
         elif s.category == "context_mismatch":
             if s.expected_behaviour not in ("clarify", "keep") or linked:
                 problems.append(f"{s.id}: context_mismatch needs 'clarify' or 'keep' and no linked entities")
+        elif s.category == "reference":
+            _check_reference_sentence(problems, s, linked)
 
-        # 4. "resolve" must name exactly one KB entity, and the action must point at it.
-        if s.expected_behaviour == "resolve":
+        # Personal references belong only to the "reference" category.
+        if s.references and s.category != "reference":
+            problems.append(f"{s.id}: only 'reference' sentences may have references")
+
+        # 4. In the ambiguous category, "resolve" must name exactly one KB entity,
+        #    and the action must point at it.
+        if s.category == "ambiguous" and s.expected_behaviour == "resolve":
             if len(linked) != 1:
                 problems.append(f"{s.id}: resolve needs exactly one linked entity")
             elif s.expected_action.target_entity_id not in (None, linked[0].entity_id):
@@ -123,8 +176,8 @@ def validate_testset(sentences: list[Sentence]) -> None:
             if not low <= n <= high:
                 problems.append(f"category {cat!r} has {n} sentences, expected {low}-{high}")
         n_dev = sum(s.split == "dev" for s in sentences)
-        if not 30 <= n_dev <= 40:
-            problems.append(f"dev split has {n_dev} sentences, expected 30-40")
+        if not 35 <= n_dev <= 50:
+            problems.append(f"dev split has {n_dev} sentences, expected 35-50")
 
     # 6. Stratified split: dev and test must each contain every category,
     #    otherwise tuning on dev would never see some kinds of sentence.
@@ -149,7 +202,7 @@ def main() -> int:
 
     print(f"Pehchaan test set: {len(sentences)} sentences\n")
     print(f"  {'category':<18}{'dev':>5}{'test':>6}{'total':>7}")
-    for cat in ("in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch"):
+    for cat in EXPECTED_SIZES:
         dev = sum(s.category == cat and s.split == "dev" for s in sentences)
         test = sum(s.category == cat and s.split == "test" for s in sentences)
         print(f"  {cat:<18}{dev:>5}{test:>6}{dev + test:>7}")

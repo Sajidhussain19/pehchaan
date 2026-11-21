@@ -1,6 +1,6 @@
 # data/testset — Test set (Module 3)
 
-`sentences.json` holds 113 short phone-call / voice-note lines with ground truth (the "answer key"):
+`sentences.json` holds 132 short phone-call / voice-note lines with ground truth (the "answer key"):
 which KB entities each line mentions, what Pehchaan should do (`correct` / `keep` / `resolve` / `clarify`),
 and the expected action (`call` / `book` / `remind` / `message` / `none`).
 
@@ -11,8 +11,9 @@ and the expected action (`call` / `book` / `remind` / `message` / `none`).
 | `control` | no names (incl. "cook", "lucky", "sunny") | keep |
 | `ambiguous` | near-identical pairs (Harshit / Harshil) | resolve by context, or clarify |
 | `context_mismatch` | name matches, context doesn't (Raju Hotel, unknown caller "Raju") | clarify or keep |
+| `reference` | personal references ("my doctor", "Amma", "the usual pharmacy") | resolve, or clarify |
 
-`split`: **dev** (36) may be looked at while tuning; **test** (77) is held out for final numbers only.
+`split`: **dev** (42) may be looked at while tuning; **test** (90) is held out for final numbers only.
 
 Audio (built by `scripts/build_audio.py` with OpenAI TTS):
 - `audio/clean/{id}.wav`: 24 kHz, as produced by text-to-speech

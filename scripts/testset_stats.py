@@ -63,6 +63,10 @@ def main() -> int:
         get_by_id(span.entity_id).difficulty if span.entity_id else "not in KB" for span in spans
     ))
 
+    # Personal references ("my doctor", "Amma"): how each one is meant to be resolved.
+    refs = [r for s in sentences for r in s.references]
+    show("Personal references by resolution reason:", Counter(r.resolution_reason for r in refs))
+
     # Audio totals, if build_audio.py has been run.
     if MANIFEST_PATH.exists():
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))

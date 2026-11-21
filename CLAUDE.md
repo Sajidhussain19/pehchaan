@@ -10,7 +10,7 @@ We build in 10 modules, **one module per session**. Never build pieces of a late
 
 ## The project
 - **Name:** Pehchaan (Hindi for "recognition / identity")
-- **Tagline:** "Pehchaan — gets Indian names right."
+- **Tagline:** "Pehchaan — gets Indian names right." / "AI assistants hear words. Pehchaan understands who you mean."
 - **Track:** "Build Challenging — Voice AI for India" (theme idea: Indian names and entities)
 
 ### Problem
@@ -27,15 +27,59 @@ Then a LangGraph pipeline decides what to do:
 - unsure -> an LLM checks the candidate using the context
 - unknown -> keep the original and flag it
 
-The corrected transcript becomes a structured action (call / book / remind).
+It also resolves personal references ("my doctor", "Amma", "the usual pharmacy") with the resolution rule below.
+The corrected transcript becomes a structured action (call / book / remind / message).
+
+## Vision: "the personal ear"
+Pehchaan is no longer just a name corrector. It understands WHO or WHAT the user means, using personal context.
+
+**Pitch:** "AI assistants hear words. Pehchaan understands who you mean. No speech model can know YOUR contacts —
+personal context has to live outside the model."
+
+### The 4 levels
+1. **Misheard names:** "cook at Polly" -> Kukatpally
+2. **Personal references:** "my doctor", "Amma", "my gym trainer", "the usual pharmacy" -> the exact KB entity
+3. **Ambiguity:** near-identical names or several matching people -> use clues, else ask
+4. **Learning:** remember the user's answer, so the same request resolves automatically next time
+
+### Resolution rule (for references and ambiguity, in this order)
+a) **Clue in the sentence**, e.g. "tooth" -> dentist, "invoice" -> the accounts colleague
+b) **The user's default / primary entity** for that role (e.g. the contact marked primary family doctor),
+   or the most recent interaction
+c) **Still unclear -> ask once (clarify)**, listing the candidates with their roles
+d) **Store the answer as a preference** (`data/kb/preferences.json`) and use it next time
+
+Example, the user has 3 doctors (Dr. Venkataramana = family doctor and default, Dr. Subramanian = dentist,
+Dr. Raju = eye specialist):
+- "Call my doctor, my tooth is paining" -> Dr. Subramanian (clue)
+- "Call my doctor" -> Dr. Venkataramana (default)
+- "Ask my colleague to join" -> 19 colleagues, no default, no clue -> ask
+
+KB support: person context has `roles`, `is_primary_for`, `family_label` and `last_interaction`;
+business context has `is_usual` and `usual_for`. The test set has a `reference` category.
+
+### Demo upgrades (only AFTER core Modules 4-8 work)
+- Module 9: learning from corrections shown live; latency and cost per call.
+- Module 10: a call-screen UI with before/after names and action cards; a "try it yourself" mic button.
+- Optional: Hindi/Telugu code-mixed names.
 
 ### Proof
-The same 60-80 recordings are run through:
+The same recordings (data/testset: 132 lines, 10.8 min) are run through:
 1. plain OpenAI speech-to-text
 2. speech-to-text with name hints in the prompt
-3. our system
+3. Pehchaan
 
-Headline metric: **entity error rate**. We also report WER and action accuracy.
+Evaluation reports **separate scores for each of the three systems**:
+- entity accuracy (headline: entity error rate)
+- over-correction rate
+- ambiguity handling
+- context-mismatch handling
+- reference resolution accuracy
+- action accuracy
+- latency
+- cost
+
+WER is also reported.
 
 Judges score: a working end-to-end demo, how AI-native it is, presentation and craft.
 

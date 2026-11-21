@@ -39,16 +39,16 @@ def test_every_entity_id_exists_in_kb():
 
 def test_size_and_split():
     sentences = load_testset()
-    assert 100 <= len(sentences) <= 120
+    assert 120 <= len(sentences) <= 140
     dev = [s for s in sentences if s.split == "dev"]
-    assert 30 <= len(dev) <= 40  # roughly a third held for tuning; the rest held out
+    assert 35 <= len(dev) <= 50  # roughly a third held for tuning; the rest held out
 
 
 def test_every_category_in_both_splits():
     sentences = load_testset()
     for split in ("dev", "test"):
         cats = {s.category for s in sentences if s.split == split}
-        assert cats == {"in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch"}
+        assert cats == {"in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch", "reference"}
 
 
 def test_category_sizes():
@@ -59,6 +59,7 @@ def test_category_sizes():
     assert 10 <= count("control") <= 15
     assert 8 <= count("ambiguous") <= 12
     assert 6 <= count("context_mismatch") <= 10
+    assert 14 <= count("reference") <= 20
 
 
 def test_out_of_kb_names_are_really_unknown():
@@ -165,3 +166,67 @@ def test_validator_rejects_out_of_kb_name_that_is_in_kb():
     ))
     with pytest.raises(TestsetValidationError, match="IS in the KB"):
         validate_testset([bad])
+
+
+# --- Vision upgrade: the "reference" category ("my doctor", "Amma", "the usual pharmacy") ---
+
+def ref_of(fragment: str):
+    """Helper: the sentence and its first reference."""
+    s = by_text(fragment)
+    return s, s.references[0]
+
+
+def test_reference_clue_tooth_means_dentist():
+    s, r = ref_of("my tooth is paining")
+    assert s.expected_behaviour == "resolve"
+    assert (r.resolved_entity_id, r.resolution_reason) == (KB_ID["Dr. Subramanian"], "clue")
+
+
+def test_reference_plain_my_doctor_means_default_doctor():
+    s, r = ref_of("Call my doctor.")
+    assert (r.resolved_entity_id, r.resolution_reason) == (KB_ID["Dr. Venkataramana"], "primary")
+
+
+def test_reference_family_label_and_usual_business():
+    s = by_text("the usual pharmacy")
+    resolved = {r.surface: (r.resolved_entity_id, r.resolution_reason) for r in s.references}
+    assert resolved["Amma"] == (KB_ID["Sarojini Rao"], "family_label")
+    assert resolved["the usual pharmacy"] == (KB_ID["Sri Venkateswara Pharmacy"], "usual")
+
+
+def test_reference_combined_with_misheard_name():
+    s, r = ref_of("eye checkup")
+    assert r.resolved_entity_id == KB_ID["Dr. Raju"]
+    assert [span.entity_id for span in s.entities] == [KB_ID["Kukatpally"]]
+
+
+def test_reference_ambiguous_colleague_asks_with_all_colleagues():
+    s, r = ref_of("join the call")
+    assert s.expected_behaviour == "clarify" and r.resolution_reason == "ambiguous"
+    assert set(s.candidate_ids) == {e.id for e in load_kb() if "colleague" in e.context.get("roles", [])}
+
+
+def test_references_only_in_reference_category():
+    for s in load_testset():
+        assert (s.category == "reference") == bool(s.references), s.id
+
+
+def test_validator_rejects_wrong_reason():
+    # Claiming "primary" for someone who is not a default for any role must fail.
+    bad = Sentence.model_validate(base(
+        category="reference", expected_behaviour="resolve", text="Call my dentist.", entities=[],
+        references=[{"surface": "my dentist", "resolved_entity_id": KB_ID["Dr. Subramanian"],
+                     "resolution_reason": "primary"}],
+        expected_action={"type": "call", "target_entity_id": KB_ID["Dr. Subramanian"]},
+    ))
+    with pytest.raises(TestsetValidationError, match="not a default"):
+        validate_testset([bad])
+
+
+def test_model_rejects_ambiguous_reference_with_an_answer():
+    with pytest.raises(ValueError, match="ambiguous"):
+        Sentence.model_validate(base(
+            category="reference", text="Call my doctor.", entities=[],
+            references=[{"surface": "my doctor", "resolved_entity_id": KB_ID["Dr. Raju"],
+                         "resolution_reason": "ambiguous"}],
+        ))

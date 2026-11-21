@@ -3,13 +3,16 @@ app/kb/models.py — Pydantic data models for the knowledge base.
 
 WHAT: Defines what one knowledge-base entry (an `Entity`) looks like: its id, correct
       spelling, type, alternate spellings, language of origin, difficulty, and extra context.
-      Also defines the shape of the context for each type (person / place / business).
+      Also defines the shape of the context for each type (person / place / business), including
+      the personal-reference fields (roles, default contacts, family labels, the usual shop),
+      and `Preference`: a learned answer to "who did you mean?".
 WHY:  The KB is hand-written JSON, and hand-written data has typos. Pydantic checks every
       entry when it is loaded. A missing field, a misspelled type ("persn") or a bad phone
       number fails loudly at load time, not in the middle of a demo.
 """
 
 import re
+from datetime import date, datetime
 from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
@@ -33,9 +36,21 @@ class PersonContext(BaseModel):
 
     model_config = {"extra": "forbid"}
 
-    relation: str  # how the user knows them, e.g. "your doctor", "cousin"
+    relation: str  # how the user knows them, e.g. "family doctor", "cousin"
     phone: str  # fake number, used by the "call" action in Module 9
     notes: str = ""  # free text, can help the LLM check context in Module 8
+
+    # --- Personal-reference fields (vision upgrade: "the personal ear") ---
+    # Roles this person plays for the user, lower-case, e.g. ["doctor", "dentist"].
+    # "Call my doctor" looks people up by role instead of by name.
+    roles: list[str] = []
+    # Roles for which this person is the user's DEFAULT, e.g. ["doctor"] for the family doctor.
+    # When a role has several people and the sentence gives no clue, the default wins.
+    is_primary_for: list[str] = []
+    # What the user calls them at home, e.g. "Amma", "Nanna", "Akka". None for non-family.
+    family_label: str | None = None
+    # Fake date of the last call/message, a weak tie-breaker ("most recent interaction").
+    last_interaction: date | None = None
 
     @field_validator("phone")
     @classmethod
@@ -44,6 +59,20 @@ class PersonContext(BaseModel):
         if not FAKE_PHONE_PATTERN.match(value):
             raise ValueError(f"phone {value!r} must match the fake format +91-90000-0XXXX")
         return value
+
+    @field_validator("roles", "is_primary_for")
+    @classmethod
+    def lower_case_roles(cls, value: list[str]) -> list[str]:
+        # Store roles in lower case so "Doctor" and "doctor" are the same role.
+        return [role.strip().lower() for role in value]
+
+    @model_validator(mode="after")
+    def primary_roles_are_roles(self):
+        # You can only be the default doctor if you are a doctor.
+        missing = set(self.is_primary_for) - set(self.roles)
+        if missing:
+            raise ValueError(f"is_primary_for {sorted(missing)} must also be listed in roles")
+        return self
 
 
 class PlaceContext(BaseModel):
@@ -64,6 +93,16 @@ class BusinessContext(BaseModel):
     category: Literal["clinic", "hospital", "pharmacy", "restaurant", "salon", "school", "shop"]
     area: str
     city: str
+    # "The usual pharmacy": is this the place the user normally goes to, and for what?
+    is_usual: bool = False
+    usual_for: str | None = None  # e.g. "pharmacy", "groceries", "salon"
+
+    @model_validator(mode="after")
+    def usual_fields_agree(self):
+        # Both or neither: a usual place must say what it is usual for.
+        if self.is_usual != (self.usual_for is not None):
+            raise ValueError("is_usual and usual_for must be set together")
+        return self
 
 
 # Maps each entity type to the context model that validates it.
@@ -114,3 +153,23 @@ class Entity(BaseModel):
     def surface_forms(self) -> list[str]:
         """Every way this entity may be written: the canonical name first, then the aliases."""
         return [self.name, *self.aliases]
+
+
+class Preference(BaseModel):
+    """A learned answer (level 4, "learning"). Saved after the user answers a clarify question.
+
+    Example: the user said "call my colleague", we asked, they picked Harshil.
+    We store {"phrase_pattern": "my colleague", "entity_id": "person_123", ...},
+    so next time the same request resolves without asking. Written by Module 9.
+    """
+
+    model_config = {"extra": "forbid"}
+
+    phrase_pattern: str = Field(min_length=1)  # the reference phrase, lower-case, e.g. "my colleague"
+    entity_id: str  # what the user told us it means
+    created_at: datetime  # when we learned it (ISO 8601 in the JSON file)
+
+    @field_validator("phrase_pattern")
+    @classmethod
+    def normalise_phrase(cls, value: str) -> str:
+        return " ".join(value.lower().split())

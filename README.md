@@ -1,9 +1,10 @@
 # Pehchaan
 
-**Pehchaan — gets Indian names right.**
+**AI assistants hear words. Pehchaan understands who you mean.**
 
-> A correction layer for speech-to-text. It fixes mis-heard Indian names, places and businesses,
-> so voice assistants can take the right action.
+> No speech model can know *your* contacts, so personal context has to live outside the model.
+> Pehchaan is "the personal ear" that sits after speech-to-text. It gets Indian names right and works out who
+> "my doctor" or "Amma" is, so voice assistants take the right action.
 
 *Built solo for Builders 2026 by OpenAI x Equal AI, Hyderabad. Track: Build Challenging — Voice AI for India.*
 
@@ -25,7 +26,19 @@ After speech-to-text, Pehchaan finds the name and place spans in the transcript.
 against a knowledge base (your contacts + Indian places + local businesses) using phonetic, fuzzy,
 BM25 and embedding matching, then scores its confidence:
 **high confidence -> replace, unsure -> an LLM checks with context, unknown -> keep and flag.**
-The corrected transcript becomes a structured action: call / book / remind.
+The corrected transcript becomes a structured action: call / book / remind / message.
+
+## The 4 levels
+
+| Level | Example | Pehchaan's answer |
+|---|---|---|
+| 1. Misheard names | "call cook at Polly clinic" | **Kukatpally** |
+| 2. Personal references | "call my doctor", "remind me to call Amma", "the usual pharmacy" | the exact contact or business |
+| 3. Ambiguity | "call Harshit" (Harshit or Harshil?), "ask my colleague" (19 colleagues) | use clues, otherwise **ask once** |
+| 4. Learning | the user answers "Harshil" | remembered, so it resolves automatically next time |
+
+**Resolution rule:** first a clue in the sentence ("tooth" -> the dentist), then the user's default
+("my doctor" -> the family doctor), and if it's still unclear, ask once and remember the answer.
 
 ## Setup (Windows PowerShell)
 
@@ -72,7 +85,7 @@ Pehchaan corrects names by matching them against things *you* actually know. Tho
 
 | File | What | Count |
 |------|------|-------|
-| `contacts.json`   | personal contacts: doctors, family, colleagues, drivers, shopkeepers | 130 |
+| `contacts.json`   | personal contacts: doctors, family, colleagues, drivers, shopkeepers (with roles, defaults, family labels) | 134 |
 | `places.json`     | Hyderabad localities (heavy), plus cities and localities across India | 145 |
 | `businesses.json` | local clinics, pharmacies, restaurants, salons, schools, shops | 61 |
 
@@ -92,12 +105,12 @@ python scripts/kb_stats.py   # summary: counts by type / language / difficulty
 
 ## Test Set
 
-The "same recordings" every system is compared on live in `data/testset/`: **113 short phone-call and voice-note lines**.
-They include incoming calls and outgoing commands, some Hinglish / Tenglish, and **9.6 minutes of audio**.
+The "same recordings" every system is compared on live in `data/testset/`: **132 short phone-call and voice-note lines**.
+They include incoming calls and outgoing commands, some Hinglish / Tenglish, and **10.8 minutes of audio**.
 Each line has ground truth: the KB ids of the names in it, what Pehchaan should do, and the expected action
 (call / book / remind / message / none).
 
-**5 categories.** Most of the non-headline ones exist to catch *wrong* corrections, not just count successes:
+**6 categories.** Most of the non-headline ones exist to catch *wrong* corrections, not just count successes:
 
 | Category | Lines | Example | Expected |
 |---|---|---|---|
@@ -106,11 +119,12 @@ Each line has ground truth: the KB ids of the names in it, what Pehchaan should 
 | `control` | 13 | "The cook at the polling booth said lunch is ready." | keep |
 | `ambiguous` | 11 | "Ask Harshil to send the invoice" / "Call Harshit at 5." | resolve / clarify |
 | `context_mismatch` | 8 | "Book a table at Raju Hotel…" / unknown caller: "I'm Raju from the bank" | clarify / keep |
+| `reference` | 19 | "Call my doctor, my tooth is paining" / "Order Amma's tablets from the usual pharmacy" / "Ask my colleague to join the call" | resolve / clarify |
 
 **4 expected behaviours:** **correct** (fix a known name), **keep** (leave unknown names and ordinary words alone),
-**resolve** (pick the right one of two look-alike contacts using context), **clarify** (ask the user instead of guessing).
+**resolve** (pick the right look-alike contact, or work out who "my doctor" means, using context), **clarify** (ask the user instead of guessing).
 
-**Dev / test split:** 36 **dev** lines may be inspected while tuning. 77 **test** lines are held out and used only
+**Dev / test split:** 42 **dev** lines may be inspected while tuning. 90 **test** lines are held out and used only
 for the final numbers. The split is stratified, so every category appears in both.
 
 **Audio:** every line was spoken by OpenAI text-to-speech (`gpt-4o-mini-tts`, Indian English accent, 8 rotating voices,
@@ -118,7 +132,7 @@ for the final numbers. The split is stratified, so every category appears in bot
 - `audio/clean/` (24 kHz)
 - `audio/phone/`: 8 kHz, 300-3400 Hz band-pass, light noise, i.e. what a phone call actually carries
 
-`manifest.json` lists every clip. The audio (36 MB) is committed so you can listen to it.
+`manifest.json` lists every clip. The audio (41 MB) is committed so you can listen to it.
 
 **Honest limitation:** this is *synthetic* TTS audio. Real human recordings, with hesitations, background chatter
 and strong regional accents, would be harder, so absolute error rates here are optimistic. The comparison between

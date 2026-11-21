@@ -13,6 +13,11 @@ Run with:  pytest -v
 import pytest
 
 from app.kb.loader import (
+    get_by_family_label,
+    get_by_role,
+    get_primary_for,
+    get_usual_business,
+    load_preferences,
     KBValidationError,
     _normalise,
     all_surface_forms,
@@ -21,7 +26,7 @@ from app.kb.loader import (
     load_kb,
     validate_entities,
 )
-from app.kb.models import Entity
+from app.kb.models import Entity, Preference
 
 
 def find(name: str) -> Entity:
@@ -96,10 +101,12 @@ def test_near_identical_pairs_are_separate_with_distinct_relations(name_a, name_
     assert a.context["relation"] != b.context["relation"]
 
 
-def test_dr_raju_is_family_doctor_and_no_raju_hotel():
-    # The context-mismatch test sentences rely on this: "Raju" in the KB is a doctor,
-    # so "Raju Hotel" must NOT be linked to him without asking.
-    assert find("Dr. Raju").context["relation"] == "family doctor"
+def test_dr_raju_is_a_doctor_and_no_raju_hotel():
+    # The context-mismatch test sentences rely on this: "Raju" in the KB is a doctor
+    # (since the vision upgrade: the eye specialist), so "Raju Hotel" must NOT be linked
+    # to him without asking.
+    assert "doctor" in find("Dr. Raju").context["roles"]
+    assert find("Dr. Raju").context["relation"] == "eye specialist"
     business_names = [e.name.lower() for e in get_by_type("business")]
     assert not any("raju hotel" in name for name in business_names)
 
@@ -163,3 +170,59 @@ def test_validator_rejects_unknown_business_area():
 def test_model_rejects_real_looking_phone():
     with pytest.raises(ValueError):
         make("person_001", "A", "person", context={"relation": "friend", "phone": "+91-98480-12345"})
+
+
+# --- Vision upgrade: personal references ("my doctor", "Amma", "the usual pharmacy") ---
+
+def test_exactly_three_doctors_with_family_doctor_as_default():
+    doctors = {e.name: e for e in get_by_role("doctor")}
+    assert set(doctors) == {"Dr. Venkataramana", "Dr. Subramanian", "Dr. Raju"}
+    assert get_primary_for("doctor").name == "Dr. Venkataramana"
+    assert "dentist" in doctors["Dr. Subramanian"].context["roles"]
+    assert "eye specialist" in doctors["Dr. Raju"].context["roles"]
+
+
+def test_role_lookup_is_case_insensitive_and_unknown_role_is_empty():
+    assert len(get_by_role("Doctor")) == 3
+    assert get_by_role("astronaut") == []
+    assert get_primary_for("electrician") is None  # two electricians, no default
+
+
+def test_family_labels_resolve_to_one_contact():
+    for label in ["Amma", "Nanna", "Akka", "Anna", "Bhaiya"]:
+        person = get_by_family_label(label)
+        assert person is not None and person.type == "person", label
+    assert get_by_family_label("amma").name == "Sarojini Rao"  # case-insensitive
+    assert get_by_family_label("Chacha") is None
+
+
+def test_usual_businesses():
+    assert get_usual_business("pharmacy").name == "Sri Venkateswara Pharmacy"
+    assert get_usual_business("groceries").name == "Gowri Shankar Kirana"
+    assert get_usual_business("salon").name == "Style Zone Unisex Salon"
+    assert get_usual_business("hospital") is None
+
+
+def test_every_contact_has_roles_and_a_last_interaction():
+    for person in get_by_type("person"):
+        assert person.context["roles"], person.id
+        assert person.context["last_interaction"], person.id
+
+
+def test_preferences_start_empty_and_model_validates():
+    assert load_preferences() == []
+    pref = Preference(phrase_pattern="  My  Colleague ", entity_id="person_001", created_at="2026-11-21T10:00:00")
+    assert pref.phrase_pattern == "my colleague"
+
+
+def test_validator_rejects_two_defaults_for_one_role():
+    ctx = {"relation": "doctor", "phone": "+91-90000-09999", "roles": ["doctor"], "is_primary_for": ["doctor"]}
+    with pytest.raises(KBValidationError, match="two defaults"):
+        validate_entities([make("person_001", "A", "person", context=ctx),
+                           make("person_002", "B", "person", context=dict(ctx))])
+
+
+def test_model_rejects_primary_role_not_in_roles():
+    ctx = {"relation": "friend", "phone": "+91-90000-09999", "roles": ["friend"], "is_primary_for": ["doctor"]}
+    with pytest.raises(ValueError, match="is_primary_for"):
+        make("person_001", "A", "person", context=ctx)

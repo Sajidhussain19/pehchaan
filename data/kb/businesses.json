@@ -12,7 +12,9 @@
     "context": {
       "category": "pharmacy",
       "area": "Kukatpally",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": true,
+      "usual_for": "pharmacy"
     }
   },
   {
@@ -28,7 +30,9 @@
     "context": {
       "category": "shop",
       "area": "Kukatpally",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -44,7 +48,9 @@
     "context": {
       "category": "restaurant",
       "area": "Ameerpet",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": true,
+      "usual_for": "tiffins"
     }
   },
   {
@@ -60,7 +66,9 @@
     "context": {
       "category": "clinic",
       "area": "Begumpet",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -75,7 +83,9 @@
     "context": {
       "category": "hospital",
       "area": "Miyapur",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -90,7 +100,9 @@
     "context": {
       "category": "restaurant",
       "area": "Madhapur",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -105,7 +117,9 @@
     "context": {
       "category": "restaurant",
       "area": "Dilsukhnagar",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -121,7 +135,9 @@
     "context": {
       "category": "restaurant",
       "area": "Tolichowki",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -136,7 +152,9 @@
     "context": {
       "category": "restaurant",
       "area": "Mehdipatnam",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -152,7 +170,9 @@
     "context": {
       "category": "pharmacy",
       "area": "LB Nagar",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -168,7 +188,9 @@
     "context": {
       "category": "shop",
       "area": "Kondapur",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": true,
+      "usual_for": "groceries"
     }
   },
   {
@@ -184,7 +206,9 @@
     "context": {
       "category": "clinic",
       "area": "Gachibowli",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -199,7 +223,9 @@
     "context": {
       "category": "shop",
       "area": "Kompally",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -215,7 +241,9 @@
     "context": {
       "category": "school",
       "area": "Uppal",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -230,7 +258,9 @@
     "context": {
       "category": "school",
       "area": "Jubilee Hills",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -246,7 +276,9 @@
     "context": {
       "category": "salon",
       "area": "Tolichowki",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -261,7 +293,9 @@
     "context": {
       "category": "salon",
       "area": "Secunderabad",
-      "city": "Secunderabad"
+      "city": "Secunderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -276,7 +310,9 @@
     "context": {
       "category": "restaurant",
       "area": "Kukatpally",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -291,7 +327,9 @@
     "context": {
       "category": "shop",
       "area": "Bowenpally",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -306,7 +344,9 @@
     "context": {
       "category": "shop",
       "area": "Charminar",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -322,7 +362,9 @@
     "context": {
       "category": "shop",
       "area": "Abids",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -338,7 +380,9 @@
     "context": {
       "category": "hospital",
       "area": "Himayatnagar",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -353,7 +397,9 @@
     "context": {
       "category": "hospital",
       "area": "Malakpet",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -369,7 +415,9 @@
     "context": {
       "category": "clinic",
       "area": "SR Nagar",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -385,7 +433,9 @@
     "context": {
       "category": "shop",
       "area": "Koti",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -400,7 +450,9 @@
     "context": {
       "category": "restaurant",
       "area": "Lakdikapul",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -416,7 +468,9 @@
     "context": {
       "category": "clinic",
       "area": "Tarnaka",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -431,7 +485,9 @@
     "context": {
       "category": "clinic",
       "area": "Kondapur",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -446,7 +502,9 @@
     "context": {
       "category": "hospital",
       "area": "Nizampet",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -461,7 +519,9 @@
     "context": {
       "category": "salon",
       "area": "Chandanagar",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -476,7 +536,9 @@
     "context": {
       "category": "salon",
       "area": "Madhapur",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": true,
+      "usual_for": "salon"
     }
   },
   {
@@ -491,7 +553,9 @@
     "context": {
       "category": "shop",
       "area": "Erragadda",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -506,7 +570,9 @@
     "context": {
       "category": "shop",
       "area": "Mehdipatnam",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -522,7 +588,9 @@
     "context": {
       "category": "shop",
       "area": "Yousufguda",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -537,7 +605,9 @@
     "context": {
       "category": "school",
       "area": "Kothaguda",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -553,7 +623,9 @@
     "context": {
       "category": "school",
       "area": "Vanasthalipuram",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -569,7 +641,9 @@
     "context": {
       "category": "shop",
       "area": "Panjagutta",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -584,7 +658,9 @@
     "context": {
       "category": "shop",
       "area": "Habsiguda",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -599,7 +675,9 @@
     "context": {
       "category": "restaurant",
       "area": "Nampally",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -614,7 +692,9 @@
     "context": {
       "category": "clinic",
       "area": "Alwal",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -629,7 +709,9 @@
     "context": {
       "category": "restaurant",
       "area": "Khairatabad",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -645,7 +727,9 @@
     "context": {
       "category": "restaurant",
       "area": "Gachibowli",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -660,7 +744,9 @@
     "context": {
       "category": "shop",
       "area": "Moosapet",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -675,7 +761,9 @@
     "context": {
       "category": "shop",
       "area": "Begumpet",
-      "city": "Hyderabad"
+      "city": "Hyderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -691,7 +779,9 @@
     "context": {
       "category": "school",
       "area": "Secunderabad",
-      "city": "Secunderabad"
+      "city": "Secunderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -706,7 +796,9 @@
     "context": {
       "category": "clinic",
       "area": "Trimulgherry",
-      "city": "Secunderabad"
+      "city": "Secunderabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -722,7 +814,9 @@
     "context": {
       "category": "hospital",
       "area": "Vijayawada",
-      "city": "Vijayawada"
+      "city": "Vijayawada",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -737,7 +831,9 @@
     "context": {
       "category": "restaurant",
       "area": "Velachery",
-      "city": "Chennai"
+      "city": "Chennai",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -752,7 +848,9 @@
     "context": {
       "category": "restaurant",
       "area": "Mylapore",
-      "city": "Chennai"
+      "city": "Chennai",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -767,7 +865,9 @@
     "context": {
       "category": "shop",
       "area": "T. Nagar",
-      "city": "Chennai"
+      "city": "Chennai",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -783,7 +883,9 @@
     "context": {
       "category": "restaurant",
       "area": "Basavanagudi",
-      "city": "Bengaluru"
+      "city": "Bengaluru",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -798,7 +900,9 @@
     "context": {
       "category": "pharmacy",
       "area": "Jayanagar",
-      "city": "Bengaluru"
+      "city": "Bengaluru",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -813,7 +917,9 @@
     "context": {
       "category": "restaurant",
       "area": "Malleshwaram",
-      "city": "Bengaluru"
+      "city": "Bengaluru",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -828,7 +934,9 @@
     "context": {
       "category": "restaurant",
       "area": "Kochi",
-      "city": "Kochi"
+      "city": "Kochi",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -843,7 +951,9 @@
     "context": {
       "category": "shop",
       "area": "Salt Lake",
-      "city": "Kolkata"
+      "city": "Kolkata",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -858,7 +968,9 @@
     "context": {
       "category": "pharmacy",
       "area": "Howrah",
-      "city": "Howrah"
+      "city": "Howrah",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -874,7 +986,9 @@
     "context": {
       "category": "shop",
       "area": "Ahmedabad",
-      "city": "Ahmedabad"
+      "city": "Ahmedabad",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -889,7 +1003,9 @@
     "context": {
       "category": "restaurant",
       "area": "Bhubaneswar",
-      "city": "Bhubaneswar"
+      "city": "Bhubaneswar",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -904,7 +1020,9 @@
     "context": {
       "category": "shop",
       "area": "Cuttack",
-      "city": "Cuttack"
+      "city": "Cuttack",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -919,7 +1037,9 @@
     "context": {
       "category": "pharmacy",
       "area": "Andheri",
-      "city": "Mumbai"
+      "city": "Mumbai",
+      "is_usual": false,
+      "usual_for": null
     }
   },
   {
@@ -935,7 +1055,9 @@
     "context": {
       "category": "restaurant",
       "area": "Dadar",
-      "city": "Mumbai"
+      "city": "Mumbai",
+      "is_usual": false,
+      "usual_for": null
     }
   }
 ]

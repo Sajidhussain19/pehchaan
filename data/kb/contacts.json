@@ -12,9 +12,18 @@
     "language_origin": "Telugu",
     "difficulty": "hard",
     "context": {
-      "relation": "your doctor",
+      "relation": "family doctor",
       "phone": "+91-90000-00001",
-      "notes": "General physician, consults in the evenings"
+      "notes": "General physician, consults in the evenings",
+      "roles": [
+        "doctor",
+        "family doctor",
+        "general physician"
+      ],
+      "is_primary_for": [
+        "doctor"
+      ],
+      "last_interaction": "2026-10-14"
     }
   },
   {
@@ -31,7 +40,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00002",
-      "notes": "Backend team lead"
+      "notes": "Backend team lead",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-09-07"
     }
   },
   {
@@ -47,7 +60,14 @@
     "context": {
       "relation": "driver",
       "phone": "+91-90000-00003",
-      "notes": "Weekday office pickup at 8:30"
+      "notes": "Weekday office pickup at 8:30",
+      "roles": [
+        "driver"
+      ],
+      "is_primary_for": [
+        "driver"
+      ],
+      "last_interaction": "2026-08-01"
     }
   },
   {
@@ -63,7 +83,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00004",
-      "notes": "Lives in Warangal"
+      "notes": "Lives in Warangal",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-06-25"
     }
   },
   {
@@ -78,7 +103,12 @@
     "context": {
       "relation": "badminton partner",
       "phone": "+91-90000-00005",
-      "notes": "Plays on Sundays"
+      "notes": "Plays on Sundays",
+      "roles": [
+        "friend",
+        "badminton partner"
+      ],
+      "last_interaction": "2026-11-15"
     }
   },
   {
@@ -94,7 +124,13 @@
     "context": {
       "relation": "sister",
       "phone": "+91-90000-00006",
-      "notes": "Elder sister"
+      "notes": "Elder sister",
+      "roles": [
+        "family",
+        "sister"
+      ],
+      "family_label": "Akka",
+      "last_interaction": "2026-10-09"
     }
   },
   {
@@ -111,7 +147,11 @@
     "context": {
       "relation": "neighbour aunty",
       "phone": "+91-90000-00007",
-      "notes": "Flat 302"
+      "notes": "Flat 302",
+      "roles": [
+        "neighbour"
+      ],
+      "last_interaction": "2026-09-02"
     }
   },
   {
@@ -129,7 +169,11 @@
     "context": {
       "relation": "landlord",
       "phone": "+91-90000-00008",
-      "notes": "Rent due on the 5th"
+      "notes": "Rent due on the 5th",
+      "roles": [
+        "landlord"
+      ],
+      "last_interaction": "2026-07-27"
     }
   },
   {
@@ -144,7 +188,13 @@
     "context": {
       "relation": "uncle",
       "phone": "+91-90000-00009",
-      "notes": "Father's younger brother"
+      "notes": "Father's younger brother",
+      "roles": [
+        "family",
+        "uncle"
+      ],
+      "family_label": "Babai",
+      "last_interaction": "2026-06-20"
     }
   },
   {
@@ -160,7 +210,11 @@
     "context": {
       "relation": "school friend",
       "phone": "+91-90000-00010",
-      "notes": "Plays cricket with you on weekends"
+      "notes": "Plays cricket with you on weekends",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-11-10"
     }
   },
   {
@@ -175,7 +229,11 @@
     "context": {
       "relation": "plumber",
       "phone": "+91-90000-00011",
-      "notes": "Call for leaks"
+      "notes": "Call for leaks",
+      "roles": [
+        "plumber"
+      ],
+      "last_interaction": "2026-10-04"
     }
   },
   {
@@ -191,7 +249,11 @@
     "context": {
       "relation": "college friend",
       "phone": "+91-90000-00012",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-08-28"
     }
   },
   {
@@ -207,7 +269,11 @@
     "context": {
       "relation": "vegetable vendor",
       "phone": "+91-90000-00013",
-      "notes": "Comes by cart every morning"
+      "notes": "Comes by cart every morning",
+      "roles": [
+        "vegetable vendor"
+      ],
+      "last_interaction": "2026-07-22"
     }
   },
   {
@@ -222,7 +288,11 @@
     "context": {
       "relation": "electrician",
       "phone": "+91-90000-00014",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "electrician"
+      ],
+      "last_interaction": "2026-06-15"
     }
   },
   {
@@ -238,7 +308,13 @@
     "context": {
       "relation": "aunt",
       "phone": "+91-90000-00015",
-      "notes": "Mother's sister"
+      "notes": "Mother's sister",
+      "roles": [
+        "family",
+        "aunt"
+      ],
+      "family_label": "Pinni",
+      "last_interaction": "2026-11-05"
     }
   },
   {
@@ -254,7 +330,11 @@
     "context": {
       "relation": "auto driver",
       "phone": "+91-90000-00016",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "auto driver"
+      ],
+      "last_interaction": "2026-09-29"
     }
   },
   {
@@ -270,7 +350,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00017",
-      "notes": "QA team"
+      "notes": "QA team",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-08-23"
     }
   },
   {
@@ -286,7 +370,11 @@
     "context": {
       "relation": "watchman",
       "phone": "+91-90000-00018",
-      "notes": "Apartment gate"
+      "notes": "Apartment gate",
+      "roles": [
+        "watchman"
+      ],
+      "last_interaction": "2026-07-17"
     }
   },
   {
@@ -302,7 +390,14 @@
     "context": {
       "relation": "manager",
       "phone": "+91-90000-00019",
-      "notes": "Reporting manager"
+      "notes": "Reporting manager",
+      "roles": [
+        "manager"
+      ],
+      "is_primary_for": [
+        "manager"
+      ],
+      "last_interaction": "2026-06-10"
     }
   },
   {
@@ -316,9 +411,13 @@
     "language_origin": "Telugu",
     "difficulty": "medium",
     "context": {
-      "relation": "your mother's doctor",
+      "relation": "Amma's gynaecologist",
       "phone": "+91-90000-00020",
-      "notes": "Gynaecologist"
+      "notes": "Amma's doctor",
+      "roles": [
+        "gynaecologist"
+      ],
+      "last_interaction": "2026-10-31"
     }
   },
   {
@@ -334,7 +433,13 @@
     "context": {
       "relation": "brother-in-law",
       "phone": "+91-90000-00021",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "brother-in-law"
+      ],
+      "family_label": "Bava",
+      "last_interaction": "2026-09-24"
     }
   },
   {
@@ -351,7 +456,13 @@
     "context": {
       "relation": "grandfather",
       "phone": "+91-90000-00022",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "grandfather"
+      ],
+      "family_label": "Thatha",
+      "last_interaction": "2026-08-18"
     }
   },
   {
@@ -367,7 +478,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00023",
-      "notes": "Design team"
+      "notes": "Design team",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-07-12"
     }
   },
   {
@@ -383,7 +498,11 @@
     "context": {
       "relation": "fruit vendor",
       "phone": "+91-90000-00024",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "fruit vendor"
+      ],
+      "last_interaction": "2026-06-05"
     }
   },
   {
@@ -399,7 +518,11 @@
     "context": {
       "relation": "college friend",
       "phone": "+91-90000-00025",
-      "notes": "Batchmate from engineering"
+      "notes": "Batchmate from engineering",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-10-26"
     }
   },
   {
@@ -415,7 +538,11 @@
     "context": {
       "relation": "milk supplier",
       "phone": "+91-90000-00026",
-      "notes": "Two packets daily"
+      "notes": "Two packets daily",
+      "roles": [
+        "milkman"
+      ],
+      "last_interaction": "2026-09-19"
     }
   },
   {
@@ -432,7 +559,11 @@
     "context": {
       "relation": "father's friend",
       "phone": "+91-90000-00027",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family friend"
+      ],
+      "last_interaction": "2026-08-13"
     }
   },
   {
@@ -448,7 +579,12 @@
     "context": {
       "relation": "dentist",
       "phone": "+91-90000-00028",
-      "notes": ""
+      "notes": "Root canal in progress",
+      "roles": [
+        "doctor",
+        "dentist"
+      ],
+      "last_interaction": "2026-07-07"
     }
   },
   {
@@ -464,7 +600,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00029",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-05-31"
     }
   },
   {
@@ -480,7 +620,11 @@
     "context": {
       "relation": "accountant",
       "phone": "+91-90000-00030",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "accountant"
+      ],
+      "last_interaction": "2026-10-21"
     }
   },
   {
@@ -496,7 +640,11 @@
     "context": {
       "relation": "tenant",
       "phone": "+91-90000-00031",
-      "notes": "Ground floor"
+      "notes": "Ground floor",
+      "roles": [
+        "tenant"
+      ],
+      "last_interaction": "2026-09-14"
     }
   },
   {
@@ -511,7 +659,12 @@
     "context": {
       "relation": "chartered accountant",
       "phone": "+91-90000-00032",
-      "notes": "Files income tax"
+      "notes": "Files income tax",
+      "roles": [
+        "accountant",
+        "ca"
+      ],
+      "last_interaction": "2026-08-08"
     }
   },
   {
@@ -527,7 +680,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00033",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-07-02"
     }
   },
   {
@@ -542,7 +700,11 @@
     "context": {
       "relation": "driver",
       "phone": "+91-90000-00034",
-      "notes": "Outstation trips"
+      "notes": "Outstation trips",
+      "roles": [
+        "driver"
+      ],
+      "last_interaction": "2026-05-26"
     }
   },
   {
@@ -557,7 +719,11 @@
     "context": {
       "relation": "house help",
       "phone": "+91-90000-00035",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "house help"
+      ],
+      "last_interaction": "2026-10-16"
     }
   },
   {
@@ -573,7 +739,11 @@
     "context": {
       "relation": "tea stall owner",
       "phone": "+91-90000-00036",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "tea stall"
+      ],
+      "last_interaction": "2026-09-09"
     }
   },
   {
@@ -589,7 +759,12 @@
     "context": {
       "relation": "cab driver",
       "phone": "+91-90000-00037",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "driver",
+        "cab driver"
+      ],
+      "last_interaction": "2026-08-03"
     }
   },
   {
@@ -605,7 +780,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00038",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-06-27"
     }
   },
   {
@@ -620,7 +799,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00039",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-11-17"
     }
   },
   {
@@ -635,7 +818,11 @@
     "context": {
       "relation": "neighbour",
       "phone": "+91-90000-00040",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "neighbour"
+      ],
+      "last_interaction": "2026-10-11"
     }
   },
   {
@@ -651,7 +838,12 @@
     "context": {
       "relation": "aunt",
       "phone": "+91-90000-00041",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "aunt"
+      ],
+      "last_interaction": "2026-09-04"
     }
   },
   {
@@ -667,7 +859,11 @@
     "context": {
       "relation": "family priest",
       "phone": "+91-90000-00042",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "priest"
+      ],
+      "last_interaction": "2026-07-29"
     }
   },
   {
@@ -683,7 +879,12 @@
     "context": {
       "relation": "son's teacher",
       "phone": "+91-90000-00043",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "teacher",
+        "son's teacher"
+      ],
+      "last_interaction": "2026-06-22"
     }
   },
   {
@@ -698,7 +899,11 @@
     "context": {
       "relation": "gardener",
       "phone": "+91-90000-00044",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "gardener"
+      ],
+      "last_interaction": "2026-11-12"
     }
   },
   {
@@ -714,7 +919,11 @@
     "context": {
       "relation": "contractor",
       "phone": "+91-90000-00045",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "contractor"
+      ],
+      "last_interaction": "2026-10-06"
     }
   },
   {
@@ -730,7 +939,11 @@
     "context": {
       "relation": "senior colleague",
       "phone": "+91-90000-00046",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-08-30"
     }
   },
   {
@@ -746,7 +959,12 @@
     "context": {
       "relation": "uncle",
       "phone": "+91-90000-00047",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "uncle"
+      ],
+      "last_interaction": "2026-07-24"
     }
   },
   {
@@ -761,9 +979,13 @@
     "language_origin": "Malayalam",
     "difficulty": "hard",
     "context": {
-      "relation": "cardiologist",
+      "relation": "Nanna's cardiologist",
       "phone": "+91-90000-00048",
-      "notes": "Follow-up every 3 months"
+      "notes": "Nanna's heart follow-up every 3 months",
+      "roles": [
+        "cardiologist"
+      ],
+      "last_interaction": "2026-06-17"
     }
   },
   {
@@ -779,7 +1001,12 @@
     "context": {
       "relation": "HR colleague",
       "phone": "+91-90000-00049",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague",
+        "hr"
+      ],
+      "last_interaction": "2026-11-07"
     }
   },
   {
@@ -795,7 +1022,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00050",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-10-01"
     }
   },
   {
@@ -810,7 +1041,11 @@
     "context": {
       "relation": "travel agent",
       "phone": "+91-90000-00051",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "travel agent"
+      ],
+      "last_interaction": "2026-08-25"
     }
   },
   {
@@ -826,7 +1061,12 @@
     "context": {
       "relation": "music teacher",
       "phone": "+91-90000-00052",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "teacher",
+        "music teacher"
+      ],
+      "last_interaction": "2026-07-19"
     }
   },
   {
@@ -842,7 +1082,11 @@
     "context": {
       "relation": "astrologer",
       "phone": "+91-90000-00053",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "astrologer"
+      ],
+      "last_interaction": "2026-06-12"
     }
   },
   {
@@ -858,7 +1102,11 @@
     "context": {
       "relation": "building secretary",
       "phone": "+91-90000-00054",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "building secretary"
+      ],
+      "last_interaction": "2026-11-02"
     }
   },
   {
@@ -874,7 +1122,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00055",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-09-26"
     }
   },
   {
@@ -889,7 +1141,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00056",
-      "notes": "Neighbour from your old flat"
+      "notes": "Neighbour from your old flat",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-08-20"
     }
   },
   {
@@ -904,7 +1160,11 @@
     "context": {
       "relation": "insurance agent",
       "phone": "+91-90000-00057",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "insurance agent"
+      ],
+      "last_interaction": "2026-07-14"
     }
   },
   {
@@ -920,7 +1180,15 @@
     "context": {
       "relation": "family CA",
       "phone": "+91-90000-00058",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "accountant",
+        "ca"
+      ],
+      "is_primary_for": [
+        "accountant"
+      ],
+      "last_interaction": "2026-06-07"
     }
   },
   {
@@ -936,7 +1204,12 @@
     "context": {
       "relation": "manager, sales team",
       "phone": "+91-90000-00059",
-      "notes": "Weekly sales review on Mondays"
+      "notes": "Weekly sales review on Mondays",
+      "roles": [
+        "manager",
+        "sales manager"
+      ],
+      "last_interaction": "2026-10-28"
     }
   },
   {
@@ -951,7 +1224,11 @@
     "context": {
       "relation": "cook",
       "phone": "+91-90000-00060",
-      "notes": "Comes at 7 am"
+      "notes": "Comes at 7 am",
+      "roles": [
+        "cook"
+      ],
+      "last_interaction": "2026-09-21"
     }
   },
   {
@@ -966,7 +1243,11 @@
     "context": {
       "relation": "yoga instructor",
       "phone": "+91-90000-00061",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "yoga instructor"
+      ],
+      "last_interaction": "2026-08-15"
     }
   },
   {
@@ -981,7 +1262,11 @@
     "context": {
       "relation": "milkman",
       "phone": "+91-90000-00062",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "milkman"
+      ],
+      "last_interaction": "2026-07-09"
     }
   },
   {
@@ -997,7 +1282,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00063",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-06-02"
     }
   },
   {
@@ -1012,7 +1301,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00064",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-10-23"
     }
   },
   {
@@ -1028,7 +1321,11 @@
     "context": {
       "relation": "college friend",
       "phone": "+91-90000-00065",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-09-16"
     }
   },
   {
@@ -1043,7 +1340,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00066",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-08-10"
     }
   },
   {
@@ -1059,7 +1360,11 @@
     "context": {
       "relation": "carpenter",
       "phone": "+91-90000-00067",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "carpenter"
+      ],
+      "last_interaction": "2026-07-04"
     }
   },
   {
@@ -1074,7 +1379,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00068",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-05-28"
     }
   },
   {
@@ -1089,7 +1399,11 @@
     "context": {
       "relation": "security supervisor",
       "phone": "+91-90000-00069",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "security"
+      ],
+      "last_interaction": "2026-10-18"
     }
   },
   {
@@ -1104,7 +1418,11 @@
     "context": {
       "relation": "neighbour",
       "phone": "+91-90000-00070",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "neighbour"
+      ],
+      "last_interaction": "2026-09-11"
     }
   },
   {
@@ -1120,7 +1438,11 @@
     "context": {
       "relation": "architect",
       "phone": "+91-90000-00071",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "architect"
+      ],
+      "last_interaction": "2026-08-05"
     }
   },
   {
@@ -1135,7 +1457,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00072",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-06-29"
     }
   },
   {
@@ -1151,7 +1477,11 @@
     "context": {
       "relation": "professor",
       "phone": "+91-90000-00073",
-      "notes": "PhD guide"
+      "notes": "PhD guide",
+      "roles": [
+        "professor"
+      ],
+      "last_interaction": "2026-11-19"
     }
   },
   {
@@ -1166,7 +1496,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00074",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-10-13"
     }
   },
   {
@@ -1181,7 +1515,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00075",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-09-06"
     }
   },
   {
@@ -1197,7 +1535,12 @@
     "context": {
       "relation": "uncle",
       "phone": "+91-90000-00076",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "uncle"
+      ],
+      "last_interaction": "2026-07-31"
     }
   },
   {
@@ -1211,9 +1554,13 @@
     "language_origin": "Bengali",
     "difficulty": "medium",
     "context": {
-      "relation": "dermatologist",
+      "relation": "Akka's dermatologist",
       "phone": "+91-90000-00077",
-      "notes": ""
+      "notes": "Treating Akka's skin allergy",
+      "roles": [
+        "dermatologist"
+      ],
+      "last_interaction": "2026-06-24"
     }
   },
   {
@@ -1228,7 +1575,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00078",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-11-14"
     }
   },
   {
@@ -1244,7 +1596,11 @@
     "context": {
       "relation": "electrician",
       "phone": "+91-90000-00079",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "electrician"
+      ],
+      "last_interaction": "2026-10-08"
     }
   },
   {
@@ -1260,7 +1616,11 @@
     "context": {
       "relation": "college friend",
       "phone": "+91-90000-00080",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-09-01"
     }
   },
   {
@@ -1276,7 +1636,11 @@
     "context": {
       "relation": "driver",
       "phone": "+91-90000-00081",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "driver"
+      ],
+      "last_interaction": "2026-07-26"
     }
   },
   {
@@ -1291,7 +1655,12 @@
     "context": {
       "relation": "aunt",
       "phone": "+91-90000-00082",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "aunt"
+      ],
+      "last_interaction": "2026-06-19"
     }
   },
   {
@@ -1306,7 +1675,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00083",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-11-09"
     }
   },
   {
@@ -1321,7 +1694,11 @@
     "context": {
       "relation": "neighbour",
       "phone": "+91-90000-00084",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "neighbour"
+      ],
+      "last_interaction": "2026-10-03"
     }
   },
   {
@@ -1336,7 +1713,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00085",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-08-27"
     }
   },
   {
@@ -1351,7 +1732,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00086",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-07-21"
     }
   },
   {
@@ -1366,7 +1752,11 @@
     "context": {
       "relation": "truck owner",
       "phone": "+91-90000-00087",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "truck owner"
+      ],
+      "last_interaction": "2026-06-14"
     }
   },
   {
@@ -1380,9 +1770,13 @@
     "language_origin": "Gujarati",
     "difficulty": "medium",
     "context": {
-      "relation": "ENT specialist",
+      "relation": "Thatha's ENT specialist",
       "phone": "+91-90000-00088",
-      "notes": "Ear, nose and throat"
+      "notes": "Thatha's hearing checkups",
+      "roles": [
+        "ent specialist"
+      ],
+      "last_interaction": "2026-11-04"
     }
   },
   {
@@ -1397,7 +1791,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00089",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-09-28"
     }
   },
   {
@@ -1413,7 +1811,11 @@
     "context": {
       "relation": "shopkeeper",
       "phone": "+91-90000-00090",
-      "notes": "Stationery shop"
+      "notes": "Stationery shop",
+      "roles": [
+        "shopkeeper"
+      ],
+      "last_interaction": "2026-08-22"
     }
   },
   {
@@ -1428,7 +1830,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00091",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-07-16"
     }
   },
   {
@@ -1443,7 +1849,11 @@
     "context": {
       "relation": "jeweller",
       "phone": "+91-90000-00092",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "jeweller"
+      ],
+      "last_interaction": "2026-06-09"
     }
   },
   {
@@ -1458,7 +1868,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00093",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-10-30"
     }
   },
   {
@@ -1474,7 +1889,11 @@
     "context": {
       "relation": "stock broker",
       "phone": "+91-90000-00094",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "stock broker"
+      ],
+      "last_interaction": "2026-09-23"
     }
   },
   {
@@ -1490,7 +1909,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00095",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-08-17"
     }
   },
   {
@@ -1505,7 +1928,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00096",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-07-11"
     }
   },
   {
@@ -1520,7 +1947,12 @@
     "context": {
       "relation": "uncle",
       "phone": "+91-90000-00097",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "uncle"
+      ],
+      "last_interaction": "2026-06-04"
     }
   },
   {
@@ -1535,7 +1967,11 @@
     "context": {
       "relation": "teacher",
       "phone": "+91-90000-00098",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "teacher"
+      ],
+      "last_interaction": "2026-10-25"
     }
   },
   {
@@ -1551,7 +1987,11 @@
     "context": {
       "relation": "driver",
       "phone": "+91-90000-00099",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "driver"
+      ],
+      "last_interaction": "2026-09-18"
     }
   },
   {
@@ -1567,7 +2007,11 @@
     "context": {
       "relation": "nurse",
       "phone": "+91-90000-00100",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "nurse"
+      ],
+      "last_interaction": "2026-08-12"
     }
   },
   {
@@ -1584,7 +2028,11 @@
     "context": {
       "relation": "car mechanic",
       "phone": "+91-90000-00101",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "mechanic"
+      ],
+      "last_interaction": "2026-07-06"
     }
   },
   {
@@ -1600,7 +2048,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00102",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-05-30"
     }
   },
   {
@@ -1614,9 +2066,13 @@
     "language_origin": "Urdu",
     "difficulty": "hard",
     "context": {
-      "relation": "paediatrician",
+      "relation": "son's paediatrician",
       "phone": "+91-90000-00103",
-      "notes": "Kids' doctor"
+      "notes": "Kids' doctor",
+      "roles": [
+        "paediatrician"
+      ],
+      "last_interaction": "2026-10-20"
     }
   },
   {
@@ -1632,7 +2088,11 @@
     "context": {
       "relation": "barber",
       "phone": "+91-90000-00104",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "barber"
+      ],
+      "last_interaction": "2026-09-13"
     }
   },
   {
@@ -1648,7 +2108,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00105",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-08-07"
     }
   },
   {
@@ -1664,7 +2128,11 @@
     "context": {
       "relation": "AC technician",
       "phone": "+91-90000-00106",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "ac technician"
+      ],
+      "last_interaction": "2026-07-01"
     }
   },
   {
@@ -1680,7 +2148,11 @@
     "context": {
       "relation": "butcher",
       "phone": "+91-90000-00107",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "butcher"
+      ],
+      "last_interaction": "2026-05-25"
     }
   },
   {
@@ -1695,7 +2167,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00108",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-10-15"
     }
   },
   {
@@ -1710,7 +2186,11 @@
     "context": {
       "relation": "tailor",
       "phone": "+91-90000-00109",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "tailor"
+      ],
+      "last_interaction": "2026-09-08"
     }
   },
   {
@@ -1725,7 +2205,12 @@
     "context": {
       "relation": "uncle",
       "phone": "+91-90000-00110",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "uncle"
+      ],
+      "last_interaction": "2026-08-02"
     }
   },
   {
@@ -1740,7 +2225,11 @@
     "context": {
       "relation": "teacher",
       "phone": "+91-90000-00111",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "teacher"
+      ],
+      "last_interaction": "2026-06-26"
     }
   },
   {
@@ -1755,7 +2244,11 @@
     "context": {
       "relation": "neighbour",
       "phone": "+91-90000-00112",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "neighbour"
+      ],
+      "last_interaction": "2026-11-16"
     }
   },
   {
@@ -1771,7 +2264,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00113",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-10-10"
     }
   },
   {
@@ -1786,7 +2283,11 @@
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00114",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "friend"
+      ],
+      "last_interaction": "2026-09-03"
     }
   },
   {
@@ -1802,7 +2303,11 @@
     "context": {
       "relation": "school principal",
       "phone": "+91-90000-00115",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "principal"
+      ],
+      "last_interaction": "2026-07-28"
     }
   },
   {
@@ -1818,7 +2323,11 @@
     "context": {
       "relation": "parish priest",
       "phone": "+91-90000-00116",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "priest"
+      ],
+      "last_interaction": "2026-06-21"
     }
   },
   {
@@ -1834,7 +2343,11 @@
     "context": {
       "relation": "nurse",
       "phone": "+91-90000-00117",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "nurse"
+      ],
+      "last_interaction": "2026-11-11"
     }
   },
   {
@@ -1849,7 +2362,11 @@
     "context": {
       "relation": "driving instructor",
       "phone": "+91-90000-00118",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "driving instructor"
+      ],
+      "last_interaction": "2026-10-05"
     }
   },
   {
@@ -1865,7 +2382,11 @@
     "context": {
       "relation": "colleague",
       "phone": "+91-90000-00119",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "colleague"
+      ],
+      "last_interaction": "2026-08-29"
     }
   },
   {
@@ -1879,9 +2400,13 @@
     "language_origin": "Biblical",
     "difficulty": "hard",
     "context": {
-      "relation": "orthopaedic surgeon",
+      "relation": "Nanna's orthopaedic surgeon",
       "phone": "+91-90000-00120",
-      "notes": ""
+      "notes": "Nanna's knee treatment",
+      "roles": [
+        "orthopaedic surgeon"
+      ],
+      "last_interaction": "2026-07-23"
     }
   },
   {
@@ -1896,7 +2421,12 @@
     "context": {
       "relation": "cousin",
       "phone": "+91-90000-00121",
-      "notes": ""
+      "notes": "",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "last_interaction": "2026-06-16"
     }
   },
   {
@@ -1911,7 +2441,11 @@
     "context": {
       "relation": "gym trainer",
       "phone": "+91-90000-00122",
-      "notes": "Personal training, evening batch"
+      "notes": "Personal training, evening batch",
+      "roles": [
+        "gym trainer"
+      ],
+      "last_interaction": "2026-11-06"
     }
   },
   {
@@ -1926,7 +2460,12 @@
     "context": {
       "relation": "colleague, accounts team",
       "phone": "+91-90000-00123",
-      "notes": "Handles invoices and reimbursements"
+      "notes": "Handles invoices and reimbursements",
+      "roles": [
+        "colleague",
+        "accounts"
+      ],
+      "last_interaction": "2026-09-30"
     }
   },
   {
@@ -1941,7 +2480,11 @@
     "context": {
       "relation": "car service advisor",
       "phone": "+91-90000-00124",
-      "notes": "Service centre contact for your car"
+      "notes": "Service centre contact for your car",
+      "roles": [
+        "car service"
+      ],
+      "last_interaction": "2026-08-24"
     }
   },
   {
@@ -1956,7 +2499,11 @@
     "context": {
       "relation": "house painter",
       "phone": "+91-90000-00125",
-      "notes": "Painting the flat this month"
+      "notes": "Painting the flat this month",
+      "roles": [
+        "painter"
+      ],
+      "last_interaction": "2026-07-18"
     }
   },
   {
@@ -1971,7 +2518,13 @@
     "context": {
       "relation": "son's tuition teacher",
       "phone": "+91-90000-00126",
-      "notes": "Maths tuition, weekday evenings"
+      "notes": "Maths tuition, weekday evenings",
+      "roles": [
+        "teacher",
+        "son's teacher",
+        "tuition teacher"
+      ],
+      "last_interaction": "2026-06-11"
     }
   },
   {
@@ -1986,7 +2539,11 @@
     "context": {
       "relation": "flatmate",
       "phone": "+91-90000-00127",
-      "notes": "Shares the flat and the bills"
+      "notes": "Shares the flat and the bills",
+      "roles": [
+        "flatmate"
+      ],
+      "last_interaction": "2026-11-01"
     }
   },
   {
@@ -2001,7 +2558,11 @@
     "context": {
       "relation": "client, project lead",
       "phone": "+91-90000-00128",
-      "notes": "Client-side lead for the current project"
+      "notes": "Client-side lead for the current project",
+      "roles": [
+        "client"
+      ],
+      "last_interaction": "2026-09-25"
     }
   },
   {
@@ -2016,7 +2577,12 @@
     "context": {
       "relation": "daughter's dance teacher",
       "phone": "+91-90000-00129",
-      "notes": "Bharatanatyam class, Tue/Thu"
+      "notes": "Bharatanatyam class, Tue/Thu",
+      "roles": [
+        "teacher",
+        "dance teacher"
+      ],
+      "last_interaction": "2026-08-19"
     }
   },
   {
@@ -2031,9 +2597,99 @@
     "language_origin": "Telugu",
     "difficulty": "medium",
     "context": {
-      "relation": "family doctor",
+      "relation": "eye specialist",
       "phone": "+91-90000-00130",
-      "notes": "General physician near home"
+      "notes": "Ophthalmologist; yearly eye checkup",
+      "roles": [
+        "doctor",
+        "eye specialist",
+        "ophthalmologist"
+      ],
+      "last_interaction": "2026-07-13"
+    }
+  },
+  {
+    "id": "person_131",
+    "name": "Sarojini Rao",
+    "type": "person",
+    "aliases": [
+      "Sarojini"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "mother",
+      "phone": "+91-90000-00131",
+      "notes": "Lives with you",
+      "roles": [
+        "family",
+        "mother"
+      ],
+      "family_label": "Amma",
+      "last_interaction": "2026-06-06"
+    }
+  },
+  {
+    "id": "person_132",
+    "name": "Ramachandra Rao",
+    "type": "person",
+    "aliases": [
+      "Ramachandra"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "father",
+      "phone": "+91-90000-00132",
+      "notes": "Takes BP tablets daily",
+      "roles": [
+        "family",
+        "father"
+      ],
+      "family_label": "Nanna",
+      "last_interaction": "2026-10-27"
+    }
+  },
+  {
+    "id": "person_133",
+    "name": "Aditya Rao",
+    "type": "person",
+    "aliases": [
+      "Aditya"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "easy",
+    "context": {
+      "relation": "elder brother",
+      "phone": "+91-90000-00133",
+      "notes": "Works in Bengaluru",
+      "roles": [
+        "family",
+        "brother"
+      ],
+      "family_label": "Anna",
+      "last_interaction": "2026-09-20"
+    }
+  },
+  {
+    "id": "person_134",
+    "name": "Rajat Verma",
+    "type": "person",
+    "aliases": [
+      "Rajat"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "easy",
+    "context": {
+      "relation": "elder cousin",
+      "phone": "+91-90000-00134",
+      "notes": "Lives in Lucknow",
+      "roles": [
+        "family",
+        "cousin"
+      ],
+      "family_label": "Bhaiya",
+      "last_interaction": "2026-08-14"
     }
   }
 ]

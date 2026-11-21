@@ -248,3 +248,90 @@ Lesson: pinning protects you, but sometimes a new feature means moving the pins 
   user giving commands. The caller id is extra context ("Raju" from an unknown number is not your doctor).
 - **How much did the audio cost?** About $0.14 for 9.6 minutes. Re-running the script costs nothing, because existing clips are skipped.
 - **Is any of this real data?** No. All people and businesses are fictional, and phone numbers use a fake pattern.
+
+---
+
+## From name corrector to personal ear (vision upgrade)
+
+### The idea in one line
+"AI assistants hear words. Pehchaan understands who you mean." A speech model can learn how "Kukatpally" sounds,
+but it can **never** know that *your* doctor is Dr. Venkataramana or that "Amma" means Sarojini Rao.
+That knowledge is personal, private and changes over time, so **personal context has to live outside the model**.
+That's what Pehchaan is.
+
+### The 4 levels
+1. **Misheard names:** "cook at Polly" -> **Kukatpally**. The original goal (Modules 6-8).
+2. **Personal references:** "my doctor", "Amma", "my gym trainer", "the usual pharmacy" -> one exact KB entity.
+   There is no name to match at all here; the meaning comes from *roles* and *labels*.
+3. **Ambiguity:** near-identical names (Harshit / Harshil) or several people with the same role (19 colleagues).
+   Use clues; otherwise ask.
+4. **Learning:** when the user answers a question ("I meant Harshil"), save it, so next time there's no question.
+
+### The resolution rule: clue -> default -> ask -> remember
+The user has **3 doctors**:
+| Contact | Roles | Default? |
+|---|---|---|
+| Dr. Venkataramana | doctor, family doctor, general physician | **yes**, `is_primary_for: ["doctor"]` |
+| Dr. Subramanian | doctor, dentist | no |
+| Dr. Raju | doctor, eye specialist, ophthalmologist | no |
+
+- **a) Clue:** "Call my doctor, my tooth is paining". "Tooth" points to the *dentist* role, so the answer is **Dr. Subramanian**.
+- **b) Default:** "Call my doctor". No clue, so we use the default doctor: **Dr. Venkataramana**.
+  (If no default exists, the most recent interaction is a weak tie-breaker.)
+- **c) Ask:** "Ask my colleague to join the call". There are 19 colleagues, no default and no clue, so we **ask once**:
+  "Which colleague: Srinivas Reddy (backend), Harshil Patel (accounts), …?"
+- **d) Remember:** the answer is stored in `data/kb/preferences.json` as
+  `{"phrase_pattern": "my colleague", "entity_id": "...", "created_at": "..."}` and used next time.
+
+The order matters. A clue in *this* sentence beats a general default, and a default beats asking.
+We ask only when we'd otherwise be guessing, because a wrong call is worse than a question.
+
+### What changed in the data
+- **People** gained:
+  - `roles`: e.g. `["doctor", "dentist"]`
+  - `is_primary_for`: the user's default for a role. At most one per role, enforced by the loader.
+  - `family_label`: Amma, Nanna, Akka, Anna, Bhaiya, Thatha, Pinni, Babai, Bava. Each is unique.
+  - `last_interaction`: a fake date.
+- **New family contacts:** Sarojini Rao (Amma), Ramachandra Rao (Nanna), Aditya Rao (Anna), Rajat Verma (Bhaiya).
+- **Exactly 3 doctors for the user.** The other 6 "Dr." contacts became family members' doctors, for example
+  Dr. Prameela Rani is Amma's gynaecologist and Dr. Fatima Zehra is your son's paediatrician.
+  They keep only their specialty as a role, so "my doctor" never picks Amma's gynaecologist.
+  Dr. Raju became the eye specialist, because Dr. Venkataramana is now the family doctor.
+- **Businesses** gained `is_usual` + `usual_for`. The usual pharmacy, groceries (kirana), salon and tiffins are marked.
+- `preferences.json` starts as `[]`, with a `Preference` model. Module 9 fills it.
+- **New lookups:** `get_by_role`, `get_primary_for`, `get_by_family_label`, `get_usual_business`, `load_preferences`.
+- **Test set:** a new **reference** category with 19 lines (6 dev / 13 test). Each line lists its `references` with
+  `resolution_reason` = clue / primary / family_label / usual / ambiguous. The validator checks each reason against the KB:
+  a "primary" answer really is a default, and a "family_label" answer really uses that label.
+  Two older lines were reworded ("your sister's skin test", "your father's knee X-ray") and their audio regenerated.
+  The total is now 132 lines and 10.8 minutes, at about $0.02 extra.
+
+### A trap worth knowing: "Anna"
+"Anna" is both a family label (Aditya Rao, your elder brother) and a respectful suffix in names like
+"Ramulu Anna" (the vegetable vendor). "Call Anna" means your brother, but "Ramulu Anna" is a name.
+This is exactly why we match whole names before guessing at labels.
+
+### Key concepts
+- **Personal reference:** words that point to a person or place *through the user's relationship*, not by name
+  ("my doctor", "Amma", "the usual pharmacy").
+- **Role:** what a contact is to the user (doctor, dentist, colleague). One person can have several roles.
+- **Primary / default:** the contact the user means by a role when nothing else is said.
+- **Family label:** the word used at home for a family member (Amma = mother, Nanna = father, Akka = elder sister).
+- **Resolution reason:** *why* a reference points where it does. We record it so evaluation can show which kinds work.
+- **Preference / learned answer:** a stored (phrase -> entity) answer, so the same question is never asked twice.
+
+### Questions a judge might ask
+- **Isn't this just a post-processor?** No speech model can know your contacts; personal context has to live outside
+  the model. A speech model can't know that "my doctor" is Dr. Venkataramana. Pehchaan is the layer that holds and uses that context.
+- **Why not put the contacts in the speech-to-text prompt?** That is one of our baselines. A prompt can fix *spellings*
+  of a few names, but it can't decide that "my doctor" + "tooth" means the dentist, or know when to ask.
+- **What happens when it's unsure?** It asks once, with the candidates and their roles, then remembers the answer.
+  We never guess an action we're unsure about.
+- **How do you know it resolves references correctly?** 19 reference lines in the test set, each with the right entity
+  and the *reason* (clue, default, family label, usual, ambiguous). The evaluation reports reference-resolution accuracy separately.
+- **Why only 3 doctors?** So "my doctor" is a realistic, testable decision: one default, two specialists that only a clue
+  should select. Family members' doctors are stored, but they aren't "my doctor".
+- **Doesn't remembering answers risk learning a mistake?** The user explicitly chose the answer, and it is stored with a
+  timestamp in a readable file. Wrong or old preferences can be seen and deleted.
+- **Is this private?** All data here is fictional. In a real product this context stays on the user's side,
+  next to their phone book. It isn't trained into a model.
