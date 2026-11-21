@@ -186,6 +186,9 @@ makes real transcripts *worse*.
   INTERSPEECH 2023 (arXiv:2305.15760).
 - **Access:** the dataset is *gated* on Hugging Face. Accept its conditions with your HF account, put a read token
   in `.env` as `HF_TOKEN`, then run `python scripts/fetch_real_speech.py`.
+- **Not in this repo:** the audio files are not redistributed here (`data/realspeech/audio/` is git-ignored).
+  The manifest, attribution, saved transcripts and all results are included, so every reported number can be
+  re-scored without the audio; fetch the audio as above to re-transcribe or to play the real clips in the demo.
 
 ```powershell
 python -m app.testset.validate     # check the answer key against the KB

@@ -285,6 +285,14 @@ def test_realspeech_validator_needs_audio_and_several_speakers(tmp_path):
                             duration_seconds=2.0, source="ai4bharat/Svarah", source_id=str(i)) for i in range(1, 7)]
     with pytest.raises(TestsetValidationError, match="different speakers"):
         validate_realspeech(clips, root=tmp_path)
-    missing = [clips[0].model_copy(update={"audio_path": "nope.wav"})]
+    # Partly downloaded (one file there, one missing) is an error...
+    partial = [clips[0], clips[1].model_copy(update={"audio_path": "nope.wav", "speaker_id": "other"})]
     with pytest.raises(TestsetValidationError, match="audio file missing"):
-        validate_realspeech(missing, root=tmp_path)
+        validate_realspeech(partial, root=tmp_path)
+
+
+def test_realspeech_without_any_audio_is_valid(tmp_path):
+    # ...but NO audio at all is fine: the audio isn't in git and is fetched separately (fetch_real_speech.py).
+    clips = [RealSpeechClip(id=f"r00{i}", split="test", text="hello", speaker_id=f"s{i}", audio_path=f"x{i}.wav",
+                            duration_seconds=2.0, source="ai4bharat/Svarah", source_id=str(i)) for i in range(1, 7)]
+    validate_realspeech(clips, root=tmp_path)

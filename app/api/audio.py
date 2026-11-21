@@ -126,6 +126,9 @@ def list_clips() -> list[dict]:
         seen.add(d["clip_id"])
     for variant_set, variants in (("clean", ("clean", "phone")), ("real", ("real",))):
         for cid, c in sorted(_manifests()[variant_set].items()):
+            # Real-speech audio is not in git; only offer clips whose audio was fetched on this machine.
+            if variant_set == "real" and not (PROJECT_ROOT / c["path"]).is_file():
+                continue
             if c["split"] == "dev" and cid not in seen:
                 out.append({"clip_id": cid, "group": "dev", "text": c["text"], "category": c["category"],
                             "audio": {v: f"/audio/{v}/{cid}.wav" for v in variants},

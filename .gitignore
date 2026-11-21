@@ -23,3 +23,8 @@ Thumbs.db
 data/app.db
 data/kb/books/preferences_*.json
 data/pending/
+
+# --- Real-speech audio (AI4Bharat Svarah): NOT redistributed in this repo ---
+# Re-download it with scripts/fetch_real_speech.py (needs a Hugging Face token and accepting the dataset terms).
+# The manifest, attribution, transcripts and all results stay in git.
+data/realspeech/audio/

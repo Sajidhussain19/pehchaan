@@ -495,9 +495,13 @@ async function loadScoreboard() {
     return el("tr", {}, el("td", {}, label), el("td", { class: "num" }, cell(c[k])), el("td", { class: "num" }, cell(p[k])),
       el("td", { class: word[1] }, word[0]));
   });
-  rows.push(el("tr", {}, el("td", {}, "Latency per decision (median / mean)"),
-    el("td", { class: "num" }, `${Math.round(c.latency_ms_median)} / ${Math.round(c.latency_ms_mean)} ms`),
-    el("td", { class: "num" }, `${Math.round(p.latency_ms_median)} / ${Math.round(p.latency_ms_mean)} ms`),
+  // Latency: the FIRST final run (the numbers on the slides), with the repeat's numbers as a note.
+  const lat = m.latency_first_run || { c: { median: c.latency_ms_median, mean: c.latency_ms_mean },
+                                       pehchaan: { median: p.latency_ms_median, mean: p.latency_ms_mean } };
+  rows.push(el("tr", {}, el("td", {}, "Latency per decision (median / mean)",
+      m.latency_note ? el("div", { class: "muted small" }, m.latency_note) : null),
+    el("td", { class: "num" }, `${Math.round(lat.c.median)} / ${Math.round(lat.c.mean)} ms`),
+    el("td", { class: "num" }, `${Math.round(lat.pehchaan.median)} / ${Math.round(lat.pehchaan.mean)} ms`),
     el("td", { class: "cmp-better" }, "Better")));
   rows.push(el("tr", {}, el("td", {}, "Cost per decision"),
     el("td", { class: "num" }, "$" + c.cost_usd_mean.toFixed(6)), el("td", { class: "num" }, "$" + p.cost_usd_mean.toFixed(6)),

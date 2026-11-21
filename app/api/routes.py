@@ -286,9 +286,16 @@ def metrics() -> dict:
             "behaviour_accuracy", "time_accuracy", "no_llm_rate", "latency_ms_mean", "latency_ms_median",
             "cost_usd_mean")
     pick = lambda m: {k: m[k] for k in keep if k in m}  # noqa: E731
+    # Latency is re-measured on every run. The slides and README quote the FIRST final run (tag final-eval-v1,
+    # data/results/report_test_FINAL.json at that tag); the repeat (final-eval-v1.1) replayed cached LLM answers
+    # and was faster. All scored metrics were identical in both runs; only these timings differ.
+    first_run_latency = {"c": {"median": 1502.4, "mean": 1548.5}, "pehchaan": {"median": 10.9, "mean": 297.7}}
     return {"label": "Held-out TEST split, run once (tag final-eval-v1); repeated after one approved change with "
                      "identical scores (final-eval-v1.1)", "split": report["split"],
             "overall": {s: pick(report["overall"][s]) for s in ("c", "pehchaan")},
             "per_audio": {a: {s: pick(m[s]) for s in ("c", "pehchaan") if s in m}
                           for a, m in report["per_audio"].items()},
-            "win_tie_loss": report["comparison"]["counts"] if report.get("comparison") else None}
+            "win_tie_loss": report["comparison"]["counts"] if report.get("comparison") else None,
+            "latency_first_run": first_run_latency,
+            "latency_note": "first final run; the repeat measured {:.0f} / {:.0f} ms".format(
+                report["overall"]["pehchaan"]["latency_ms_median"], report["overall"]["pehchaan"]["latency_ms_mean"])}

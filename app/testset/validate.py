@@ -254,13 +254,20 @@ def load_realspeech(path: Path = REALSPEECH_MANIFEST) -> list[RealSpeechClip]:
 
 
 def validate_realspeech(clips: list[RealSpeechClip], root: Path = PROJECT_ROOT) -> None:
-    """Checks for the real-speech sample: unique ids, audio files exist, several different speakers."""
+    """Checks for the real-speech sample: unique ids, audio files exist, several different speakers.
+
+    The audio is NOT in git (it is re-downloaded from Hugging Face by scripts/fetch_real_speech.py, under the
+    dataset's own terms). So "no audio at all" just means "not fetched yet" and is fine: the manifest,
+    the saved transcripts and the results still work. SOME files missing means a broken download: an error.
+    """
     problems: list[str] = []
     counts = Counter(c.id for c in clips)
     problems += [f"duplicate real-speech id {cid}" for cid, n in counts.items() if n > 1]
-    for c in clips:
-        if not (root / c.audio_path).exists():
-            problems.append(f"{c.id}: audio file missing: {c.audio_path}")
+    present = [c for c in clips if (root / c.audio_path).exists()]
+    if present:  # audio was fetched: then every file must be there
+        for c in clips:
+            if not (root / c.audio_path).exists():
+                problems.append(f"{c.id}: audio file missing: {c.audio_path}")
     # The point is to test REAL variety; one speaker would just test one voice.
     if clips and len({c.speaker_id for c in clips}) < min(5, len(clips)):
         problems.append("real-speech sample should come from at least 5 different speakers")
