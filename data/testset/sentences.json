@@ -1,0 +1,2622 @@
+[
+  {
+    "id": "s001",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally, your appointment is tomorrow at 10 AM.",
+    "entities": [
+      {
+        "surface": "Dr. Venkataramana",
+        "entity_id": "person_001",
+        "type": "person"
+      },
+      {
+        "surface": "Kukatpally",
+        "entity_id": "place_002",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_001",
+      "time": "tomorrow at 10 AM"
+    }
+  },
+  {
+    "id": "s002",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Dr. Venkataramana and ask if he is free this evening.",
+    "entities": [
+      {
+        "surface": "Dr. Venkataramana",
+        "entity_id": "person_001",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_001",
+      "time": "this evening"
+    }
+  },
+  {
+    "id": "s003",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table for four at Kakatiya Kitchen in Madhapur for 8 PM tonight.",
+    "entities": [
+      {
+        "surface": "Kakatiya Kitchen",
+        "entity_id": "business_006",
+        "type": "business"
+      },
+      {
+        "surface": "Madhapur",
+        "entity_id": "place_006",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_006",
+      "time": "8 PM tonight"
+    }
+  },
+  {
+    "id": "s004",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+    "entities": [
+      {
+        "surface": "Sri Venkateswara Pharmacy",
+        "entity_id": "business_001",
+        "type": "business"
+      },
+      {
+        "surface": "Gachibowli",
+        "entity_id": "place_003",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "business_001",
+      "time": null
+    }
+  },
+  {
+    "id": "s005",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Srinivas Reddy that the release is moved to Thursday.",
+    "entities": [
+      {
+        "surface": "Srinivas Reddy",
+        "entity_id": "person_002",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_002",
+      "time": "Thursday"
+    }
+  },
+  {
+    "id": "s006",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_003",
+    "text": "Sir, Sreenivas Goud here, I'm waiting near the Ameerpet metro station.",
+    "entities": [
+      {
+        "surface": "Sreenivas Goud",
+        "entity_id": "person_003",
+        "type": "person"
+      },
+      {
+        "surface": "Ameerpet",
+        "entity_id": "place_005",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s007",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Srinivasan Iyer and wish him a happy birthday.",
+    "entities": [
+      {
+        "surface": "Srinivasan Iyer",
+        "entity_id": "person_027",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_027",
+      "time": null
+    }
+  },
+  {
+    "id": "s008",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to pay the rent to Subrahmanyam Garu on the 5th.",
+    "entities": [
+      {
+        "surface": "Subrahmanyam Garu",
+        "entity_id": "person_008",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_008",
+      "time": "the 5th"
+    }
+  },
+  {
+    "id": "s009",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_007",
+    "text": "Hello, Smt. Padmavathi here from flat 302, your parcel is with me.",
+    "entities": [
+      {
+        "surface": "Smt. Padmavathi",
+        "entity_id": "person_007",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s010",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ravi Teja ko call karo, pucho Warangal pahunch gaya ya nahi.",
+    "entities": [
+      {
+        "surface": "Ravi Teja",
+        "entity_id": "person_004",
+        "type": "person"
+      },
+      {
+        "surface": "Warangal",
+        "entity_id": "place_068",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_004",
+      "time": null
+    }
+  },
+  {
+    "id": "s011",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Tell Ravi Tej I'll skip badminton on Sunday.",
+    "entities": [
+      {
+        "surface": "Ravi Tej",
+        "entity_id": "person_005",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_005",
+      "time": "Sunday"
+    }
+  },
+  {
+    "id": "s012",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book an appointment with Dr. Ananthapadmanabhan for next Tuesday morning.",
+    "entities": [
+      {
+        "surface": "Dr. Ananthapadmanabhan",
+        "entity_id": "person_048",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "person_048",
+      "time": "next Tuesday morning"
+    }
+  },
+  {
+    "id": "s013",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Satyanarayana Murthy garu on Sunday evening.",
+    "entities": [
+      {
+        "surface": "Satyanarayana Murthy",
+        "entity_id": "person_022",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_022",
+      "time": "Sunday evening"
+    }
+  },
+  {
+    "id": "s014",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_013",
+    "text": "Sir, Ramulu Anna here, tomatoes fresh ga unnayi, two kilos teesukuraana?",
+    "entities": [
+      {
+        "surface": "Ramulu Anna",
+        "entity_id": "person_013",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s015",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Lakshmi Ganapathi Tiffins and check if they deliver to Begumpet.",
+    "entities": [
+      {
+        "surface": "Lakshmi Ganapathi Tiffins",
+        "entity_id": "business_003",
+        "type": "business"
+      },
+      {
+        "surface": "Begumpet",
+        "entity_id": "place_013",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_003",
+      "time": null
+    }
+  },
+  {
+    "id": "s016",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Hitech City lo traffic ela undi? I need to reach Nanakramguda by 9.",
+    "entities": [
+      {
+        "surface": "Hitech City",
+        "entity_id": "place_018",
+        "type": "place"
+      },
+      {
+        "surface": "Nanakramguda",
+        "entity_id": "place_021",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s017",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
+    "entities": [
+      {
+        "surface": "Kondapur",
+        "entity_id": "place_007",
+        "type": "place"
+      },
+      {
+        "surface": "Rajiv Gandhi International Airport",
+        "entity_id": "place_067",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "place_067",
+      "time": "5 AM"
+    }
+  },
+  {
+    "id": "s018",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_019",
+    "text": "Hi, Keerthi Reddy here, can you join the review call at 3 PM?",
+    "entities": [
+      {
+        "surface": "Keerthi Reddy",
+        "entity_id": "person_019",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_019",
+      "time": "3 PM"
+    }
+  },
+  {
+    "id": "s019",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Lakshmi Prasanna that I'll come to Secunderabad on Saturday.",
+    "entities": [
+      {
+        "surface": "Lakshmi Prasanna",
+        "entity_id": "person_006",
+        "type": "person"
+      },
+      {
+        "surface": "Secunderabad",
+        "entity_id": "place_004",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_006",
+      "time": "Saturday"
+    }
+  },
+  {
+    "id": "s020",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
+    "entities": [
+      {
+        "surface": "Vijayalakshmi",
+        "entity_id": "person_015",
+        "type": "person"
+      },
+      {
+        "surface": "Dilsukhnagar",
+        "entity_id": "place_009",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_015",
+      "time": null
+    }
+  },
+  {
+    "id": "s021",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to take mom to Dr. Prameela Rani on Friday at 11.",
+    "entities": [
+      {
+        "surface": "Dr. Prameela Rani",
+        "entity_id": "person_020",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_020",
+      "time": "Friday at 11"
+    }
+  },
+  {
+    "id": "s022",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a dental cleaning at Venkataramana Dental Care for Saturday afternoon.",
+    "entities": [
+      {
+        "surface": "Venkataramana Dental Care",
+        "entity_id": "business_012",
+        "type": "business"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_012",
+      "time": "Saturday afternoon"
+    }
+  },
+  {
+    "id": "s023",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Dr. Subramanian and move the root canal to Monday.",
+    "entities": [
+      {
+        "surface": "Dr. Subramanian",
+        "entity_id": "person_028",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_028",
+      "time": "Monday"
+    }
+  },
+  {
+    "id": "s024",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_030",
+    "text": "Meenakshi Sundaram speaking, your GST papers are ready, please collect them.",
+    "entities": [
+      {
+        "surface": "Meenakshi Sundaram",
+        "entity_id": "person_030",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s025",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Thirumalai Selvan will pay the rent late this month, remind me on the 10th.",
+    "entities": [
+      {
+        "surface": "Thirumalai Selvan",
+        "entity_id": "person_031",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_031",
+      "time": "the 10th"
+    }
+  },
+  {
+    "id": "s026",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Lakshmi Narayanan about the income tax filing before Friday.",
+    "entities": [
+      {
+        "surface": "Lakshmi Narayanan",
+        "entity_id": "person_032",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_032",
+      "time": "before Friday"
+    }
+  },
+  {
+    "id": "s027",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Chettinad Spice Kitchen in Velachery for Sunday lunch.",
+    "entities": [
+      {
+        "surface": "Chettinad Spice Kitchen",
+        "entity_id": "business_048",
+        "type": "business"
+      },
+      {
+        "surface": "Velachery",
+        "entity_id": "place_085",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_048",
+      "time": "Sunday lunch"
+    }
+  },
+  {
+    "id": "s028",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Manjunath Gowda and fix the cab to Koramangala for 6 PM.",
+    "entities": [
+      {
+        "surface": "Manjunath Gowda",
+        "entity_id": "person_037",
+        "type": "person"
+      },
+      {
+        "surface": "Koramangala",
+        "entity_id": "place_093",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_037",
+      "time": "6 PM"
+    }
+  },
+  {
+    "id": "s029",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to send flowers to Raghavendra Bhat before the pooja on Thursday.",
+    "entities": [
+      {
+        "surface": "Raghavendra Bhat",
+        "entity_id": "person_042",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_042",
+      "time": "Thursday"
+    }
+  },
+  {
+    "id": "s030",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_044",
+    "text": "Saar, Chikkanna here, the balcony plants need new pots.",
+    "entities": [
+      {
+        "surface": "Chikkanna",
+        "entity_id": "person_044",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s031",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Udupi Krishna Bhavan in Basavanagudi for breakfast tomorrow.",
+    "entities": [
+      {
+        "surface": "Udupi Krishna Bhavan",
+        "entity_id": "business_051",
+        "type": "business"
+      },
+      {
+        "surface": "Basavanagudi",
+        "entity_id": "place_098",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_051",
+      "time": "breakfast tomorrow"
+    }
+  },
+  {
+    "id": "s032",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Unnikrishnan Nair that the design review is at 4 PM.",
+    "entities": [
+      {
+        "surface": "Unnikrishnan Nair",
+        "entity_id": "person_046",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_046",
+      "time": "4 PM"
+    }
+  },
+  {
+    "id": "s033",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
+    "entities": [
+      {
+        "surface": "Sreekumar Menon",
+        "entity_id": "person_047",
+        "type": "person"
+      },
+      {
+        "surface": "Thiruvananthapuram",
+        "entity_id": "place_103",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_047",
+      "time": "7"
+    }
+  },
+  {
+    "id": "s034",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Jayalakshmi Warrier about the music class on Wednesday.",
+    "entities": [
+      {
+        "surface": "Jayalakshmi Warrier",
+        "entity_id": "person_052",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_052",
+      "time": "Wednesday"
+    }
+  },
+  {
+    "id": "s035",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ask Vishnu Namboothiri for a good muhurtham for the housewarming.",
+    "entities": [
+      {
+        "surface": "Vishnu Namboothiri",
+        "entity_id": "person_053",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_053",
+      "time": null
+    }
+  },
+  {
+    "id": "s036",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_054",
+    "text": "Sharma Ji bol raha hoon, society meeting kal shaam saat baje hai.",
+    "entities": [
+      {
+        "surface": "Sharma Ji",
+        "entity_id": "person_054",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_054",
+      "time": "kal shaam saat baje"
+    }
+  },
+  {
+    "id": "s037",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Laxmi Devi ko bolo kal subah nahi aana hai.",
+    "entities": [
+      {
+        "surface": "Laxmi Devi",
+        "entity_id": "person_060",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_060",
+      "time": "kal subah"
+    }
+  },
+  {
+    "id": "s038",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Sunita Agarwal and ask about the advance tax deadline.",
+    "entities": [
+      {
+        "surface": "Sunita Agarwal",
+        "entity_id": "person_058",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_058",
+      "time": null
+    }
+  },
+  {
+    "id": "s039",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
+    "entities": [
+      {
+        "surface": "Agarwal Mithai Bhandar",
+        "entity_id": "business_025",
+        "type": "business"
+      },
+      {
+        "surface": "Koti",
+        "entity_id": "place_029",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_025",
+      "time": "Friday"
+    }
+  },
+  {
+    "id": "s040",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Dnyaneshwar Patil about the wardrobe on Monday.",
+    "entities": [
+      {
+        "surface": "Dnyaneshwar Patil",
+        "entity_id": "person_067",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_067",
+      "time": "Monday"
+    }
+  },
+  {
+    "id": "s041",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Aniruddha Phadke that the floor plan looks good.",
+    "entities": [
+      {
+        "surface": "Aniruddha Phadke",
+        "entity_id": "person_071",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_071",
+      "time": null
+    }
+  },
+  {
+    "id": "s042",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Subhashis Chattopadhyay and confirm the thesis meeting at 11 AM.",
+    "entities": [
+      {
+        "surface": "Subhashis Chattopadhyay",
+        "entity_id": "person_073",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_073",
+      "time": "11 AM"
+    }
+  },
+  {
+    "id": "s043",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_077",
+    "text": "Hello, Dr. Tanushree Sen here, your skin test results are normal.",
+    "entities": [
+      {
+        "surface": "Dr. Tanushree Sen",
+        "entity_id": "person_077",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s044",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Maa Tara Medical Store in Howrah and check if they have the inhaler.",
+    "entities": [
+      {
+        "surface": "Maa Tara Medical Store",
+        "entity_id": "business_056",
+        "type": "business"
+      },
+      {
+        "surface": "Howrah",
+        "entity_id": "place_118",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_056",
+      "time": null
+    }
+  },
+  {
+    "id": "s045",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Gurpreet Singh to pick me up from Amritsar station at 6.",
+    "entities": [
+      {
+        "surface": "Gurpreet Singh",
+        "entity_id": "person_081",
+        "type": "person"
+      },
+      {
+        "surface": "Amritsar",
+        "entity_id": "place_133",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_081",
+      "time": "6"
+    }
+  },
+  {
+    "id": "s046",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Harjeet Kaur aunty and wish her for Lohri.",
+    "entities": [
+      {
+        "surface": "Harjeet Kaur",
+        "entity_id": "person_082",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_082",
+      "time": null
+    }
+  },
+  {
+    "id": "s047",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Sher-e-Punjab Dhaba in Gachibowli for tonight.",
+    "entities": [
+      {
+        "surface": "Sher-e-Punjab Dhaba",
+        "entity_id": "business_042",
+        "type": "business"
+      },
+      {
+        "surface": "Gachibowli",
+        "entity_id": "place_003",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_042",
+      "time": "tonight"
+    }
+  },
+  {
+    "id": "s048",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Bhavesh Thakkar about the gold chain on Saturday.",
+    "entities": [
+      {
+        "surface": "Bhavesh Thakkar",
+        "entity_id": "person_092",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_092",
+      "time": "Saturday"
+    }
+  },
+  {
+    "id": "s049",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Jignesh Shah ne bola stationery kal tak ready ho jayegi.",
+    "entities": [
+      {
+        "surface": "Jignesh Shah",
+        "entity_id": "person_090",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s050",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Shree Ambica Khakhra House in Ahmedabad and order two boxes.",
+    "entities": [
+      {
+        "surface": "Shree Ambica Khakhra House",
+        "entity_id": "business_057",
+        "type": "business"
+      },
+      {
+        "surface": "Ahmedabad",
+        "entity_id": "place_137",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_057",
+      "time": null
+    }
+  },
+  {
+    "id": "s051",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Debasish Mohapatra that I'll reach Bhubaneswar on Friday night.",
+    "entities": [
+      {
+        "surface": "Debasish Mohapatra",
+        "entity_id": "person_095",
+        "type": "person"
+      },
+      {
+        "surface": "Bhubaneswar",
+        "entity_id": "place_141",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_095",
+      "time": "Friday night"
+    }
+  },
+  {
+    "id": "s052",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Jagannath Bhojanalaya for Sunday lunch.",
+    "entities": [
+      {
+        "surface": "Jagannath Bhojanalaya",
+        "entity_id": "business_058",
+        "type": "business"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_058",
+      "time": "Sunday lunch"
+    }
+  },
+  {
+    "id": "s053",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Smruti Rekha Behera at the hospital tomorrow.",
+    "entities": [
+      {
+        "surface": "Smruti Rekha Behera",
+        "entity_id": "person_100",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_100",
+      "time": "tomorrow"
+    }
+  },
+  {
+    "id": "s054",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Mohammed Abdul Khader and ask if the car is ready.",
+    "entities": [
+      {
+        "surface": "Mohammed Abdul Khader",
+        "entity_id": "person_101",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_101",
+      "time": null
+    }
+  },
+  {
+    "id": "s055",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_102",
+    "text": "Syed Imtiaz Hussain here, stuck in traffic at Mehdipatnam, start the meeting without me.",
+    "entities": [
+      {
+        "surface": "Syed Imtiaz Hussain",
+        "entity_id": "person_102",
+        "type": "person"
+      },
+      {
+        "surface": "Mehdipatnam",
+        "entity_id": "place_015",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s056",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book an appointment with Dr. Fatima Zehra for my son on Thursday at 5 PM.",
+    "entities": [
+      {
+        "surface": "Dr. Fatima Zehra",
+        "entity_id": "person_103",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "person_103",
+      "time": "Thursday at 5 PM"
+    }
+  },
+  {
+    "id": "s057",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Shaik Khaja Moinuddin ko bolo AC service Sunday ko karna hai.",
+    "entities": [
+      {
+        "surface": "Shaik Khaja Moinuddin",
+        "entity_id": "person_106",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_106",
+      "time": "Sunday"
+    }
+  },
+  {
+    "id": "s058",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to buy mutton from Naseeruddin Qureshi on Saturday morning.",
+    "entities": [
+      {
+        "surface": "Naseeruddin Qureshi",
+        "entity_id": "person_107",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_107",
+      "time": "Saturday morning"
+    }
+  },
+  {
+    "id": "s059",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Nawab Zaika Biryani House in Tolichowki for 9 PM.",
+    "entities": [
+      {
+        "surface": "Nawab Zaika Biryani House",
+        "entity_id": "business_008",
+        "type": "business"
+      },
+      {
+        "surface": "Tolichowki",
+        "entity_id": "place_014",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_008",
+      "time": "9 PM"
+    }
+  },
+  {
+    "id": "s060",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Moazzam Book House in Abids and ask if the novel is in stock.",
+    "entities": [
+      {
+        "surface": "Moazzam Book House",
+        "entity_id": "business_021",
+        "type": "business"
+      },
+      {
+        "surface": "Abids",
+        "entity_id": "place_028",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_021",
+      "time": null
+    }
+  },
+  {
+    "id": "s061",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Fr. Anthony Raj that choir practice is at 6 on Saturday.",
+    "entities": [
+      {
+        "surface": "Fr. Anthony Raj",
+        "entity_id": "person_116",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_116",
+      "time": "6 on Saturday"
+    }
+  },
+  {
+    "id": "s062",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "incoming",
+    "caller_contact_id": "person_120",
+    "text": "This is Dr. Benjamin Jebakumar, please bring your knee X-ray on Monday.",
+    "entities": [
+      {
+        "surface": "Dr. Benjamin Jebakumar",
+        "entity_id": "person_120",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_120",
+      "time": "Monday"
+    }
+  },
+  {
+    "id": "s063",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call St. Joseph's Convent School in Secunderabad and ask about admissions.",
+    "entities": [
+      {
+        "surface": "St. Joseph's Convent School",
+        "entity_id": "business_045",
+        "type": "business"
+      },
+      {
+        "surface": "Secunderabad",
+        "entity_id": "place_004",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_045",
+      "time": null
+    }
+  },
+  {
+    "id": "s064",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to pick up the cake from Al Noor Bakery in Yousufguda at 7 PM.",
+    "entities": [
+      {
+        "surface": "Al Noor Bakery",
+        "entity_id": "business_034",
+        "type": "business"
+      },
+      {
+        "surface": "Yousufguda",
+        "entity_id": "place_057",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "business_034",
+      "time": "7 PM"
+    }
+  },
+  {
+    "id": "s065",
+    "split": "dev",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a haircut at Style Zone Unisex Salon in Madhapur for Sunday 11 AM.",
+    "entities": [
+      {
+        "surface": "Style Zone Unisex Salon",
+        "entity_id": "business_031",
+        "type": "business"
+      },
+      {
+        "surface": "Madhapur",
+        "entity_id": "place_006",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "business_031",
+      "time": "Sunday 11 AM"
+    }
+  },
+  {
+    "id": "s066",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Kukatpally nunchi Begumpet ki auto book cheyyi.",
+    "entities": [
+      {
+        "surface": "Kukatpally",
+        "entity_id": "place_002",
+        "type": "place"
+      },
+      {
+        "surface": "Begumpet",
+        "entity_id": "place_013",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": "place_013",
+      "time": null
+    }
+  },
+  {
+    "id": "s067",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Bhagyalakshmi Jewellers in Panjagutta and ask if the earrings are ready.",
+    "entities": [
+      {
+        "surface": "Bhagyalakshmi Jewellers",
+        "entity_id": "business_037",
+        "type": "business"
+      },
+      {
+        "surface": "Panjagutta",
+        "entity_id": "place_024",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "business_037",
+      "time": null
+    }
+  },
+  {
+    "id": "s068",
+    "split": "test",
+    "category": "in_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to visit Padmavathi Nursing Home in Malakpet at 4 PM.",
+    "entities": [
+      {
+        "surface": "Padmavathi Nursing Home",
+        "entity_id": "business_023",
+        "type": "business"
+      },
+      {
+        "surface": "Malakpet",
+        "entity_id": "place_034",
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "correct",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "business_023",
+      "time": "4 PM"
+    }
+  },
+  {
+    "id": "s069",
+    "split": "dev",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Tejaswini and ask if she reached Nalgonda.",
+    "entities": [
+      {
+        "surface": "Tejaswini",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Nalgonda",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s070",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hi, this is Kavya from the Narsingi branch, your cheque book is ready.",
+    "entities": [
+      {
+        "surface": "Kavya",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Narsingi",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s071",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Shree Gokul Bhojnalaya in Mehsana for Sunday.",
+    "entities": [
+      {
+        "surface": "Shree Gokul Bhojnalaya",
+        "entity_id": null,
+        "type": "business"
+      },
+      {
+        "surface": "Mehsana",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": null,
+      "time": "Sunday"
+    }
+  },
+  {
+    "id": "s072",
+    "split": "dev",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Abhinav Kashyap that the match is at 6.",
+    "entities": [
+      {
+        "surface": "Abhinav Kashyap",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": null,
+      "time": "6"
+    }
+  },
+  {
+    "id": "s073",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Thangamani Paati on Sunday.",
+    "entities": [
+      {
+        "surface": "Thangamani Paati",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "Sunday"
+    }
+  },
+  {
+    "id": "s074",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Yuvaraj Bhupathi about the plot in Shadnagar.",
+    "entities": [
+      {
+        "surface": "Yuvaraj Bhupathi",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Shadnagar",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s075",
+    "split": "dev",
+    "category": "out_of_kb",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Namaste, Pradeep Lodha bol raha hoon, Indore se.",
+    "entities": [
+      {
+        "surface": "Pradeep Lodha",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Indore",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s076",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a cab to Ghatkesar railway station at 6 AM.",
+    "entities": [
+      {
+        "surface": "Ghatkesar",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": null,
+      "time": "6 AM"
+    }
+  },
+  {
+    "id": "s077",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Nivedita Hazarika that I'll be in Guwahati next week.",
+    "entities": [
+      {
+        "surface": "Nivedita Hazarika",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Guwahati",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": null,
+      "time": "next week"
+    }
+  },
+  {
+    "id": "s078",
+    "split": "dev",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to collect the suit from Mansoor Tailors on Friday.",
+    "entities": [
+      {
+        "surface": "Mansoor Tailors",
+        "entity_id": null,
+        "type": "business"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "Friday"
+    }
+  },
+  {
+    "id": "s079",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Ezhil Arasan and ask about the Tiruppur order.",
+    "entities": [
+      {
+        "surface": "Ezhil Arasan",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Tiruppur",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s080",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Lohit ko bolo Darjeeling trip cancel hai.",
+    "entities": [
+      {
+        "surface": "Lohit",
+        "entity_id": null,
+        "type": "person"
+      },
+      {
+        "surface": "Darjeeling",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s081",
+    "split": "test",
+    "category": "out_of_kb",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Mayuri Darshini in Shivamogga for lunch.",
+    "entities": [
+      {
+        "surface": "Mayuri Darshini",
+        "entity_id": null,
+        "type": "business"
+      },
+      {
+        "surface": "Shivamogga",
+        "entity_id": null,
+        "type": "place"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": null,
+      "time": "lunch"
+    }
+  },
+  {
+    "id": "s082",
+    "split": "dev",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Can you cook at home tonight? I'll bring the vegetables.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s083",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "The cook at the polling booth said lunch is ready.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s084",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "We are lucky the rain stopped before the match.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s085",
+    "split": "dev",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "It's very sunny today, so carry a cap.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s086",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to buy roses for the anniversary on Saturday.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "Saturday"
+    }
+  },
+  {
+    "id": "s087",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to drink water every two hours.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "every two hours"
+    }
+  },
+  {
+    "id": "s088",
+    "split": "dev",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Wake me up at six thirty tomorrow morning.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "six thirty tomorrow morning"
+    }
+  },
+  {
+    "id": "s089",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Kal meeting cancel ho gayi, ghar pe hi rahunga.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s090",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ee roju chala vedi ga undi, bayataki vellaku.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s091",
+    "split": "dev",
+    "category": "control",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hello sir, your order has been dispatched and will arrive by evening.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s092",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "My battery is low, I'll call you back in ten minutes.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s093",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Is the pharmacy near the bus stop open on Sundays?",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s094",
+    "split": "test",
+    "category": "control",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Lucky draw results will be announced in the hall tomorrow.",
+    "entities": [],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s095",
+    "split": "dev",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Ask Harshil to send the invoice by Friday.",
+    "entities": [
+      {
+        "surface": "Harshil",
+        "entity_id": "person_123",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_123",
+      "time": "by Friday"
+    }
+  },
+  {
+    "id": "s096",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Harshit and move tomorrow's gym session to 7 AM.",
+    "entities": [
+      {
+        "surface": "Harshit",
+        "entity_id": "person_122",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_122",
+      "time": "tomorrow 7 AM"
+    }
+  },
+  {
+    "id": "s097",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Rohith to check when my car service will be done.",
+    "entities": [
+      {
+        "surface": "Rohith",
+        "entity_id": "person_124",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_124",
+      "time": null
+    }
+  },
+  {
+    "id": "s098",
+    "split": "dev",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to send the project deck to Pranay before the client call on Monday.",
+    "entities": [
+      {
+        "surface": "Pranay",
+        "entity_id": "person_128",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": "person_128",
+      "time": "Monday"
+    }
+  },
+  {
+    "id": "s099",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Tell Swati my daughter will miss dance class today.",
+    "entities": [
+      {
+        "surface": "Swati",
+        "entity_id": "person_129",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": "person_129",
+      "time": "today"
+    }
+  },
+  {
+    "id": "s100",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Anjani and ask if maths tuition is on this evening.",
+    "entities": [
+      {
+        "surface": "Anjani",
+        "entity_id": "person_126",
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "resolve",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": "person_126",
+      "time": "this evening"
+    }
+  },
+  {
+    "id": "s101",
+    "split": "dev",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Harshit at 5.",
+    "entities": [
+      {
+        "surface": "Harshit",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_122",
+      "person_123"
+    ],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": null,
+      "time": "5"
+    }
+  },
+  {
+    "id": "s102",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Send a message to Sai, I'll reach in 10 minutes.",
+    "entities": [
+      {
+        "surface": "Sai",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_010",
+      "person_125"
+    ],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": null,
+      "time": "in 10 minutes"
+    }
+  },
+  {
+    "id": "s103",
+    "split": "dev",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Remind me to call Pranav tomorrow morning.",
+    "entities": [
+      {
+        "surface": "Pranav",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_127",
+      "person_128"
+    ],
+    "expected_action": {
+      "type": "remind",
+      "target_entity_id": null,
+      "time": "tomorrow morning"
+    }
+  },
+  {
+    "id": "s104",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Call Rohit at 6 PM.",
+    "entities": [
+      {
+        "surface": "Rohit",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_059",
+      "person_124"
+    ],
+    "expected_action": {
+      "type": "call",
+      "target_entity_id": null,
+      "time": "6 PM"
+    }
+  },
+  {
+    "id": "s105",
+    "split": "test",
+    "category": "ambiguous",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Message Swathi that I'm running late.",
+    "entities": [
+      {
+        "surface": "Swathi",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_025",
+      "person_129"
+    ],
+    "expected_action": {
+      "type": "message",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s106",
+    "split": "dev",
+    "category": "context_mismatch",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Raju Hotel tomorrow at 9 AM.",
+    "entities": [
+      {
+        "surface": "Raju Hotel",
+        "entity_id": null,
+        "type": "business"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_130"
+    ],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": null,
+      "time": "tomorrow at 9 AM"
+    }
+  },
+  {
+    "id": "s107",
+    "split": "test",
+    "category": "context_mismatch",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Sharma Ji Dhaba for tonight.",
+    "entities": [
+      {
+        "surface": "Sharma Ji Dhaba",
+        "entity_id": null,
+        "type": "business"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_054"
+    ],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": null,
+      "time": "tonight"
+    }
+  },
+  {
+    "id": "s108",
+    "split": "test",
+    "category": "context_mismatch",
+    "direction": "outgoing",
+    "caller_contact_id": null,
+    "text": "Book a table at Venkataramana Restaurant for Sunday lunch.",
+    "entities": [
+      {
+        "surface": "Venkataramana Restaurant",
+        "entity_id": null,
+        "type": "business"
+      }
+    ],
+    "expected_behaviour": "clarify",
+    "candidate_ids": [
+      "person_001",
+      "business_012"
+    ],
+    "expected_action": {
+      "type": "book",
+      "target_entity_id": null,
+      "time": "Sunday lunch"
+    }
+  },
+  {
+    "id": "s109",
+    "split": "dev",
+    "category": "context_mismatch",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hi, I'm Raju from the bank, calling about your credit card.",
+    "entities": [
+      {
+        "surface": "Raju",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s110",
+    "split": "test",
+    "category": "context_mismatch",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hello sir, this is Srinivas from the broadband company, your plan expires today.",
+    "entities": [
+      {
+        "surface": "Srinivas",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s111",
+    "split": "dev",
+    "category": "context_mismatch",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Good morning, Dr. Subramanian here from City Care, calling about a health insurance offer.",
+    "entities": [
+      {
+        "surface": "Dr. Subramanian",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s112",
+    "split": "test",
+    "category": "context_mismatch",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hi, this is Anjali from the home loans team, is this a good time to talk?",
+    "entities": [
+      {
+        "surface": "Anjali",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  },
+  {
+    "id": "s113",
+    "split": "test",
+    "category": "context_mismatch",
+    "direction": "incoming",
+    "caller_contact_id": null,
+    "text": "Hello, Manju speaking from the courier office, your parcel is at the hub.",
+    "entities": [
+      {
+        "surface": "Manju",
+        "entity_id": null,
+        "type": "person"
+      }
+    ],
+    "expected_behaviour": "keep",
+    "candidate_ids": [],
+    "expected_action": {
+      "type": "none",
+      "target_entity_id": null,
+      "time": null
+    }
+  }
+]

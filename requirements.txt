@@ -1,12 +1,17 @@
 # Pehchaan — Python dependencies (Module 1 only; later modules will add more).
 # Versions are pinned so the project installs the same way on your laptop and on AWS.
 
-fastapi==0.115.6           # web framework for our API
+fastapi==0.165.0           # web framework for our API
 uvicorn[standard]==0.34.0  # the server that runs the FastAPI app
 pydantic==2.10.4           # data validation with typed models
 pydantic-settings==2.7.1   # load settings from .env / environment variables
 python-dotenv==1.0.1       # .env file reader (used by pydantic-settings)
-openai==1.59.7             # official OpenAI SDK
+openai==3.57.0             # official OpenAI SDK (Module 3: newer version needed for TTS "instructions")
 pytest==8.3.4              # test runner
 httpx==0.28.1              # HTTP client; FastAPI's TestClient needs it
-anyio==4.8.0               # async helper used by FastAPI; pinned to match this Starlette version (avoids a deprecation warning)
+anyio==4.16.0              # async helper used by FastAPI and the OpenAI SDK (the SDK needs >=4.10)
+
+# --- Module 3: audio for the test set ---
+numpy==2.5.5               # arrays of audio samples
+scipy==1.18.1              # resampling (8 kHz) and the band-pass filter for "phone quality" audio
+soundfile==0.14.0          # read/write WAV files (no ffmpeg needed)

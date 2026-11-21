@@ -1,0 +1,167 @@
+"""
+app/testset/validate.py — loads the test set and checks it against the knowledge base.
+
+WHAT: `load_testset()` reads data/testset/sentences.json into `Sentence` models.
+      `validate_testset()` runs rules that need the KB or the whole set:
+        - sentence ids are unique
+        - every entity_id / caller_contact_id / candidate_id / action target exists in the KB,
+          and has the right type
+        - each category's rules hold (e.g. control sentences have no entities,
+          out_of_kb names really are NOT in the KB)
+        - both the dev and test splits contain every category
+      Run it directly for a short summary:  python -m app.testset.validate
+WHY:  If the answer key is wrong, every reported number is wrong. These checks make the
+      ground truth trustworthy before we spend money transcribing audio against it.
+"""
+
+import json
+import sys
+from collections import Counter
+from pathlib import Path
+
+from app.config import PROJECT_ROOT
+from app.kb.loader import _normalise, all_surface_forms, get_by_id
+from app.testset.models import Sentence
+
+TESTSET_PATH = PROJECT_ROOT / "data" / "testset" / "sentences.json"
+
+# Planned size of each category (min, max), from the Module 3 design.
+EXPECTED_SIZES = {
+    "in_kb": (60, 70),
+    "out_of_kb": (10, 15),
+    "control": (10, 15),
+    "ambiguous": (8, 12),
+    "context_mismatch": (6, 10),
+}
+
+
+class TestsetValidationError(ValueError):
+    """Raised when the test set breaks one of our rules."""
+
+    __test__ = False  # tell pytest this is not a test class, despite the name
+
+
+def load_testset(path: Path = TESTSET_PATH) -> list[Sentence]:
+    """Read and validate (one sentence at a time) every test sentence."""
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    return [Sentence.model_validate(row) for row in rows]
+
+
+def _check_id(problems: list[str], sid: str, what: str, entity_id: str, expected_type: str | None = None):
+    """Helper: record a problem if a KB id does not exist or has the wrong type."""
+    entity = get_by_id(entity_id)
+    if entity is None:
+        problems.append(f"{sid}: {what} {entity_id!r} is not in the KB")
+    elif expected_type and entity.type != expected_type:
+        problems.append(f"{sid}: {what} {entity_id!r} is a {entity.type}, expected {expected_type}")
+
+
+def validate_testset(sentences: list[Sentence]) -> None:
+    """Whole-set checks. Collects every problem and raises them together."""
+    problems: list[str] = []
+    kb_forms = all_surface_forms()  # every KB name and alias, lower-cased
+
+    # 1. Unique sentence ids.
+    counts = Counter(s.id for s in sentences)
+    problems += [f"duplicate sentence id {sid}" for sid, n in counts.items() if n > 1]
+
+    for s in sentences:
+        # 2. Every KB reference must exist (and be the right type).
+        for span in s.entities:
+            if span.entity_id is not None:
+                _check_id(problems, s.id, "entity_id", span.entity_id, span.type)
+        if s.caller_contact_id is not None:
+            _check_id(problems, s.id, "caller_contact_id", s.caller_contact_id, "person")
+        for cid in s.candidate_ids:
+            _check_id(problems, s.id, "candidate_id", cid)
+        if s.expected_action.target_entity_id is not None:
+            _check_id(problems, s.id, "action target", s.expected_action.target_entity_id)
+
+        linked = [span for span in s.entities if span.entity_id is not None]
+
+        # 3. Category rules: each category tests one specific behaviour.
+        if s.category == "in_kb":
+            if s.expected_behaviour != "correct" or not s.entities or len(linked) != len(s.entities):
+                problems.append(f"{s.id}: in_kb needs behaviour 'correct' and every entity linked to the KB")
+            # The script we read aloud uses the CORRECT spelling, so the ground truth is
+            # exactly the canonical name. Speech-to-text then has to get it right (or we fix it).
+            for span in linked:
+                entity = get_by_id(span.entity_id)
+                if entity is not None and span.surface != entity.name:
+                    problems.append(f"{s.id}: in_kb surface {span.surface!r} is not the canonical name {entity.name!r}")
+        elif s.category == "out_of_kb":
+            if s.expected_behaviour != "keep" or not s.entities or linked:
+                problems.append(f"{s.id}: out_of_kb needs behaviour 'keep' and only unlinked entities")
+            # The whole point: these names must truly be absent from the KB.
+            for span in s.entities:
+                if _normalise(span.surface) in kb_forms:
+                    problems.append(f"{s.id}: out_of_kb name {span.surface!r} IS in the KB")
+        elif s.category == "control":
+            if s.expected_behaviour != "keep" or s.entities:
+                problems.append(f"{s.id}: control needs behaviour 'keep' and no entities")
+        elif s.category == "ambiguous":
+            if s.expected_behaviour not in ("resolve", "clarify"):
+                problems.append(f"{s.id}: ambiguous needs behaviour 'resolve' or 'clarify'")
+            if s.expected_behaviour == "clarify" and len(s.candidate_ids) < 2:
+                problems.append(f"{s.id}: ambiguous clarify needs both near-identical candidates")
+        elif s.category == "context_mismatch":
+            if s.expected_behaviour not in ("clarify", "keep") or linked:
+                problems.append(f"{s.id}: context_mismatch needs 'clarify' or 'keep' and no linked entities")
+
+        # 4. "resolve" must name exactly one KB entity, and the action must point at it.
+        if s.expected_behaviour == "resolve":
+            if len(linked) != 1:
+                problems.append(f"{s.id}: resolve needs exactly one linked entity")
+            elif s.expected_action.target_entity_id not in (None, linked[0].entity_id):
+                problems.append(f"{s.id}: resolve action target differs from the resolved entity")
+
+    # 5. Sizes stay close to the plan, so no category quietly shrinks when the file is edited.
+    #    Only checked for the real file (a handful of sentences in a unit test is fine).
+    if len(sentences) >= 50:
+        for cat, (low, high) in EXPECTED_SIZES.items():
+            n = sum(s.category == cat for s in sentences)
+            if not low <= n <= high:
+                problems.append(f"category {cat!r} has {n} sentences, expected {low}-{high}")
+        n_dev = sum(s.split == "dev" for s in sentences)
+        if not 30 <= n_dev <= 40:
+            problems.append(f"dev split has {n_dev} sentences, expected 30-40")
+
+    # 6. Stratified split: dev and test must each contain every category,
+    #    otherwise tuning on dev would never see some kinds of sentence.
+    categories = {s.category for s in sentences}
+    for split in ("dev", "test"):
+        missing = categories - {s.category for s in sentences if s.split == split}
+        if missing:
+            problems.append(f"split {split!r} is missing categories: {sorted(missing)}")
+
+    if problems:
+        raise TestsetValidationError("Test set is invalid:\n  - " + "\n  - ".join(problems))
+
+
+def main() -> int:
+    """Load, validate and print a short summary table."""
+    try:
+        sentences = load_testset()
+        validate_testset(sentences)
+    except (TestsetValidationError, ValueError) as err:
+        print(f"[ERROR] {err}")
+        return 1
+
+    print(f"Pehchaan test set: {len(sentences)} sentences\n")
+    print(f"  {'category':<18}{'dev':>5}{'test':>6}{'total':>7}")
+    for cat in ("in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch"):
+        dev = sum(s.category == cat and s.split == "dev" for s in sentences)
+        test = sum(s.category == cat and s.split == "test" for s in sentences)
+        print(f"  {cat:<18}{dev:>5}{test:>6}{dev + test:>7}")
+    dev_total = sum(s.split == "dev" for s in sentences)
+    print(f"  {'TOTAL':<18}{dev_total:>5}{len(sentences) - dev_total:>6}{len(sentences):>7}")
+
+    print("\nBy expected behaviour:", dict(Counter(s.expected_behaviour for s in sentences)))
+    print("By direction:", dict(Counter(s.direction for s in sentences)))
+    print("Entity mentions:", sum(len(s.entities) for s in sentences))
+    print("\n[OK] Test set loaded and validated against the knowledge base.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

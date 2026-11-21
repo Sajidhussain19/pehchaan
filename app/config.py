@@ -44,8 +44,11 @@ class Settings(BaseSettings):
     chat_model: str = "gpt-4o-mini"
     # Embedding model for semantic matching (Module 7).
     embedding_model: str = "text-embedding-3-small"
-    # Text-to-speech model for generating test audio (Module 3).
+    # Text-to-speech model for generating test audio (Module 3). It accepts an
+    # "instructions" prompt (accent, pace). If it is unavailable on the account, we fall back
+    # to the older tts-1 model, which has no instructions but always works.
     tts_model: str = "gpt-4o-mini-tts"
+    tts_fallback_model: str = "tts-1"
 
     # --- App info ---
     project_name: str = "Pehchaan"

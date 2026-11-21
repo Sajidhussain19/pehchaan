@@ -39,6 +39,15 @@ Headline metric: **entity error rate**. We also report WER and action accuracy.
 
 Judges score: a working end-to-end demo, how AI-native it is, presentation and craft.
 
+## Design principles
+1. The knowledge base is the user's personal context (hundreds of entries), not all names in India.
+   People and businesses come from the user; places come from a public list of Indian localities.
+2. Fix what we know, ask when unsure, leave alone what we don't know. Never invent a name.
+3. A name matching is not enough; it must fit the context. (Dr. Raju the doctor is not "Raju Hotel".
+   The same name from an unknown caller is a different person.)
+4. When the top two matches are too close (Harshit vs Harshil) and context doesn't separate them,
+   ask instead of guessing. A wrong action is worse than a question.
+
 ## Tech stack
 Python 3.11+ (venv uses 3.12), FastAPI, Pydantic, Uvicorn, OpenAI SDK (transcription, TTS, GPT-4o-mini,
 embeddings), LangGraph (only for the routing pipeline), RapidFuzz, a phonetic library, rank_bm25,
@@ -47,7 +56,7 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 ## The 10 modules
 1. Setup  (DONE)
 2. Knowledge base  (DONE)
-3. Test set builder
+3. Test set builder  (DONE)
 4. Baseline transcription
 5. Evaluation
 6. Entity span detection

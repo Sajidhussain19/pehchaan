@@ -141,3 +141,110 @@ can't sneak in. Place names are public geography, so real names are fine there.
   We surface that ambiguity instead of hiding it, and the LangGraph pipeline resolves it with context. Today, no form is ambiguous.
 - **How would this work for a real user?** Swap the JSON for their actual phone contacts and saved places (with consent).
   The loader and models stay the same.
+
+---
+
+## Module 3 — Test set builder
+
+### What we built
+- **KB update (mentor feedback).** We added 6 near-identical contact pairs, each with a surname and its own relation:
+  Harshit Sharma (gym trainer) / Harshil Patel (accounts colleague), Rohit Chaturvedi / Rohith Reddy,
+  Sai Kiran Rao / Sai Kumar Yadav, Anjali Verma / Anjani Mishra, Pranav Joshi / Pranay Reddy,
+  Swathi Chowdary / Swati Kulkarni. We also added **Dr. Raju** (family doctor). There is deliberately *no* "Raju Hotel".
+  The KB is now 336 entities.
+- `data/testset/sentences.json`: **113 sentences** (36 dev / 77 test) with full ground truth.
+- `app/testset/models.py` (Pydantic models) and `app/testset/validate.py` (checks against the KB).
+- `scripts/build_audio.py`: OpenAI text-to-speech, giving 113 **clean** clips (24 kHz) and 113 **phone-quality** clips (8 kHz).
+  It also writes `manifest.json`. That is 9.6 minutes of audio, costing about $0.14.
+- `scripts/testset_stats.py`: counts by split, category, direction, behaviour, entity type and difficulty, plus audio minutes.
+- `tests/test_testset.py`: 17 tests. The KB tests gained 7 more. The full suite is 39 tests.
+- `CLAUDE.md` now lists the 4 **design principles**.
+
+### What ground truth is
+Ground truth is the **answer key**: for every sentence, the known correct answer. That means:
+- which names it contains, with their KB ids
+- what Pehchaan should *do* about them
+- which action should come out
+
+We wrote the text first and then made audio *from* that text, so we know exactly what was said.
+Every metric later (entity error rate, WER, action accuracy) is "how far is the system's output from this answer key".
+The validator checks the answer key itself, because a wrong key would make every number wrong.
+
+### The 4 expected behaviours (one example each)
+| Behaviour | Meaning | Example |
+|---|---|---|
+| **correct** | The name is in the KB, so fix it to the canonical spelling | "Call Dr. Venkataramana…": if speech-to-text writes "Venkat Ramana", fix it |
+| **keep** | Unknown name, or no name at all: leave it alone and link nothing | "Call Tejaswini and ask if she reached Nalgonda": neither is in the KB |
+| **resolve** | Two contacts look alike, but context picks one | "Ask Harshil to send the invoice": Harshil Patel from the accounts team |
+| **clarify** | We can't decide safely, so ask the user | "Call Harshit at 5": did you mean Harshit (gym trainer) or Harshil (accounts)? |
+
+### The five categories and why most are about NOT correcting
+| Category | Count | Expected | What it catches |
+|---|---|---|---|
+| in_kb | 68 | correct | Can we fix names we know? (the headline) |
+| out_of_kb | 13 | keep | Inventing a correction: turning a stranger into one of your contacts |
+| control | 13 | keep | Changing ordinary words: "The cook at the polling booth…" must not become "Kukatpally" |
+| ambiguous | 11 | resolve / clarify | Guessing between Harshit and Harshil instead of using context or asking |
+| context_mismatch | 8 | clarify / keep | Linking a matching name that doesn't fit: "Raju Hotel", or "Raju from the bank" on an unknown number |
+
+If we only counted successes, a system that "corrects" everything aggressively would look great.
+The four non-correction categories (45 of 113 sentences) measure **wrong corrections**, the mistakes that hurt users most.
+Calling the wrong person is worse than asking a question.
+
+### Why a held-out test split matters
+While tuning the matcher we will look at results and adjust thresholds. Anything we look at, we slowly overfit to,
+even without meaning to. So we split once, up front:
+- **dev (36):** we may look at these as much as we like while tuning.
+- **test (77):** held out. Used only for the final reported numbers.
+
+The split is **stratified**: each (category, behaviour) group goes about 1/3 to dev and 2/3 to test,
+with evenly spaced picks, so both halves contain every kind of sentence. This is how we "can't cheat ourselves".
+
+### Why phone-quality audio matters
+Equal AI's assistant listens to **phone calls**, not studio recordings. A phone line:
+- carries only 8,000 samples per second (8 kHz)
+- keeps only the 300-3400 Hz band, so deep bass and the high "s/sh" detail are cut off
+- adds some background noise
+
+Those missing high frequencies are exactly what separates sounds like "s" and "sh", or "th" and "t".
+So names get harder to hear. Our phone copies apply the same three steps in numpy/scipy, so we can measure
+how speech-to-text, and Pehchaan, cope with realistic call audio.
+
+### Limitation: synthetic audio
+The recordings are made by text-to-speech, not by real people. TTS speaks clearly, with no hesitations,
+no cross-talk and no real regional accent variety. We rotate 8 voices and 4 speeds and ask for an Indian English accent,
+but it is still easier than real calls. **Real human recordings would be harder**, so our absolute error rates are optimistic.
+The *comparison* between the three systems is still fair, because all three hear exactly the same audio.
+
+### Key concepts
+- **Ground truth / answer key:** the known correct output for each example.
+- **Stratified split:** splitting each group separately, so both halves keep the same mix of categories.
+- **Text-to-speech (TTS):** a model that turns text into spoken audio. `gpt-4o-mini-tts` also takes an
+  `instructions` prompt describing accent and pace.
+- **Sample rate:** how many audio measurements per second. TTS gives 24,000 (24 kHz); phone lines carry 8,000.
+- **Band-pass filter:** keeps only frequencies between two limits (here 300-3400 Hz) and removes the rest.
+- **SNR (signal-to-noise ratio):** how much louder the speech is than the noise, in decibels. We use 25 dB, a light hiss.
+- **Manifest:** a list file describing every clip (id, text, voice, speed, paths, duration), so later scripts
+  don't need to scan folders.
+- **Idempotent script:** running it again changes nothing. `build_audio.py` skips clips that already exist, so a re-run is free.
+- **Code-mixing:** Hinglish / Tenglish, Hindi or Telugu words in Latin script inside English ("auto book cheyyi").
+
+### A real problem we hit (and fixed)
+`openai==1.59.7` from Module 1 didn't know the TTS `instructions` parameter (`TypeError: unexpected keyword argument`).
+We upgraded the SDK to `openai==3.57.0`, which required `anyio>=4.10`. The old FastAPI then showed a deprecation warning
+in the test client, so we upgraded `fastapi` to 0.165.0. All versions are pinned again and `pip check` is clean.
+Lesson: pinning protects you, but sometimes a new feature means moving the pins together.
+
+### Questions a judge might ask about this module
+- **Did you write the sentences to suit your system?** The sentences were fixed before any matcher existed, and the
+  final numbers come only from the 77 held-out test sentences.
+- **Why include sentences with no names?** To catch false corrections. Control lines check that ordinary words
+  ("cook", "lucky", "sunny") are left alone.
+- **How do you score "asking"?** Each clarify line lists its candidate ids. A system gets credit only if it asks
+  *and* offers the right candidates.
+- **Isn't TTS audio too easy?** Yes, it is cleaner than real calls, and we say so. That's why we also test 8 kHz
+  phone-quality versions. All three systems hear identical audio, so the comparison stays fair.
+- **Why both incoming and outgoing lines?** Equal AI's assistant hears both: callers introducing themselves, and the
+  user giving commands. The caller id is extra context ("Raju" from an unknown number is not your doctor).
+- **How much did the audio cost?** About $0.14 for 9.6 minutes. Re-running the script costs nothing, because existing clips are skipped.
+- **Is any of this real data?** No. All people and businesses are fictional, and phone numbers use a fake pattern.

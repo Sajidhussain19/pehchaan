@@ -76,6 +76,34 @@ def test_near_duplicates_are_separate_entities():
         assert len(ids) == len(group), f"near-duplicates merged: {group}"
 
 
+NEAR_IDENTICAL_PAIRS = [
+    ("Harshit Sharma", "Harshil Patel"),
+    ("Rohit Chaturvedi", "Rohith Reddy"),
+    ("Sai Kiran Rao", "Sai Kumar Yadav"),
+    ("Anjali Verma", "Anjani Mishra"),
+    ("Pranav Joshi", "Pranay Reddy"),
+    ("Swathi Chowdary", "Swati Kulkarni"),
+]
+
+
+@pytest.mark.parametrize("name_a, name_b", NEAR_IDENTICAL_PAIRS)
+def test_near_identical_pairs_are_separate_with_distinct_relations(name_a, name_b):
+    # Module 3 mentor feedback: both halves of each pair exist as separate contacts,
+    # and their relations differ, so context ("accounts", "gym") can tell them apart.
+    a, b = find(name_a), find(name_b)
+    assert a.id != b.id
+    assert a.type == b.type == "person"
+    assert a.context["relation"] != b.context["relation"]
+
+
+def test_dr_raju_is_family_doctor_and_no_raju_hotel():
+    # The context-mismatch test sentences rely on this: "Raju" in the KB is a doctor,
+    # so "Raju Hotel" must NOT be linked to him without asking.
+    assert find("Dr. Raju").context["relation"] == "family doctor"
+    business_names = [e.name.lower() for e in get_by_type("business")]
+    assert not any("raju hotel" in name for name in business_names)
+
+
 def test_hard_cases_and_honorifics_are_present():
     # Long names, English-sounding places, and names with honorifics must all be in the KB.
     for name in ["Dr. Venkataramana", "Thiruvananthapuram", "Visakhapatnam", "Kukatpally",

@@ -1,0 +1,167 @@
+"""
+tests/test_testset.py — automated checks for the test set (Module 3).
+
+WHAT: Confirms sentences.json loads, passes every KB cross-check, has the planned size and
+      split, covers the key scenarios (Raju Hotel, unknown-caller Raju, Harshit/Harshil),
+      and that the validator really rejects broken entries.
+WHY:  The test set is our answer key. A silent mistake here would make every reported metric wrong.
+
+Run with:  pytest -v
+"""
+
+import pytest
+
+from app.kb.loader import _normalise, all_surface_forms, load_kb
+from app.testset.models import Sentence
+from app.testset.validate import TestsetValidationError, load_testset, validate_testset
+
+KB_ID = {e.name: e.id for e in load_kb()}
+
+
+def by_text(fragment: str) -> Sentence:
+    """Helper: the one sentence whose text contains this fragment."""
+    matches = [s for s in load_testset() if fragment in s.text]
+    assert len(matches) == 1, f"expected one sentence containing {fragment!r}"
+    return matches[0]
+
+
+def test_testset_loads_and_validates():
+    sentences = load_testset()
+    validate_testset(sentences)  # raises if any rule is broken
+
+
+def test_every_entity_id_exists_in_kb():
+    known = set(KB_ID.values())
+    for s in load_testset():
+        for span in s.entities:
+            assert span.entity_id is None or span.entity_id in known, s.id
+
+
+def test_size_and_split():
+    sentences = load_testset()
+    assert 100 <= len(sentences) <= 120
+    dev = [s for s in sentences if s.split == "dev"]
+    assert 30 <= len(dev) <= 40  # roughly a third held for tuning; the rest held out
+
+
+def test_every_category_in_both_splits():
+    sentences = load_testset()
+    for split in ("dev", "test"):
+        cats = {s.category for s in sentences if s.split == split}
+        assert cats == {"in_kb", "out_of_kb", "control", "ambiguous", "context_mismatch"}
+
+
+def test_category_sizes():
+    sentences = load_testset()
+    count = lambda c: sum(s.category == c for s in sentences)  # noqa: E731
+    assert 60 <= count("in_kb") <= 70
+    assert 10 <= count("out_of_kb") <= 15
+    assert 10 <= count("control") <= 15
+    assert 8 <= count("ambiguous") <= 12
+    assert 6 <= count("context_mismatch") <= 10
+
+
+def test_out_of_kb_names_are_really_unknown():
+    forms = all_surface_forms()
+    for s in load_testset():
+        if s.category == "out_of_kb":
+            for span in s.entities:
+                assert _normalise(span.surface) not in forms, f"{s.id}: {span.surface}"
+
+
+def test_raju_hotel_asks_about_dr_raju():
+    s = by_text("Raju Hotel")
+    assert s.expected_behaviour == "clarify"
+    assert s.candidate_ids == [KB_ID["Dr. Raju"]]
+
+
+def test_unknown_caller_raju_is_not_linked():
+    s = by_text("Raju from the bank")
+    assert s.direction == "incoming" and s.caller_contact_id is None
+    assert s.expected_behaviour == "keep"
+    assert all(span.entity_id is None for span in s.entities)
+
+
+def test_harshil_resolves_by_context_and_harshit_alone_clarifies():
+    resolved = by_text("Ask Harshil to send the invoice")
+    assert resolved.expected_behaviour == "resolve"
+    assert resolved.entities[0].entity_id == KB_ID["Harshil Patel"]
+
+    unclear = by_text("Call Harshit at 5.")
+    assert unclear.expected_behaviour == "clarify"
+    assert set(unclear.candidate_ids) == {KB_ID["Harshit Sharma"], KB_ID["Harshil Patel"]}
+
+
+def test_has_code_mixed_lines():
+    # Hinglish / Tenglish markers must appear in a few lines.
+    texts = [s.text.lower() for s in load_testset()]
+    assert sum(any(w in t for w in (" ko ", " hai", " ga ", "cheyyi", " lo ")) for t in texts) >= 5
+
+
+# --- The validators must reject broken data ---
+
+def base(**overrides) -> dict:
+    """A valid minimal sentence; tests override one field to break it."""
+    row = {
+        "id": "s999", "split": "dev", "text": "Call Dr. Raju at 5.", "category": "in_kb",
+        "direction": "outgoing", "caller_contact_id": None,
+        "entities": [{"surface": "Dr. Raju", "entity_id": KB_ID["Dr. Raju"], "type": "person"}],
+        "expected_behaviour": "correct", "candidate_ids": [],
+        "expected_action": {"type": "call", "target_entity_id": KB_ID["Dr. Raju"], "time": "5"},
+    }
+    row.update(overrides)
+    return row
+
+
+def test_model_rejects_surface_not_in_text():
+    with pytest.raises(ValueError, match="not found in text"):
+        Sentence.model_validate(base(text="Call the doctor at 5."))
+
+
+def test_model_rejects_clarify_without_candidates():
+    with pytest.raises(ValueError, match="clarify needs"):
+        Sentence.model_validate(base(expected_behaviour="clarify"))
+
+
+def test_validator_rejects_unknown_kb_id():
+    bad = Sentence.model_validate(
+        base(entities=[{"surface": "Dr. Raju", "entity_id": "person_999", "type": "person"}])
+    )
+    with pytest.raises(TestsetValidationError, match="not in the KB"):
+        validate_testset([bad])
+
+
+def test_in_kb_surfaces_are_canonical_names():
+    names = {e.id: e.name for e in load_kb()}
+    for s in load_testset():
+        if s.category == "in_kb":
+            for span in s.entities:
+                assert span.surface == names[span.entity_id], s.id
+
+
+def test_callers_are_kb_persons_and_null_for_outgoing():
+    persons = {e.id for e in load_kb() if e.type == "person"}
+    for s in load_testset():
+        if s.direction == "outgoing":
+            assert s.caller_contact_id is None, s.id
+        else:
+            assert s.caller_contact_id is None or s.caller_contact_id in persons, s.id
+
+
+def test_validator_rejects_alias_as_in_kb_surface():
+    bad = Sentence.model_validate(base(
+        text="Call Raju at 5.",
+        entities=[{"surface": "Raju", "entity_id": KB_ID["Dr. Raju"], "type": "person"}],
+    ))
+    with pytest.raises(TestsetValidationError, match="not the canonical name"):
+        validate_testset([bad])
+
+
+def test_validator_rejects_out_of_kb_name_that_is_in_kb():
+    bad = Sentence.model_validate(base(
+        category="out_of_kb", expected_behaviour="keep", text="Call Kukatpally.",
+        entities=[{"surface": "Kukatpally", "entity_id": None, "type": "place"}],
+        expected_action={"type": "none"},
+    ))
+    with pytest.raises(TestsetValidationError, match="IS in the KB"):
+        validate_testset([bad])

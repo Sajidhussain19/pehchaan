@@ -76,9 +76,9 @@
     "language_origin": "Telugu",
     "difficulty": "hard",
     "context": {
-      "relation": "gym trainer",
+      "relation": "badminton partner",
       "phone": "+91-90000-00005",
-      "notes": "Morning batch trainer"
+      "notes": "Plays on Sundays"
     }
   },
   {
@@ -149,18 +149,18 @@
   },
   {
     "id": "person_010",
-    "name": "Sai Kiran",
+    "name": "Sai Kiran Rao",
     "type": "person",
     "aliases": [
-      "Saikiran",
-      "Sai Kiran Kumar"
+      "Sai Kiran",
+      "Saikiran"
     ],
     "language_origin": "Telugu",
-    "difficulty": "easy",
+    "difficulty": "hard",
     "context": {
-      "relation": "friend",
+      "relation": "school friend",
       "phone": "+91-90000-00010",
-      "notes": "School friend"
+      "notes": "Plays cricket with you on weekends"
     }
   },
   {
@@ -391,15 +391,15 @@
     "name": "Swathi Chowdary",
     "type": "person",
     "aliases": [
-      "Swati Chowdary",
+      "Swathi",
       "Swathi Choudary"
     ],
     "language_origin": "Telugu",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "context": {
-      "relation": "friend",
+      "relation": "college friend",
       "phone": "+91-90000-00025",
-      "notes": ""
+      "notes": "Batchmate from engineering"
     }
   },
   {
@@ -885,11 +885,11 @@
       "Anjali"
     ],
     "language_origin": "Hindi",
-    "difficulty": "easy",
+    "difficulty": "hard",
     "context": {
       "relation": "friend",
       "phone": "+91-90000-00056",
-      "notes": ""
+      "notes": "Neighbour from your old flat"
     }
   },
   {
@@ -928,14 +928,15 @@
     "name": "Rohit Chaturvedi",
     "type": "person",
     "aliases": [
+      "Rohit",
       "Rohit Chaturvedy"
     ],
     "language_origin": "Hindi",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "context": {
-      "relation": "manager",
+      "relation": "manager, sales team",
       "phone": "+91-90000-00059",
-      "notes": ""
+      "notes": "Weekly sales review on Mondays"
     }
   },
   {
@@ -1379,9 +1380,9 @@
     "language_origin": "Gujarati",
     "difficulty": "medium",
     "context": {
-      "relation": "family doctor",
+      "relation": "ENT specialist",
       "phone": "+91-90000-00088",
-      "notes": ""
+      "notes": "Ear, nose and throat"
     }
   },
   {
@@ -1896,6 +1897,143 @@
       "relation": "cousin",
       "phone": "+91-90000-00121",
       "notes": ""
+    }
+  },
+  {
+    "id": "person_122",
+    "name": "Harshit Sharma",
+    "type": "person",
+    "aliases": [
+      "Harshit"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "gym trainer",
+      "phone": "+91-90000-00122",
+      "notes": "Personal training, evening batch"
+    }
+  },
+  {
+    "id": "person_123",
+    "name": "Harshil Patel",
+    "type": "person",
+    "aliases": [
+      "Harshil"
+    ],
+    "language_origin": "Gujarati",
+    "difficulty": "hard",
+    "context": {
+      "relation": "colleague, accounts team",
+      "phone": "+91-90000-00123",
+      "notes": "Handles invoices and reimbursements"
+    }
+  },
+  {
+    "id": "person_124",
+    "name": "Rohith Reddy",
+    "type": "person",
+    "aliases": [
+      "Rohith"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "car service advisor",
+      "phone": "+91-90000-00124",
+      "notes": "Service centre contact for your car"
+    }
+  },
+  {
+    "id": "person_125",
+    "name": "Sai Kumar Yadav",
+    "type": "person",
+    "aliases": [
+      "Sai Kumar"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "house painter",
+      "phone": "+91-90000-00125",
+      "notes": "Painting the flat this month"
+    }
+  },
+  {
+    "id": "person_126",
+    "name": "Anjani Mishra",
+    "type": "person",
+    "aliases": [
+      "Anjani"
+    ],
+    "language_origin": "Hindi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "son's tuition teacher",
+      "phone": "+91-90000-00126",
+      "notes": "Maths tuition, weekday evenings"
+    }
+  },
+  {
+    "id": "person_127",
+    "name": "Pranav Joshi",
+    "type": "person",
+    "aliases": [
+      "Pranav"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "flatmate",
+      "phone": "+91-90000-00127",
+      "notes": "Shares the flat and the bills"
+    }
+  },
+  {
+    "id": "person_128",
+    "name": "Pranay Reddy",
+    "type": "person",
+    "aliases": [
+      "Pranay"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "hard",
+    "context": {
+      "relation": "client, project lead",
+      "phone": "+91-90000-00128",
+      "notes": "Client-side lead for the current project"
+    }
+  },
+  {
+    "id": "person_129",
+    "name": "Swati Kulkarni",
+    "type": "person",
+    "aliases": [
+      "Swati"
+    ],
+    "language_origin": "Marathi",
+    "difficulty": "hard",
+    "context": {
+      "relation": "daughter's dance teacher",
+      "phone": "+91-90000-00129",
+      "notes": "Bharatanatyam class, Tue/Thu"
+    }
+  },
+  {
+    "id": "person_130",
+    "name": "Dr. Raju",
+    "type": "person",
+    "aliases": [
+      "Raju",
+      "Doctor Raju",
+      "Raju Garu"
+    ],
+    "language_origin": "Telugu",
+    "difficulty": "medium",
+    "context": {
+      "relation": "family doctor",
+      "phone": "+91-90000-00130",
+      "notes": "General physician near home"
     }
   }
 ]
