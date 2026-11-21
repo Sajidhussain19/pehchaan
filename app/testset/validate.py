@@ -48,10 +48,18 @@ class TestsetValidationError(ValueError):
     __test__ = False  # tell pytest this is not a test class, despite the name
 
 
-def load_testset(path: Path = TESTSET_PATH) -> list[Sentence]:
-    """Read and validate (one sentence at a time) every test sentence."""
+DEFAULT_SPLITS = ("dev", "test")  # test2 is sealed: only code that asks for it explicitly ever sees it
+
+
+def load_testset(path: Path = TESTSET_PATH, splits: tuple[str, ...] | None = DEFAULT_SPLITS) -> list[Sentence]:
+    """Read and validate (one sentence at a time) the test sentences of the chosen splits.
+
+    By default only dev + test, exactly as before test-2 existed, so no tuning or reporting code can see
+    the sealed test-2 split by accident. Pass splits=None for every split, or splits=("test2",).
+    """
     rows = json.loads(path.read_text(encoding="utf-8"))
-    return [Sentence.model_validate(row) for row in rows]
+    sentences = [Sentence.model_validate(row) for row in rows]
+    return sentences if splits is None else [s for s in sentences if s.split in splits]
 
 
 def _check_id(problems: list[str], sid: str, what: str, entity_id: str, expected_type: str | None = None):
@@ -224,7 +232,9 @@ def validate_testset(sentences: list[Sentence]) -> None:
                 problems.append(f"{s.id}: resolve action target differs from the resolved entity")
 
     # 5. Sizes stay close to the plan, so no category quietly shrinks when the file is edited.
-    #    Only checked for the real file (a handful of sentences in a unit test is fine).
+    #    Only checked for the real file (a handful of sentences in a unit test is fine), and only for the
+    #    original dev + test splits (test-2 is a separate, smaller held-out set).
+    sentences_all, sentences = sentences, [s for s in sentences if s.split in ("dev", "test")]
     if len(sentences) >= 50:
         for cat, (low, high) in EXPECTED_SIZES.items():
             n = sum(s.category == cat for s in sentences)
@@ -278,7 +288,7 @@ def validate_realspeech(clips: list[RealSpeechClip], root: Path = PROJECT_ROOT) 
 def main() -> int:
     """Load, validate and print a short summary table."""
     try:
-        sentences = load_testset()
+        sentences = load_testset(splits=None)  # validate every split, including the sealed test-2
         validate_testset(sentences)
         real = load_realspeech()
         validate_realspeech(real)
@@ -287,13 +297,12 @@ def main() -> int:
         return 1
 
     print(f"Pehchaan test set: {len(sentences)} sentences\n")
-    print(f"  {'category':<24}{'dev':>5}{'test':>6}{'total':>7}")
+    print(f"  {'category':<24}{'dev':>5}{'test':>6}{'test2':>7}{'total':>7}")
     for cat in EXPECTED_SIZES:
-        dev = sum(s.category == cat and s.split == "dev" for s in sentences)
-        test = sum(s.category == cat and s.split == "test" for s in sentences)
-        print(f"  {cat:<24}{dev:>5}{test:>6}{dev + test:>7}")
-    dev_total = sum(s.split == "dev" for s in sentences)
-    print(f"  {'TOTAL':<24}{dev_total:>5}{len(sentences) - dev_total:>6}{len(sentences):>7}")
+        n = [sum(s.category == cat and s.split == sp for s in sentences) for sp in ("dev", "test", "test2")]
+        print(f"  {cat:<24}{n[0]:>5}{n[1]:>6}{n[2]:>7}{sum(n):>7}")
+    n = [sum(s.split == sp for s in sentences) for sp in ("dev", "test", "test2")]
+    print(f"  {'TOTAL':<24}{n[0]:>5}{n[1]:>6}{n[2]:>7}{len(sentences):>7}")
 
     print("\nBy expected behaviour:", dict(Counter(s.expected_behaviour for s in sentences)))
     print("By direction:", dict(Counter(s.direction for s in sentences)))

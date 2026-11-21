@@ -141,7 +141,7 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=None, help="only process the first N sentences")
     args = parser.parse_args()
 
-    sentences = load_testset()
+    sentences = load_testset(splits=None)  # every split, incl. test-2 (appended last, so old voices don't move)
     selected = sentences[: args.limit] if args.limit else sentences
 
     CLEAN_DIR.mkdir(parents=True, exist_ok=True)

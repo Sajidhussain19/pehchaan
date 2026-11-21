@@ -32,7 +32,7 @@ def load_clips(audio: str, split: str = "all") -> list[dict]:
     """Clips for one audio kind: [{id, split, reference_text, audio_path, duration_seconds}]."""
     if audio in ("clean", "phone"):
         manifest = json.loads(SYNTHETIC_MANIFEST.read_text(encoding="utf-8"))
-        texts = {s.id: s.text for s in load_testset()}  # reference = the text we gave to TTS
+        texts = {s.id: s.text for s in load_testset(splits=None)}  # reference = the text we gave to TTS
         clips = [{
             "id": m["id"], "split": m["split"], "reference_text": texts[m["id"]],
             "audio_path": m[f"{audio}_path"], "duration_seconds": m["duration_seconds"],
@@ -44,7 +44,8 @@ def load_clips(audio: str, split: str = "all") -> list[dict]:
         } for c in load_realspeech()]  # [] until scripts/fetch_real_speech.py has been run
     else:
         raise ValueError(f"unknown audio kind {audio!r}")
-    return [c for c in clips if split == "all" or c["split"] == split]
+    # "all" means dev + test (as before test-2 existed); the sealed test-2 split is only used when named.
+    return [c for c in clips if (split == "all" and c["split"] != "test2") or c["split"] == split]
 
 
 def load_results(path: Path) -> dict:

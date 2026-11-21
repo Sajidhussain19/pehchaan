@@ -296,3 +296,13 @@ def test_realspeech_without_any_audio_is_valid(tmp_path):
     clips = [RealSpeechClip(id=f"r00{i}", split="test", text="hello", speaker_id=f"s{i}", audio_path=f"x{i}.wav",
                             duration_seconds=2.0, source="ai4bharat/Svarah", source_id=str(i)) for i in range(1, 7)]
     validate_realspeech(clips, root=tmp_path)
+
+
+def test_test2_is_sealed_and_complete():
+    # test-2 (s164-s208) is the second held-out set, frozen at tag test2-frozen BEFORE Pehchaan v2 ran on it.
+    # Default loading never includes it, so no tuning/reporting code can see it by accident.
+    assert all(s.split in ("dev", "test") for s in load_testset())
+    t2 = load_testset(splits=("test2",))
+    assert len(t2) == 45 and {s.id for s in t2} == {f"s{i}" for i in range(164, 209)}
+    assert len({s.category for s in t2}) == 8  # every category is covered
+    validate_testset(load_testset(splits=None))

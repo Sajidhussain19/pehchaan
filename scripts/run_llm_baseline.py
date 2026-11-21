@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.baselines.llm_resolver import estimate_cost_per_call, resolve  # noqa: E402
 from app.config import settings  # noqa: E402
-from app.eval.runs import add_audio_argument, chosen_audios, decision_clips, decisions_path, load_decisions, save_decisions, todo_clips  # noqa: E402
+from app.eval.runs import add_audio_argument, held_out_gate, chosen_audios, decision_clips, decisions_path, load_decisions, save_decisions, todo_clips  # noqa: E402
 
 SYSTEM = "llm_baseline"  # the name used in results files and reports
 
@@ -31,15 +31,15 @@ SYSTEM = "llm_baseline"  # the name used in results files and reports
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="Run baseline (c): one GPT-4o-mini call per clip.")
-    parser.add_argument("--split", choices=["dev", "test", "all"], default="dev")
+    parser.add_argument("--split", choices=["dev", "test", "all", "test2"], default="dev")
+    parser.add_argument("--final-test2", action="store_true", help="required for the sealed test-2 split")
     add_audio_argument(parser, default=("clean", "phone"))  # e.g. --audio clean phone real
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--model", default=settings.chat_model)
     parser.add_argument("--final", action="store_true", help="required to run on the held-out test split")
     args = parser.parse_args()
 
-    if args.split in ("test", "all") and not args.final:
-        print("[STOP] The test split is held out. Add --final only when producing final numbers.")
+    if not held_out_gate(args, "llm_baseline"):  # test needs --final, test2 needs --final-test2 (logged)
         return 1
     audios = chosen_audios(args)
 

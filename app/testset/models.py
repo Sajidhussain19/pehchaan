@@ -90,7 +90,9 @@ class Sentence(BaseModel):
     model_config = {"extra": "forbid"}
 
     id: str = Field(pattern=r"^s\d{3}$")  # "s001"
-    split: Literal["dev", "test"]
+    # dev = tune on it; test = the held-out set (final-eval-v1); test2 = a SECOND held-out set, written and
+    # frozen (tag test2-frozen) BEFORE Pehchaan v2 was run on it, to prove the v2 fixes honestly.
+    split: Literal["dev", "test", "test2"]
     text: str = Field(min_length=1)
     category: Category
     direction: Literal["incoming", "outgoing"]

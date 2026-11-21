@@ -42,7 +42,9 @@ def main() -> int:
     # so replace unprintable characters instead of crashing. Saved files keep the real text.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="Run baseline speech-to-text (plain and with name hints).")
-    parser.add_argument("--split", choices=["dev", "test", "all"], default="dev")
+    # test2: transcribing it is part of BUILDING test-2 (Step 1), so no --final-test2 gate here; the
+    # systems that make decisions (c, Pehchaan) are gated in their own runners.
+    parser.add_argument("--split", choices=["dev", "test", "all", "test2"], default="dev")
     add_audio_argument(parser, default=AUDIO_KINDS)  # e.g. --audio clean phone real
     parser.add_argument("--variant", choices=[*VARIANTS, "all"], default="all")
     parser.add_argument("--limit", type=int, default=None, help="only the first N clips per combination")
