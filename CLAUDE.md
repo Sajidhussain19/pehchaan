@@ -135,6 +135,14 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 9. Remind action + API (real stored reminders, learning with consent, latency/cost per call)
 10. Demo UI + live mic + AWS deploy
 
+## Decision-logic freeze (since Module 9, before the final held-out run)
+- Do NOT change logic or thresholds in `app/match/`, `app/decide/`, `data/lexicon/` or the base KB files
+  (`data/kb/contacts|places|businesses.json`) unless the developer EXPLICITLY approves.
+- `tests/test_freeze.py` checks their fingerprints (`data/results/frozen_logic.json`).
+- If a change is ever approved after the final run: repeat the final run (`--final`), disclose the change in README
+  ("Decision-logic freeze" section), then re-record with `python scripts/freeze_logic.py`.
+- Never tune on test results. The final held-out run happens once (Module 9) and is tagged `final-eval-v1`.
+
 ## Repo layout
 - `app/` — FastAPI app and all project code (`main.py`, `config.py`, `kb/`, `testset/`, `stt/`)
 - `data/kb/` — knowledge base files (Module 2) + `preferences.json`

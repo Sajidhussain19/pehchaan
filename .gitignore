@@ -18,3 +18,8 @@ __pycache__/
 .idea/
 .DS_Store
 Thumbs.db
+
+# --- Runtime state of the demo (Module 9): reminders DB and per-book learned preferences ---
+data/app.db
+data/kb/books/preferences_*.json
+data/pending/

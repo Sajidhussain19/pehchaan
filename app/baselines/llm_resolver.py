@@ -15,11 +15,10 @@ WHY:  Judges will ask: "Is Pehchaan better than just giving one LLM your contact
 
 import json
 import time
-from functools import lru_cache
 
 from app.config import settings
 from app.eval.decision import ActionDecision, Decision, EntityDecision
-from app.kb.loader import get_by_id, get_by_type
+from app.kb.loader import get_by_id, get_by_type, per_book_cache
 from app.stt.transcribe import get_client
 
 SYSTEM_NAME = "llm_baseline"
@@ -110,7 +109,7 @@ def _place_line(e) -> str:
     return f"{e.id} | {e.name}{alias} | {c['kind']} in {c['city']}, {c['state']}"
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def context_text() -> str:
     """The user's whole personal context as compact text lines (identical for every call,
     which lets OpenAI's automatic prompt caching make repeat calls cheaper)."""
@@ -124,7 +123,7 @@ def context_text() -> str:
     ])
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def output_schema() -> dict:
     """Strict JSON schema for the answer. Every id field must be one of the real KB ids (an enum),
     so the model physically cannot output an invented id."""

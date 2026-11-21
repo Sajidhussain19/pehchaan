@@ -19,12 +19,11 @@ WHY:  This is Pehchaan's "ears" (Modules 6+7), with no LLM and no decisions. Mod
 
 import time
 from dataclasses import dataclass
-from functools import lru_cache
 
 from pydantic import BaseModel
 from rapidfuzz import fuzz, process
 
-from app.kb.loader import get_by_id, load_kb
+from app.kb.loader import get_by_id, load_kb, per_book_cache
 from app.match.config import DEFAULT, MatchWeights
 from app.match.phonetic import indian_phonetic_key, metaphone_keys, metaphone_similarity, normalise, INDIAN_KEY_SHARE
 from app.match.spans import RawSpan, name_spans, reference_spans, tokenize
@@ -74,7 +73,7 @@ def _strip_honorifics(words: list[str]) -> list[str]:
     return words
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def form_index() -> tuple[list[Form], dict[str, list[int]]]:
     """All forms, plus a lookup from Metaphone code -> form positions (for exact sound matches)."""
     forms: list[Form] = []
@@ -102,7 +101,7 @@ def form_index() -> tuple[list[Form], dict[str, list[int]]]:
     return forms, by_metaphone
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def _form_keys() -> list[str]:
     return [f.key for f in form_index()[0]]
 

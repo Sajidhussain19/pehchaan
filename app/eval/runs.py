@@ -6,14 +6,17 @@ WHAT: - decision_clips(audio, split): the inputs a resolver system (baseline (c)
       - decisions_path / load_decisions / save_decisions: the cache files of Decisions, keyed by
         system + audio + model, then by clip id.
       - load_transcripts(variant, audio): baseline (a)/(b) transcripts from Module 4.
+      - add_audio_argument / chosen_audios: ONE shared "--audio" option for every runner script, so
+        "--audio clean phone real" and "--audio clean --audio phone" both mean the same thing everywhere.
 WHY:  Keeps file layout in ONE place, so the runner scripts and evaluate.py agree, and so
       re-running never pays twice for a clip that is already done.
 """
 
+import argparse
 from pathlib import Path
 
 from app.eval.decision import Decision
-from app.stt.baseline import RESULTS_DIR, load_results, results_path, save_results
+from app.stt.baseline import AUDIO_KINDS, RESULTS_DIR, load_results, results_path, save_results
 from app.testset.validate import load_realspeech, load_testset
 
 TRANSCRIPTION_MODEL_FOR_INPUT = "gpt-4o-mini-transcribe"  # the Module 4 transcripts we build on
@@ -59,3 +62,24 @@ def load_decision_objects(system: str, audio: str, model: str) -> dict[str, Deci
     """{clip_id: Decision} for one system/audio/model ({} if not run yet)."""
     store = load_decisions(decisions_path(system, audio, model))
     return {cid: Decision.model_validate(d) for cid, d in store["clips"].items()}
+
+
+def add_audio_argument(parser: argparse.ArgumentParser, default: tuple[str, ...]) -> None:
+    """Add the shared --audio option to a runner script.
+
+    nargs="+" accepts several values after one flag ("--audio clean phone"), and action="extend" also
+    collects repeated flags ("--audio clean --audio phone"). Before this, one runner silently kept only
+    the LAST value, so "--audio clean --audio phone" ran phone alone. The default is applied in
+    chosen_audios(), because argparse would EXTEND a default list instead of replacing it.
+    """
+    parser.add_argument("--audio", nargs="+", action="extend", choices=[*AUDIO_KINDS, "all"], default=None,
+                        help=f"one or more of {', '.join(AUDIO_KINDS)} or all (default: {' '.join(default)})")
+    parser.set_defaults(audio_default=default)
+
+
+def chosen_audios(args: argparse.Namespace) -> list[str]:
+    """The audio kinds to run, in a fixed order, without duplicates ("all" = every kind)."""
+    values = args.audio or list(args.audio_default)
+    if "all" in values:
+        return list(AUDIO_KINDS)
+    return [a for a in AUDIO_KINDS if a in values]

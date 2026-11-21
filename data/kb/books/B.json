@@ -1,0 +1,14 @@
+{
+  "_about": "Contact book B (demo). An OVERLAY applied on top of the base KB in data/kb/ (not a copy). This user sees TWO doctors, a general physician and a dentist, and has never said which one is 'my doctor': the default (is_primary_for) is removed. The eye specialist is removed so exactly two doctors remain.",
+  "description": "User B: two doctors (Dr. Venkataramana, general physician; Dr. Subramanian, dentist) and no default, so 'my doctor' needs a question.",
+  "remove": ["person_130"],
+  "update": {
+    "person_001": {
+      "context": {
+        "relation": "general physician",
+        "roles": ["doctor", "general physician"],
+        "is_primary_for": null
+      }
+    }
+  }
+}

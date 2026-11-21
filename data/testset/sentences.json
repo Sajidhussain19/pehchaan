@@ -3479,7 +3479,7 @@
   {
     "id": "s142",
     "split": "test",
-    "category": "stale_default",
+    "category": "reference",
     "direction": "outgoing",
     "caller_contact_id": null,
     "text": "Remind me to ask my accountant whether the GST papers are ready.",
@@ -3487,14 +3487,14 @@
     "references": [
       {
         "surface": "my accountant",
-        "resolved_entity_id": "person_030",
-        "resolution_reason": "clue"
+        "resolved_entity_id": "person_058",
+        "resolution_reason": "primary"
       }
     ],
     "expected_behaviour": "resolve",
     "expected_action": {
       "type": "remind",
-      "target_entity_id": "person_030",
+      "target_entity_id": "person_058",
       "time": null,
       "time_hhmm": null
     }

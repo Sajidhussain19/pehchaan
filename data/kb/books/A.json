@@ -1,0 +1,6 @@
+{
+  "_about": "Contact book A (demo). An OVERLAY applied on top of the base KB in data/kb/ (not a copy). This user has ONE doctor: the family doctor. The dentist and the eye specialist are removed, so 'my doctor' can only mean Dr. Venkataramana.",
+  "description": "User A: only one doctor (Dr. Venkataramana, family doctor), so 'my doctor' is clear.",
+  "remove": ["person_028", "person_130"],
+  "update": {}
+}

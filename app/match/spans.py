@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 
 from app.config import PROJECT_ROOT
-from app.kb.loader import get_by_family_label, get_by_role, get_by_type, get_primary_for, get_usual_business
+from app.kb.loader import get_by_family_label, get_by_role, get_by_type, get_primary_for, get_usual_business, per_book_cache
 from app.match.phonetic import indian_phonetic_key, normalise
 from app.match.translit import has_indic, transliterate
 
@@ -153,14 +153,14 @@ def name_spans(tokens: list[Token], max_tokens: int = 4) -> list[RawSpan]:
     return spans
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def _role_phrases() -> dict[tuple[str, ...], str]:
     """Every role in the KB as normalised word tuples: ("son", "teacher") -> "son's teacher"."""
     roles = {r for e in get_by_type("person") for r in e.context.get("roles", [])}
     return {tuple(normalise(r.replace("'s", "")).split()): r for r in roles}
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def _family_labels() -> dict[str, str]:
     """Family words keyed by SOUND, so Telugu "నాన్న" (transliterated "naanna") still finds "Nanna"."""
     return {indian_phonetic_key(e.context["family_label"]): e.context["family_label"]

@@ -17,7 +17,7 @@ import re
 from functools import lru_cache
 
 from app.config import PROJECT_ROOT
-from app.kb.loader import get_by_type
+from app.kb.loader import get_by_type, per_book_cache
 from app.match.candidates import form_index
 from app.match.phonetic import indian_phonetic_key, normalise
 from app.match.spans import STOPWORDS, is_common
@@ -53,7 +53,7 @@ def indian_first_names() -> frozenset[str]:
     return frozenset(names)
 
 
-@lru_cache(maxsize=1)
+@per_book_cache  # one cached copy per contact book (Module 9)
 def kb_name_words() -> frozenset[str]:
     """Every word that is part of some KB name or alias (so "Harshil" or "Mehta" count as known)."""
     return frozenset(w for f in form_index()[0] for w in f.text.split())

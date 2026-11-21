@@ -10,8 +10,9 @@ WHY:  These are the "before" numbers. Module 5 scores them, and the stronger bas
 
 Run from the project root:
     python scripts/run_baseline.py --limit 3                  # 3 clips per combination (cheap check)
-    python scripts/run_baseline.py                            # everything (all splits, clean + phone + real)
-    python scripts/run_baseline.py --split test --audio phone --variant hints --model gpt-4o-transcribe
+    python scripts/run_baseline.py                            # dev split, clean + phone + real
+    python scripts/run_baseline.py --split test --final --audio phone --variant hints --model gpt-4o-transcribe
+    python scripts/run_baseline.py --split test --final --audio clean phone real   # several audio kinds at once
 """
 
 import argparse
@@ -22,6 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.config import settings  # noqa: E402
+from app.eval.runs import add_audio_argument, chosen_audios  # noqa: E402
 from app.stt.baseline import (  # noqa: E402
     AUDIO_KINDS,
     VARIANTS,
@@ -40,15 +42,20 @@ def main() -> int:
     # so replace unprintable characters instead of crashing. Saved files keep the real text.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="Run baseline speech-to-text (plain and with name hints).")
-    parser.add_argument("--split", choices=["dev", "test", "all"], default="all")
-    parser.add_argument("--audio", choices=[*AUDIO_KINDS, "all"], default="all")
+    parser.add_argument("--split", choices=["dev", "test", "all"], default="dev")
+    add_audio_argument(parser, default=AUDIO_KINDS)  # e.g. --audio clean phone real
     parser.add_argument("--variant", choices=[*VARIANTS, "all"], default="all")
     parser.add_argument("--limit", type=int, default=None, help="only the first N clips per combination")
     parser.add_argument("--model", choices=SUPPORTED_MODELS, default=settings.transcription_model)
+    parser.add_argument("--final", action="store_true", help="required for the held-out test split")
     parser.add_argument("--yes", action="store_true", help="don't ask for confirmation above $1")
     args = parser.parse_args()
+    # The held-out rule, same as the other runners: the test split needs an explicit --final.
+    if args.split in ("test", "all") and not args.final:
+        print("[STOP] The test split is held out. Add --final only when producing final numbers.")
+        return 1
 
-    audios = AUDIO_KINDS if args.audio == "all" else (args.audio,)
+    audios = chosen_audios(args)
     variants = VARIANTS if args.variant == "all" else (args.variant,)
     hint = build_hint_prompt(args.model)  # same hint prompt for every clip in variant (b)
 

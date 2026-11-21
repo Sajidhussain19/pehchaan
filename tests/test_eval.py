@@ -195,3 +195,39 @@ def test_evaluate_refuses_test_split_without_final():
                             capture_output=True, text=True)
     assert result.returncode == 1
     assert "held out" in result.stdout
+
+
+# --- The shared --audio option of the runner scripts (Module 9, Step 0) -----------------------------
+# Bug it guards against: "run_baseline.py --audio clean --audio phone" used to run phone ONLY,
+# because argparse kept just the last value.
+import argparse  # noqa: E402
+import subprocess  # noqa: E402
+import sys  # noqa: E402
+
+from app.eval.runs import add_audio_argument, chosen_audios  # noqa: E402
+
+
+def _audios(argv, default=("clean", "phone")):
+    parser = argparse.ArgumentParser()
+    add_audio_argument(parser, default=default)
+    return chosen_audios(parser.parse_args(argv))
+
+
+def test_audio_option_accepts_several_values_in_both_forms():
+    assert _audios(["--audio", "clean", "phone", "real"]) == ["clean", "phone", "real"]
+    assert _audios(["--audio", "clean", "--audio", "phone"]) == ["clean", "phone"]  # the old bug
+    assert _audios(["--audio", "real", "clean", "real"]) == ["clean", "real"]  # fixed order, no duplicates
+    assert _audios(["--audio", "all"]) == ["clean", "phone", "real"]
+    assert _audios([]) == ["clean", "phone"]  # the default is used, not extended
+
+
+def test_every_runner_uses_the_shared_audio_option_and_guards_the_test_split():
+    for script in ("run_baseline.py", "run_llm_baseline.py", "run_pehchaan.py"):
+        # --help costs nothing (no API calls): it proves the option parses as "one or more".
+        out = subprocess.run([sys.executable, f"scripts/{script}", "--help"], capture_output=True, text=True)
+        assert out.returncode == 0 and "--audio" in out.stdout and "[--audio" in out.stdout, script
+        assert "AUDIO [AUDIO ...]" in out.stdout.replace("{clean,phone,real,all}", "AUDIO"), script
+        # Without --final, the held-out split is refused BEFORE anything is loaded or spent.
+        stop = subprocess.run([sys.executable, f"scripts/{script}", "--split", "test", "--audio", "clean", "phone"],
+                              capture_output=True, text=True)
+        assert stop.returncode == 1 and "[STOP]" in stop.stdout, script

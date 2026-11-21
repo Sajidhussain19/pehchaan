@@ -309,6 +309,26 @@ python scripts/evaluate.py                       # dev report -> data/results/re
 python scripts/evaluate.py --split test --final  # ONLY for the final numbers (logged)
 ```
 
+### Test-set errata (fixed before the final run)
+One ground-truth label was wrong, and we fixed it **before** the single held-out run, without looking at any test
+results. We did **not** edit the knowledge base to fit the label; we re-derived the label from the KB as it is, using
+our documented rule (clue -> default -> ask).
+
+| Clip | Sentence | Old label | New label | Why |
+|---|---|---|---|---|
+| s142 (test) | "Remind me to ask my accountant whether the GST papers are ready." | category `stale_default`; "my accountant" -> **Meenakshi Sundaram** (person_030) by `clue` | category `reference`; "my accountant" -> **Sunita Agarwal** (person_058) by `primary` (the default); behaviour `resolve`, Remind target person_058 | Nothing in the KB links "GST" to any accountant (Meenakshi Sundaram's notes are empty), so there is no clue. The rule then says: use the default, and Sunita Agarwal is the contact marked as default accountant. The old label could not be derived from the data by any system. The sentence moves category because "stale_default" means "a clue beats the default", which no longer applies. The text and audio are unchanged. |
+
+### Decision-logic freeze
+From the final held-out run on, **Pehchaan's decision logic is frozen**: `app/match/`, `app/decide/`, `data/lexicon/`
+and the base KB files. Their fingerprints (SHA-256) are in `data/results/frozen_logic.json`, and `tests/test_freeze.py`
+fails if any of them changes. Any later change needs explicit approval, a repeated final run (`--final`), and a note here.
+
+*Changes made after the freeze:* none.
+
+*Made just before the freeze (Module 9 plumbing, no logic change):* the KB-derived caches in `app/match` and
+`app/decide` became per-contact-book caches, and `resolve()` gained a `book=` argument. Re-running Pehchaan on all
+146 dev decisions gave **0 differences** from the Module 8 outputs (latency ignored).
+
 ## Demo
 *Coming in Module 10.*
 

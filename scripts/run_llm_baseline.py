@@ -9,7 +9,7 @@ WHY:  Produces the decisions that scripts/evaluate.py scores against the ground 
 
 Run from the project root:
     python scripts/run_llm_baseline.py --limit 3                 # dev split, clean + phone, 3 clips each
-    python scripts/run_llm_baseline.py --audio clean --audio phone
+    python scripts/run_llm_baseline.py --audio clean phone real
     python scripts/run_llm_baseline.py --split test --final      # held-out split: only for final numbers
 """
 
@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.baselines.llm_resolver import estimate_cost_per_call, resolve  # noqa: E402
 from app.config import settings  # noqa: E402
-from app.eval.runs import decision_clips, decisions_path, load_decisions, save_decisions, todo_clips  # noqa: E402
+from app.eval.runs import add_audio_argument, chosen_audios, decision_clips, decisions_path, load_decisions, save_decisions, todo_clips  # noqa: E402
 
 SYSTEM = "llm_baseline"  # the name used in results files and reports
 
@@ -32,8 +32,7 @@ def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="Run baseline (c): one GPT-4o-mini call per clip.")
     parser.add_argument("--split", choices=["dev", "test", "all"], default="dev")
-    parser.add_argument("--audio", choices=["clean", "phone", "real", "all"], action="append",
-                        help="repeatable; default: clean and phone")
+    add_audio_argument(parser, default=("clean", "phone"))  # e.g. --audio clean phone real
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--model", default=settings.chat_model)
     parser.add_argument("--final", action="store_true", help="required to run on the held-out test split")
@@ -42,9 +41,7 @@ def main() -> int:
     if args.split in ("test", "all") and not args.final:
         print("[STOP] The test split is held out. Add --final only when producing final numbers.")
         return 1
-    audios = args.audio or ["clean", "phone"]
-    if "all" in audios:
-        audios = ["clean", "phone", "real"]
+    audios = chosen_audios(args)
 
     # Plan + cost estimate before spending anything.
     jobs, n_total = [], 0

@@ -1,0 +1,25 @@
+{
+  "_about": "Fingerprint of Pehchaan's decision logic, recorded before the final held-out run. tests/test_freeze.py fails if any of these files change. Changing them needs explicit approval, a repeated final run (--final) and a disclosure in README.",
+  "recorded_at": "2026-11-21T16:34:08",
+  "files": {
+    "app/match/__init__.py": "14b3e72296c08653a1d53b650f186f3d39c50dec66281fc8900e593406177342",
+    "app/match/candidates.py": "c6d25716f074858f86c9b61f90dcaa10b7104b29935dab77a306b4a26b10521f",
+    "app/match/config.py": "ee7b6c924014832e16709268e01b35a98cd883977ed561c1fb83a409419d510c",
+    "app/match/phonetic.py": "eb890d85063672444bb9a56fd3c3c4dbc086acb4c247563f6eb83978d2235a67",
+    "app/match/spans.py": "69a75b126724bfafe32ece82819374f5cbc85310cafdac6eab780efaeb1d7ee9",
+    "app/match/translit.py": "8fba175a671791b5835062e8c9af7a86ca388c8b5d0d4a3e2c05c2e566f8f243",
+    "app/decide/__init__.py": "b7d678fd4e061ceb5c795ee5afc5e06b21592df5e9bb24ed675bd63b2c00b499",
+    "app/decide/config.py": "ec45168fddf778e4187e608ee7f7404940e383a8391cf60e91d3d6be68813c31",
+    "app/decide/graph.py": "e9ec7a1461d243155def37334b91adfb4f5155036ca09f7ecb956b7b159c758b",
+    "app/decide/lexicons.py": "f9e8db168d78f72a6beeb5e52f25ad3eabeb3fc4d93c703fef778e409bc5b8ec",
+    "app/decide/llm_fallback.py": "cbc49c5025d5a6309a6dbecc84d79487595e3e7b6d69dfb0a32fabf61fe796c2",
+    "app/decide/pehchaan.py": "7787f8b70ec6ea119d1b56069e2d9addcc2746e00a6757b6bc5835dafd5e671a",
+    "data/lexicon/common_english_words.txt": "56e4ffa4de88c1d855f68aa9058572f0c0e7eec25e1b73abc29abc344c1a3320",
+    "data/lexicon/indian_first_names.txt": "ff53629d0d58bf18f70918edf488e1776b6defaaf57ef9c2859b2b51b1e31543",
+    "data/lexicon/role_clues.json": "c5f10178f8d81c973e7e8d45d463a8e7983f52a98daea9f2bde9fc8a62056433",
+    "data/lexicon/type_clues.json": "65f9b83f835312093397e0e97faa678c722a5b7f25269a27d07eaa52f0c28144",
+    "data/kb/contacts.json": "b9b5b0258a3468389c13dbecbb2acb65db6bd51b72aeb7d6ab4f0fd56199ef84",
+    "data/kb/places.json": "52e025ca332692a869e7c1a5fb636b332ba1ab4ce6a30f2d6e9440712a76ee1b",
+    "data/kb/businesses.json": "6116b91606d6f2664248011d042d9ad5ad0d8c916ec78d563c1b9d1175756a0d"
+  }
+}

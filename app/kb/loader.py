@@ -7,6 +7,9 @@ WHAT: Reads data/kb/contacts.json, places.json and businesses.json, turns every 
       It also answers personal references: by role ("my doctor"), the default for a role,
       by family label ("Amma"), the usual business ("the usual pharmacy"), and it loads
       learned preferences from preferences.json.
+      CONTACT BOOKS (Module 9): the same code can serve a different user's contact book. A book is a
+      small overlay file in data/kb/books/ (remove some entities, change some fields) applied on top of
+      the base KB. `with use_book("B"): ...` makes every lookup in that block use book B.
 WHY:  Every later module (matching, the LangGraph pipeline, the API) needs the KB. One loader
       means one place where the data is read and checked. Caching means the JSON is read from
       disk only once, even if the API asks for the KB on every request.
@@ -17,8 +20,11 @@ Usage:
 """
 
 import json
+import threading
 from collections import defaultdict
-from functools import lru_cache
+from contextlib import contextmanager
+from contextvars import ContextVar
+from functools import lru_cache, wraps
 from pathlib import Path
 
 from app.config import PROJECT_ROOT
@@ -26,6 +32,8 @@ from app.kb.models import Entity, Preference
 
 KB_DIR = PROJECT_ROOT / "data" / "kb"
 KB_FILES = ("contacts.json", "places.json", "businesses.json")
+BOOKS_DIR = KB_DIR / "books"
+DEFAULT_BOOK = "default"
 
 
 class KBValidationError(ValueError):
@@ -122,9 +130,96 @@ def _read_file(path: Path) -> list[Entity]:
     return [Entity.model_validate(row) for row in rows]
 
 
-@lru_cache(maxsize=1)
-def _load_cached() -> tuple[Entity, ...]:
-    """Read all KB files once. lru_cache remembers the result, so later calls skip the disk.
+# ---------------------------------------------------------------------------
+# Contact books. "default" = the base KB exactly as it is (used for ALL evaluation).
+# Other books = the base KB + one overlay file data/kb/books/<name>.json:
+#   {"description": "...", "remove": [ids], "update": {id: {"context": {field: value or null}}}}
+# A null value deletes that field (e.g. "is_primary_for": null removes a default).
+# ---------------------------------------------------------------------------
+
+# Which book the current request uses. A ContextVar is like a global variable, but each thread / request
+# gets its own value, so two API requests for books A and B at the same time can't mix up their books.
+_ACTIVE_BOOK: ContextVar[str] = ContextVar("pehchaan_book", default=DEFAULT_BOOK)
+
+
+def available_books() -> dict[str, str]:
+    """{book name: one-line description}, the default book first."""
+    books = {DEFAULT_BOOK: "The full knowledge base (340 entries); the one every evaluation uses."}
+    for path in sorted(BOOKS_DIR.glob("*.json")):
+        if not path.name.startswith("preferences"):
+            books[path.stem] = json.loads(path.read_text(encoding="utf-8"))["description"]
+    return books
+
+
+def active_book() -> str:
+    return _ACTIVE_BOOK.get()
+
+
+@contextmanager
+def use_book(book: str = DEFAULT_BOOK):
+    """Make every KB lookup inside the `with` block use this contact book."""
+    if book not in available_books():
+        raise KeyError(f"unknown contact book {book!r}; available: {sorted(available_books())}")
+    token = _ACTIVE_BOOK.set(book)
+    try:
+        yield book
+    finally:
+        _ACTIVE_BOOK.reset(token)  # always switch back, even if an error happened
+
+
+def per_book_cache(fn):
+    """Like @lru_cache(maxsize=1) for a no-argument function, but ONE cached value PER BOOK.
+
+    Indexes built from the KB (the sound index of names, the list of roles...) must not leak from one
+    contact book into another, so the cache key is the active book.
+    """
+    cache: dict[str, object] = {}
+    lock = threading.Lock()
+
+    @wraps(fn)
+    def wrapper():
+        book = _ACTIVE_BOOK.get()
+        if book not in cache:
+            value = fn()  # computing outside the lock is fine: same inputs always give the same value
+            with lock:
+                cache.setdefault(book, value)
+        return cache[book]
+
+    wrapper.cache_clear = cache.clear
+    return wrapper
+
+
+def _apply_overlay(entities: list[Entity], overlay: dict) -> list[Entity]:
+    """Base KB + one book overlay -> that book's entities (validated again by the caller)."""
+    by_id = {e.id: e for e in entities}
+    unknown = [i for i in (*overlay.get("remove", []), *overlay.get("update", {})) if i not in by_id]
+    if unknown:
+        raise KBValidationError(f"book overlay names unknown entity ids: {unknown}")
+    removed = set(overlay.get("remove", []))
+    out = []
+    for e in entities:
+        if e.id in removed:
+            continue
+        change = overlay.get("update", {}).get(e.id)
+        if change:
+            row = e.model_dump(exclude_none=True)
+            for field, value in change.items():
+                if field == "context":
+                    for key, v in value.items():
+                        if v is None:
+                            row["context"].pop(key, None)  # null = delete this field
+                        else:
+                            row["context"][key] = v
+                else:
+                    row[field] = value
+            e = Entity.model_validate(row)  # re-check the changed entity
+        out.append(e)
+    return out
+
+
+@lru_cache(maxsize=None)
+def _load_book(book: str) -> tuple[Entity, ...]:
+    """Read all KB files once per book. lru_cache remembers the result, so later calls skip the disk.
 
     It returns a tuple (which cannot be changed) so that no caller can accidentally
     modify the shared cached copy.
@@ -132,8 +227,16 @@ def _load_cached() -> tuple[Entity, ...]:
     entities: list[Entity] = []
     for filename in KB_FILES:
         entities.extend(_read_file(KB_DIR / filename))
+    if book != DEFAULT_BOOK:
+        overlay = json.loads((BOOKS_DIR / f"{book}.json").read_text(encoding="utf-8"))
+        entities = _apply_overlay(entities, overlay)
     validate_entities(entities)
     return tuple(entities)
+
+
+def _load_cached() -> tuple[Entity, ...]:
+    """The entities of the ACTIVE book (the default book unless inside `with use_book(...)`)."""
+    return _load_book(_ACTIVE_BOOK.get())
 
 
 def load_kb() -> list[Entity]:
@@ -146,7 +249,7 @@ def get_by_type(entity_type: str) -> list[Entity]:
     return [e for e in _load_cached() if e.type == entity_type]
 
 
-@lru_cache(maxsize=1)
+@per_book_cache
 def _index_by_id() -> dict[str, Entity]:
     # Build the id -> entity dictionary once, so each lookup is instant.
     return {e.id: e for e in _load_cached()}
@@ -228,8 +331,16 @@ def get_usual_business(category: str) -> Entity | None:
 PREFERENCES_PATH = KB_DIR / "preferences.json"
 
 
-def load_preferences(path: Path = PREFERENCES_PATH) -> list[Preference]:
-    """Read learned answers. Every entity_id must exist in the KB."""
+def preferences_path(book: str | None = None) -> Path:
+    """Where a book's learned answers live. Each contact book learns separately: "my doctor" can mean
+    a different person for a different user. Demo books keep theirs in data/kb/books/ (not committed)."""
+    book = book or _ACTIVE_BOOK.get()
+    return PREFERENCES_PATH if book == DEFAULT_BOOK else BOOKS_DIR / f"preferences_{book}.json"
+
+
+def load_preferences(path: Path | None = None) -> list[Preference]:
+    """Read learned answers (of the active book unless a path is given). Every entity_id must exist."""
+    path = path or preferences_path()
     if not path.exists():
         return []
     prefs = [Preference.model_validate(row) for row in json.loads(path.read_text(encoding="utf-8"))]
@@ -241,5 +352,5 @@ def load_preferences(path: Path = PREFERENCES_PATH) -> list[Preference]:
 
 def clear_cache() -> None:
     """Forget the cached KB, e.g. after editing the JSON files while the server is running."""
-    _load_cached.cache_clear()
+    _load_book.cache_clear()
     _index_by_id.cache_clear()
