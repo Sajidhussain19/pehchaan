@@ -271,6 +271,500 @@
       "used_llm": true,
       "latency_ms": 1252.8,
       "cost_usd": 0.000941
+    },
+    "r002": {
+      "clip_id": "r002",
+      "system_name": "llm_baseline",
+      "heard_transcript": "There is a gradual shift in the mentality.",
+      "output_transcript": "There is a gradual shift in the mentality.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1078.6,
+      "cost_usd": 0.000931
+    },
+    "r003": {
+      "clip_id": "r003",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Nipah virus belongs to the",
+      "output_transcript": "Nipah virus belongs to the",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1296.3,
+      "cost_usd": 0.00093
+    },
+    "r005": {
+      "clip_id": "r005",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
+      "output_transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1405.2,
+      "cost_usd": 0.000935
+    },
+    "r006": {
+      "clip_id": "r006",
+      "system_name": "llm_baseline",
+      "heard_transcript": "where it is joined by other branches to form the Brahmaputra.",
+      "output_transcript": "where it is joined by other branches to form the Brahmaputra.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1569.7,
+      "cost_usd": 0.000935
+    },
+    "r008": {
+      "clip_id": "r008",
+      "system_name": "llm_baseline",
+      "heard_transcript": "जम्मू, सांबा, कठुआ, रजौरी, पुंछ",
+      "output_transcript": "जम्मू, सांबा, कठुआ, रजौरी, पुंछ",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1193.4,
+      "cost_usd": 0.000938
+    },
+    "r011": {
+      "clip_id": "r011",
+      "system_name": "llm_baseline",
+      "heard_transcript": "the normal competitions what we have.",
+      "output_transcript": "the normal competitions what we have.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1025.7,
+      "cost_usd": 0.000929
+    },
+    "r009": {
+      "clip_id": "r009",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
+      "output_transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1150.7,
+      "cost_usd": 0.000935
+    },
+    "r012": {
+      "clip_id": "r012",
+      "system_name": "llm_baseline",
+      "heard_transcript": "What is an usual word and what is unusual words and phrases.",
+      "output_transcript": "What is an usual word and what is unusual words and phrases.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1235.1,
+      "cost_usd": 0.000934
+    },
+    "r014": {
+      "clip_id": "r014",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
+      "output_transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1215.5,
+      "cost_usd": 0.000937
+    },
+    "r017": {
+      "clip_id": "r017",
+      "system_name": "llm_baseline",
+      "heard_transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
+      "output_transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1245.8,
+      "cost_usd": 0.000952
+    },
+    "r015": {
+      "clip_id": "r015",
+      "system_name": "llm_baseline",
+      "heard_transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
+      "output_transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1463.3,
+      "cost_usd": 0.000947
+    },
+    "r018": {
+      "clip_id": "r018",
+      "system_name": "llm_baseline",
+      "heard_transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
+      "output_transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1350.8,
+      "cost_usd": 0.000941
+    },
+    "r020": {
+      "clip_id": "r020",
+      "system_name": "llm_baseline",
+      "heard_transcript": "And also, people speaking English have different accents in different regions.",
+      "output_transcript": "And also, people speaking English have different accents in different regions.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1147.2,
+      "cost_usd": 0.000934
+    },
+    "r021": {
+      "clip_id": "r021",
+      "system_name": "llm_baseline",
+      "heard_transcript": "डिस्ट्रिक्ट एजुकेशन, हेल्थ, केयर, पावर्टी रिडक्शन, वोमेन्स इम्पावरमेंट",
+      "output_transcript": "डिस्ट्रिक्ट एजुकेशन, हेल्थ, केयर, पावर्टी रिडक्शन, वोमेन्स इम्पावरमेंट",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1539.7,
+      "cost_usd": 0.000948
+    },
+    "r024": {
+      "clip_id": "r024",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
+      "output_transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1196.5,
+      "cost_usd": 0.000937
+    },
+    "r023": {
+      "clip_id": "r023",
+      "system_name": "llm_baseline",
+      "heard_transcript": "are local traditions and beliefs by giving an opportunity.",
+      "output_transcript": "are local traditions and beliefs by giving an opportunity.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1612.2,
+      "cost_usd": 0.000931
+    },
+    "r026": {
+      "clip_id": "r026",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
+      "output_transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1594.5,
+      "cost_usd": 0.000944
+    },
+    "r027": {
+      "clip_id": "r027",
+      "system_name": "llm_baseline",
+      "heard_transcript": "They went off into the space when Earth was burning up or being destroyed.",
+      "output_transcript": "They went off into the space when Earth was burning up or being destroyed.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1294.2,
+      "cost_usd": 0.000935
+    },
+    "r029": {
+      "clip_id": "r029",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
+      "output_transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1273.6,
+      "cost_usd": 0.000937
+    },
+    "r030": {
+      "clip_id": "r030",
+      "system_name": "llm_baseline",
+      "heard_transcript": "The colleges of art, literature",
+      "output_transcript": "The colleges of art, literature",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1279.1,
+      "cost_usd": 0.000929
+    },
+    "r032": {
+      "clip_id": "r032",
+      "system_name": "llm_baseline",
+      "heard_transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
+      "output_transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1499.9,
+      "cost_usd": 0.000947
+    },
+    "r035": {
+      "clip_id": "r035",
+      "system_name": "llm_baseline",
+      "heard_transcript": "List all items from pet food items.",
+      "output_transcript": "List all items from pet food items.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1103.9,
+      "cost_usd": 0.00093
+    },
+    "r036": {
+      "clip_id": "r036",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Show me what day the thirty-first is on.",
+      "output_transcript": "Show me what day the thirty-first is on.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1073.7,
+      "cost_usd": 0.000931
+    },
+    "r033": {
+      "clip_id": "r033",
+      "system_name": "llm_baseline",
+      "heard_transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
+      "output_transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1601.4,
+      "cost_usd": 0.000951
+    },
+    "r038": {
+      "clip_id": "r038",
+      "system_name": "llm_baseline",
+      "heard_transcript": "So there are a lot of beaches throughout the eastern coastline of Odisha.",
+      "output_transcript": "So there are a lot of beaches throughout the eastern coastline of Odisha.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1461.5,
+      "cost_usd": 0.000935
+    },
+    "r039": {
+      "clip_id": "r039",
+      "system_name": "llm_baseline",
+      "heard_transcript": "And after that, we celebrate Chaitra Dasai, and after that, we celebrate Dasai.",
+      "output_transcript": "And after that, we celebrate Chaitra Dasai, and after that, we celebrate Dasai.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1585.9,
+      "cost_usd": 0.00094
     }
   }
 }

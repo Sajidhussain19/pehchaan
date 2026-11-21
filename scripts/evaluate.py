@@ -10,7 +10,8 @@ WHAT: Loads the outputs of each system:
       per category, always with raw counts. It also compares two systems clip by clip
       (default: c vs pehchaan, or c vs b until Pehchaan exists;
       a text-only system is compared on text only) and counts wins / ties / losses.
-      Writes data/results/report_{split}_{audio}.md and .json.
+      Writes data/results/report_{split}_{audio}.md and .json (the final held-out run over all audio:
+      data/results/report_test_FINAL.md and .json).
 
 HELD-OUT RULE: the default split is dev. Scoring the test split requires --final, prints a warning
       and appends a line to data/results/test_runs.log, so every look at the test split is on record.
@@ -19,7 +20,7 @@ WHY:  One script, one scoring rule for every system, so comparisons are fair and
 Run from the project root:
     python scripts/evaluate.py                         # dev split, all audio kinds
     python scripts/evaluate.py --audio phone --compare b c
-    python scripts/evaluate.py --split test --final    # ONLY for final reported numbers
+    python scripts/evaluate.py --split test --final --compare pehchaan c   # ONLY for final reported numbers
 """
 
 import argparse
@@ -183,7 +184,9 @@ def main() -> int:
                for d in details]
         report["comparison"] = {"a": a_sys, "b": b_sys, "counts": dict(tally), "clips": details}
 
-    out = RESULTS_DIR / f"report_{args.split}_{args.audio}"
+    # The one final held-out report gets a name that can't be confused with a dev report.
+    name = "report_test_FINAL" if args.split == "test" and args.audio == "all" else f"report_{args.split}_{args.audio}"
+    out = RESULTS_DIR / name
     out.with_suffix(".md").write_text("\n".join(md) + "\n", encoding="utf-8")
     out.with_suffix(".json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("\n".join(md[:2]))

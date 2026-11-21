@@ -1,0 +1,146 @@
+[
+  {
+    "clip_id": "s104",
+    "kind": "missed clarification",
+    "why": "Two contacts are called Rohit/Rohith. (c) silently picks one; Pehchaan asks which one.",
+    "text": "Call Rohit at 6 PM.",
+    "category": "ambiguous",
+    "honest_failure": false,
+    "audio": {
+      "clean": {
+        "path": "data/testset/audio/clean/s104.wav",
+        "result": "win",
+        "heard": "Call Rohit at 6 p.m.",
+        "baseline_c": "RESOLVE, action target = Rohith Reddy. \"Rohit\" -> Rohith Reddy (Rohit is a saved contact, and the context indicates he is the car service advisor.)",
+        "pehchaan": "ASKS: Rohit Chaturvedi or Rohith Reddy? \"Rohit\" -> kept (clarify: 'Rohit' fits Rohit Chaturvedi and Rohith Reddy almost equally, and nothing in the sentence separates them)"
+      },
+      "phone": {
+        "path": "data/testset/audio/phone/s104.wav",
+        "result": "win",
+        "heard": "Call Rohit at 6 p.m.",
+        "baseline_c": "RESOLVE, action target = Rohith Reddy. \"Rohit\" -> Rohith Reddy (Rohit is a saved contact, and the context indicates he is a car service advisor.)",
+        "pehchaan": "ASKS: Rohit Chaturvedi or Rohith Reddy? \"Rohit\" -> kept (clarify: 'Rohit' fits Rohit Chaturvedi and Rohith Reddy almost equally, and nothing in the sentence separates them)"
+      }
+    }
+  },
+  {
+    "clip_id": "s140",
+    "kind": "clue vs default",
+    "why": "\"tooth filling\" is a clue for the dentist. (c) uses the stale default (family doctor).",
+    "text": "Remind me to ask my doctor about the tooth filling on Friday.",
+    "category": "stale_default",
+    "honest_failure": false,
+    "audio": {
+      "clean": {
+        "path": "data/testset/audio/clean/s140.wav",
+        "result": "win",
+        "heard": "Remind me to ask my doctor about the tooth filling on Friday.",
+        "baseline_c": "RESOLVE, action target = Dr. Venkataramana. \"my doctor\" -> Dr. Venkataramana (The user referred to 'my doctor', which matches the default for doctor in their context.)",
+        "pehchaan": "RESOLVE, action target = Dr. Subramanian. \"my doctor\" -> Dr. Subramanian (resolve: clue 'tooth' -> dentist; clue 'filling' -> dentist)"
+      },
+      "phone": {
+        "path": "data/testset/audio/phone/s140.wav",
+        "result": "win",
+        "heard": "Remind me to ask my doctor about the tooth filling on Friday.",
+        "baseline_c": "RESOLVE, action target = Dr. Venkataramana. \"my doctor\" -> Dr. Venkataramana (The user referred to 'my doctor', which matches the default for doctor, Dr. Venkataramana.)",
+        "pehchaan": "RESOLVE, action target = Dr. Subramanian. \"my doctor\" -> Dr. Subramanian (resolve: clue 'tooth' -> dentist; clue 'filling' -> dentist)"
+      }
+    }
+  },
+  {
+    "clip_id": "s108",
+    "kind": "type mismatch",
+    "why": "You can't book a table at a doctor. (c) maps it to a dental clinic; Pehchaan asks.",
+    "text": "Book a table at Venkataramana Restaurant for Sunday lunch.",
+    "category": "context_mismatch",
+    "honest_failure": false,
+    "audio": {
+      "clean": {
+        "path": "data/testset/audio/clean/s108.wav",
+        "result": "win",
+        "heard": "Book a table at Venkataramana restaurant for Sunday lunch.",
+        "baseline_c": "CORRECT, action target = Venkataramana Dental Care. \"Venkataramana\" -> Venkataramana Dental Care (Venkataramana refers to Venkataramana Dental Care, but in the context of booking a table, it is likely a misheard reference to a restaurant. However, there is no restaurant named Venkataramana in the context, so it remains unresolved.)",
+        "pehchaan": "ASKS: Dr. Venkataramana? \"Venkataramana\" -> kept (clarify: 'Venkataramana restaurant' sounds like a business, but Dr. Venkataramana is your family doctor: asking instead of guessing)"
+      },
+      "phone": {
+        "path": "data/testset/audio/phone/s108.wav",
+        "result": "win",
+        "heard": "Book a table at Venkataramana restaurant for Sunday lunch.",
+        "baseline_c": "CORRECT, action target = Venkataramana Dental Care. \"Venkataramana\" -> Venkataramana Dental Care (Exact match for the restaurant name in the context.)",
+        "pehchaan": "ASKS: Dr. Venkataramana? \"Venkataramana\" -> kept (clarify: 'Venkataramana restaurant' sounds like a business, but Dr. Venkataramana is your family doctor: asking instead of guessing)"
+      }
+    }
+  },
+  {
+    "clip_id": "s067",
+    "kind": "misheard name",
+    "why": "\"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers by sound. (c) gives up and keeps it.",
+    "text": "Call Bhagyalakshmi Jewellers in Panjagutta and ask if the earrings are ready.",
+    "category": "in_kb",
+    "honest_failure": false,
+    "audio": {
+      "clean": {
+        "path": "data/testset/audio/clean/s067.wav",
+        "result": "win",
+        "heard": "Call Padyalakshmi Jewelers in Punjabuta and ask if the earrings are ready.",
+        "baseline_c": "KEEP, no action target",
+        "pehchaan": "CORRECT, action target = Bhagyalakshmi Jewellers. \"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers (resolve: sounds like Bhagyalakshmi Jewellers (0.87), clear lead of 0.26); \"Punjabuta\" -> Panjagutta (resolve: sounds like Panjagutta (0.88), clear lead of 0.31)"
+      },
+      "phone": {
+        "path": "data/testset/audio/phone/s067.wav",
+        "result": "win",
+        "heard": "Call Padyalakshmi Jewelers in Panjagutta and ask if the earrings are ready.",
+        "baseline_c": "KEEP, no action target",
+        "pehchaan": "CORRECT, action target = Bhagyalakshmi Jewellers. \"Padyalakshmi Jewelers\" -> Bhagyalakshmi Jewellers (resolve: sounds like Bhagyalakshmi Jewellers (0.87), clear lead of 0.26); \"Panjagutta\" -> Panjagutta (resolve: heard exactly 'Panjagutta')"
+      }
+    }
+  },
+  {
+    "clip_id": "s125",
+    "kind": "family word (reference)",
+    "why": "\"Bhaiya\" in Hindi script is the user's elder brother Rajat. (c) picks a different contact.",
+    "text": "Bhaiya ko bolo Diwali pe ghar aa jaye.",
+    "category": "reference",
+    "honest_failure": false,
+    "audio": {
+      "clean": {
+        "path": "data/testset/audio/clean/s125.wav",
+        "result": "win",
+        "heard": "भैया को बोलो, दिवाली पर घर आ जाएँ।",
+        "baseline_c": "RESOLVE, action target = Aditya Rao. \"भैया\" -> Aditya Rao (The term 'Bhaiya' refers to the user's elder brother, who is identified as Aditya Rao in the context.)",
+        "pehchaan": "RESOLVE, action target = Rajat Verma. \"भैया\" -> Rajat Verma (resolve: family label: Bhaiya); \"घर आ जाएँ।\" -> kept (keep: 'घर आ जाएँ।' is unclear; best guess Nagarjuna Rao only 0.67)"
+      },
+      "phone": {
+        "path": "data/testset/audio/phone/s125.wav",
+        "result": "win",
+        "heard": "भइया को बोलो दिवाली पर घर आ जाएँ।",
+        "baseline_c": "RESOLVE, action target = Aditya Rao. \"भइया\" -> Aditya Rao (The term 'Bhaiya' refers to the user's elder brother, Aditya Rao, who is identified as such in the context.)",
+        "pehchaan": "RESOLVE, action target = Rajat Verma. \"भइया\" -> Rajat Verma (resolve: family label: Bhaiya); \"घर आ जाएँ।\" -> kept (keep: 'घर आ जाएँ।' is unclear; best guess Nagarjuna Rao only 0.67)"
+      }
+    }
+  },
+  {
+    "clip_id": "s090",
+    "kind": "over-correction (Pehchaan's honest failure)",
+    "why": "Telugu \"ee roju\" (= today) sounds like Dr. Raju at 0.80, just above the confidence bar, so Pehchaan \"fixes\" an ordinary word into a contact's name. (c) correctly leaves it alone. This is the most common kind of Pehchaan loss on the held-out set (over-correction 11/70 vs (c) 3/70).",
+    "text": "Ee roju chala vedi ga undi, bayataki vellaku.",
+    "category": "control",
+    "honest_failure": true,
+    "audio": {
+      "clean": {
+        "path": "data/testset/audio/clean/s090.wav",
+        "result": "loss",
+        "heard": "ఈ రోజు చాలా వేడిగా ఉంది. భయాతకి వెళ్ళకో.",
+        "baseline_c": "KEEP, no action target",
+        "pehchaan": "CORRECT, no action target. \"రోజు\" -> Dr. Raju (resolve: sounds like Dr. Raju (0.80), clear lead of 0.28)"
+      },
+      "phone": {
+        "path": "data/testset/audio/phone/s090.wav",
+        "result": "loss",
+        "heard": "ఈ రోజు చాలా వేడిగా ఉంది. భయాతకి వెళ్ళకో.",
+        "baseline_c": "KEEP, no action target",
+        "pehchaan": "CORRECT, no action target. \"రోజు\" -> Dr. Raju (resolve: sounds like Dr. Raju (0.80), clear lead of 0.28)"
+      }
+    }
+  }
+]
