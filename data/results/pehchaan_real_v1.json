@@ -21,7 +21,45 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 17.1,
+      "latency_ms": 17.2,
+      "cost_usd": 0.0
+    },
+    "r002": {
+      "clip_id": "r002",
+      "system_name": "pehchaan",
+      "heard_transcript": "There is a gradual shift in the mentality.",
+      "output_transcript": "There is a gradual shift in the mentality.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 6.5,
+      "cost_usd": 0.0
+    },
+    "r003": {
+      "clip_id": "r003",
+      "system_name": "pehchaan",
+      "heard_transcript": "Nipah virus belongs to the",
+      "output_transcript": "Nipah virus belongs to the",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 4.9,
       "cost_usd": 0.0
     },
     "r004": {
@@ -47,8 +85,46 @@
         "raw_time_text": null
       },
       "used_llm": true,
-      "latency_ms": 1043.0,
+      "latency_ms": 1045.1,
       "cost_usd": 8.6e-05
+    },
+    "r005": {
+      "clip_id": "r005",
+      "system_name": "pehchaan",
+      "heard_transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
+      "output_transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 11.7,
+      "cost_usd": 0.0
+    },
+    "r006": {
+      "clip_id": "r006",
+      "system_name": "pehchaan",
+      "heard_transcript": "where it is joined by other branches to form the Brahmaputra.",
+      "output_transcript": "where it is joined by other branches to form the Brahmaputra.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.1,
+      "cost_usd": 0.0
     },
     "r007": {
       "clip_id": "r007",
@@ -66,7 +142,58 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 11.7,
+      "latency_ms": 14.1,
+      "cost_usd": 0.0
+    },
+    "r008": {
+      "clip_id": "r008",
+      "system_name": "pehchaan",
+      "heard_transcript": "जम्मू, सांबा, कठुआ, रजौरी, पुंछ",
+      "output_transcript": "jammuu, saanbaa, kathuaa, rajaurii, punchh",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "कठुआ",
+          "resolved_entity_id": null,
+          "confidence": 0.233,
+          "reason": "keep: 'कठुआ' is unclear; best guess Cuttack only 0.77"
+        },
+        {
+          "heard_text": "पुंछ",
+          "resolved_entity_id": null,
+          "confidence": 0.272,
+          "reason": "keep: 'पुंछ' is unclear; best guess Pune only 0.73"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 14.8,
+      "cost_usd": 0.0
+    },
+    "r009": {
+      "clip_id": "r009",
+      "system_name": "pehchaan",
+      "heard_transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
+      "output_transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 17.2,
       "cost_usd": 0.0
     },
     "r010": {
@@ -85,7 +212,45 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 10.9,
+      "latency_ms": 15.7,
+      "cost_usd": 0.0
+    },
+    "r011": {
+      "clip_id": "r011",
+      "system_name": "pehchaan",
+      "heard_transcript": "the normal competitions what we have.",
+      "output_transcript": "the normal competitions what we have.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 5.3,
+      "cost_usd": 0.0
+    },
+    "r012": {
+      "clip_id": "r012",
+      "system_name": "pehchaan",
+      "heard_transcript": "What is an usual word and what is unusual words and phrases.",
+      "output_transcript": "What is an usual word and what is unusual words and phrases.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 9.1,
       "cost_usd": 0.0
     },
     "r013": {
@@ -117,8 +282,53 @@
         "raw_time_text": null
       },
       "used_llm": true,
-      "latency_ms": 1595.4,
+      "latency_ms": 1592.2,
       "cost_usd": 0.000125
+    },
+    "r014": {
+      "clip_id": "r014",
+      "system_name": "pehchaan",
+      "heard_transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
+      "output_transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "India",
+          "resolved_entity_id": null,
+          "confidence": 0.31,
+          "reason": "keep: LLM: The phrase 'India' is an ordinary word and does not clearly refer to any of the candidates."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1053.0,
+      "cost_usd": 8.1e-05
+    },
+    "r015": {
+      "clip_id": "r015",
+      "system_name": "pehchaan",
+      "heard_transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
+      "output_transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 19.5,
+      "cost_usd": 0.0
     },
     "r016": {
       "clip_id": "r016",
@@ -143,8 +353,46 @@
         "raw_time_text": null
       },
       "used_llm": true,
-      "latency_ms": 1205.2,
+      "latency_ms": 1198.9,
       "cost_usd": 8.7e-05
+    },
+    "r017": {
+      "clip_id": "r017",
+      "system_name": "pehchaan",
+      "heard_transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
+      "output_transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 24.9,
+      "cost_usd": 0.0
+    },
+    "r018": {
+      "clip_id": "r018",
+      "system_name": "pehchaan",
+      "heard_transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
+      "output_transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 17.4,
+      "cost_usd": 0.0
     },
     "r019": {
       "clip_id": "r019",
@@ -162,7 +410,58 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 58.8,
+      "latency_ms": 23.2,
+      "cost_usd": 0.0
+    },
+    "r020": {
+      "clip_id": "r020",
+      "system_name": "pehchaan",
+      "heard_transcript": "And also, people speaking English have different accents in different regions.",
+      "output_transcript": "And also, people speaking English have different accents in different regions.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 9.5,
+      "cost_usd": 0.0
+    },
+    "r021": {
+      "clip_id": "r021",
+      "system_name": "pehchaan",
+      "heard_transcript": "डिस्ट्रिक्ट एजुकेशन, हेल्थ, केयर, पावर्टी रिडक्शन, वोमेन्स इम्पावरमेंट",
+      "output_transcript": "distrikt ejukeshan, helth, keyar, paavartii ridakshan, vomens impaavarament",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "डिस्ट्रिक्ट",
+          "resolved_entity_id": null,
+          "confidence": 0.325,
+          "reason": "keep: 'डिस्ट्रिक्ट' is unclear; best guess Financial District only 0.68"
+        },
+        {
+          "heard_text": "केयर",
+          "resolved_entity_id": null,
+          "confidence": 0.34,
+          "reason": "keep: 'केयर' is unclear; best guess Kapra only 0.66"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.2,
       "cost_usd": 0.0
     },
     "r022": {
@@ -181,8 +480,53 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 11.8,
+      "latency_ms": 12.2,
       "cost_usd": 0.0
+    },
+    "r023": {
+      "clip_id": "r023",
+      "system_name": "pehchaan",
+      "heard_transcript": "are local traditions and beliefs by giving an opportunity.",
+      "output_transcript": "are local traditions and beliefs by giving an opportunity.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 8.7,
+      "cost_usd": 0.0
+    },
+    "r024": {
+      "clip_id": "r024",
+      "system_name": "pehchaan",
+      "heard_transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
+      "output_transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Goa district",
+          "resolved_entity_id": null,
+          "confidence": 0.245,
+          "reason": "keep: LLM: The phrase 'Goa district' refers to a geographical location and does not clearly match any of the candidates provided."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1017.2,
+      "cost_usd": 8.2e-05
     },
     "r025": {
       "clip_id": "r025",
@@ -200,7 +544,45 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 17.6,
+      "latency_ms": 11.9,
+      "cost_usd": 0.0
+    },
+    "r026": {
+      "clip_id": "r026",
+      "system_name": "pehchaan",
+      "heard_transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
+      "output_transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 15.0,
+      "cost_usd": 0.0
+    },
+    "r027": {
+      "clip_id": "r027",
+      "system_name": "pehchaan",
+      "heard_transcript": "They went off into the space when Earth was burning up or being destroyed.",
+      "output_transcript": "They went off into the space when Earth was burning up or being destroyed.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 11.4,
       "cost_usd": 0.0
     },
     "r028": {
@@ -219,7 +601,45 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 15.1,
+      "latency_ms": 7.3,
+      "cost_usd": 0.0
+    },
+    "r029": {
+      "clip_id": "r029",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
+      "output_transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "79"
+      },
+      "used_llm": false,
+      "latency_ms": 8.8,
+      "cost_usd": 0.0
+    },
+    "r030": {
+      "clip_id": "r030",
+      "system_name": "pehchaan",
+      "heard_transcript": "The colleges of art, literature",
+      "output_transcript": "The colleges of art, literature",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 4.6,
       "cost_usd": 0.0
     },
     "r031": {
@@ -238,8 +658,60 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 16.9,
+      "latency_ms": 8.0,
       "cost_usd": 0.0
+    },
+    "r032": {
+      "clip_id": "r032",
+      "system_name": "pehchaan",
+      "heard_transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
+      "output_transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "grammar",
+          "resolved_entity_id": null,
+          "confidence": 0.332,
+          "reason": "keep: LLM: The phrase 'grammar' is an ordinary word and does not clearly refer to any of the candidates."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1231.4,
+      "cost_usd": 8.7e-05
+    },
+    "r033": {
+      "clip_id": "r033",
+      "system_name": "pehchaan",
+      "heard_transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
+      "output_transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "used",
+          "resolved_entity_id": null,
+          "confidence": 0.235,
+          "reason": "keep: LLM: The phrase 'used' is an ordinary word and does not clearly refer to any of the candidates."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 998.6,
+      "cost_usd": 8.3e-05
     },
     "r034": {
       "clip_id": "r034",
@@ -276,532 +748,8 @@
         "raw_time_text": null
       },
       "used_llm": true,
-      "latency_ms": 1972.1,
+      "latency_ms": 1955.4,
       "cost_usd": 0.000155
-    },
-    "r037": {
-      "clip_id": "r037",
-      "system_name": "pehchaan",
-      "heard_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
-      "output_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "Saudi",
-          "resolved_entity_id": null,
-          "confidence": 0.3,
-          "reason": "keep: LLM: The phrase 'Saudi' does not clearly refer to any of the candidates; it is an ordinary word."
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": true,
-      "latency_ms": 1085.2,
-      "cost_usd": 8.6e-05
-    },
-    "r040": {
-      "clip_id": "r040",
-      "system_name": "pehchaan",
-      "heard_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
-      "output_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "Kodava",
-          "resolved_entity_id": null,
-          "confidence": 0.303,
-          "reason": "keep: LLM: The phrase 'Kodava' refers to a regional language and does not clearly match any of the candidates."
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": true,
-      "latency_ms": 1129.3,
-      "cost_usd": 8.2e-05
-    },
-    "r002": {
-      "clip_id": "r002",
-      "system_name": "pehchaan",
-      "heard_transcript": "There is a gradual shift in the mentality.",
-      "output_transcript": "There is a gradual shift in the mentality.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 6.7,
-      "cost_usd": 0.0
-    },
-    "r003": {
-      "clip_id": "r003",
-      "system_name": "pehchaan",
-      "heard_transcript": "Nipah virus belongs to the",
-      "output_transcript": "Nipah virus belongs to the",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 4.3,
-      "cost_usd": 0.0
-    },
-    "r005": {
-      "clip_id": "r005",
-      "system_name": "pehchaan",
-      "heard_transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
-      "output_transcript": "Govinda has received twelve Filmfare Award nominations and four Zee Cine Awards.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 11.2,
-      "cost_usd": 0.0
-    },
-    "r006": {
-      "clip_id": "r006",
-      "system_name": "pehchaan",
-      "heard_transcript": "where it is joined by other branches to form the Brahmaputra.",
-      "output_transcript": "where it is joined by other branches to form the Brahmaputra.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 10.5,
-      "cost_usd": 0.0
-    },
-    "r008": {
-      "clip_id": "r008",
-      "system_name": "pehchaan",
-      "heard_transcript": "जम्मू, सांबा, कठुआ, रजौरी, पुंछ",
-      "output_transcript": "jammuu, saanbaa, kathuaa, rajaurii, punchh",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "कठुआ",
-          "resolved_entity_id": null,
-          "confidence": 0.233,
-          "reason": "keep: 'कठुआ' is unclear; best guess Cuttack only 0.77"
-        },
-        {
-          "heard_text": "पुंछ",
-          "resolved_entity_id": null,
-          "confidence": 0.272,
-          "reason": "keep: 'पुंछ' is unclear; best guess Pune only 0.73"
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 6.8,
-      "cost_usd": 0.0
-    },
-    "r009": {
-      "clip_id": "r009",
-      "system_name": "pehchaan",
-      "heard_transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
-      "output_transcript": "Among the poets, I remember William Wordsworth, T.S. Eliot.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 8.4,
-      "cost_usd": 0.0
-    },
-    "r011": {
-      "clip_id": "r011",
-      "system_name": "pehchaan",
-      "heard_transcript": "the normal competitions what we have.",
-      "output_transcript": "the normal competitions what we have.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 9.6,
-      "cost_usd": 0.0
-    },
-    "r012": {
-      "clip_id": "r012",
-      "system_name": "pehchaan",
-      "heard_transcript": "What is an usual word and what is unusual words and phrases.",
-      "output_transcript": "What is an usual word and what is unusual words and phrases.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 17.7,
-      "cost_usd": 0.0
-    },
-    "r014": {
-      "clip_id": "r014",
-      "system_name": "pehchaan",
-      "heard_transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
-      "output_transcript": "Meghalaya is one of the less developed or underdeveloped states in northeastern India.",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "India",
-          "resolved_entity_id": null,
-          "confidence": 0.31,
-          "reason": "keep: LLM: The phrase 'India' is an ordinary word and does not clearly refer to any of the candidates."
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": true,
-      "latency_ms": 2097.0,
-      "cost_usd": 8.1e-05
-    },
-    "r015": {
-      "clip_id": "r015",
-      "system_name": "pehchaan",
-      "heard_transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
-      "output_transcript": "could literally feel how the people live in villages, how difficult their lives are, what all circumstances they go through, and I could sympathise with them.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 30.3,
-      "cost_usd": 0.0
-    },
-    "r017": {
-      "clip_id": "r017",
-      "system_name": "pehchaan",
-      "heard_transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
-      "output_transcript": "So as an our state, the government is launching a lot of programs and schemes for business dealers and owners to make the traditional way of business into digitalization as it is more easier.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 24.3,
-      "cost_usd": 0.0
-    },
-    "r018": {
-      "clip_id": "r018",
-      "system_name": "pehchaan",
-      "heard_transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
-      "output_transcript": "On each and every subject and he deftly deals with handles all the good part of the happenings around the world.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 15.4,
-      "cost_usd": 0.0
-    },
-    "r020": {
-      "clip_id": "r020",
-      "system_name": "pehchaan",
-      "heard_transcript": "And also, people speaking English have different accents in different regions.",
-      "output_transcript": "And also, people speaking English have different accents in different regions.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 9.1,
-      "cost_usd": 0.0
-    },
-    "r021": {
-      "clip_id": "r021",
-      "system_name": "pehchaan",
-      "heard_transcript": "डिस्ट्रिक्ट एजुकेशन, हेल्थ, केयर, पावर्टी रिडक्शन, वोमेन्स इम्पावरमेंट",
-      "output_transcript": "distrikt ejukeshan, helth, keyar, paavartii ridakshan, vomens impaavarament",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "डिस्ट्रिक्ट",
-          "resolved_entity_id": null,
-          "confidence": 0.325,
-          "reason": "keep: 'डिस्ट्रिक्ट' is unclear; best guess Financial District only 0.68"
-        },
-        {
-          "heard_text": "केयर",
-          "resolved_entity_id": null,
-          "confidence": 0.34,
-          "reason": "keep: 'केयर' is unclear; best guess Kapra only 0.66"
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 19.2,
-      "cost_usd": 0.0
-    },
-    "r023": {
-      "clip_id": "r023",
-      "system_name": "pehchaan",
-      "heard_transcript": "are local traditions and beliefs by giving an opportunity.",
-      "output_transcript": "are local traditions and beliefs by giving an opportunity.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 17.3,
-      "cost_usd": 0.0
-    },
-    "r024": {
-      "clip_id": "r024",
-      "system_name": "pehchaan",
-      "heard_transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
-      "output_transcript": "Are there any vaccination centers available in South Goa district for age group eighteen plus years?",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "Goa district",
-          "resolved_entity_id": null,
-          "confidence": 0.245,
-          "reason": "keep: LLM: The phrase 'Goa district' refers to a geographical location and does not clearly match any of the candidates provided."
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": true,
-      "latency_ms": 2024.4,
-      "cost_usd": 8.2e-05
-    },
-    "r026": {
-      "clip_id": "r026",
-      "system_name": "pehchaan",
-      "heard_transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
-      "output_transcript": "Can you list all the vaccination centres where first dose of Covaxin is available for age group 15 to 17 years?",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 20.4,
-      "cost_usd": 0.0
-    },
-    "r027": {
-      "clip_id": "r027",
-      "system_name": "pehchaan",
-      "heard_transcript": "They went off into the space when Earth was burning up or being destroyed.",
-      "output_transcript": "They went off into the space when Earth was burning up or being destroyed.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 12.7,
-      "cost_usd": 0.0
-    },
-    "r029": {
-      "clip_id": "r029",
-      "system_name": "pehchaan",
-      "heard_transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
-      "output_transcript": "Book a HP gas cylinder using my registered contact number: 79083174897.",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "remind",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": "79"
-      },
-      "used_llm": false,
-      "latency_ms": 18.1,
-      "cost_usd": 0.0
-    },
-    "r030": {
-      "clip_id": "r030",
-      "system_name": "pehchaan",
-      "heard_transcript": "The colleges of art, literature",
-      "output_transcript": "The colleges of art, literature",
-      "behaviour": "keep",
-      "entities": [],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": false,
-      "latency_ms": 9.6,
-      "cost_usd": 0.0
-    },
-    "r032": {
-      "clip_id": "r032",
-      "system_name": "pehchaan",
-      "heard_transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
-      "output_transcript": "And not much is left at the behest of the writer or author. And the grammar and punctuation is very well structured and written and documented as well.",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "grammar",
-          "resolved_entity_id": null,
-          "confidence": 0.332,
-          "reason": "keep: LLM: The phrase 'grammar' is an ordinary word and does not clearly refer to any of the candidates."
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": true,
-      "latency_ms": 2442.0,
-      "cost_usd": 8.7e-05
-    },
-    "r033": {
-      "clip_id": "r033",
-      "system_name": "pehchaan",
-      "heard_transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
-      "output_transcript": "The radiation, the chemotherapy, everything, every option for cancer treatment is available over here and it is largely used not only by the people of Gujarat but also by the nearby states.",
-      "behaviour": "keep",
-      "entities": [
-        {
-          "heard_text": "used",
-          "resolved_entity_id": null,
-          "confidence": 0.235,
-          "reason": "keep: LLM: The phrase 'used' is an ordinary word and does not clearly refer to any of the candidates."
-        }
-      ],
-      "clarify_candidates": [],
-      "action": {
-        "type": "none",
-        "target_entity_id": null,
-        "place_entity_id": null,
-        "time": null,
-        "raw_time_text": null
-      },
-      "used_llm": true,
-      "latency_ms": 1981.2,
-      "cost_usd": 8.3e-05
     },
     "r035": {
       "clip_id": "r035",
@@ -819,7 +767,7 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 13.9,
+      "latency_ms": 5.8,
       "cost_usd": 0.0
     },
     "r036": {
@@ -845,8 +793,34 @@
         "raw_time_text": null
       },
       "used_llm": true,
-      "latency_ms": 2258.7,
+      "latency_ms": 1127.3,
       "cost_usd": 8.2e-05
+    },
+    "r037": {
+      "clip_id": "r037",
+      "system_name": "pehchaan",
+      "heard_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "output_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Saudi",
+          "resolved_entity_id": null,
+          "confidence": 0.3,
+          "reason": "keep: LLM: The phrase 'Saudi' does not clearly refer to any of the candidates; it is an ordinary word."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1075.9,
+      "cost_usd": 8.6e-05
     },
     "r038": {
       "clip_id": "r038",
@@ -871,7 +845,7 @@
         "raw_time_text": null
       },
       "used_llm": true,
-      "latency_ms": 2122.5,
+      "latency_ms": 1060.2,
       "cost_usd": 8.2e-05
     },
     "r039": {
@@ -897,8 +871,34 @@
         "raw_time_text": null
       },
       "used_llm": false,
-      "latency_ms": 25.9,
+      "latency_ms": 9.2,
       "cost_usd": 0.0
+    },
+    "r040": {
+      "clip_id": "r040",
+      "system_name": "pehchaan",
+      "heard_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "output_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Kodava",
+          "resolved_entity_id": null,
+          "confidence": 0.303,
+          "reason": "keep: LLM: The phrase 'Kodava' refers to a regional language and does not clearly match any of the candidates."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1119.5,
+      "cost_usd": 8.2e-05
     }
   }
 }

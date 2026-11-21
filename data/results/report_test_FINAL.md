@@ -1,6 +1,6 @@
 # Pehchaan evaluation: test split, audio = all
 
-Generated 2026-11-21T16:38:17. Systems: (a) plain STT, (b) STT + hints, (c) LLM baseline, Pehchaan.
+Generated 2026-11-21T16:58:43. Systems: (a) plain STT, (b) STT + hints, (c) LLM baseline, Pehchaan.
 
 Every number is shown with raw counts. A clarify decision takes no action until the user answers.
 
@@ -25,8 +25,8 @@ Every number is shown with raw counts. A clarify decision takes no action until 
 | clarify_candidates_ok | - | - | 0/0 = n/a | 9/13 = 69% |
 | reference_resolution_accuracy | - | - | 19/32 = 59% | 32/32 = 100% |
 | no_llm_rate | - | - | 0/220 = 0% | 191/220 = 87% |
-| latency_ms_mean | - | - | 1548.5 | 297.7 |
-| latency_ms_median | - | - | 1502.4 | 10.9 |
+| latency_ms_mean | - | - | 1548.5 | 170.0 |
+| latency_ms_median | - | - | 1502.4 | 9.4 |
 | cost_usd_mean | - | - | 0.000972 | 1.2e-05 |
 
 ### Audio = clean

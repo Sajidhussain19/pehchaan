@@ -117,7 +117,7 @@ def candidates_node(state: State) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 3. references: clue -> default -> ask
+# 3. references: clue -> saved preference -> default -> ask
 # ---------------------------------------------------------------------------
 def references_node(state: State) -> dict:
     """Example: "Call my doctor, my tooth is paining": the clue "tooth" picks the dentist over the default
@@ -128,9 +128,6 @@ def references_node(state: State) -> dict:
         if span.kind != "reference":
             continue
         heard = normalise(span.heard_text)
-        if heard in state["pref_map"]:
-            item.set("resolve", "preference", f"you told me '{heard}' means this", state["pref_map"][heard], 0.99)
-            continue
         cands = span.candidates
         if len(cands) == 1:
             how = "label" if any("family label" in r for r in cands[0].reasons) else "usual"
@@ -146,7 +143,14 @@ def references_node(state: State) -> dict:
         pool = [c for (s, _), c in scored if s == best] if best > 0 else cands
         if best > 0 and len(pool) == 1:
             why = next(w for (s, w), c in scored if c is pool[0])
-            item.set("resolve", "clue", "; ".join(why), pool[0].entity_id, 0.9)
+            # Module 10 (approved change after final-eval-v1): a clue in the sentence beats a saved preference,
+            # just as it beats a default. "Always use the dentist for 'my doctor'" must not send
+            # "call my doctor about my fever" to the dentist.
+            note = "; beats your saved choice" if state["pref_map"].get(heard) not in (None, pool[0].entity_id) else ""
+            item.set("resolve", "clue", "; ".join(why) + note, pool[0].entity_id, 0.9)
+            continue
+        if heard in state["pref_map"]:  # no deciding clue: what the user taught us comes before the default
+            item.set("resolve", "preference", f"you told me '{heard}' means this", state["pref_map"][heard], 0.99)
             continue
         default = next((c for c in pool if any(r.startswith("DEFAULT") for r in c.reasons)), None)
         if default:

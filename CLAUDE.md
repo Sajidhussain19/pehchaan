@@ -141,7 +141,8 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 - `tests/test_freeze.py` checks their fingerprints (`data/results/frozen_logic.json`).
 - If a change is ever approved after the final run: repeat the final run (`--final`), disclose the change in README
   ("Decision-logic freeze" section), then re-record with `python scripts/freeze_logic.py`.
-- Never tune on test results. The final held-out run happens once (Module 9) and is tagged `final-eval-v1`.
+- Never tune on test results. The final held-out run happened once (Module 9, tag `final-eval-v1`); after the one
+  approved change (clue beats saved preference) it was repeated with identical scores (tag `final-eval-v1.1`).
 
 ## Repo layout
 - `app/` — FastAPI app and all project code (`main.py`, `config.py`, `kb/`, `testset/`, `stt/`, `match/`, `decide/`, `api/`, `store/`)

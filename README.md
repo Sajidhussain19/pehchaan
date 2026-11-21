@@ -327,7 +327,10 @@ From the final held-out run on, **Pehchaan's decision logic is frozen**: `app/ma
 and the base KB files. Their fingerprints (SHA-256) are in `data/results/frozen_logic.json`, and `tests/test_freeze.py`
 fails if any of them changes. Any later change needs explicit approval, a repeated final run (`--final`), and a note here.
 
-*Changes made after the freeze:* none.
+### Changes after final-eval-v1
+| Tag | Change | Approved | Effect on the held-out numbers |
+|---|---|---|---|
+| `final-eval-v1.1` | **A clue in the sentence beats a saved preference** (rule: clue -> saved preference -> default -> ask). Before, "Always use Dr. Subramanian for 'my doctor'" also sent "call my doctor about my **fever**" to the dentist; now the clue "fever" picks the GP. Only for references ("my doctor"); learned answers for plain names are unchanged. | yes, by the developer (Module 10) | Re-ran the final evaluation once with `--final`: **all 366 decisions (dev + test, every audio) identical**, every scored metric identical (evaluation uses no saved preferences). Only latency was re-measured (Pehchaan mean 298 -> 170 ms, median 10.9 -> 9.4 ms; cached LLM answers reuse their recorded time). The Results table keeps the first, more conservative latency. |
 
 *Made just before the freeze (Module 9 plumbing, no logic change):* the KB-derived caches in `app/match` and
 `app/decide` became per-contact-book caches, and `resolve()` gained a `book=` argument. Re-running Pehchaan on all

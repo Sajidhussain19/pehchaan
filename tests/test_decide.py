@@ -120,3 +120,21 @@ def test_graph_has_one_node_per_step():
     for step in ("preferences", "candidates", "references", "context_check", "route", "llm_fallback",
                  "action", "assemble"):
         assert step in nodes
+
+
+def test_clue_beats_a_saved_preference():
+    # Module 10 (approved change): the user said "always use the dentist for 'my doctor'", but "fever"
+    # is a clue for the general physician, and a clue in the sentence wins (clue -> preference -> default -> ask).
+    pref = Preference(phrase_pattern="my doctor", entity_id=KB_ID["Dr. Subramanian"], created_at=datetime(2026, 11, 21))
+    d = resolve("Call my doctor about my fever and cough.", preferences=[pref], book="B")
+    assert d.action.target_entity_id == KB_ID["Dr. Venkataramana"]
+    assert "beats your saved choice" in d.entities[0].reason
+
+
+def test_saved_preference_still_used_without_a_clue():
+    pref = Preference(phrase_pattern="my doctor", entity_id=KB_ID["Dr. Subramanian"], created_at=datetime(2026, 11, 21))
+    d = resolve("Remind me to call my doctor at 6 PM.", preferences=[pref], book="B")
+    assert d.action.target_entity_id == KB_ID["Dr. Subramanian"] and "you told me" in d.entities[0].reason
+    # The preference also beats the DEFAULT in the default book (family doctor is the default there).
+    d = resolve("Remind me to call my doctor at 6 PM.", preferences=[pref])
+    assert d.action.target_entity_id == KB_ID["Dr. Subramanian"]

@@ -168,8 +168,8 @@
         "total": 220,
         "rate": 0.8681818181818182
       },
-      "latency_ms_mean": 297.7,
-      "latency_ms_median": 10.9,
+      "latency_ms_mean": 170.0,
+      "latency_ms_median": 9.4,
       "cost_usd_mean": 1.2e-05
     }
   },
@@ -335,8 +335,8 @@
           "total": 97,
           "rate": 0.8865979381443299
         },
-        "latency_ms_mean": 300.4,
-        "latency_ms_median": 14.0,
+        "latency_ms_mean": 151.0,
+        "latency_ms_median": 9.4,
         "cost_usd_mean": 1.1e-05
       }
     },
@@ -501,8 +501,8 @@
           "total": 97,
           "rate": 0.8762886597938144
         },
-        "latency_ms_mean": 238.5,
-        "latency_ms_median": 9.2,
+        "latency_ms_mean": 165.3,
+        "latency_ms_median": 9.1,
         "cost_usd_mean": 1.2e-05
       }
     },
@@ -667,8 +667,8 @@
           "total": 26,
           "rate": 0.7692307692307693
         },
-        "latency_ms_mean": 508.4,
-        "latency_ms_median": 17.5,
+        "latency_ms_mean": 258.1,
+        "latency_ms_median": 11.6,
         "cost_usd_mean": 1.9e-05
       }
     }
@@ -835,8 +835,8 @@
           "total": 14,
           "rate": 0.8571428571428571
         },
-        "latency_ms_mean": 250.3,
-        "latency_ms_median": 9.7,
+        "latency_ms_mean": 168.2,
+        "latency_ms_median": 8.6,
         "cost_usd_mean": 1.3e-05
       }
     },
@@ -1001,8 +1001,8 @@
           "total": 10,
           "rate": 1.0
         },
-        "latency_ms_mean": 14.6,
-        "latency_ms_median": 14.3,
+        "latency_ms_mean": 9.0,
+        "latency_ms_median": 9.4,
         "cost_usd_mean": 0.0
       }
     },
@@ -1167,8 +1167,8 @@
           "total": 18,
           "rate": 1.0
         },
-        "latency_ms_mean": 8.2,
-        "latency_ms_median": 7.7,
+        "latency_ms_mean": 7.6,
+        "latency_ms_median": 7.5,
         "cost_usd_mean": 0.0
       }
     },
@@ -1333,8 +1333,8 @@
           "total": 94,
           "rate": 0.925531914893617
         },
-        "latency_ms_mean": 194.2,
-        "latency_ms_median": 11.8,
+        "latency_ms_mean": 105.6,
+        "latency_ms_median": 10.6,
         "cost_usd_mean": 7e-06
       }
     },
@@ -1499,8 +1499,8 @@
           "total": 18,
           "rate": 0.5555555555555556
         },
-        "latency_ms_mean": 1105.0,
-        "latency_ms_median": 17.4,
+        "latency_ms_mean": 626.4,
+        "latency_ms_median": 8.7,
         "cost_usd_mean": 4.7e-05
       }
     },
@@ -1665,8 +1665,8 @@
           "total": 26,
           "rate": 0.7692307692307693
         },
-        "latency_ms_mean": 508.4,
-        "latency_ms_median": 17.5,
+        "latency_ms_mean": 258.1,
+        "latency_ms_median": 11.6,
         "cost_usd_mean": 1.9e-05
       }
     },
@@ -1831,8 +1831,8 @@
           "total": 28,
           "rate": 0.9285714285714286
         },
-        "latency_ms_mean": 118.8,
-        "latency_ms_median": 7.9,
+        "latency_ms_mean": 80.2,
+        "latency_ms_median": 7.3,
         "cost_usd_mean": 6e-06
       }
     },
@@ -1997,8 +1997,8 @@
           "total": 4,
           "rate": 1.0
         },
-        "latency_ms_mean": 22.9,
-        "latency_ms_median": 18.2,
+        "latency_ms_mean": 11.4,
+        "latency_ms_median": 11.2,
         "cost_usd_mean": 0.0
       }
     },
@@ -2163,8 +2163,8 @@
           "total": 8,
           "rate": 0.5
         },
-        "latency_ms_mean": 863.5,
-        "latency_ms_median": 580.6,
+        "latency_ms_mean": 576.0,
+        "latency_ms_median": 577.2,
         "cost_usd_mean": 4.5e-05
       }
     }
