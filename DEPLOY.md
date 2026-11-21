@@ -19,20 +19,20 @@ Region for everything below: **us-west-2 (Oregon)**. Replace `<...>` placeholder
 
 ## 0. Put the code on GitHub (once, on your laptop)
 
-The repo has no remote yet. In PowerShell, in the project folder:
+The repo is **public**: `https://github.com/<your-user>/pehchaan`. In PowerShell, in the project folder:
 
 ```powershell
-gh auth login                                   # if not logged in yet
-gh repo create pehchaan --private --source . --push
+gh auth login                                   # once: GitHub.com -> HTTPS -> log in with a web browser
+git ls-files | Select-String "\.env$"           # must print NOTHING (.env is never committed)
+gh repo create pehchaan --public --source . --push
 git push --tags                                 # final-eval-v1, final-eval-v1.1
 ```
 
-- `.env` is git-ignored, so the key is not pushed. Check with `git ls-files | Select-String "\.env$"`: there should be no output.
-- **Private repo:** to clone it on the server you need a read-only token. Create a fine-grained token on GitHub
-  (Settings → Developer settings → Fine-grained tokens → this repo only → Contents: Read-only).
-- **Public repo** (judges may ask for one): first re-read the Svarah dataset terms you accepted on Hugging Face.
-  The clips are CC BY 4.0, but the dataset is gated, so make sure re-sharing the 40 sample clips is allowed. If unsure,
-  keep the repo private.
+- The Svarah real-speech **audio is not in the repo or its history** (it was removed before the first push).
+  Manifest, attribution, transcripts and results are included. On the server the demo simply doesn't offer the
+  real clips; to have them, put `HF_TOKEN` in `/etc/pehchaan.env` and run `python scripts/fetch_real_speech.py`
+  (optional).
+- A public repo clones without any token: `git clone https://github.com/<your-user>/pehchaan.git`.
 
 ## 1. Security group (EC2 console → Security Groups → Create)
 
@@ -69,7 +69,7 @@ Log in (EC2 console → Connect → EC2 Instance Connect, or `ssh -i <key.pem> e
 sudo dnf install -y docker git
 sudo systemctl enable --now docker
 sudo usermod -aG docker ec2-user && newgrp docker      # run docker without sudo
-git clone https://github.com/<your-user>/pehchaan.git  # private repo: user = your GitHub name, password = the token
+git clone https://github.com/<your-user>/pehchaan.git
 cd pehchaan
 docker build -t pehchaan .
 ```
@@ -171,4 +171,4 @@ recording is described in `DEMO_SCRIPT.md`.
 ## 9. After the hackathon: clean up (to stop paying)
 
 CloudFront: **Disable**, wait, then **Delete** the distribution. EC2: **Terminate** the instance. Delete `pehchaan-sg`.
-Revoke the GitHub token if you made one, and rotate the OpenAI key if it was ever shared.
+Rotate the OpenAI key if it was ever shared.
