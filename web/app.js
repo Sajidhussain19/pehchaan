@@ -155,17 +155,21 @@ function play(url, button) {
 async function loadClips() {
   const clips = await api("/api/clips");
   const list = $("#clips");
-  fill(list, ...clips.map((c) => {
-    const kind = c.honest_failure ? "Known failure" : (c.demo_kind || (c.group === "dev" ? "Dev clip · " + c.category : c.category));
+  let lastGroup = null;
+  fill(list, ...clips.flatMap((c) => {
+    // A heading whenever the group changes: rehearsed (seen) clips, test-2 clips, dev clips.
+    const heading = c.group !== lastGroup ? el("li", { class: "clip-group" }, c.group) : null;
+    lastGroup = c.group;
+    const kind = c.label || c.demo_kind || c.category;
     const variant = () => (c.audio[state.variant] ? state.variant : Object.keys(c.audio)[0]);
     const playBtn = el("button", { class: "icon-btn", type: "button", "aria-label": `Play clip ${c.clip_id}` }, "▶ Play");
     playBtn.onclick = () => play(c.audio[variant()], playBtn);
-    return el("li", { class: "clip", "data-clip": c.clip_id },
-      el("span", { class: "clip-kind" + (c.honest_failure ? " fail" : "") }, `${c.clip_id} · ${kind}`),
+    return [heading, el("li", { class: "clip", "data-clip": c.clip_id },
+      el("span", { class: "clip-kind" + (c.honest_failure ? " fail" : c.fixed_in_v2 ? " fixed" : "") }, `${c.clip_id} · ${kind}`),
       el("span", { class: "clip-actions" },
         playBtn,
         el("button", { class: "icon-btn clip-run", type: "button", onclick: () => runClip(c.clip_id, variant()) }, "Run")),
-      el("span", { class: "clip-text" }, c.text));
+      el("span", { class: "clip-text" }, c.text))];
   }));
 }
 
@@ -252,7 +256,9 @@ function decisionWords(d, names, stored, isPehchaan) {
   const fixed = d.entities.filter((e) => e.resolved_entity_id).map((e) => nameOf(names, e.resolved_entity_id));
   if (fixed.length && kept.length) return `Fixed ${fixed.join(", ")}; kept ${kept.join(", ")} as heard. No reminder.`;
   if (fixed.length) return `Fixed ${fixed.join(", ")}. No reminder requested.`;
-  if (kept.length) return `Kept ${kept.join(", ")} as heard: not in your contacts.`;
+  // Say WHY it was kept, from the reason itself (v2: everyday words are not names).
+  const everyday = d.entities.some((e) => !e.resolved_entity_id && /everyday/.test(e.reason));
+  if (kept.length) return `Kept ${kept.join(", ")} as heard: ${everyday ? "everyday speech, not a name" : "not in your contacts"}.`;
   return "Nothing to change: no names from your contacts.";
 }
 
@@ -349,7 +355,8 @@ function renderResult(r, meta) {
       el("span", {}, sttWords(r)),
       el("span", {}, "decision " + ms(r.timings.pehchaan_ms)),
       el("span", { class: "badge " + (r.used_llm ? "ai" : "no-ai") }, r.used_llm ? "AI fallback used" : "No AI call"),
-      el("span", {}, "cost " + usd(r.cost_usd))));
+      el("span", {}, "cost " + usd(r.cost_usd))),
+    r.pehchaan_source ? el("p", { class: "source" }, r.pehchaan_source) : null);
 
   renderClarify(r.pending, null);
   if (r.pending) $("#clarify").scrollIntoView({ behavior: "smooth", block: "nearest" });

@@ -30,6 +30,7 @@ from pydantic import BaseModel
 from app.api import audio as audio_io
 from app.api import flow, guard
 from app.config import settings
+from app.decide.config import VERSION
 from app.eval.decision import Decision
 from app.eval.metrics import clip_outcome
 from app.eval.runs import load_decision_objects, load_transcripts
@@ -79,6 +80,12 @@ def _verdict(gt, decision: dict | None) -> dict | None:
         return None
     outcome = clip_outcome(gt, decision["output_transcript"], Decision.model_validate(decision))
     return {"outcome": outcome, "label": VERDICT_WORDS.get(outcome, outcome), "ok": outcome == "ok"}
+
+
+def _same_decision(a: dict, b: dict) -> bool:
+    keys = lambda d: (d["output_transcript"], d["behaviour"], d["action"]["target_entity_id"],  # noqa: E731
+                      sorted(d["clarify_candidates"]))
+    return keys(a) == keys(b)
 
 
 def _check_book(book: str) -> str:
@@ -167,8 +174,14 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
     saved_c = None
     if compare and clip is not None and stt["stt_source"].startswith("saved") and not live_baseline and book == DEFAULT_BOOK:
         saved_c = load_decision_objects("llm_baseline", variant, settings.chat_model).get(clip_id)
-    result = flow.process(transcript, book=book, direction=direction_used, caller=caller, client=client,
-                          compare=compare and saved_c is None)
+    # Clips replay the evaluation: Pehchaan's verdict is scored on its SAVED decision from the evaluation run
+    # (the same files the reports were computed from), and the live re-run (which creates the reminder or the
+    # question) uses the evaluation's stored LLM answers (client=None -> cache), so it matches that decision.
+    saved_p = None
+    if clip is not None and stt["stt_source"].startswith("saved") and book == DEFAULT_BOOK:
+        saved_p = load_decision_objects("pehchaan", variant, VERSION).get(clip_id)
+    result = flow.process(transcript, book=book, direction=direction_used, caller=caller,
+                          client=None if saved_p is not None else client, compare=compare and saved_c is None)
     if saved_c is not None:
         result.update(baseline=saved_c.model_dump(), baseline_ms=saved_c.latency_ms, baseline_cost_usd=0.0)
     decision = result["decision"]
@@ -187,8 +200,12 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
         "expected": {"behaviour": gt.expected_behaviour,
                      "target_entity_id": getattr(getattr(gt, "expected_action", None), "target_entity_id", None)}
         if gt is not None else None,
-        "verdict": {"pehchaan": _verdict(gt, decision), "baseline": _verdict(gt, result["baseline"])}
-        if gt is not None else None,
+        "verdict": {"pehchaan": _verdict(gt, saved_p.model_dump() if saved_p is not None else decision),
+                    "baseline": _verdict(gt, result["baseline"])} if gt is not None else None,
+        "pehchaan_source": None if saved_p is None else (
+            f"saved {VERSION} decision from the evaluation run" + (
+                "" if _same_decision(saved_p.model_dump(), decision)
+                else " (NOTE: this live re-run differs; the verdict uses the saved decision)")),
         "names": _names_for(book, decision, result["baseline"]),
         "timings": {"stt_ms": stt["stt_ms"], "pehchaan_ms": result["pehchaan_ms"], "store_ms": result["store_ms"],
                     "baseline_ms": result["baseline_ms"], "total_ms": round(total_ms, 1)},

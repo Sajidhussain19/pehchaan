@@ -113,6 +113,9 @@ button { cursor: pointer; }
 .clip.selected { border-color: var(--navy); background: #F3F1E8; }
 .clip-kind { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--lime-dark); }
 .clip-kind.fail { color: var(--bad); }
+.clip-kind.fixed { color: var(--good); }
+.clip-group { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .05em; padding: 6px 2px 0; }
 .clip-text { grid-column: 1 / -1; font-size: 0.9rem; }
 .clip-actions { display: flex; gap: 6px; }
 .icon-btn { border: 1.5px solid var(--line); background: var(--card); border-radius: 8px; padding: 3px 9px; font-size: 0.85rem; }

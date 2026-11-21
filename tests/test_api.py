@@ -231,6 +231,25 @@ def test_metrics_and_clips_and_reset(api):
     assert "held-out" in m["label"].lower() and set(m["overall"]) == {"c", "pehchaan"}
     assert m["overall"]["pehchaan"]["wrong_target_rate"]["total"] > 0  # raw counts, not just a percentage
     clips = api.get("/api/clips").json()
-    assert clips[0]["group"].startswith("demo") and any(c["group"] == "dev" for c in clips)
+    assert clips[0]["group"].startswith("demo") or clips[0]["group"].startswith("Original")
+    assert any(c["group"] == "Dev clips" for c in clips)
     process(api, text=DOCTOR_SENTENCE, book="A")
     assert api.delete("/api/reminders").json() == {"deleted": 1} and api.get("/api/reminders").json() == []
+
+
+def test_rehearsed_clips_come_first_and_are_labelled_honestly(api):
+    # The presenter rehearsed with s104, s140, s067, s090 (original test set). Since v2 they are "seen".
+    clips = api.get("/api/clips").json()
+    assert [c["clip_id"] for c in clips[:4]] == ["s104", "s140", "s067", "s090"]
+    assert all(c["group"] == "Original test set (seen before v2)" for c in clips[:4])
+    assert clips[3]["label"] in ("v1 failure — fixed in v2", "Known failure")  # computed from saved v2 results
+    assert [c["clip_id"] for c in clips[4:10]] == ["s202", "s208", "s203", "s199", "s206", "s185"]
+    assert clips[9]["label"] == "Known failure (v2)"
+
+
+def test_clip_verdict_uses_the_saved_v2_decision(api, fake):
+    body = process(api, clip_id="s104", variant="clean", compare=True).json()
+    assert body["verdict"]["pehchaan"]["label"] == "✓ Correct"  # asks Rohit Chaturvedi or Rohith Reddy
+    assert body["verdict"]["baseline"]["label"] == "✗ Wrong target"  # (c)'s saved answer guessed
+    assert body["pehchaan_source"].startswith("saved") and "differs" not in body["pehchaan_source"]
+    assert not fake.calls  # saved transcript + saved (c) + cached LLM answers: no API call at all
