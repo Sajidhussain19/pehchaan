@@ -132,7 +132,7 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 6. Entity span detection  (DONE, with Module 7)
 7. Matching engine (phonetic + fuzzy + confidence)  (DONE)
 8. LangGraph correction pipeline  (DONE: app/decide, dev results in LEARNING.md)
-9. Remind action + API (real stored reminders, learning with consent, latency/cost per call)
+9. Remind action + API (real stored reminders, learning with consent, latency/cost per call)  (DONE: app/api, app/store, data/kb/books; final held-out run tagged final-eval-v1)
 10. Demo UI + live mic + AWS deploy
 
 ## Decision-logic freeze (since Module 9, before the final held-out run)
@@ -144,7 +144,8 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 - Never tune on test results. The final held-out run happens once (Module 9) and is tagged `final-eval-v1`.
 
 ## Repo layout
-- `app/` — FastAPI app and all project code (`main.py`, `config.py`, `kb/`, `testset/`, `stt/`)
+- `app/` — FastAPI app and all project code (`main.py`, `config.py`, `kb/`, `testset/`, `stt/`, `match/`, `decide/`, `api/`, `store/`)
+- `data/kb/books/` — demo contact books A and B (overlays on the base KB; learned preferences per book are git-ignored)
 - `data/kb/` — knowledge base files (Module 2) + `preferences.json`
 - `data/testset/` — test sentences + synthetic audio (Module 3)
 - `data/realspeech/` — real-speaker clips (Svarah sample) + manifest

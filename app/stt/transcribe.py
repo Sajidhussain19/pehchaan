@@ -67,6 +67,7 @@ def transcribe(
     client=None,
     max_attempts: int = 4,
     sleep=time.sleep,
+    seconds: float | None = None,
 ) -> dict:
     """Transcribe one audio file.
 
@@ -75,6 +76,8 @@ def transcribe(
         prompt: optional text that nudges the model (baseline (b) puts the name hints here).
         model: defaults to settings.transcription_model.
         client, sleep: can be replaced in tests, so tests never call the real API or really wait.
+        seconds: the audio length, if already known. Needed for browser formats (webm/m4a) that our
+            audio library can't read; the cost estimate then uses this value.
 
     Returns: {"text", "model", "latency_ms", "cost_estimate_usd"}
     """
@@ -104,5 +107,6 @@ def transcribe(
         "text": response.text.strip(),
         "model": model,
         "latency_ms": round(latency_ms, 1),
-        "cost_estimate_usd": round(estimate_cost(audio_seconds(audio_path), model, prompt), 6),
+        "cost_estimate_usd": round(estimate_cost(seconds if seconds is not None else audio_seconds(audio_path),
+                                                 model, prompt), 6),
     }

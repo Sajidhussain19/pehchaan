@@ -1,10 +1,9 @@
 """
 app/main.py — the FastAPI web application for Pehchaan.
 
-WHAT: Creates the FastAPI `app` object and defines its HTTP endpoints.
-      For now there is only GET /health.
-WHY:  Every later feature (correct a transcript, extract an action, the demo page)
-      becomes an endpoint here. /health is the simplest possible endpoint. It proves the
+WHAT: Creates the FastAPI `app` object, defines GET /health, and plugs in the Pehchaan API
+      (app/api/routes.py: process, clarify, reminders, books, clips, audio, metrics).
+WHY:  This file stays small on purpose: the endpoints live in app/api/, the logic in app/api/flow.py. /health is the simplest possible endpoint. It proves the
       server runs, and it is what AWS or a load balancer pings to check the app is alive.
 
 Run it with:
@@ -14,6 +13,7 @@ Run it with:
 
 from fastapi import FastAPI
 
+from app.api.routes import router
 from app.config import settings
 
 # Create the application. The title and description appear on the
@@ -21,8 +21,9 @@ from app.config import settings
 app = FastAPI(
     title=settings.project_name,
     description="Pehchaan — gets Indian names right. A correction layer for speech-to-text.",
-    version="0.1.0",
+    version="0.9.0",
 )
+app.include_router(router)  # every /api/... and /audio/... endpoint (Module 9)
 
 
 @app.get("/health")

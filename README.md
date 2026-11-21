@@ -29,6 +29,32 @@ phonetic + fuzzy matching and a confidence score. An LLM is used only when it's 
 It never hides what it heard: every result shows *heard -> resolved -> confidence -> reason*.
 The one real action is **Remind**: a stored reminder with the person, time and place, plus heard vs resolved.
 
+## Results (held-out test split, run once)
+
+Measured on the **held-out test split** (97 sentences × clean + phone audio, plus 26 real-speaker clips = 220 clips),
+run **once** after the decision logic was frozen (git tag `final-eval-v1`; report: `data/results/report_test_FINAL.md`).
+Baseline (c) is one GPT-4o-mini call that gets the same transcript and the user's whole personal context.
+
+| | (c) strong LLM baseline | **Pehchaan** |
+|---|---|---|
+| **wrong-target rate** (acted on the wrong person/place) | 24/220 = 11% | **11/220 = 5%** |
+| **missed clarifications** (guessed when it should ask) | 14/14 = 100% | **1/14 = 7%** |
+| reference resolution ("my doctor", "Amma", "the usual pharmacy") | 19/32 = 59% | **32/32 = 100%** |
+| exact action target | 74/118 = 63% | **96/118 = 81%** |
+| behaviour (correct / keep / resolve / ask) | 162/220 = 74% | **182/220 = 83%** |
+| entity accuracy | 109/148 = 74% | **118/148 = 80%** |
+| WER (supporting) | 292/2392 = 12% | **265/2392 = 11%** |
+| over-correction (changed a name that should stay) | **3/70 = 4%** | 11/70 = 16% |
+| unnecessary questions | **0/198 = 0%** | 15/198 = 8% |
+| decided with **no LLM call** | 0/220 = 0% | **191/220 = 87%** |
+| latency per decision (median / mean) | 1502 / 1549 ms | **11 / 298 ms** |
+| cost per decision (mean) | $0.00097 | **$0.000012** |
+
+**Clip by clip, Pehchaan vs (c): 49 wins, 149 ties, 22 losses.** Pehchaan halves wrong actions and asks when it
+should; its weak spots are **over-correction** (e.g. Telugu "ee roju", *today*, turned into "Dr. Raju") and asking
+when a business name contains a contact's first name ("Lakshmi Ganapathi Tiffins"). Both are reported as they are:
+nothing was tuned after this run. On dev we had seen 0/34 over-corrections; the test split showed that was optimistic.
+
 ## The 4 levels
 
 | Level | Example | Pehchaan's answer |
@@ -72,7 +98,11 @@ On macOS/Linux, activate with `source venv/bin/activate` and copy with `cp .env.
 
 ```
 app/            FastAPI app and all project code
+  api/          HTTP endpoints (routes.py), the flow (flow.py), safe audio handling (audio.py)
+  store/        SQLite reminders + pending questions, learned preferences per contact book
+  decide/       the LangGraph decision pipeline        match/  spans + phonetic matching
 data/kb/        knowledge base (contacts, places, businesses)
+data/kb/books/  demo contact books A and B (small overlays on the base KB)
 data/testset/   test sentences + audio
 data/results/   transcripts and evaluation reports
 scripts/        runnable scripts
@@ -120,9 +150,9 @@ Each line has ground truth: the KB ids of the names in it, what Pehchaan should 
 | `control` | 13 | "The cook at the polling booth said lunch is ready." | keep |
 | `ambiguous` | 14 | "Ask Harshil to send the invoice" / "Call Harshit at 5." | resolve / clarify |
 | `context_mismatch` | 10 | "Book a table at Raju Hotel…" / unknown caller: "I'm Raju from the bank" | clarify / keep |
-| `reference` | 22 | "Call my doctor, my tooth is paining" / "Order Amma's tablets from the usual pharmacy" / "Ask my colleague to join the call" | resolve / clarify |
+| `reference` | 23 | "Call my doctor, my tooth is paining" / "Order Amma's tablets from the usual pharmacy" / "Ask my colleague to join the call" | resolve / clarify |
 | `unfamiliar_near_match` | 6 | "Remind me to call Rohan…" (Rohan is not a contact; Rohit is) / unknown caller "Harshil Mehta" | keep (clarify also OK), never resolve |
-| `stale_default` | 6 | "Call my doctor about my eye drops" -> the eye specialist, not the default family doctor | resolve |
+| `stale_default` | 5 | "Call my doctor about my eye drops" -> the eye specialist, not the default family doctor | resolve |
 
 **4 expected behaviours:** **correct** (fix a known name), **keep** (leave unknown names and ordinary words alone),
 **resolve** (pick the right look-alike contact, or work out who "my doctor" means, using context), **clarify** (ask the user instead of guessing).
@@ -194,20 +224,7 @@ preferences → candidates → references → context_check → route ─(unsure
 - **Output:** the same `Decision` as baseline (c), with every entity shown as *heard → resolved → confidence → reason*,
   plus a Remind action (who, where, "HH:MM").
 
-**Dev results vs the strong LLM baseline (c)** (dev split only; we tuned on it, so these are optimistic):
-
-| | (c) one GPT-4o-mini call | Pehchaan |
-|---|---|---|
-| wrong-target rate | 20/146 = 14% | **0/146 = 0%** |
-| missed clarifications | 15/16 = 94% | **1/16 = 6%** |
-| unnecessary questions | 2/126 | **0/126** |
-| over-correction | 1/34 | **0/34** |
-| reference resolution | 12/24 = 50% | **23/24 = 96%** |
-| entity accuracy | 81/98 = 83% | **96/98 = 98%** |
-| decided with no LLM | 0% | **90%** |
-| latency (median) | 1.6 s | **9 ms** |
-
-Clip by clip: Pehchaan wins 54, ties 88, loses 4. *Held-out test-split numbers are reported once, at the end.*
+**Results:** see [Results (held-out test split, run once)](#results-held-out-test-split-run-once). Dev-split numbers (which we tuned on) are in `LEARNING.md` and `data/results/report_dev_all.md`.
 
 ```powershell
 python scripts/run_pehchaan.py            # dev split, clean + phone + real (LLM answers cached)
@@ -288,25 +305,12 @@ like calling the wrong person. And raw counts show how much evidence each percen
 **Held-out rule.** Everything is tuned and inspected on the **dev** split only. Scoring the **test** split needs
 `--final`, prints a warning, and is logged in `data/results/test_runs.log`, so every look at the test set is on record.
 
-**Dev results so far** (45 synthetic clips × clean + phone, plus 14 real-speech clips):
-
-| | (a) plain | (b) hints | (c) LLM baseline |
-|---|---|---|---|
-| entity accuracy | 41/64 = 64% | 49/64 = 77% | 55/64 = 86% |
-| WER | 24% | 21% | 17% |
-| over-correction | 0/34 | 0/34 | 1/34 = 3% |
-| wrong-target rate | - | - | 9/104 = 9% |
-| missed clarification | - | - | **7/8 = 88%** |
-| reference resolution | - | - | 8/14 = 57% |
-
-The strong baseline fixes many spellings, but it **almost never asks when it should**. It guesses between Harshit
-and Harshil, maps "Raju Hotel" to an unrelated shop, and sends "my doctor, my tooth is paining" to the family doctor
-instead of the dentist. That is the gap Pehchaan has to close. *Test-split numbers are reported only at the end.*
+**What the evaluation showed.** The strong baseline fixes many spellings, but it **almost never asks when it should**: it guesses between Rohit and Rohith, maps "Venkataramana Restaurant" to a dental clinic, and sends "my doctor about the tooth filling" to the family doctor. Final held-out numbers for all systems: [Results](#results-held-out-test-split-run-once) and `data/results/report_test_FINAL.md`.
 
 ```powershell
 python scripts/run_llm_baseline.py --limit 3     # baseline (c), dev split, cached
 python scripts/evaluate.py                       # dev report -> data/results/report_dev_all.md
-python scripts/evaluate.py --split test --final  # ONLY for the final numbers (logged)
+python scripts/evaluate.py --split test --final --compare pehchaan c   # done ONCE (logged, tag final-eval-v1)
 ```
 
 ### Test-set errata (fixed before the final run)
@@ -329,8 +333,59 @@ fails if any of them changes. Any later change needs explicit approval, a repeat
 `app/decide` became per-contact-book caches, and `resolve()` gained a `book=` argument. Re-running Pehchaan on all
 146 dev decisions gave **0 differences** from the Module 8 outputs (latency ignored).
 
-## Demo
-*Coming in Module 10.*
+## API
+
+Start the server: `uvicorn app.main:app --reload`, then open http://127.0.0.1:8000/docs for the interactive docs.
+
+| Endpoint | What it does |
+|---|---|
+| `GET /health` | the server is up |
+| `GET /api/books` | contact books (`default`, `A`, `B`) with a one-line description |
+| `GET /api/clips` | demo clips from the held-out run first, then dev clips, with audio URLs |
+| `GET /audio/{clean\|phone\|real}/{clip_id}.wav` | one clip's audio (ids checked against the manifests; no path traversal) |
+| `POST /api/process` | form fields: exactly one of `file` (mic recording: webm/ogg/wav/mp3/m4a, ≤ 5 MB, ≤ 30 s), `clip_id` + `variant`, or `text`; plus `book`, `compare` |
+| `POST /api/clarify/{pending_id}` | JSON `{"entity_id": "...", "remember": "this_time" \| "always"}` → creates the reminder; `always` also saves a preference for that book |
+| `POST /api/preferences/reset?book=B` | forget what a book learned (repeatable demos) |
+| `GET /api/reminders`, `GET /api/reminders/{id}`, `DELETE /api/reminders` | the stored reminders |
+| `GET /api/metrics` | the FINAL held-out numbers, (c) vs Pehchaan with raw counts, for the scoreboard |
+
+`POST /api/process` runs **speech-to-text → Pehchaan → a stored reminder, or a pending question**. With `compare=true`
+it also runs baseline (c) on the same transcript and returns its decision side by side (never stored). The response
+has the heard transcript, the corrected transcript with every span marked (heard text, resolved name, role,
+confidence, reason, character positions for highlighting), the decision, and timings: `stt_ms`, `pehchaan_ms`,
+`baseline_ms`, `total_ms`, plus `used_llm` and `cost_usd` (speech-to-text + Pehchaan).
+
+```powershell
+curl.exe -X POST http://127.0.0.1:8000/api/process -F "text=Remind me to call my doctor at six." -F book=B
+curl.exe -X POST http://127.0.0.1:8000/api/process -F clip_id=s140 -F variant=phone -F compare=true
+```
+
+Reminders live in SQLite (`data/app.db`, Python's built-in `sqlite3`, no ORM). Each one stores the person, role,
+place, `HH:MM` time (or none if the time was ambiguous), heard vs corrected transcript, every entity's
+heard → resolved → confidence → reason, and how it was decided: `auto`, `clarified_this_time`, `clarified_always`
+or `preference`.
+
+## Demo flow
+
+**Two contact books, one sentence.** "Remind me to call my doctor at six." means different things for different users:
+
+| Book | Contacts | Result |
+|---|---|---|
+| A | one doctor (Dr. Venkataramana, family doctor) | reminder for Dr. Venkataramana, no question |
+| B | two doctors (general physician + dentist), no default | **asks**: Dr. Venkataramana or Dr. Subramanian? |
+
+In book B: **"Use Dr. Subramanian this time"** creates the reminder and learns nothing (it asks again next time).
+**"Always use Dr. Subramanian for 'my doctor'"** saves a preference for book B only; the next time, the same sentence
+resolves automatically (`resolution = preference`). A clue still works without learning: "my doctor, my **tooth**
+is paining" → the dentist.
+
+```powershell
+python scripts/demo_flow.py              # the whole story, step by step ($0; temporary database)
+python scripts/demo_flow.py --compare    # + baseline (c) on the book-B sentence (one GPT-4o-mini call)
+```
+
+The held-out clips where Pehchaan and (c) diverge, plus one honest Pehchaan failure, are in
+`data/results/demo_candidates.md`. *The demo page with live mic comes in Module 10.*
 
 ## Deployment (AWS EC2)
 *Coming in Module 10.*

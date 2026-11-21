@@ -14,3 +14,10 @@ Personal-reference fields (vision upgrade):
   `family_label` (Amma, Nanna, Akka, Anna, Bhaiya, ...), `last_interaction` (fake ISO date)
 - businesses: `is_usual` + `usual_for` (e.g. the usual `pharmacy`, `groceries`, `salon`)
 - `preferences.json`: learned answers (`phrase_pattern`, `entity_id`, `created_at`); starts empty, filled in Module 9
+
+## Contact books (Module 9)
+`books/A.json` and `books/B.json` are small **overlays** on the base KB, not copies: `remove` drops entities and
+`update` changes fields (a `null` value deletes a field). Book A keeps one doctor; book B keeps two doctors and has no
+default doctor. `resolve(..., book="B")` (or `with use_book("B"):`) makes every lookup use that book. Learned answers
+for a demo book are saved in `books/preferences_<book>.json` (git-ignored runtime state). Evaluation always uses the
+`default` book, which is the base KB exactly as it is.

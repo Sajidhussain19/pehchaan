@@ -329,13 +329,14 @@ def get_usual_business(category: str) -> Entity | None:
 # ---------------------------------------------------------------------------
 
 PREFERENCES_PATH = KB_DIR / "preferences.json"
+RUNTIME_PREFS_DIR = BOOKS_DIR  # where the demo books' learned answers are written (git-ignored files)
 
 
 def preferences_path(book: str | None = None) -> Path:
     """Where a book's learned answers live. Each contact book learns separately: "my doctor" can mean
     a different person for a different user. Demo books keep theirs in data/kb/books/ (not committed)."""
     book = book or _ACTIVE_BOOK.get()
-    return PREFERENCES_PATH if book == DEFAULT_BOOK else BOOKS_DIR / f"preferences_{book}.json"
+    return PREFERENCES_PATH if book == DEFAULT_BOOK else RUNTIME_PREFS_DIR / f"preferences_{book}.json"
 
 
 def load_preferences(path: Path | None = None) -> list[Preference]:

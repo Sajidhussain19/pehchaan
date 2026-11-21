@@ -25,3 +25,6 @@ metaphone==0.6             # Double Metaphone phonetic keys (BSD licence)
 
 # --- Module 8: decision layer ---
 langgraph==1.2.24          # the routing pipeline (one node per decision step)
+
+# --- Module 9: API ---
+python-multipart==0.0.20  # lets FastAPI read form fields and uploaded audio files

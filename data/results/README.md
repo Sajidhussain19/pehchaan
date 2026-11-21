@@ -14,3 +14,7 @@ Transcripts, decisions and evaluation reports. Written by **Modules 4, 5 and 8**
   - `meta` holds the variant, audio, model and hint-prompt size (included / excluded entities)
   - `clips` maps each clip id to: reference_text, transcript, latency_ms, cost_estimate_usd, split
   - Re-running `scripts/run_baseline.py` skips clips that are already here (free).
+
+- `report_test_FINAL.md/.json`: the ONE held-out test evaluation (Module 9, tag `final-eval-v1`); `test_runs.log` records it.
+- `demo_candidates.md/.json`: held-out clips where Pehchaan and (c) diverge, plus one honest failure (for the demo and `GET /api/clips`).
+- `frozen_logic.json`: fingerprints of the frozen decision logic (checked by `tests/test_freeze.py`).

@@ -810,3 +810,127 @@ Clip by clip: **Pehchaan wins 54, ties 88, loses 4** against (c). The 4 losses:
   untouched, and why we'll report test numbers once, with `--final`, logged.
 - **What does it still get wrong?** A badly garbled Telugu "Nanna" (we keep it rather than guess). And it occasionally
   labels a clue-based pick as *resolve* when the answer key says *correct*.
+
+---
+
+## Module 9 — Final held-out run, the Remind action, contact books, clarify with consent, API
+
+### What we built
+**Step 0: housekeeping before the final run** (commit "Errata + runner fix before final evaluation")
+- **s142 errata.** The test label said "my accountant … GST papers" → Meenakshi Sundaram "by clue", but nothing in the KB
+  links GST to anyone. We did NOT edit the KB to fit the label. We applied our rule mechanically to the KB as it is:
+  no clue → the default accountant (Sunita Agarwal). Listed in README "Test-set errata".
+- **Runner fix.** All three runners share one `--audio` option: `--audio clean phone real` and
+  `--audio clean --audio phone` both work (before, one script silently kept only the last value).
+- **Contact-book plumbing**, done BEFORE the freeze so it can't invalidate the final run: KB caches became
+  per-book caches, and `resolve()` gained `book=`. Re-running all 146 dev decisions showed **0 differences**.
+- **The freeze.** `scripts/freeze_logic.py` stores a SHA-256 fingerprint of every file that can change a decision
+  (`app/match`, `app/decide`, `data/lexicon`, the base KB). `tests/test_freeze.py` fails if any of them changes.
+
+**Step 1: the final held-out run**, once, with `--final`, logged and tagged `final-eval-v1`
+(`data/results/report_test_FINAL.md`). Nothing was tuned afterwards. `data/results/demo_candidates.md` is generated
+from those results.
+
+**Steps 2–6: the product side**
+- `app/store/`: SQLite reminders (`reminders.py`), pending questions (`pending.py`), learned preferences per book (`preferences.py`).
+- `data/kb/books/A.json`, `B.json`: two demo users as small overlays on the base KB.
+- `app/api/flow.py`: transcript → Pehchaan → reminder, or a pending question; an answer → reminder (+ preference if "always").
+- `app/api/routes.py` + `app/api/audio.py`: the HTTP API, with upload limits and safe audio serving.
+- `tests/test_api.py` (13 tests, fake OpenAI client) and `scripts/demo_flow.py` (the stage demo, step by step).
+
+### Final held-out results (test split, 220 clips: 97 × clean + phone, 26 real)
+| metric | (c) LLM baseline | Pehchaan |
+|---|---|---|
+| wrong-target rate | 24/220 = 11% | **11/220 = 5%** |
+| missed clarifications | 14/14 = 100% | **1/14 = 7%** |
+| reference resolution | 19/32 = 59% | **32/32 = 100%** |
+| exact action target | 74/118 = 63% | **96/118 = 81%** |
+| behaviour accuracy | 162/220 = 74% | **182/220 = 83%** |
+| entity accuracy | 109/148 = 74% | **118/148 = 80%** |
+| WER | 292/2392 = 12% | **265/2392 = 11%** |
+| over-correction | **3/70 = 4%** | 11/70 = 16% |
+| unnecessary questions | **0/198 = 0%** | 15/198 = 8% |
+| time accuracy | 18/20 | 18/20 |
+| no-LLM rate | 0/220 | **191/220 = 87%** |
+| latency median / mean | 1502 / 1549 ms | **11 / 298 ms** |
+| cost per decision | $0.00097 | **$0.000012** |
+
+Clip by clip: **Pehchaan wins 49, ties 149, loses 22.** (a) plain STT: entity 70/148, WER 20%; (b) hints: entity 114/148, WER 17%.
+
+**The lesson of the held-out run.** On dev we had **0/34** over-corrections and **0** unnecessary questions. On test:
+**11/70** and **15/198**. We tuned the rules on 66 dev sentences, and some rules fit those sentences better than
+the world. That is exactly why a held-out split exists, and why we report these numbers instead of the dev ones.
+The 22 losses come from five causes:
+1. **Business names that contain a person's first name** (7): "Lakshmi Ganapathi Tiffins", "St. Joseph's Convent
+   School", "Mohammad Abdul Qadir", and the caller "Sreenivas Goud" heard as "Srinivas Gowd". The first word was matched
+   on its own and triggered a question, instead of the full name being matched.
+2. **Out-of-KB names forced into the KB** (8): "Shree Gokul Bhojnalaya" → Mangaluru (the LLM fallback),
+   "Gottkesar" → Ghatkopar, "Mayuri Darshini" → Namma Ooru Darshini, Telugu "roju" (*day*) → Dr. Raju (score 0.804,
+   just over the 0.80 bar), and an unknown caller's surname "Mehta" → Dr. Alok Mehta.
+3. **Which person is the action target** (2): "take Nanna to Dr. Ananthapadmanabhan": we chose Nanna, the label is the doctor.
+4. **Labelling nuance** (3): the right person, but *resolve* vs *correct*, or "Warrior" left unspelled in the text.
+5. **Telugu / misheard business** (2): the wrong place as the target in a garbled Telugu sentence, and in "Share A Punjab Tava".
+
+### Why two contact books? (personal context)
+"Remind me to call my doctor at six" has **no single right answer**. For user A, who has one doctor, it means that
+doctor. For user B, who has a GP and a dentist and never said which one is "my doctor", the right behaviour is to
+**ask**. A speech model can't know this, and neither can a model trained on everyone's data: the answer lives in
+*your* contact book. That is the pitch: *personal context has to live outside the model.* Books are **overlays**
+(remove / change a few entries on top of the base KB), not copies, so the difference between two users is a
+few readable lines.
+
+### Clarify with consent (level 4: learning)
+- A question stores a **pending item** (book, transcript, the phrase "my doctor", candidates with name + role).
+- **"Use X this time"** → the reminder is created; **nothing is saved**. Asking again still asks.
+- **"Always use X for 'my doctor'"** → the reminder, plus a preference saved **for that book only**.
+- Next time the preferences node (the first node of the graph) resolves it: the reminder says `resolution = preference`.
+- How an answer becomes a reminder: we **re-run the same pipeline** with the answer supplied as a one-off
+  preference, so time and place follow exactly the same rules as an automatic reminder.
+
+### Key concepts
+- **Held-out test split:** data you never look at while building. It is the only honest estimate of how the system
+  does on new inputs. Run it once; if you change the system afterwards, the number no longer describes it.
+- **Overfitting:** rules or weights that fit the examples you tuned on better than new examples (dev 0/34
+  over-corrections → test 11/70).
+- **Fingerprint (SHA-256 hash):** a short code computed from a file's bytes. Any change to the file changes the code,
+  so comparing codes detects any change. Our freeze test is built on this.
+- **SQLite:** a whole database in one file, built into Python (`sqlite3`). The `?` placeholders keep user text
+  from being run as SQL (no SQL injection).
+- **ContextVar:** a "global" variable whose value is separate for each request or thread. We use it for the active
+  contact book, so two requests for books A and B at the same moment can't mix them up.
+- **Overlay:** a small file that describes changes on top of a base, like a transparent sheet on a map.
+- **Consent-based learning:** the system only remembers when the user explicitly says "always".
+- **Multipart form upload:** how a browser sends a file plus form fields in one request (needs `python-multipart`).
+- **Magic bytes:** the first bytes of a file that reveal its real type (`RIFF…WAVE` = WAV, `OggS` = Ogg). We check them
+  instead of trusting the file name.
+- **Path traversal:** an attack that uses `../` in a file name to read files outside a folder (like `.env`). We never
+  build paths from user input: clip ids must match `s123`/`r123` and are looked up in the manifests.
+- **Dependency injection (FastAPI `Depends`):** the endpoint asks for "an OpenAI client"; tests swap in a fake one
+  with `app.dependency_overrides`, so tests make no network calls.
+
+### Known limitations (honest)
+- **A learned preference outranks a clue.** After "Always use Dr. Subramanian for 'my doctor'", the sentence "call my
+  doctor about my fever" also goes to the dentist (without the preference, the clue picks the GP). The preferences
+  node runs before the clue check. Changing that touches frozen logic, so it needs approval and a repeated final run.
+- **"at six" gives no time.** 6 AM or 6 PM is ambiguous, and Pehchaan never guesses, so the reminder has no time
+  (and the spoken words "at six" are not captured as raw time text either).
+- **WebM/M4A length** is bounded by file size, not measured (no ffmpeg). WAV/OGG/MP3 are measured exactly.
+- The over-correction weak spot above.
+
+### Questions a judge might ask
+- **Are these numbers real?** Yes. They come from a held-out split we never tuned on, run once, logged
+  (`test_runs.log`), and tagged in git (`final-eval-v1`). The decision code is fingerprinted, and a test fails if it changes.
+- **Pehchaan over-corrects more than the LLM baseline. Isn't that bad?** Yes, it's our biggest weakness (11/70 vs 3/70),
+  and we show it. But the worst error, acting on the wrong person, is halved (11 vs 24), and the baseline guessed
+  in 14 of 14 cases where it should have asked.
+- **Why fix s142 before the final run, and isn't that cheating?** We changed the label, not the system, before
+  seeing any test result. We applied our published rule mechanically to the KB as it is, and listed it in README.
+  Changing the KB to fit the label would have been the cheat.
+- **Why SQLite and not a "real" database?** One user, one file, zero setup, built into Python. Reminders survive
+  restarts, and the SQL is readable. Moving to Postgres later is a small change.
+- **What stops someone uploading a huge file or reading your .env?** A 5 MB cap, magic-byte type checks, a 30 s length
+  limit, and clip ids that are only looked up in the manifests (never used as a path).
+- **Does learning happen without the user knowing?** No. Only the "Always use X" button saves anything, and only for
+  that contact book. "This time" saves nothing, and a reset endpoint clears it.
+- **How fast and cheap is one interaction?** Live, measured on a phone clip: speech-to-text ~2.3 s ($0.0002), Pehchaan
+  59 ms ($0, no LLM), storing the reminder 18 ms. Baseline (c) on the same transcript: ~2.1 s ($0.00095).
