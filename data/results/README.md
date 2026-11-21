@@ -2,6 +2,9 @@
 
 Transcripts and evaluation reports. Written by **Modules 4-5**.
 
+- `llm_baseline_{audio}_{model}.json`: Module 5 baseline (c) decisions, one `Decision` per clip id (cached).
+- `report_{split}_{audio}.md/.json`: Module 5 evaluation reports (`scripts/evaluate.py`).
+- `test_runs.log`: every time the held-out test split was scored (created only by `--final`).
 - `baseline_{variant}_{audio}_{model}.json`: Module 4 transcripts.
   - `variant`: `plain` (baseline a) or `hints` (baseline b, KB names in the prompt)
   - `audio`: `clean`, `phone` or `real`

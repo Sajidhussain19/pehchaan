@@ -206,25 +206,60 @@ python scripts/show_errors.py                # missed names + the 5 most dramati
 ```
 Results are in `data/results/baseline_{plain|hints}_{clean|phone|real}_{model}.json`.
 
-## Evaluation plan
-Four systems run on the same recordings, and results are reported on the **held-out test split**:
-- (a) plain speech-to-text
-- (b) speech-to-text with name hints in the prompt
-- (c) a **strong LLM baseline**: one GPT-4o-mini call with the transcript plus the same contacts, roles, defaults,
-  places and businesses, allowed to ask
-- (d) Pehchaan
+## Evaluation (Module 5)
 
-We report **per-case wins / ties / losses vs (c)**, not just averages. Each metric is reported separately:
-- action-target accuracy
-- wrong-target rate
-- unnecessary-question rate
-- over-correction rate
-- missed-clarification rate
-- reference-resolution accuracy
-- latency and cost per call
-- the share of cases resolved with no LLM call
+Four systems are scored on the **same clips** with **the same rules**:
+- **(a)** plain speech-to-text
+- **(b)** speech-to-text + name hints
+- **(c)** the **strong LLM baseline**: one GPT-4o-mini call given the transcript, the call context and the user's
+  *whole* personal context (contacts with roles, defaults and family labels; businesses with "usual for"; places).
+  It is told the same rules Pehchaan follows (clue -> default -> ask; never invent; keep unknown names), and a strict
+  output schema means it can only answer with real KB ids.
+- **(d)** Pehchaan, from Module 8 on
 
-*Results come in Module 5.*
+(c) and Pehchaan output the same `Decision` format: heard -> resolved -> confidence -> reason, a behaviour, and a Remind action.
+
+**Metrics, in plain words.** Each one is reported **separately, with raw counts** (e.g. `7/12 = 58%`):
+
+| Metric | Question it answers |
+|---|---|
+| entity accuracy | Did the KB names end up spelled right in the transcript? |
+| WER | How many words of the whole sentence are wrong? |
+| over-correction rate | When nothing should change (unknown names, ordinary words, real speech), did a KB name appear anyway? |
+| behaviour accuracy | Did it correct / keep / resolve / ask when it should? |
+| exact action-target accuracy | Is the reminder about the right person/business, at the right place? (time is scored separately) |
+| **wrong-target rate** | Did it act on the WRONG entity, or use an id that doesn't exist? (the worst error) |
+| unnecessary-question rate | Did it ask when the answer was clear? |
+| missed-clarification rate | Did it guess when it should have asked? |
+| reference-resolution accuracy | Did "my doctor", "Amma" and "the usual pharmacy" resolve to the right entity? |
+| no-LLM rate, latency, cost | How often no LLM was needed, how long a call took, and what it cost |
+
+**Why separate scores?** One blended number would let a system that is good on average hide the dangerous mistakes,
+like calling the wrong person. And raw counts show how much evidence each percentage rests on.
+
+**Held-out rule.** Everything is tuned and inspected on the **dev** split only. Scoring the **test** split needs
+`--final`, prints a warning, and is logged in `data/results/test_runs.log`, so every look at the test set is on record.
+
+**Dev results so far** (45 synthetic clips × clean + phone, plus 14 real-speech clips):
+
+| | (a) plain | (b) hints | (c) LLM baseline |
+|---|---|---|---|
+| entity accuracy | 41/64 = 64% | 49/64 = 77% | 55/64 = 86% |
+| WER | 24% | 21% | 17% |
+| over-correction | 0/34 | 0/34 | 1/34 = 3% |
+| wrong-target rate | - | - | 9/104 = 9% |
+| missed clarification | - | - | **7/8 = 88%** |
+| reference resolution | - | - | 8/14 = 57% |
+
+The strong baseline fixes many spellings, but it **almost never asks when it should**. It guesses between Harshit
+and Harshil, maps "Raju Hotel" to an unrelated shop, and sends "my doctor, my tooth is paining" to the family doctor
+instead of the dentist. That is the gap Pehchaan has to close. *Test-split numbers are reported only at the end.*
+
+```powershell
+python scripts/run_llm_baseline.py --limit 3     # baseline (c), dev split, cached
+python scripts/evaluate.py                       # dev report -> data/results/report_dev_all.md
+python scripts/evaluate.py --split test --final  # ONLY for the final numbers (logged)
+```
 
 ## Demo
 *Coming in Module 10.*

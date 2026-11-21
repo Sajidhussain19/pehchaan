@@ -23,7 +23,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_001",
-      "time": "tomorrow at 10 AM"
+      "time": "tomorrow at 10 AM",
+      "time_hhmm": "10:00"
     }
   },
   {
@@ -45,7 +46,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_001",
-      "time": "this evening"
+      "time": "this evening",
+      "time_hhmm": null
     }
   },
   {
@@ -72,7 +74,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_006",
-      "time": "8 PM tonight"
+      "time": "8 PM tonight",
+      "time_hhmm": "20:00"
     }
   },
   {
@@ -99,7 +102,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "business_001",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -121,7 +125,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_002",
-      "time": "Thursday"
+      "time": "Thursday",
+      "time_hhmm": null
     }
   },
   {
@@ -148,7 +153,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -170,7 +176,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_027",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -192,7 +199,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_008",
-      "time": "the 5th"
+      "time": "the 5th",
+      "time_hhmm": null
     }
   },
   {
@@ -214,7 +222,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -241,7 +250,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_004",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -263,7 +273,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_005",
-      "time": "Sunday"
+      "time": "Sunday",
+      "time_hhmm": null
     }
   },
   {
@@ -285,7 +296,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "person_048",
-      "time": "next Tuesday morning"
+      "time": "next Tuesday morning",
+      "time_hhmm": null
     }
   },
   {
@@ -307,7 +319,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_022",
-      "time": "Sunday evening"
+      "time": "Sunday evening",
+      "time_hhmm": null
     }
   },
   {
@@ -329,7 +342,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -356,7 +370,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_003",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -383,7 +398,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -410,7 +426,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "place_067",
-      "time": "5 AM"
+      "time": "5 AM",
+      "time_hhmm": "05:00"
     }
   },
   {
@@ -432,7 +449,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_019",
-      "time": "3 PM"
+      "time": "3 PM",
+      "time_hhmm": "15:00"
     }
   },
   {
@@ -459,7 +477,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_006",
-      "time": "Saturday"
+      "time": "Saturday",
+      "time_hhmm": null
     }
   },
   {
@@ -486,7 +505,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_015",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -508,7 +528,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_020",
-      "time": "Friday at 11"
+      "time": "Friday at 11",
+      "time_hhmm": null
     }
   },
   {
@@ -530,7 +551,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_012",
-      "time": "Saturday afternoon"
+      "time": "Saturday afternoon",
+      "time_hhmm": null
     }
   },
   {
@@ -552,7 +574,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_028",
-      "time": "Monday"
+      "time": "Monday",
+      "time_hhmm": null
     }
   },
   {
@@ -574,7 +597,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -596,7 +620,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_031",
-      "time": "the 10th"
+      "time": "the 10th",
+      "time_hhmm": null
     }
   },
   {
@@ -618,7 +643,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_032",
-      "time": "before Friday"
+      "time": "before Friday",
+      "time_hhmm": null
     }
   },
   {
@@ -645,7 +671,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_048",
-      "time": "Sunday lunch"
+      "time": "Sunday lunch",
+      "time_hhmm": null
     }
   },
   {
@@ -672,7 +699,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_037",
-      "time": "6 PM"
+      "time": "6 PM",
+      "time_hhmm": "18:00"
     }
   },
   {
@@ -694,7 +722,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_042",
-      "time": "Thursday"
+      "time": "Thursday",
+      "time_hhmm": null
     }
   },
   {
@@ -716,7 +745,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -743,7 +773,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_051",
-      "time": "breakfast tomorrow"
+      "time": "breakfast tomorrow",
+      "time_hhmm": null
     }
   },
   {
@@ -765,7 +796,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_046",
-      "time": "4 PM"
+      "time": "4 PM",
+      "time_hhmm": "16:00"
     }
   },
   {
@@ -792,7 +824,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_047",
-      "time": "7"
+      "time": "7",
+      "time_hhmm": null
     }
   },
   {
@@ -814,7 +847,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_052",
-      "time": "Wednesday"
+      "time": "Wednesday",
+      "time_hhmm": null
     }
   },
   {
@@ -836,7 +870,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_053",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -858,7 +893,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_054",
-      "time": "kal shaam saat baje"
+      "time": "kal shaam saat baje",
+      "time_hhmm": "19:00"
     }
   },
   {
@@ -880,7 +916,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_060",
-      "time": "kal subah"
+      "time": "kal subah",
+      "time_hhmm": null
     }
   },
   {
@@ -902,7 +939,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_058",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -929,7 +967,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_025",
-      "time": "Friday"
+      "time": "Friday",
+      "time_hhmm": null
     }
   },
   {
@@ -951,7 +990,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_067",
-      "time": "Monday"
+      "time": "Monday",
+      "time_hhmm": null
     }
   },
   {
@@ -973,7 +1013,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_071",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -995,7 +1036,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_073",
-      "time": "11 AM"
+      "time": "11 AM",
+      "time_hhmm": "11:00"
     }
   },
   {
@@ -1017,7 +1059,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1044,7 +1087,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_056",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1071,7 +1115,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_081",
-      "time": "6"
+      "time": "6",
+      "time_hhmm": null
     }
   },
   {
@@ -1093,7 +1138,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_082",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1120,7 +1166,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_042",
-      "time": "tonight"
+      "time": "tonight",
+      "time_hhmm": null
     }
   },
   {
@@ -1142,7 +1189,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_092",
-      "time": "Saturday"
+      "time": "Saturday",
+      "time_hhmm": null
     }
   },
   {
@@ -1164,7 +1212,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1191,7 +1240,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_057",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1218,7 +1268,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_095",
-      "time": "Friday night"
+      "time": "Friday night",
+      "time_hhmm": null
     }
   },
   {
@@ -1240,7 +1291,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_058",
-      "time": "Sunday lunch"
+      "time": "Sunday lunch",
+      "time_hhmm": null
     }
   },
   {
@@ -1262,7 +1314,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_100",
-      "time": "tomorrow"
+      "time": "tomorrow",
+      "time_hhmm": null
     }
   },
   {
@@ -1284,7 +1337,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_101",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1311,7 +1365,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1333,7 +1388,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "person_103",
-      "time": "Thursday at 5 PM"
+      "time": "Thursday at 5 PM",
+      "time_hhmm": "17:00"
     }
   },
   {
@@ -1355,7 +1411,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_106",
-      "time": "Sunday"
+      "time": "Sunday",
+      "time_hhmm": null
     }
   },
   {
@@ -1377,7 +1434,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_107",
-      "time": "Saturday morning"
+      "time": "Saturday morning",
+      "time_hhmm": null
     }
   },
   {
@@ -1404,7 +1462,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_008",
-      "time": "9 PM"
+      "time": "9 PM",
+      "time_hhmm": "21:00"
     }
   },
   {
@@ -1431,7 +1490,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_021",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1453,7 +1513,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_116",
-      "time": "6 on Saturday"
+      "time": "6 on Saturday",
+      "time_hhmm": null
     }
   },
   {
@@ -1475,7 +1536,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_120",
-      "time": "Monday"
+      "time": "Monday",
+      "time_hhmm": null
     }
   },
   {
@@ -1502,7 +1564,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_045",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1529,7 +1592,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "business_034",
-      "time": "7 PM"
+      "time": "7 PM",
+      "time_hhmm": "19:00"
     }
   },
   {
@@ -1556,7 +1620,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_031",
-      "time": "Sunday 11 AM"
+      "time": "Sunday 11 AM",
+      "time_hhmm": "11:00"
     }
   },
   {
@@ -1583,7 +1648,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "place_013",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1610,7 +1676,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_037",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1637,7 +1704,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "business_023",
-      "time": "4 PM"
+      "time": "4 PM",
+      "time_hhmm": "16:00"
     }
   },
   {
@@ -1664,7 +1732,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1691,7 +1760,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1718,7 +1788,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": null,
-      "time": "Sunday"
+      "time": "Sunday",
+      "time_hhmm": null
     }
   },
   {
@@ -1740,7 +1811,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": null,
-      "time": "6"
+      "time": "6",
+      "time_hhmm": null
     }
   },
   {
@@ -1762,7 +1834,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "Sunday"
+      "time": "Sunday",
+      "time_hhmm": null
     }
   },
   {
@@ -1789,7 +1862,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1816,7 +1890,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1838,7 +1913,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": null,
-      "time": "6 AM"
+      "time": "6 AM",
+      "time_hhmm": "06:00"
     }
   },
   {
@@ -1865,7 +1941,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": null,
-      "time": "next week"
+      "time": "next week",
+      "time_hhmm": null
     }
   },
   {
@@ -1887,7 +1964,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "Friday"
+      "time": "Friday",
+      "time_hhmm": null
     }
   },
   {
@@ -1914,7 +1992,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1941,7 +2020,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -1968,7 +2048,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": null,
-      "time": "lunch"
+      "time": "lunch",
+      "time_hhmm": null
     }
   },
   {
@@ -1984,7 +2065,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2000,7 +2082,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2016,7 +2099,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2032,7 +2116,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2048,7 +2133,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "Saturday"
+      "time": "Saturday",
+      "time_hhmm": null
     }
   },
   {
@@ -2064,7 +2150,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "every two hours"
+      "time": "every two hours",
+      "time_hhmm": null
     }
   },
   {
@@ -2080,7 +2167,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "six thirty tomorrow morning"
+      "time": "six thirty tomorrow morning",
+      "time_hhmm": "06:30"
     }
   },
   {
@@ -2096,7 +2184,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2112,7 +2201,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2128,7 +2218,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2144,7 +2235,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2160,7 +2252,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2176,7 +2269,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2198,7 +2292,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_123",
-      "time": "by Friday"
+      "time": "by Friday",
+      "time_hhmm": null
     }
   },
   {
@@ -2220,7 +2315,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_122",
-      "time": "tomorrow 7 AM"
+      "time": "tomorrow 7 AM",
+      "time_hhmm": "07:00"
     }
   },
   {
@@ -2242,7 +2338,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_124",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2264,7 +2361,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_128",
-      "time": "Monday"
+      "time": "Monday",
+      "time_hhmm": null
     }
   },
   {
@@ -2286,7 +2384,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_129",
-      "time": "today"
+      "time": "today",
+      "time_hhmm": null
     }
   },
   {
@@ -2308,7 +2407,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_126",
-      "time": "this evening"
+      "time": "this evening",
+      "time_hhmm": null
     }
   },
   {
@@ -2333,7 +2433,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": "5"
+      "time": "5",
+      "time_hhmm": null
     }
   },
   {
@@ -2358,7 +2459,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": null,
-      "time": "in 10 minutes"
+      "time": "in 10 minutes",
+      "time_hhmm": null
     }
   },
   {
@@ -2383,7 +2485,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "tomorrow morning"
+      "time": "tomorrow morning",
+      "time_hhmm": null
     }
   },
   {
@@ -2408,7 +2511,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": "6 PM"
+      "time": "6 PM",
+      "time_hhmm": "18:00"
     }
   },
   {
@@ -2433,7 +2537,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2457,7 +2562,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": null,
-      "time": "tomorrow at 9 AM"
+      "time": "tomorrow at 9 AM",
+      "time_hhmm": "09:00"
     }
   },
   {
@@ -2481,7 +2587,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": null,
-      "time": "tonight"
+      "time": "tonight",
+      "time_hhmm": null
     }
   },
   {
@@ -2506,7 +2613,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": null,
-      "time": "Sunday lunch"
+      "time": "Sunday lunch",
+      "time_hhmm": null
     }
   },
   {
@@ -2528,7 +2636,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2550,7 +2659,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2572,7 +2682,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2594,7 +2705,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2616,7 +2728,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2639,7 +2752,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_028",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2668,7 +2782,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "person_130",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2691,7 +2806,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_123",
-      "time": "before Friday"
+      "time": "before Friday",
+      "time_hhmm": null
     }
   },
   {
@@ -2714,7 +2830,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_126",
-      "time": "tonight"
+      "time": "tonight",
+      "time_hhmm": null
     }
   },
   {
@@ -2737,7 +2854,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_001",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2760,7 +2878,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "person_001",
-      "time": "Saturday morning"
+      "time": "Saturday morning",
+      "time_hhmm": null
     }
   },
   {
@@ -2783,7 +2902,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_003",
-      "time": "8:30 tomorrow"
+      "time": "8:30 tomorrow",
+      "time_hhmm": "08:30"
     }
   },
   {
@@ -2806,7 +2926,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_019",
-      "time": "tomorrow"
+      "time": "tomorrow",
+      "time_hhmm": null
     }
   },
   {
@@ -2829,7 +2950,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_131",
-      "time": "7"
+      "time": "7",
+      "time_hhmm": null
     }
   },
   {
@@ -2852,7 +2974,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_132",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2881,7 +3004,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_006",
-      "time": "Saturday"
+      "time": "Saturday",
+      "time_hhmm": null
     }
   },
   {
@@ -2904,7 +3028,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": "person_134",
-      "time": "Diwali"
+      "time": "Diwali",
+      "time_hhmm": null
     }
   },
   {
@@ -2932,7 +3057,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_001",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -2955,7 +3081,8 @@
     "expected_action": {
       "type": "book",
       "target_entity_id": "business_031",
-      "time": "Sunday evening"
+      "time": "Sunday evening",
+      "time_hhmm": null
     }
   },
   {
@@ -2978,7 +3105,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "business_011",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3007,7 +3135,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_048",
-      "time": "Tuesday"
+      "time": "Tuesday",
+      "time_hhmm": null
     }
   },
   {
@@ -3050,7 +3179,8 @@
     "expected_action": {
       "type": "message",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3076,7 +3206,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3102,7 +3233,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3130,7 +3262,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "Saturday"
+      "time": "Saturday",
+      "time_hhmm": null
     }
   },
   {
@@ -3157,7 +3290,8 @@
     "expected_action": {
       "type": "none",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3185,7 +3319,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "tomorrow"
+      "time": "tomorrow",
+      "time_hhmm": null
     }
   },
   {
@@ -3212,7 +3347,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3239,7 +3375,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "Sunday"
+      "time": "Sunday",
+      "time_hhmm": null
     }
   },
   {
@@ -3266,7 +3403,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": null,
-      "time": "5 PM"
+      "time": "5 PM",
+      "time_hhmm": "17:00"
     }
   },
   {
@@ -3288,7 +3426,8 @@
     "expected_action": {
       "type": "call",
       "target_entity_id": "person_130",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   },
   {
@@ -3310,7 +3449,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_028",
-      "time": "Friday"
+      "time": "Friday",
+      "time_hhmm": null
     }
   },
   {
@@ -3332,7 +3472,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_059",
-      "time": "Monday"
+      "time": "Monday",
+      "time_hhmm": null
     }
   },
   {
@@ -3354,7 +3495,8 @@
     "expected_action": {
       "type": "remind",
       "target_entity_id": "person_030",
-      "time": null
+      "time": null,
+      "time_hhmm": null
     }
   }
 ]

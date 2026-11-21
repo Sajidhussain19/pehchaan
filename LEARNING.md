@@ -445,3 +445,115 @@ clips were sent. Nothing was paid twice. Module 5 can re-score these transcripts
 - **Why phone-quality audio?** Equal AI's assistant hears calls. Phone audio made plain STT miss 52% of names vs 44%.
 - **What surprised you?** Code-mixed Hindi and Telugu lines come back in Devanagari or Telugu script, so name matching
   must cope with more than one alphabet.
+
+---
+
+## Module 5 — Evaluation framework + strong LLM baseline
+
+### What we built
+- `app/eval/decision.py`: the **common decision format**. Every resolver system outputs, per clip:
+  - heard transcript and output transcript
+  - behaviour
+  - entities as *heard -> resolved id -> confidence -> reason*
+  - clarify candidates
+  - a Remind action (target, place, "HH:MM" time, raw time words)
+  - whether an LLM was used, latency and cost
+- `app/baselines/llm_resolver.py`: **baseline (c)**, one GPT-4o-mini call per clip with the user's whole personal context.
+- `app/eval/metrics.py`: every metric, each with raw counts.
+- `app/eval/timeparse.py`: spoken time -> "HH:MM". The test set now stores a hand-reviewed `time_hhmm`.
+  Only 20 clips have an unambiguous clock time, so only those are time-scored.
+- `app/eval/runs.py`: where outputs live, and the cache rule.
+- `scripts/run_llm_baseline.py`: runs baseline (c). It is cached and prints its cost first.
+- `scripts/evaluate.py`: scores everything and writes `data/results/report_{split}_{audio}.md/.json`, with win/tie/loss counts.
+- `tests/test_eval.py`: 22 tests with hand-made examples and a fake OpenAI client.
+
+### The strong LLM baseline, and why it's fair
+Judges will ask: *"Why not just give one LLM the user's contacts?"* Baseline (c) is exactly that, done properly:
+- **Same information as Pehchaan:** the plain transcript, the call context (outgoing, or incoming from a saved or
+  unknown number), and the whole KB (about 33,000 characters): contacts with relation, roles, default-for, family
+  label and notes; businesses with area and "usual for"; places.
+- **The same rules, written into its prompt:** clue beats default; default beats asking; ask when two fit equally;
+  never invent; keep unknown names; "Raju from the bank" on an unknown number is not your Dr. Raju.
+- **Restricted output ids:** structured output with a **strict JSON schema** whose id fields are an enum of the
+  340 real KB ids. The model physically cannot output an invented id. This is fair because either system could do
+  it, and it only *helps* the baseline: it removes typo'd ids.
+- **Frozen prompt:** written once, *before* looking at results. We didn't tweak it to fix individual clips.
+  Doing that would quietly tune the opponent, or our test, to the data.
+
+### How the scoring works
+- **Transcript metrics** apply to any system that outputs text:
+  - **entity accuracy:** a KB name counts only if it appears exactly, ignoring case and punctuation. "doctor" = "Dr."
+  - **WER** (word error rate, via `jiwer`) = (substituted + deleted + inserted words) / reference words.
+  - **over-correction:** on clips where nothing should be linked (control, out_of_kb, real speech, unfamiliar
+    near-match), did a KB entity appear that wasn't said? This covers both the text and the system's links.
+- **Decision metrics** apply to (c) and, later, Pehchaan:
+  - behaviour accuracy
+  - exact action target (person **and** place)
+  - time accuracy
+  - **wrong-target rate:** acted on the wrong entity, or used a non-existent id. It never crashes; it just counts as wrong.
+  - unnecessary questions
+  - missed clarifications
+  - right clarify candidates
+  - reference resolution
+  - no-LLM rate, latency, cost
+- **One rule everywhere:** a *clarify* decision takes **no action yet**, even if the system also filled in a target,
+  because the reminder is only created after the user answers.
+- **Win / tie / loss:** each clip gets one outcome label: its worst problem (wrong target, then over-correction,
+  then missed clarification, then other errors, then ok). The two systems' labels are then compared.
+  If one system only outputs text, both are compared on text only, so like is compared with like.
+
+### Dev results (45 synthetic clips × clean + phone, + 14 real clips)
+| | (a) plain | (b) hints | (c) LLM baseline |
+|---|---|---|---|
+| entity accuracy | 41/64 = 64% | 49/64 = 77% | 55/64 = 86% |
+| WER | 277/1163 = 24% | 248/1163 = 21% | 198/1163 = 17% |
+| over-correction | 0/34 | 0/34 | 1/34 = 3% |
+| behaviour accuracy | - | - | 85/104 = 82% |
+| exact action target | - | - | 40/52 = 77% |
+| wrong-target rate | - | - | 9/104 = 9% |
+| unnecessary questions | - | - | 2/92 = 2% |
+| missed clarifications | - | - | **7/8 = 88%** |
+| reference resolution | - | - | 8/14 = 57% |
+| latency / cost per call | - | - | ~1.5 s / ~$0.001 |
+
+What this teaches us:
+- (c) is genuinely strong at **spelling**. It beats the hints on entity accuracy and WER.
+- But it **guesses instead of asking**. With "Call Harshit at 5", it picks Harshit. With "Remind me to call Pranav", it picks Pranav Joshi.
+- It **invents fits**. "Raju Hotel" became an unrelated fancy store, and on phone audio "Nalgonda" became Hyderabad.
+- It **lets the default beat the clue**: "my doctor, my tooth is paining" went to the family doctor.
+
+These are the exact failure modes Pehchaan's design targets. Now we have to *show* it does better.
+
+### Why we don't tune on test results
+If we look at test results and then change Pehchaan (a threshold, a rule, a prompt), the test set has quietly
+become training data. The next test score is then optimistic, because we fitted it. So all tuning uses **dev**.
+`evaluate.py` refuses the test split unless you pass `--final`, warns you, and logs every test run in
+`data/results/test_runs.log`, so we (and judges) can see how many times it was looked at.
+
+### Key concepts
+- **Structured output / strict JSON schema:** the API forces the model's answer to match a schema exactly.
+  An `enum` limits a field to a fixed list of values, here the real KB ids.
+- **WER:** word error rate, the standard speech-to-text metric.
+- **Over-correction:** "fixing" something that wasn't broken, e.g. turning a stranger into one of your contacts.
+- **Wrong target:** acting on the wrong entity. The worst error, because the assistant confidently does the wrong thing.
+- **Missed clarification vs unnecessary question:** guessing when you should ask, vs asking when you didn't need to.
+  A good system keeps both low.
+- **Prompt caching:** OpenAI automatically discounts a repeated prompt prefix. We put the big, identical context
+  first, so 98 calls cost about $0.095 instead of the estimated $0.15.
+- **Held-out test split / data leakage:** test data must not influence any design decision, or its scores stop being honest.
+
+### Questions a judge might ask about this module
+- **Isn't your LLM baseline a strawman?** No. It gets the same context and the same rules, written explicitly into
+  its prompt. Strict-schema output restricts it to real ids. Its prompt was frozen before seeing results.
+  It's genuinely good: 86% entity accuracy vs 77% for hints.
+- **Why not just use that baseline as the product?** On dev it guessed in 7 of 8 cases where it should have asked,
+  acted on the wrong entity in 9% of clips, and resolved only 57% of personal references.
+  It also needs an LLM call on every clip (~1.5 s, ~$0.001).
+- **Why so many metrics instead of one score?** A blended score hides the dangerous errors. A system can look 90%
+  "accurate" and still call the wrong person. Each metric answers one question and shows raw counts.
+- **How do you score a question ("did you mean…")?** Behaviour must be clarify, no action is taken, and the offered
+  candidates must include the right people (`clarify_candidates_ok`).
+- **What about time?** Spoken times are normalised to "HH:MM" with one shared rule. Ambiguous ones ("at 5") are
+  never scored, because we don't guess AM or PM on anyone's behalf.
+- **Have you looked at the test split?** Not yet. `data/results/test_runs.log` doesn't exist. All numbers here are dev.
+- **How much did this cost?** About $0.10 for baseline (c) on dev, plus a few cents of smoke tests.

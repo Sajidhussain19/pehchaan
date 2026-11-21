@@ -79,6 +79,9 @@ class ExpectedAction(BaseModel):
     # or a "clarify" case where we must ask before acting.
     target_entity_id: str | None = None
     time: str | None = None  # the time phrase as spoken, e.g. "tomorrow at 10 AM"
+    # The same time as a 24-hour clock time, e.g. "10:00". None when there is no clock time
+    # or it is ambiguous ("at 5": AM or PM?). Reviewed by hand; used to score time accuracy (Module 5).
+    time_hhmm: str | None = Field(default=None, pattern=r"^([01]\d|2[0-3]):[0-5]\d$")
 
 
 class Sentence(BaseModel):

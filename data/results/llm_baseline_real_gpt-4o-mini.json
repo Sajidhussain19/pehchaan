@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "system": "llm_baseline",
+    "audio": "real",
+    "model": "gpt-4o-mini",
+    "input": "baseline (a) plain transcript, real audio"
+  },
+  "clips": {
+    "r004": {
+      "clip_id": "r004",
+      "system_name": "llm_baseline",
+      "heard_transcript": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+      "output_transcript": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1031.5,
+      "cost_usd": 0.000935
+    },
+    "r001": {
+      "clip_id": "r001",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Our district Hassan was the land of the great Hoysala dynasty who ruled over this region from eleventh to fourteenth century CE.",
+      "output_transcript": "Our district Hassan was the land of the great Hoysala dynasty who ruled over this region from eleventh to fourteenth century CE.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1164.3,
+      "cost_usd": 0.000944
+    },
+    "r007": {
+      "clip_id": "r007",
+      "system_name": "llm_baseline",
+      "heard_transcript": "There have been many attempts recently to make sure that the people maintain their",
+      "output_transcript": "There have been many attempts recently to make sure that the people maintain their",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1126.6,
+      "cost_usd": 0.000935
+    },
+    "r010": {
+      "clip_id": "r010",
+      "system_name": "llm_baseline",
+      "heard_transcript": "What are the main social welfare and development programs and initiatives in your district?",
+      "output_transcript": "What are the main social welfare and development programs and initiatives in your district?",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1147.8,
+      "cost_usd": 0.000936
+    },
+    "r013": {
+      "clip_id": "r013",
+      "system_name": "llm_baseline",
+      "heard_transcript": "You see, I distract as my professionalism, but I used to manage some time in writing as well.",
+      "output_transcript": "You see, I distract as my professionalism, but I used to manage some time in writing as well.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1135.4,
+      "cost_usd": 0.00094
+    },
+    "r022": {
+      "clip_id": "r022",
+      "system_name": "llm_baseline",
+      "heard_transcript": "To poetry, I can put my thoughts on a display more creatively than",
+      "output_transcript": "To poetry, I can put my thoughts on a display more creatively than",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1020.2,
+      "cost_usd": 0.000935
+    },
+    "r016": {
+      "clip_id": "r016",
+      "system_name": "llm_baseline",
+      "heard_transcript": "It is something which gives you warmth and the flavors are very different from the kind of food we as North Indians eat.",
+      "output_transcript": "It is something which gives you warmth and the flavors are very different from the kind of food we as North Indians eat.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1137.0,
+      "cost_usd": 0.000942
+    },
+    "r019": {
+      "clip_id": "r019",
+      "system_name": "llm_baseline",
+      "heard_transcript": "English breaks the communication barriers between people of diverse cultural background and it creates a new community where people come together and share their cultures and ideas with broader audience.",
+      "output_transcript": "English breaks the communication barriers between people of diverse cultural background and it creates a new community where people come together and share their cultures and ideas with broader audience.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1216.5,
+      "cost_usd": 0.000947
+    },
+    "r025": {
+      "clip_id": "r025",
+      "system_name": "llm_baseline",
+      "heard_transcript": "hang on the rock and I find it useful and best because it helped me climb fast.",
+      "output_transcript": "hang on the rock and I find it useful and best because it helped me climb fast.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1097.9,
+      "cost_usd": 0.000937
+    },
+    "r028": {
+      "clip_id": "r028",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Sand a complaint to consumer service of this company.",
+      "output_transcript": "Sand a complaint to consumer service of this company.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1078.5,
+      "cost_usd": 0.000931
+    },
+    "r031": {
+      "clip_id": "r031",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Show my DTH bill readings from the last six months.",
+      "output_transcript": "Show my DTH bill readings from the last six months.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1116.2,
+      "cost_usd": 0.000933
+    },
+    "r034": {
+      "clip_id": "r034",
+      "system_name": "llm_baseline",
+      "heard_transcript": "You are two hours late than the delivery time for my products Pantene Bamboo Shampoo and 24 Mantra Chana Dal.",
+      "output_transcript": "You are two hours late than the delivery time for my products Pantene Bamboo Shampoo and 24 Mantra Chana Dal.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1302.9,
+      "cost_usd": 0.000943
+    },
+    "r037": {
+      "clip_id": "r037",
+      "system_name": "llm_baseline",
+      "heard_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "output_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1216.2,
+      "cost_usd": 0.000939
+    },
+    "r040": {
+      "clip_id": "r040",
+      "system_name": "llm_baseline",
+      "heard_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "output_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1252.8,
+      "cost_usd": 0.000941
+    }
+  }
+}

@@ -1,0 +1,1469 @@
+{
+  "split": "dev",
+  "audio": "all",
+  "systems": [
+    "a",
+    "b",
+    "c"
+  ],
+  "overall": {
+    "a": {
+      "entity_accuracy": {
+        "hits": 41,
+        "total": 64,
+        "rate": 0.640625
+      },
+      "over_correction_rate": {
+        "hits": 0,
+        "total": 34,
+        "rate": 0.0
+      },
+      "wer": {
+        "hits": 277,
+        "total": 1163,
+        "rate": 0.23817712811693895
+      }
+    },
+    "b": {
+      "entity_accuracy": {
+        "hits": 49,
+        "total": 64,
+        "rate": 0.765625
+      },
+      "over_correction_rate": {
+        "hits": 0,
+        "total": 34,
+        "rate": 0.0
+      },
+      "wer": {
+        "hits": 248,
+        "total": 1163,
+        "rate": 0.21324161650902837
+      }
+    },
+    "c": {
+      "entity_accuracy": {
+        "hits": 55,
+        "total": 64,
+        "rate": 0.859375
+      },
+      "over_correction_rate": {
+        "hits": 1,
+        "total": 34,
+        "rate": 0.029411764705882353
+      },
+      "wer": {
+        "hits": 198,
+        "total": 1163,
+        "rate": 0.1702493551160791
+      },
+      "behaviour_accuracy": {
+        "hits": 85,
+        "total": 104,
+        "rate": 0.8173076923076923
+      },
+      "exact_action_target_accuracy": {
+        "hits": 40,
+        "total": 52,
+        "rate": 0.7692307692307693
+      },
+      "time_accuracy": {
+        "hits": 15,
+        "total": 16,
+        "rate": 0.9375
+      },
+      "wrong_target_rate": {
+        "hits": 9,
+        "total": 104,
+        "rate": 0.08653846153846154
+      },
+      "unnecessary_question_rate": {
+        "hits": 2,
+        "total": 92,
+        "rate": 0.021739130434782608
+      },
+      "missed_clarification_rate": {
+        "hits": 7,
+        "total": 8,
+        "rate": 0.875
+      },
+      "clarify_candidates_ok": {
+        "hits": 1,
+        "total": 1,
+        "rate": 1.0
+      },
+      "reference_resolution_accuracy": {
+        "hits": 8,
+        "total": 14,
+        "rate": 0.5714285714285714
+      },
+      "no_llm_rate": {
+        "hits": 0,
+        "total": 104,
+        "rate": 0.0
+      },
+      "latency_ms_mean": 1542.4,
+      "latency_ms_median": 1495.3,
+      "cost_usd_mean": 0.000972
+    }
+  },
+  "per_audio": {
+    "clean": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 22,
+          "total": 32,
+          "rate": 0.6875
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 123,
+          "total": 466,
+          "rate": 0.26394849785407726
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 24,
+          "total": 32,
+          "rate": 0.75
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 117,
+          "total": 466,
+          "rate": 0.2510729613733906
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 29,
+          "total": 32,
+          "rate": 0.90625
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 90,
+          "total": 466,
+          "rate": 0.19313304721030042
+        },
+        "behaviour_accuracy": {
+          "hits": 37,
+          "total": 45,
+          "rate": 0.8222222222222222
+        },
+        "exact_action_target_accuracy": {
+          "hits": 21,
+          "total": 26,
+          "rate": 0.8076923076923077
+        },
+        "time_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "wrong_target_rate": {
+          "hits": 3,
+          "total": 45,
+          "rate": 0.06666666666666667
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 39,
+          "rate": 0.02564102564102564
+        },
+        "missed_clarification_rate": {
+          "hits": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "clarify_candidates_ok": {
+          "hits": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 4,
+          "total": 7,
+          "rate": 0.5714285714285714
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 45,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1599.5,
+        "latency_ms_median": 1592.9,
+        "cost_usd_mean": 0.00096
+      }
+    },
+    "phone": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 19,
+          "total": 32,
+          "rate": 0.59375
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 129,
+          "total": 466,
+          "rate": 0.27682403433476394
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 25,
+          "total": 32,
+          "rate": 0.78125
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 114,
+          "total": 466,
+          "rate": 0.2446351931330472
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 26,
+          "total": 32,
+          "rate": 0.8125
+        },
+        "over_correction_rate": {
+          "hits": 1,
+          "total": 10,
+          "rate": 0.1
+        },
+        "wer": {
+          "hits": 83,
+          "total": 466,
+          "rate": 0.1781115879828326
+        },
+        "behaviour_accuracy": {
+          "hits": 34,
+          "total": 45,
+          "rate": 0.7555555555555555
+        },
+        "exact_action_target_accuracy": {
+          "hits": 19,
+          "total": 26,
+          "rate": 0.7307692307692307
+        },
+        "time_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 6,
+          "total": 45,
+          "rate": 0.13333333333333333
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 39,
+          "rate": 0.02564102564102564
+        },
+        "missed_clarification_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 4,
+          "total": 7,
+          "rate": 0.5714285714285714
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 45,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1608.6,
+        "latency_ms_median": 1541.2,
+        "cost_usd_mean": 0.000995
+      }
+    },
+    "real": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 17,
+          "total": 231,
+          "rate": 0.0735930735930736
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1146.0,
+        "latency_ms_median": 1136.2,
+        "cost_usd_mean": 0.000938
+      }
+    }
+  },
+  "per_category": {
+    "ambiguous": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 3,
+          "total": 68,
+          "rate": 0.04411764705882353
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 68,
+          "rate": 0.029411764705882353
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 3,
+          "total": 68,
+          "rate": 0.04411764705882353
+        },
+        "behaviour_accuracy": {
+          "hits": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "exact_action_target_accuracy": {
+          "hits": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 3,
+          "total": 8,
+          "rate": 0.375
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "missed_clarification_rate": {
+          "hits": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "clarify_candidates_ok": {
+          "hits": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1518.7,
+        "latency_ms_median": 1556.2,
+        "cost_usd_mean": 0.000954
+      }
+    },
+    "context_mismatch": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 8,
+          "total": 70,
+          "rate": 0.11428571428571428
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 8,
+          "total": 70,
+          "rate": 0.11428571428571428
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 8,
+          "total": 70,
+          "rate": 0.11428571428571428
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 6,
+          "rate": 0.6666666666666666
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 2,
+          "total": 6,
+          "rate": 0.3333333333333333
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1294.9,
+        "latency_ms_median": 1229.8,
+        "cost_usd_mean": 0.00094
+      }
+    },
+    "control": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 4,
+          "total": 76,
+          "rate": 0.05263157894736842
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 4,
+          "total": 76,
+          "rate": 0.05263157894736842
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 4,
+          "total": 76,
+          "rate": 0.05263157894736842
+        },
+        "behaviour_accuracy": {
+          "hits": 6,
+          "total": 8,
+          "rate": 0.75
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1065.4,
+        "latency_ms_median": 1070.4,
+        "cost_usd_mean": 0.000929
+      }
+    },
+    "in_kb": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 39,
+          "total": 60,
+          "rate": 0.65
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 146,
+          "total": 490,
+          "rate": 0.2979591836734694
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 47,
+          "total": 60,
+          "rate": 0.7833333333333333
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 132,
+          "total": 490,
+          "rate": 0.2693877551020408
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 53,
+          "total": 60,
+          "rate": 0.8833333333333333
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 104,
+          "total": 490,
+          "rate": 0.21224489795918366
+        },
+        "behaviour_accuracy": {
+          "hits": 36,
+          "total": 42,
+          "rate": 0.8571428571428571
+        },
+        "exact_action_target_accuracy": {
+          "hits": 30,
+          "total": 36,
+          "rate": 0.8333333333333334
+        },
+        "time_accuracy": {
+          "hits": 11,
+          "total": 12,
+          "rate": 0.9166666666666666
+        },
+        "wrong_target_rate": {
+          "hits": 1,
+          "total": 42,
+          "rate": 0.023809523809523808
+        },
+        "unnecessary_question_rate": {
+          "hits": 1,
+          "total": 42,
+          "rate": 0.023809523809523808
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 42,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1816.6,
+        "latency_ms_median": 1779.0,
+        "cost_usd_mean": 0.000989
+      }
+    },
+    "out_of_kb": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 35,
+          "total": 72,
+          "rate": 0.4861111111111111
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 32,
+          "total": 72,
+          "rate": 0.4444444444444444
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "wer": {
+          "hits": 35,
+          "total": 72,
+          "rate": 0.4861111111111111
+        },
+        "behaviour_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1532.3,
+        "latency_ms_median": 1436.9,
+        "cost_usd_mean": 0.000957
+      }
+    },
+    "real_speech": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 17,
+          "total": 231,
+          "rate": 0.0735930735930736
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1146.0,
+        "latency_ms_median": 1136.2,
+        "cost_usd_mean": 0.000938
+      }
+    },
+    "reference": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 56,
+          "total": 102,
+          "rate": 0.5490196078431373
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 53,
+          "total": 102,
+          "rate": 0.5196078431372549
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 17,
+          "total": 102,
+          "rate": 0.16666666666666666
+        },
+        "behaviour_accuracy": {
+          "hits": 10,
+          "total": 12,
+          "rate": 0.8333333333333334
+        },
+        "exact_action_target_accuracy": {
+          "hits": 6,
+          "total": 10,
+          "rate": 0.6
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 3,
+          "total": 12,
+          "rate": 0.25
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 6,
+          "total": 12,
+          "rate": 0.5
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 12,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1578.3,
+        "latency_ms_median": 1498.5,
+        "cost_usd_mean": 0.001032
+      }
+    },
+    "stale_default": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 14,
+          "rate": 0.14285714285714285
+        },
+        "behaviour_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1400.0,
+        "latency_ms_median": 1400.0,
+        "cost_usd_mean": 0.000947
+      }
+    },
+    "unfamiliar_near_match": {
+      "a": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 0,
+          "total": 40,
+          "rate": 0.0
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 0,
+          "total": 40,
+          "rate": 0.0
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 0,
+          "total": 40,
+          "rate": 0.0
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1406.5,
+        "latency_ms_median": 1366.5,
+        "cost_usd_mean": 0.000945
+      }
+    }
+  },
+  "comparison": {
+    "a": "c",
+    "b": "b",
+    "counts": {
+      "tie": 92,
+      "loss": 4,
+      "win": 8
+    },
+    "clips": [
+      {
+        "clip": "s007",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "entity_miss",
+        "b": "ok",
+        "said": "Call Srinivasan Iyer and wish him a happy birthday.",
+        "c_text": "Call Srinivas Iyer and wish him a happy birthday.",
+        "b_text": "Call Srinivasan Iyer and wish him a happy birthday."
+      },
+      {
+        "clip": "s030",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Saar, Chikkanna here, the balcony plants need new pots.",
+        "c_text": "Tsar, Chikkanna here. The balcony plants need new pots.",
+        "b_text": "Sir, Chikkana here. The balcony plants need new pots."
+      },
+      {
+        "clip": "s033",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
+        "c_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
+        "b_text": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at 7."
+      },
+      {
+        "clip": "s036",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Sharma Ji bol raha hoon, society meeting kal shaam saat baje hai.",
+        "c_text": "Sharma Ji बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।",
+        "b_text": "शर्मा जी, बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।"
+      },
+      {
+        "clip": "s046",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Call Harjeet Kaur aunty and wish her for Lohri.",
+        "c_text": "Call Harjeet Kaur Aunty and wish her for Lohri.",
+        "b_text": "Call Harjit Kaur auntie and wish her for Lohri."
+      },
+      {
+        "clip": "s049",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Jignesh Shah ne bola stationery kal tak ready ho jayegi.",
+        "c_text": "Jignesh Shah ने बोला, स्टेशनरी कल तक रेडी हो जाएगी।",
+        "b_text": "जिग्नेश शाह ने बोला, स्टेशनरी कल तक रेडी हो जाएगी।"
+      },
+      {
+        "clip": "s020",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "entity_miss",
+        "b": "ok",
+        "said": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
+        "c_text": "Call Vijayalakshmi and ask for the Dilshuknagar address.",
+        "b_text": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address."
+      },
+      {
+        "clip": "s030",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Saar, Chikkanna here, the balcony plants need new pots.",
+        "c_text": "Sar, Chikkanna here. The balcony plants need new pots.",
+        "b_text": "Sir, Chikkana here. The balcony plants need new pots."
+      },
+      {
+        "clip": "s033",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "entity_miss",
+        "b": "ok",
+        "said": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
+        "c_text": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at seven.",
+        "b_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7."
+      },
+      {
+        "clip": "s036",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Sharma Ji bol raha hoon, society meeting kal shaam saat baje hai.",
+        "c_text": "Sharma Ji बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।",
+        "b_text": "शर्मा जी बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।"
+      },
+      {
+        "clip": "s039",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "entity_miss",
+        "b": "ok",
+        "said": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
+        "c_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Kothi for Friday.",
+        "b_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday."
+      },
+      {
+        "clip": "s049",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "b": "entity_miss",
+        "said": "Jignesh Shah ne bola stationery kal tak ready ho jayegi.",
+        "c_text": "Jignesh Shah ने बोला स्टेशनरी कल तक रेडी हो जाएगी।",
+        "b_text": "जिग्नेश शाह ने बोला, स्टेशनेरी कल तक रेडी हो जाएगी।"
+      }
+    ]
+  }
+}

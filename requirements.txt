@@ -15,3 +15,7 @@ anyio==4.16.0              # async helper used by FastAPI and the OpenAI SDK (th
 numpy==2.5.5               # arrays of audio samples
 scipy==1.18.1              # resampling (8 kHz) and the band-pass filter for "phone quality" audio
 soundfile==0.14.0          # read/write WAV files (no ffmpeg needed)
+
+# --- Module 5: evaluation ---
+jiwer==4.0.0               # word error rate (WER)
+rapidfuzz==3.14.6          # installed by jiwer; pinned because Module 7 will use it for fuzzy matching
