@@ -1,0 +1,12 @@
+# Pehchaan — Python dependencies (Module 1 only; later modules will add more).
+# Versions are pinned so the project installs the same way on your laptop and on AWS.
+
+fastapi==0.115.6           # web framework for our API
+uvicorn[standard]==0.34.0  # the server that runs the FastAPI app
+pydantic==2.10.4           # data validation with typed models
+pydantic-settings==2.7.1   # load settings from .env / environment variables
+python-dotenv==1.0.1       # .env file reader (used by pydantic-settings)
+openai==1.59.7             # official OpenAI SDK
+pytest==8.3.4              # test runner
+httpx==0.28.1              # HTTP client; FastAPI's TestClient needs it
+anyio==4.8.0               # async helper used by FastAPI; pinned to match this Starlette version (avoids a deprecation warning)
