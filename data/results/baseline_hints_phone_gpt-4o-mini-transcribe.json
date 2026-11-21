@@ -1,0 +1,1009 @@
+{
+  "meta": {
+    "variant": "hints",
+    "audio": "phone",
+    "model": "gpt-4o-mini-transcribe",
+    "hint_prompt": {
+      "budget_tokens": 4000,
+      "estimated_tokens": 1333,
+      "included": 340,
+      "excluded": 0
+    }
+  },
+  "clips": {
+    "s003": {
+      "reference_text": "Book a table for four at Kakatiya Kitchen in Madhapur for 8 PM tonight.",
+      "transcript": "Book a table for four at Kakatiya Kitchen in Madhapur for 8 p.m. tonight.",
+      "latency_ms": 656.2,
+      "cost_estimate_usd": 0.00196,
+      "split": "test"
+    },
+    "s002": {
+      "reference_text": "Call Dr. Venkataramana and ask if he is free this evening.",
+      "transcript": "Call Dr. Venkataramana and ask if he is free this evening.",
+      "latency_ms": 770.7,
+      "cost_estimate_usd": 0.001939,
+      "split": "test"
+    },
+    "s001": {
+      "reference_text": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally, your appointment is tomorrow at 10 AM.",
+      "transcript": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally. Your appointment is tomorrow at 10 a.m.",
+      "latency_ms": 820.6,
+      "cost_estimate_usd": 0.001997,
+      "split": "dev"
+    },
+    "s006": {
+      "reference_text": "Sir, Sreenivas Goud here, I'm waiting near the Ameerpet metro station.",
+      "transcript": "Sir, Srinivas Goud here. I'm waiting near the Ameerpet metro station.",
+      "latency_ms": 645.4,
+      "cost_estimate_usd": 0.001976,
+      "split": "test"
+    },
+    "s004": {
+      "reference_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+      "transcript": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+      "latency_ms": 658.1,
+      "cost_estimate_usd": 0.001999,
+      "split": "dev"
+    },
+    "s007": {
+      "reference_text": "Call Srinivasan Iyer and wish him a happy birthday.",
+      "transcript": "Call Srinivasan Iyer and wish him a happy birthday.",
+      "latency_ms": 666.5,
+      "cost_estimate_usd": 0.001984,
+      "split": "dev"
+    },
+    "s005": {
+      "reference_text": "Message Srinivas Reddy that the release is moved to Thursday.",
+      "transcript": "Message Srinivas Reddy that the relief is moved to Thursday.",
+      "latency_ms": 683.6,
+      "cost_estimate_usd": 0.001944,
+      "split": "test"
+    },
+    "s010": {
+      "reference_text": "Ravi Teja ko call karo, pucho Warangal pahunch gaya ya nahi.",
+      "transcript": "रवी तेजा को कॉल करो, पूछो वारंगल पहुँच गया या नहीं।",
+      "latency_ms": 607.1,
+      "cost_estimate_usd": 0.001963,
+      "split": "dev"
+    },
+    "s011": {
+      "reference_text": "Tell Ravi Tej I'll skip badminton on Sunday.",
+      "transcript": "Tell Ravi Tej I'll skip badminton on Sunday.",
+      "latency_ms": 646.3,
+      "cost_estimate_usd": 0.001856,
+      "split": "test"
+    },
+    "s009": {
+      "reference_text": "Hello, Smt. Padmavathi here from flat 302, your parcel is with me.",
+      "transcript": "Hello, Smt. Padmavathi, here from Flat 302. Your parcel is with me.",
+      "latency_ms": 699.9,
+      "cost_estimate_usd": 0.001948,
+      "split": "test"
+    },
+    "s008": {
+      "reference_text": "Remind me to pay the rent to Subrahmanyam Garu on the 5th.",
+      "transcript": "Remind me to pay the rent to Subrahmanyam Garu on the 5th.",
+      "latency_ms": 730.9,
+      "cost_estimate_usd": 0.00189,
+      "split": "test"
+    },
+    "s012": {
+      "reference_text": "Book an appointment with Dr. Ananthapadmanabhan for next Tuesday morning.",
+      "transcript": "Book an appointment with Dr. Ananthapadmanabhan for next Tuesday morning.",
+      "latency_ms": 706.4,
+      "cost_estimate_usd": 0.001916,
+      "split": "test"
+    },
+    "s015": {
+      "reference_text": "Call Lakshmi Ganapathi Tiffins and check if they deliver to Begumpet.",
+      "transcript": "Call Lakshmi Ganapathi Tiffins and check if they deliver to Begumpet.",
+      "latency_ms": 620.5,
+      "cost_estimate_usd": 0.002026,
+      "split": "test"
+    },
+    "s013": {
+      "reference_text": "Remind me to call Satyanarayana Murthy garu on Sunday evening.",
+      "transcript": "Remind me to call Satyanarayana Murthy Garu on Sunday evening.",
+      "latency_ms": 687.2,
+      "cost_estimate_usd": 0.001913,
+      "split": "dev"
+    },
+    "s014": {
+      "reference_text": "Sir, Ramulu Anna here, tomatoes fresh ga unnayi, two kilos teesukuraana?",
+      "transcript": "సార్, రాములు అన్న ఇక్కడా. టొమాటోస్ ఫ్రెష్గా ఉన్నాయి. టూ కిలోస్ తీసుకురానా?",
+      "latency_ms": 769.3,
+      "cost_estimate_usd": 0.001993,
+      "split": "test"
+    },
+    "s016": {
+      "reference_text": "Hitech City lo traffic ela undi? I need to reach Nanakramguda by 9.",
+      "transcript": "Hytech City lo traffic ilaundi. I need to reach Nanakramguda by 9.",
+      "latency_ms": 615.6,
+      "cost_estimate_usd": 0.001961,
+      "split": "test"
+    },
+    "s017": {
+      "reference_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
+      "transcript": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
+      "latency_ms": 702.5,
+      "cost_estimate_usd": 0.001944,
+      "split": "dev"
+    },
+    "s018": {
+      "reference_text": "Hi, Keerthi Reddy here, can you join the review call at 3 PM?",
+      "transcript": "Hi, Keerthi Reddy here. Can you join the review call at 3 p.m.?",
+      "latency_ms": 725.3,
+      "cost_estimate_usd": 0.001937,
+      "split": "test"
+    },
+    "s019": {
+      "reference_text": "Message Lakshmi Prasanna that I'll come to Secunderabad on Saturday.",
+      "transcript": "Message Lakshmi Prasanna that I'll come to Secunderabad on Saturday.",
+      "latency_ms": 736.4,
+      "cost_estimate_usd": 0.001963,
+      "split": "test"
+    },
+    "s020": {
+      "reference_text": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
+      "transcript": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address.",
+      "latency_ms": 647.9,
+      "cost_estimate_usd": 0.001908,
+      "split": "dev"
+    },
+    "s021": {
+      "reference_text": "Remind me to take mom to Dr. Prameela Rani on Friday at 11.",
+      "transcript": "Remind me to take mom to Dr. Prameela Rani on Friday at 11.",
+      "latency_ms": 626.2,
+      "cost_estimate_usd": 0.00192,
+      "split": "test"
+    },
+    "s023": {
+      "reference_text": "Call Dr. Subramanian and move the root canal to Monday.",
+      "transcript": "Call Dr. Subramanian and move the root canal to Monday.",
+      "latency_ms": 600.1,
+      "cost_estimate_usd": 0.001899,
+      "split": "dev"
+    },
+    "s022": {
+      "reference_text": "Book a dental cleaning at Venkataramana Dental Care for Saturday afternoon.",
+      "transcript": "Book a dental cleaning at Venkataramana Dental Care for Saturday afternoon.",
+      "latency_ms": 727.7,
+      "cost_estimate_usd": 0.001913,
+      "split": "test"
+    },
+    "s024": {
+      "reference_text": "Meenakshi Sundaram speaking, your GST papers are ready, please collect them.",
+      "transcript": "Meenakshi Sundaram speaking. Your GST papers are ready. Please collect them.",
+      "latency_ms": 632.6,
+      "cost_estimate_usd": 0.001923,
+      "split": "test"
+    },
+    "s025": {
+      "reference_text": "Thirumalai Selvan will pay the rent late this month, remind me on the 10th.",
+      "transcript": "Thirumalai Selvan will pay the rent late this month. Remind me on the 10th.",
+      "latency_ms": 710.0,
+      "cost_estimate_usd": 0.001875,
+      "split": "test"
+    },
+    "s026": {
+      "reference_text": "Call Lakshmi Narayanan about the income tax filing before Friday.",
+      "transcript": "Call Lakshmi Narayanan about the income tax filing before Friday.",
+      "latency_ms": 618.4,
+      "cost_estimate_usd": 0.001936,
+      "split": "dev"
+    },
+    "s027": {
+      "reference_text": "Book a table at Chettinad Spice Kitchen in Velachery for Sunday lunch.",
+      "transcript": "Book a table at Chettinad Spice Kitchen in Velachery for Sunday lunch.",
+      "latency_ms": 707.7,
+      "cost_estimate_usd": 0.001932,
+      "split": "test"
+    },
+    "s028": {
+      "reference_text": "Call Manjunath Gowda and fix the cab to Koramangala for 6 PM.",
+      "transcript": "Call Manjunath Gowda and fix the cab to Koramangala for 6 p.m.",
+      "latency_ms": 751.0,
+      "cost_estimate_usd": 0.001916,
+      "split": "test"
+    },
+    "s029": {
+      "reference_text": "Remind me to send flowers to Raghavendra Bhat before the pooja on Thursday.",
+      "transcript": "Remind me to send flowers to Raghavendra Pat before the puja on Thursday.",
+      "latency_ms": 656.1,
+      "cost_estimate_usd": 0.001909,
+      "split": "test"
+    },
+    "s030": {
+      "reference_text": "Saar, Chikkanna here, the balcony plants need new pots.",
+      "transcript": "Sir, Chikkana here. The balcony plants need new pots.",
+      "latency_ms": 649.2,
+      "cost_estimate_usd": 0.001897,
+      "split": "dev"
+    },
+    "s031": {
+      "reference_text": "Book a table at Udupi Krishna Bhavan in Basavanagudi for breakfast tomorrow.",
+      "transcript": "Book a table at Udupi Krishna Bhavan in Basavanagudi for breakfast tomorrow.",
+      "latency_ms": 758.6,
+      "cost_estimate_usd": 0.001997,
+      "split": "test"
+    },
+    "s032": {
+      "reference_text": "Message Unnikrishnan Nair that the design review is at 4 PM.",
+      "transcript": "Message Unnikrishnan Nair that the design review is at 4 p.m.",
+      "latency_ms": 646.1,
+      "cost_estimate_usd": 0.001888,
+      "split": "test"
+    },
+    "s033": {
+      "reference_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
+      "transcript": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
+      "latency_ms": 657.3,
+      "cost_estimate_usd": 0.001941,
+      "split": "dev"
+    },
+    "s034": {
+      "reference_text": "Remind me to call Jayalakshmi Warrier about the music class on Wednesday.",
+      "transcript": "Remind me to call Jayalakshmi Warrier about the music class on Wednesday.",
+      "latency_ms": 634.2,
+      "cost_estimate_usd": 0.001997,
+      "split": "test"
+    },
+    "s035": {
+      "reference_text": "Ask Vishnu Namboothiri for a good muhurtham for the housewarming.",
+      "transcript": "Ask Vishnu Namboothiri for a good muhurtham for the housewarming.",
+      "latency_ms": 693.4,
+      "cost_estimate_usd": 0.001957,
+      "split": "test"
+    },
+    "s036": {
+      "reference_text": "Sharma Ji bol raha hoon, society meeting kal shaam saat baje hai.",
+      "transcript": "शर्मा जी बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।",
+      "latency_ms": 690.3,
+      "cost_estimate_usd": 0.001934,
+      "split": "dev"
+    },
+    "s038": {
+      "reference_text": "Call Sunita Agarwal and ask about the advance tax deadline.",
+      "transcript": "Call Sunita Agarwal and ask about the advance tax deadline.",
+      "latency_ms": 609.9,
+      "cost_estimate_usd": 0.001955,
+      "split": "test"
+    },
+    "s037": {
+      "reference_text": "Laxmi Devi ko bolo kal subah nahi aana hai.",
+      "transcript": "लक्ष्मी देवी को बोलो कल सुबह नहीं आना है।",
+      "latency_ms": 686.6,
+      "cost_estimate_usd": 0.001918,
+      "split": "test"
+    },
+    "s039": {
+      "reference_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
+      "transcript": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
+      "latency_ms": 698.5,
+      "cost_estimate_usd": 0.002015,
+      "split": "dev"
+    },
+    "s041": {
+      "reference_text": "Message Aniruddha Phadke that the floor plan looks good.",
+      "transcript": "Message Annie Rutdefadke that the floor plan looks good.",
+      "latency_ms": 583.8,
+      "cost_estimate_usd": 0.001866,
+      "split": "test"
+    },
+    "s040": {
+      "reference_text": "Remind me to call Dnyaneshwar Patil about the wardrobe on Monday.",
+      "transcript": "Remind me to call Dnyaneshwar Patil about the wardrobe on Monday.",
+      "latency_ms": 599.4,
+      "cost_estimate_usd": 0.001923,
+      "split": "test"
+    },
+    "s042": {
+      "reference_text": "Call Subhashis Chattopadhyay and confirm the thesis meeting at 11 AM.",
+      "transcript": "Call Subhasis Chattopadhyay and confirm the thesis meeting at 11 a.m.",
+      "latency_ms": 687.7,
+      "cost_estimate_usd": 0.001981,
+      "split": "test"
+    },
+    "s043": {
+      "reference_text": "Hello, Dr. Tanushree Sen here, your sister's skin test results are normal.",
+      "transcript": "Hello, Dr. Tanushree Sen here. Your sister's skin test results are normal.",
+      "latency_ms": 607.7,
+      "cost_estimate_usd": 0.002006,
+      "split": "dev"
+    },
+    "s044": {
+      "reference_text": "Call Maa Tara Medical Store in Howrah and check if they have the inhaler.",
+      "transcript": "Call Maa Tara Medical Store in Howrah and check if they have the inhaler.",
+      "latency_ms": 614.0,
+      "cost_estimate_usd": 0.001933,
+      "split": "test"
+    },
+    "s045": {
+      "reference_text": "Message Gurpreet Singh to pick me up from Amritsar station at 6.",
+      "transcript": "Message Gurpreet Singh to pick me up from Amritsar station at 6.",
+      "latency_ms": 654.2,
+      "cost_estimate_usd": 0.001926,
+      "split": "test"
+    },
+    "s046": {
+      "reference_text": "Call Harjeet Kaur aunty and wish her for Lohri.",
+      "transcript": "Call Harjeet Kaur Aunty and wish her for Lohri.",
+      "latency_ms": 646.6,
+      "cost_estimate_usd": 0.001868,
+      "split": "dev"
+    },
+    "s047": {
+      "reference_text": "Book a table at Sher-e-Punjab Dhaba in Gachibowli for tonight.",
+      "transcript": "Book a table at Share a Punjab Taba in Gachibowli for tonight.",
+      "latency_ms": 669.7,
+      "cost_estimate_usd": 0.001918,
+      "split": "test"
+    },
+    "s049": {
+      "reference_text": "Jignesh Shah ne bola stationery kal tak ready ho jayegi.",
+      "transcript": "जिग्नेश शाह ने बोला, स्टेशनेरी कल तक रेडी हो जाएगी।",
+      "latency_ms": 626.3,
+      "cost_estimate_usd": 0.001892,
+      "split": "dev"
+    },
+    "s050": {
+      "reference_text": "Call Shree Ambica Khakhra House in Ahmedabad and order two boxes.",
+      "transcript": "Call Sri Ambika Khakhra House in Ahmedabad and order two boxes.",
+      "latency_ms": 616.4,
+      "cost_estimate_usd": 0.00193,
+      "split": "test"
+    },
+    "s051": {
+      "reference_text": "Message Debasish Mohapatra that I'll reach Bhubaneswar on Friday night.",
+      "transcript": "Message Subhasish Mohapatra that I'll reach Bhubaneswar on Friday night.",
+      "latency_ms": 654.1,
+      "cost_estimate_usd": 0.001952,
+      "split": "test"
+    },
+    "s048": {
+      "reference_text": "Remind me to call Bhavesh Thakkar about the gold chain on Saturday.",
+      "transcript": "Remind me to call Bhavesh Thakker about the gold chain on Saturday.",
+      "latency_ms": 1106.6,
+      "cost_estimate_usd": 0.001958,
+      "split": "test"
+    },
+    "s052": {
+      "reference_text": "Book a table at Jagannath Bhojanalaya for Sunday lunch.",
+      "transcript": "Book a table at Jagannath Bhojanalay for Sunday lunch.",
+      "latency_ms": 595.2,
+      "cost_estimate_usd": 0.001883,
+      "split": "dev"
+    },
+    "s053": {
+      "reference_text": "Remind me to call Smruti Rekha Behera at the hospital tomorrow.",
+      "transcript": "Remind me to call Smruti Rekha Behera at the hospital tomorrow.",
+      "latency_ms": 713.6,
+      "cost_estimate_usd": 0.001875,
+      "split": "test"
+    },
+    "s055": {
+      "reference_text": "Syed Imtiaz Hussain here, stuck in traffic at Mehdipatnam, start the meeting without me.",
+      "transcript": "Syed Imtiaz Hussain here, stuck in traffic at Mehdipatnam. Start the meeting without me.",
+      "latency_ms": 653.5,
+      "cost_estimate_usd": 0.002037,
+      "split": "test"
+    },
+    "s054": {
+      "reference_text": "Call Mohammed Abdul Khader and ask if the car is ready.",
+      "transcript": "Call Mohammed Abdul Khader and ask if the car is ready.",
+      "latency_ms": 752.7,
+      "cost_estimate_usd": 0.001871,
+      "split": "test"
+    },
+    "s056": {
+      "reference_text": "Book an appointment with Dr. Fatima Zehra for my son on Thursday at 5 PM.",
+      "transcript": "Book an appointment with Dr. Fatima Zehra for my son on Thursday at 5 p.m.",
+      "latency_ms": 758.2,
+      "cost_estimate_usd": 0.001928,
+      "split": "dev"
+    },
+    "s058": {
+      "reference_text": "Remind me to buy mutton from Naseeruddin Qureshi on Saturday morning.",
+      "transcript": "Remind me to buy mutton from Nasiruddin Qureshi on Saturday morning.",
+      "latency_ms": 635.5,
+      "cost_estimate_usd": 0.001927,
+      "split": "test"
+    },
+    "s057": {
+      "reference_text": "Shaik Khaja Moinuddin ko bolo AC service Sunday ko karna hai.",
+      "transcript": "साइक काजा मोयनुद्दीन को बोलो, एसी सर्विस संडे को करना है।",
+      "latency_ms": 929.3,
+      "cost_estimate_usd": 0.001902,
+      "split": "test"
+    },
+    "s059": {
+      "reference_text": "Book a table at Nawab Zaika Biryani House in Tolichowki for 9 PM.",
+      "transcript": "Book a table at Nawab Zaika Biryani House in Tolichowki for 9 PM.",
+      "latency_ms": 854.1,
+      "cost_estimate_usd": 0.001948,
+      "split": "dev"
+    },
+    "s060": {
+      "reference_text": "Call Moazzam Book House in Abids and ask if the novel is in stock.",
+      "transcript": "Call Moazzam Book House in a bit and ask if the novel is in stock.",
+      "latency_ms": 762.5,
+      "cost_estimate_usd": 0.001932,
+      "split": "test"
+    },
+    "s061": {
+      "reference_text": "Message Fr. Anthony Raj that choir practice is at 6 on Saturday.",
+      "transcript": "Message Fr. Anthony Raj that choir practice is at 6 on Saturday.",
+      "latency_ms": 677.0,
+      "cost_estimate_usd": 0.001897,
+      "split": "test"
+    },
+    "s063": {
+      "reference_text": "Call St. Joseph's Convent School in Secunderabad and ask about admissions.",
+      "transcript": "Call St. Joseph's Convent School in Secunderabad and ask about admissions.",
+      "latency_ms": 627.2,
+      "cost_estimate_usd": 0.001977,
+      "split": "test"
+    },
+    "s062": {
+      "reference_text": "This is Dr. Benjamin Jebakumar, please bring your father's knee X-ray on Monday.",
+      "transcript": "This is Dr. Benjamin Jebakumar. Please bring your father's knee X-ray on Monday.",
+      "latency_ms": 866.5,
+      "cost_estimate_usd": 0.002009,
+      "split": "dev"
+    },
+    "s064": {
+      "reference_text": "Remind me to pick up the cake from Al Noor Bakery in Yousufguda at 7 PM.",
+      "transcript": "Remind me to pick up the cake from Al Noor Bakery in Yousufguda at 7 p.m.",
+      "latency_ms": 685.0,
+      "cost_estimate_usd": 0.001964,
+      "split": "test"
+    },
+    "s065": {
+      "reference_text": "Book a haircut at Style Zone Unisex Salon in Madhapur for Sunday 11 AM.",
+      "transcript": "Book a haircut at Style Zone Unisex Salon in Madhapur for Sunday 11 AM.",
+      "latency_ms": 717.8,
+      "cost_estimate_usd": 0.002013,
+      "split": "dev"
+    },
+    "s067": {
+      "reference_text": "Call Bhagyalakshmi Jewellers in Panjagutta and ask if the earrings are ready.",
+      "transcript": "Call Padya Lakshmi Jewelers in Panjagutta and ask if the earrings are ready.",
+      "latency_ms": 843.2,
+      "cost_estimate_usd": 0.002002,
+      "split": "test"
+    },
+    "s066": {
+      "reference_text": "Kukatpally nunchi Begumpet ki auto book cheyyi.",
+      "transcript": "కుకట్పల్లి నుంచి దబంగ్ పెట్టికి ఆటో పోకుచేయి.",
+      "latency_ms": 874.2,
+      "cost_estimate_usd": 0.001931,
+      "split": "test"
+    },
+    "s068": {
+      "reference_text": "Remind me to visit Padmavathi Nursing Home in Malakpet at 4 PM.",
+      "transcript": "Remind me to visit Padmavathi Nursing Home in Malakpet at 4 p.m.",
+      "latency_ms": 778.5,
+      "cost_estimate_usd": 0.001944,
+      "split": "test"
+    },
+    "s069": {
+      "reference_text": "Call Tejaswini and ask if she reached Nalgonda.",
+      "transcript": "Call Teja Sweeney and ask if she reached Nalgonda.",
+      "latency_ms": 796.7,
+      "cost_estimate_usd": 0.001844,
+      "split": "dev"
+    },
+    "s072": {
+      "reference_text": "Message Abhinav Kashyap that the match is at 6.",
+      "transcript": "Message Abhinav Kashyap that the match is at 6.",
+      "latency_ms": 574.9,
+      "cost_estimate_usd": 0.00187,
+      "split": "dev"
+    },
+    "s070": {
+      "reference_text": "Hi, this is Kavya from the Narsingi branch, your cheque book is ready.",
+      "transcript": "Hi, this is Kavya from the Narsingi branch. Your checkbook is ready.",
+      "latency_ms": 671.1,
+      "cost_estimate_usd": 0.001965,
+      "split": "test"
+    },
+    "s071": {
+      "reference_text": "Book a table at Shree Gokul Bhojnalaya in Mehsana for Sunday.",
+      "transcript": "Book a table at Shree Gokul Bhojnalaya in Mehsana for Sunday.",
+      "latency_ms": 651.2,
+      "cost_estimate_usd": 0.002015,
+      "split": "test"
+    },
+    "s073": {
+      "reference_text": "Remind me to call Thangamani Paati on Sunday.",
+      "transcript": "Remind me to call Sangamanipati on Sunday.",
+      "latency_ms": 623.3,
+      "cost_estimate_usd": 0.001841,
+      "split": "test"
+    },
+    "s075": {
+      "reference_text": "Namaste, Pradeep Lodha bol raha hoon, Indore se.",
+      "transcript": "नमस्ते, प्रदीप लोधा बोल रहा हूँ इंदौर से।",
+      "latency_ms": 630.4,
+      "cost_estimate_usd": 0.001861,
+      "split": "dev"
+    },
+    "s076": {
+      "reference_text": "Book a cab to Ghatkesar railway station at 6 AM.",
+      "transcript": "Book a cab to Ghatkesar Railway Station at 6 a.m.",
+      "latency_ms": 644.2,
+      "cost_estimate_usd": 0.001898,
+      "split": "test"
+    },
+    "s074": {
+      "reference_text": "Call Yuvaraj Bhupathi about the plot in Shadnagar.",
+      "transcript": "Call Yuvraj Bupathi about the plot in Shadnagar.",
+      "latency_ms": 762.6,
+      "cost_estimate_usd": 0.001896,
+      "split": "test"
+    },
+    "s077": {
+      "reference_text": "Message Nivedita Hazarika that I'll be in Guwahati next week.",
+      "transcript": "Message Mridita Hazarika that I'll be in Guwahati next week.",
+      "latency_ms": 705.9,
+      "cost_estimate_usd": 0.001888,
+      "split": "test"
+    },
+    "s078": {
+      "reference_text": "Remind me to collect the suit from Mansoor Tailors on Friday.",
+      "transcript": "Remind me to collect the suit from Mansoor Tailors on Friday.",
+      "latency_ms": 665.1,
+      "cost_estimate_usd": 0.001908,
+      "split": "dev"
+    },
+    "s080": {
+      "reference_text": "Lohit ko bolo Darjeeling trip cancel hai.",
+      "transcript": "लोहित को बोलो, दार्जिलिंग ट्रिप कैंसल है।",
+      "latency_ms": 656.4,
+      "cost_estimate_usd": 0.001913,
+      "split": "test"
+    },
+    "s079": {
+      "reference_text": "Call Ezhil Arasan and ask about the Tiruppur order.",
+      "transcript": "Call Ezhil Arasan and ask about the Thirupur order.",
+      "latency_ms": 797.6,
+      "cost_estimate_usd": 0.001936,
+      "split": "test"
+    },
+    "s081": {
+      "reference_text": "Book a table at Mayuri Darshini in Shivamogga for lunch.",
+      "transcript": "Book a table at Mayuri Darshini in Shivamogga for lunch.",
+      "latency_ms": 618.0,
+      "cost_estimate_usd": 0.001875,
+      "split": "test"
+    },
+    "s082": {
+      "reference_text": "Can you cook at home tonight? I'll bring the vegetables.",
+      "transcript": "Can you cook at home tonight? I'll bring the vegetables.",
+      "latency_ms": 665.0,
+      "cost_estimate_usd": 0.001873,
+      "split": "dev"
+    },
+    "s083": {
+      "reference_text": "The cook at the polling booth said lunch is ready.",
+      "transcript": "The cook at the polling booth said, \"Lunch is ready.\"",
+      "latency_ms": 583.2,
+      "cost_estimate_usd": 0.001887,
+      "split": "test"
+    },
+    "s084": {
+      "reference_text": "We are lucky the rain stopped before the match.",
+      "transcript": "We are lucky the rain stopped before the match.",
+      "latency_ms": 594.3,
+      "cost_estimate_usd": 0.001811,
+      "split": "test"
+    },
+    "s085": {
+      "reference_text": "It's very sunny today, so carry a cap.",
+      "transcript": "It's very sunny today, so carry a cap.",
+      "latency_ms": 611.7,
+      "cost_estimate_usd": 0.001813,
+      "split": "dev"
+    },
+    "s087": {
+      "reference_text": "Remind me to drink water every two hours.",
+      "transcript": "Remind me to drink water every two hours.",
+      "latency_ms": 581.1,
+      "cost_estimate_usd": 0.001871,
+      "split": "test"
+    },
+    "s086": {
+      "reference_text": "Remind me to buy roses for the anniversary on Saturday.",
+      "transcript": "Remind me to buy roses for the anniversary on Saturday.",
+      "latency_ms": 607.5,
+      "cost_estimate_usd": 0.001895,
+      "split": "test"
+    },
+    "s088": {
+      "reference_text": "Wake me up at six thirty tomorrow morning.",
+      "transcript": "Wake me up at 6:30 tomorrow morning.",
+      "latency_ms": 674.3,
+      "cost_estimate_usd": 0.001818,
+      "split": "dev"
+    },
+    "s089": {
+      "reference_text": "Kal meeting cancel ho gayi, ghar pe hi rahunga.",
+      "transcript": "कल मीटिंग कैंसिल हो गई, घर पर ही रहूंगा।",
+      "latency_ms": 619.9,
+      "cost_estimate_usd": 0.00185,
+      "split": "test"
+    },
+    "s091": {
+      "reference_text": "Hello sir, your order has been dispatched and will arrive by evening.",
+      "transcript": "Hello Sir, your order has been dispatched and will arrive by evening.",
+      "latency_ms": 695.4,
+      "cost_estimate_usd": 0.001936,
+      "split": "dev"
+    },
+    "s090": {
+      "reference_text": "Ee roju chala vedi ga undi, bayataki vellaku.",
+      "transcript": "ఈ రోజు చాలా వేడిగా ఉంది. భయానికి వెళ్ళకో.",
+      "latency_ms": 736.7,
+      "cost_estimate_usd": 0.001982,
+      "split": "test"
+    },
+    "s092": {
+      "reference_text": "My battery is low, I'll call you back in ten minutes.",
+      "transcript": "My battery is low. I'll call you back in 10 minutes.",
+      "latency_ms": 745.5,
+      "cost_estimate_usd": 0.001859,
+      "split": "test"
+    },
+    "s093": {
+      "reference_text": "Is the pharmacy near the bus stop open on Sundays?",
+      "transcript": "Is the pharmacy near the bus stop open on Sunday?",
+      "latency_ms": 575.5,
+      "cost_estimate_usd": 0.001818,
+      "split": "test"
+    },
+    "s095": {
+      "reference_text": "Ask Harshil to send the invoice by Friday.",
+      "transcript": "Ask Harshal to send the invoice by Friday.",
+      "latency_ms": 615.4,
+      "cost_estimate_usd": 0.001859,
+      "split": "dev"
+    },
+    "s094": {
+      "reference_text": "Lucky draw results will be announced in the hall tomorrow.",
+      "transcript": "Lucky draw results will be announced in the hall tomorrow.",
+      "latency_ms": 750.3,
+      "cost_estimate_usd": 0.001893,
+      "split": "test"
+    },
+    "s096": {
+      "reference_text": "Call Harshit and move tomorrow's gym session to 7 AM.",
+      "transcript": "Call Harshit and move tomorrow's gym sessions to 7 a.m.",
+      "latency_ms": 630.1,
+      "cost_estimate_usd": 0.001891,
+      "split": "test"
+    },
+    "s097": {
+      "reference_text": "Message Rohith to check when my car service will be done.",
+      "transcript": "Message Rohit to check when my car service will be done.",
+      "latency_ms": 669.2,
+      "cost_estimate_usd": 0.001874,
+      "split": "test"
+    },
+    "s098": {
+      "reference_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
+      "transcript": "Remind me to send the project deck to Pranay before the client call on Monday.",
+      "latency_ms": 644.7,
+      "cost_estimate_usd": 0.002028,
+      "split": "dev"
+    },
+    "s099": {
+      "reference_text": "Tell Swati my daughter will miss dance class today.",
+      "transcript": "Tell Swati, my daughter will miss dance class today.",
+      "latency_ms": 600.5,
+      "cost_estimate_usd": 0.001882,
+      "split": "test"
+    },
+    "s100": {
+      "reference_text": "Call Anjani and ask if maths tuition is on this evening.",
+      "transcript": "Call Anjani and ask if Matt's tuition is on this evening.",
+      "latency_ms": 644.9,
+      "cost_estimate_usd": 0.001899,
+      "split": "test"
+    },
+    "s101": {
+      "reference_text": "Call Harshit at 5.",
+      "transcript": "Call Harshit at 5.",
+      "latency_ms": 659.3,
+      "cost_estimate_usd": 0.001797,
+      "split": "dev"
+    },
+    "s102": {
+      "reference_text": "Send a message to Sai, I'll reach in 10 minutes.",
+      "transcript": "Send a message to Sai, I'll reach in 10 minutes.",
+      "latency_ms": 724.0,
+      "cost_estimate_usd": 0.00187,
+      "split": "test"
+    },
+    "s103": {
+      "reference_text": "Remind me to call Pranav tomorrow morning.",
+      "transcript": "Remind me to call Pranav tomorrow morning.",
+      "latency_ms": 722.8,
+      "cost_estimate_usd": 0.001912,
+      "split": "dev"
+    },
+    "s104": {
+      "reference_text": "Call Rohit at 6 PM.",
+      "transcript": "Call Rohit at 6 p.m.",
+      "latency_ms": 674.1,
+      "cost_estimate_usd": 0.001834,
+      "split": "test"
+    },
+    "s105": {
+      "reference_text": "Message Swathi that I'm running late.",
+      "transcript": "Message Swati that I'm running late.",
+      "latency_ms": 647.9,
+      "cost_estimate_usd": 0.001811,
+      "split": "test"
+    },
+    "s106": {
+      "reference_text": "Book a table at Raju Hotel tomorrow at 9 AM.",
+      "transcript": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+      "latency_ms": 680.3,
+      "cost_estimate_usd": 0.001916,
+      "split": "dev"
+    },
+    "s108": {
+      "reference_text": "Book a table at Venkataramana Restaurant for Sunday lunch.",
+      "transcript": "Book a table at Venkataramana Restaurant for Sunday lunch.",
+      "latency_ms": 632.9,
+      "cost_estimate_usd": 0.001908,
+      "split": "test"
+    },
+    "s107": {
+      "reference_text": "Book a table at Sharma Ji Dhaba for tonight.",
+      "transcript": "Book a table at Sharma Ji Taba for tonight.",
+      "latency_ms": 732.9,
+      "cost_estimate_usd": 0.001853,
+      "split": "test"
+    },
+    "s109": {
+      "reference_text": "Hi, I'm Raju from the bank, calling about your credit card.",
+      "transcript": "Hi, I'm Raju from the bank, calling about your credit card.",
+      "latency_ms": 714.5,
+      "cost_estimate_usd": 0.001916,
+      "split": "dev"
+    },
+    "s110": {
+      "reference_text": "Hello sir, this is Srinivas from the broadband company, your plan expires today.",
+      "transcript": "Hello sir, this is Srinivas from the broadband company. Your plan expires today.",
+      "latency_ms": 636.9,
+      "cost_estimate_usd": 0.002036,
+      "split": "test"
+    },
+    "s112": {
+      "reference_text": "Hi, this is Anjali from the home loans team, is this a good time to talk?",
+      "transcript": "Hi, this is Anjali from the Home Loans team. Is this a good time to talk?",
+      "latency_ms": 647.2,
+      "cost_estimate_usd": 0.001956,
+      "split": "test"
+    },
+    "s111": {
+      "reference_text": "Good morning, Dr. Subramanian here from City Care, calling about a health insurance offer.",
+      "transcript": "Good morning, Dr. Subramanian here from CityCare, calling about a health insurance offer.",
+      "latency_ms": 699.9,
+      "cost_estimate_usd": 0.001981,
+      "split": "dev"
+    },
+    "s113": {
+      "reference_text": "Hello, Manju speaking from the courier office, your parcel is at the hub.",
+      "transcript": "Hello, Manju speaking from the courier office. Your parcel is at the hub.",
+      "latency_ms": 722.3,
+      "cost_estimate_usd": 0.001923,
+      "split": "test"
+    },
+    "s114": {
+      "reference_text": "Call my doctor, my tooth is paining.",
+      "transcript": "Call my doctor, my tooth is paining.",
+      "latency_ms": 700.0,
+      "cost_estimate_usd": 0.001844,
+      "split": "dev"
+    },
+    "s116": {
+      "reference_text": "Ask my colleague to send the invoice before Friday.",
+      "transcript": "Ask my colleague to send the invoice before Friday.",
+      "latency_ms": 630.8,
+      "cost_estimate_usd": 0.001854,
+      "split": "test"
+    },
+    "s115": {
+      "reference_text": "Book my eye checkup with my doctor in Kukatpally.",
+      "transcript": "Book my eye checkup with my doctor in Kukatpally.",
+      "latency_ms": 698.4,
+      "cost_estimate_usd": 0.00184,
+      "split": "test"
+    },
+    "s117": {
+      "reference_text": "Message my son's teacher that he has maths doubts for tonight's tuition.",
+      "transcript": "Message my son's teacher that he has maxed out for tonight's tuition.",
+      "latency_ms": 665.4,
+      "cost_estimate_usd": 0.001889,
+      "split": "dev"
+    },
+    "s118": {
+      "reference_text": "Call my doctor.",
+      "transcript": "Call my doctor.",
+      "latency_ms": 612.5,
+      "cost_estimate_usd": 0.001752,
+      "split": "test"
+    },
+    "s119": {
+      "reference_text": "Book an appointment with my doctor for Saturday morning.",
+      "transcript": "Book an appointment with my doctor for Saturday morning.",
+      "latency_ms": 603.6,
+      "cost_estimate_usd": 0.001854,
+      "split": "test"
+    },
+    "s120": {
+      "reference_text": "Ask my driver to come at 8:30 tomorrow.",
+      "transcript": "Ask my driver to come at 8:30 tomorrow.",
+      "latency_ms": 615.6,
+      "cost_estimate_usd": 0.001852,
+      "split": "dev"
+    },
+    "s121": {
+      "reference_text": "Tell my manager I'm on leave tomorrow.",
+      "transcript": "Tell my manager I'm on leave tomorrow.",
+      "latency_ms": 641.4,
+      "cost_estimate_usd": 0.001786,
+      "split": "test"
+    },
+    "s122": {
+      "reference_text": "Remind me to call Amma at 7.",
+      "transcript": "Remind me to call Amma at 7.",
+      "latency_ms": 703.8,
+      "cost_estimate_usd": 0.0018,
+      "split": "test"
+    },
+    "s123": {
+      "reference_text": "Nanna ki call cheyyi, BP tablets teesukunnara ani adugu.",
+      "transcript": "నన్నా తీపాలొచ్చెయ్యి, బీపీ టాబ్లెట్స్ తీసుకున్నరా అని అడదు.",
+      "latency_ms": 645.7,
+      "cost_estimate_usd": 0.001897,
+      "split": "dev"
+    },
+    "s124": {
+      "reference_text": "Message Akka that I'll come to Secunderabad on Saturday.",
+      "transcript": "Message Akash that I'll come to Secunderabad on Saturday.",
+      "latency_ms": 749.4,
+      "cost_estimate_usd": 0.001845,
+      "split": "test"
+    },
+    "s125": {
+      "reference_text": "Bhaiya ko bolo Diwali pe ghar aa jaye.",
+      "transcript": "भैया को बोलो, दिवाली पर घर आ जाए।",
+      "latency_ms": 637.6,
+      "cost_estimate_usd": 0.001818,
+      "split": "test"
+    },
+    "s126": {
+      "reference_text": "Order Amma's tablets from the usual pharmacy.",
+      "transcript": "Order Amers tablets from the usual pharmacy.",
+      "latency_ms": 752.4,
+      "cost_estimate_usd": 0.001893,
+      "split": "dev"
+    },
+    "s128": {
+      "reference_text": "Call the usual kirana shop and order rice and dal.",
+      "transcript": "Call the usual Kirana shop and order rice and dal.",
+      "latency_ms": 696.3,
+      "cost_estimate_usd": 0.001861,
+      "split": "test"
+    },
+    "s129": {
+      "reference_text": "Remind me to take Nanna to Dr. Ananthapadmanabhan on Tuesday.",
+      "transcript": "Remind me to take Nanna to Dr. Ananthapadmanabhan on Tuesday.",
+      "latency_ms": 647.4,
+      "cost_estimate_usd": 0.00196,
+      "split": "test"
+    },
+    "s127": {
+      "reference_text": "Book a haircut at the usual salon for Sunday evening.",
+      "transcript": "Book a haircut at the usual salon for Sunday evening.",
+      "latency_ms": 1239.4,
+      "cost_estimate_usd": 0.001897,
+      "split": "test"
+    },
+    "s130": {
+      "reference_text": "Ask my colleague to join the call.",
+      "transcript": "Ask my colleague to join the call.",
+      "latency_ms": 608.3,
+      "cost_estimate_usd": 0.001834,
+      "split": "dev"
+    },
+    "s131": {
+      "reference_text": "Call the electrician, the fan is not working.",
+      "transcript": "Call the electrician, the fan is not working.",
+      "latency_ms": 605.3,
+      "cost_estimate_usd": 0.001868,
+      "split": "test"
+    },
+    "s132": {
+      "reference_text": "Call my son's teacher.",
+      "transcript": "Call my son's teacher.",
+      "latency_ms": 622.1,
+      "cost_estimate_usd": 0.001786,
+      "split": "test"
+    },
+    "s133": {
+      "reference_text": "Remind me to call Rohan about the cricket match on Saturday.",
+      "transcript": "Remind me to call Rohan about the cricket match on Saturday.",
+      "latency_ms": 616.5,
+      "cost_estimate_usd": 0.001874,
+      "split": "dev"
+    },
+    "s136": {
+      "reference_text": "Remind me to call Sravanthi about the wedding card.",
+      "transcript": "Remind me to call Sravanthi about the wedding card.",
+      "latency_ms": 591.4,
+      "cost_estimate_usd": 0.001897,
+      "split": "dev"
+    },
+    "s134": {
+      "reference_text": "Hi, this is Harshil Mehta from the insurance company, calling about your renewal.",
+      "transcript": "Hi, this is Harshal Mehta from the insurance company calling about your renewal.",
+      "latency_ms": 765.8,
+      "cost_estimate_usd": 0.001957,
+      "split": "test"
+    },
+    "s135": {
+      "reference_text": "Remind me to send the documents to Pranit tomorrow.",
+      "transcript": "Remind me to send the documents to Praneet tomorrow.",
+      "latency_ms": 729.1,
+      "cost_estimate_usd": 0.001955,
+      "split": "test"
+    },
+    "s137": {
+      "reference_text": "Remind me to pay Ramudu for the coconuts on Sunday.",
+      "transcript": "Remind me to pay Ramudu for the coconuts on Sunday.",
+      "latency_ms": 650.4,
+      "cost_estimate_usd": 0.001846,
+      "split": "test"
+    },
+    "s138": {
+      "reference_text": "Remind me to call Kiran Reddy about the flat visit at 5 PM.",
+      "transcript": "Remind me to call Kiran Reddy about the flat visit at 5 p.m.",
+      "latency_ms": 598.8,
+      "cost_estimate_usd": 0.001938,
+      "split": "test"
+    },
+    "s140": {
+      "reference_text": "Remind me to ask my doctor about the tooth filling on Friday.",
+      "transcript": "Remind me to ask my doctor about the tooth filling on Friday.",
+      "latency_ms": 573.1,
+      "cost_estimate_usd": 0.001883,
+      "split": "test"
+    },
+    "s139": {
+      "reference_text": "Call my doctor about my eye drops.",
+      "transcript": "Call my doctor about my eye drops.",
+      "latency_ms": 755.8,
+      "cost_estimate_usd": 0.001808,
+      "split": "dev"
+    },
+    "s141": {
+      "reference_text": "Remind me to send the sales numbers to my manager before the Monday review.",
+      "transcript": "Remind me to send the sales numbers to my manager before the Monday review.",
+      "latency_ms": 690.0,
+      "cost_estimate_usd": 0.001901,
+      "split": "test"
+    },
+    "s142": {
+      "reference_text": "Remind me to ask my accountant whether the GST papers are ready.",
+      "transcript": "Remind me to ask my accountant whether the GST papers are ready.",
+      "latency_ms": 599.6,
+      "cost_estimate_usd": 0.001898,
+      "split": "test"
+    }
+  }
+}

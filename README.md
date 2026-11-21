@@ -164,6 +164,43 @@ python scripts/build_audio.py      # (re)build audio; existing clips are skipped
 ## How it works
 *Coming in later modules (6-9).*
 
+## Baselines (Module 4)
+
+Every clip is transcribed by OpenAI speech-to-text, **`gpt-4o-mini-transcribe`** by default
+(`gpt-4o-transcribe` and `whisper-1` are also supported):
+- **(a) plain:** the audio only, with no prompt
+- **(b) name hints:** the same audio plus a prompt listing the user's names
+  ("Names and places that may appear: Dr. Venkataramana, Kukatpally, …")
+  - Contacts come first, then Hyderabad places, businesses and other places.
+  - The whole KB (340 names, about 1,300 tokens) fits in gpt-4o-mini-transcribe's prompt, so (b) is as strong as we can fairly make it.
+  - With `whisper-1` (a 224-token prompt) only 54 names fit.
+
+| Results file | KB names missed (exact match) |
+|---|---|
+| plain, clean audio | 47 / 106 (44%) |
+| plain, phone audio | 55 / 106 (52%) |
+| hints, clean audio | 25 / 106 (24%) |
+| hints, phone audio | 25 / 106 (24%) |
+
+Examples from plain speech-to-text:
+- "Thirumalai Selvan" -> "The roomer Life Selvan"
+- "Anjani" -> "Aunt Johnny"
+- "Abids" -> "a bit"
+- "Kakatiya Kitchen" -> "Cockatiel Kitchen"
+
+Hindi/Telugu code-mixed lines often come back in **Devanagari or Telugu script**, so a Latin-script name can't be found at all.
+
+*These are rough exact-match counts. The real metrics come in Module 5.* **Honest note:** hints already halve the misses.
+The fair opponent is therefore not (a) but (b) and, above all, **(c) the strong LLM baseline**. (c) gets the same
+contacts and roles and can ask, and it is built next, in Module 5. Hints also can't decide *which* "doctor" you meant.
+
+```powershell
+python scripts/run_baseline.py --limit 3     # cheap check (3 clips per combination)
+python scripts/run_baseline.py               # everything; cached clips are skipped (free)
+python scripts/show_errors.py                # missed names + the 5 most dramatic mistakes
+```
+Results are in `data/results/baseline_{plain|hints}_{clean|phone|real}_{model}.json`.
+
 ## Evaluation plan
 Four systems run on the same recordings, and results are reported on the **held-out test split**:
 - (a) plain speech-to-text

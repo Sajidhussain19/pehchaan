@@ -41,8 +41,9 @@ class Settings(BaseSettings):
     hf_token: SecretStr | None = None
 
     # --- Model names (sensible defaults, change them in .env if needed) ---
-    # Speech-to-text model used for transcription (Module 4).
-    transcription_model: str = "gpt-4o-transcribe"
+    # Speech-to-text model used for transcription (Module 4). Cheapest good option by default;
+    # "gpt-4o-transcribe" and "whisper-1" are also supported (see app/stt/transcribe.py).
+    transcription_model: str = "gpt-4o-mini-transcribe"
     # Small, cheap, fast chat model for LLM checks and action extraction.
     chat_model: str = "gpt-4o-mini"
     # Embedding model for semantic matching (Module 7).

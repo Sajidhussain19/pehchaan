@@ -359,3 +359,85 @@ What changed, and why:
 - **Real speakers.** Svarah (AI4Bharat, CC BY 4.0) gives real Indian-accented speech. It mostly has none of our names,
   so it checks that Pehchaan doesn't make real transcripts *worse*. It is gated, so access needs the developer's own
   Hugging Face account and token.
+
+---
+
+## Module 4 — Baseline transcription
+
+### What we built
+- `app/stt/transcribe.py`: `transcribe(audio_path, prompt=None)` returns `{text, model, latency_ms, cost_estimate_usd}`.
+  It uses `gpt-4o-mini-transcribe` by default and also supports `gpt-4o-transcribe` and `whisper-1`.
+  It retries rate limits, timeouts and server errors, waiting 1s, then 2s, then 4s.
+- `app/stt/hints.py`: builds the **name-hints prompt** for baseline (b), within a token budget.
+- `app/stt/baseline.py` + `scripts/run_baseline.py`: transcribe every clip both ways, **with a cache**.
+  Options are `--split`, `--audio`, `--variant`, `--limit` and `--model`.
+  It prints the estimated cost before spending anything and the total cost afterwards.
+- `scripts/show_errors.py`: lists KB names missing from transcripts, plus the 5 most dramatic mistakes.
+- `tests/test_stt.py`: 9 tests with a **fake OpenAI client**, so they never call the real API.
+- **Results:** 4 files × 142 clips in `data/results/`. The whole module cost about $0.61.
+
+### What speech-to-text is
+Speech-to-text (STT, also called ASR, "automatic speech recognition") turns audio into text.
+The model has learned which sounds usually mean which words. When it hears an unfamiliar Indian name, it reaches
+for the closest *familiar* words, so "Thirumalai" becomes "the roomer life" and "Anjani" becomes "Aunt Johnny".
+It isn't broken; it has simply never been told your names.
+
+### What a prompt / hint does for transcription, and its limits
+A transcription **prompt** is text the model reads before listening. If it contains "Kukatpally", the model is more
+likely to write "Kukatpally" when it hears something close. In our run, hints cut the missed KB names roughly in half
+(44-52% down to 24%). That makes (b) a real competitor, not a straw man.
+
+Limits:
+- **Size:** the prompt has a budget.
+  - `whisper-1` uses only the last 224 tokens, so **54 of our 340 names** fit.
+  - `gpt-4o-mini-transcribe` took our whole KB (about 1,300 tokens). In our test it failed around 21,000 tokens.
+  - A real user has hundreds of contacts *plus* every locality and shop they mention, and the prompt competes with
+    the audio for the model's context. So **hints don't scale to a whole contact book**. That's part of our argument.
+- **Spelling, not meaning:** hints can fix the *spelling* of "Dr. Venkataramana". They can't decide that
+  "my doctor + tooth" means the dentist, that "Rohan" is *not* your Rohit, or when to ask.
+- **Cost:** the prompt is billed as input tokens on every call. Hints cost about 8× more than plain here (about $0.27 vs $0.03 per pass).
+
+We record how many entities were included vs excluded in each results file (`meta.hint_prompt`), so this is visible.
+
+### Why we test clean vs phone vs real speech
+- **Clean (24 kHz TTS):** the best case.
+- **Phone (8 kHz, band-pass, noise):** what a call assistant really hears. Plain STT missed **52%** of KB names on phone
+  audio vs 44% on clean, because the lost high frequencies blur sounds like "dh" and "gh" ("Madhapur" became "Maghapur").
+- **Real speech (Svarah):** real people and real accents. It mostly has none of our names, so it checks that we don't
+  make transcripts *worse*. Waiting on access: the dataset is gated, so `fetch_real_speech.py` needs your HF token.
+
+### A finding: code-mixed speech comes back in Indian scripts
+"Ravi Teja ko call karo…" came back as "रवी तेजक को कॉल करो…", and "Kukatpally nunchi Begumpet…" came back in Telugu script.
+The model detected Hindi or Telugu and switched writing system. Our KB is in Latin script, so a plain text match
+finds nothing. Modules 5 and 7 must handle this: transliterate before matching, or force `language="en"`.
+Exact-match counts also flag harmless formatting differences ("Father Anthony Raj" vs "Fr. Anthony Raj",
+"Sri Venkateshwara" vs "Sri Venkateswara"). Module 5 measures properly.
+
+### Why caching matters for cost
+Each results file is keyed by **variant + audio + model**, and every clip id inside it is a "done" marker.
+The runner skips done clips and saves after each one. This paid off immediately: the first full run crashed on a
+Telugu-script transcript the Windows console couldn't print. We fixed the printing, re-ran, and only the remaining
+clips were sent. Nothing was paid twice. Module 5 can re-score these transcripts for free, as often as we like.
+
+### Key concepts
+- **ASR / STT:** automatic speech recognition / speech-to-text.
+- **Transcription prompt:** text given to the STT model to bias its spelling and vocabulary.
+- **Token:** the unit models read text in (about 4 characters of English). Prompt budgets and prices are in tokens.
+- **Latency:** time from sending the audio to getting text back (in ms). We record it per clip.
+- **Exponential backoff:** after a temporary error, wait 1s, then 2s, then 4s before retrying, so a busy server can recover.
+- **Cache:** saved results that let us skip repeat work (and repeat cost).
+- **Mock / fake client:** a stand-in object for the OpenAI client in tests, so tests are free and offline.
+- **Script (writing system):** Latin, Devanagari and Telugu are different alphabets for writing words.
+
+### Questions a judge might ask about this module
+- **Which speech model do you use and why?** `gpt-4o-mini-transcribe`: cheap (about $0.003/min), fast, and accurate.
+  The model is a config setting, and `gpt-4o-transcribe` / `whisper-1` work with a flag.
+- **Isn't name-hinting enough?** It halved the errors, so we treat it as a serious baseline. But it can't hold a
+  growing phone book, and it fixes spelling, not meaning: "my doctor", "Rohan ≠ Rohit", or when to ask.
+  The strongest competitor, (c) GPT-4o-mini with the same contacts, comes in Module 5.
+- **How much did this cost?** About $0.61 for 568 transcriptions (142 clips × 2 audio kinds × 2 variants), plus a few
+  cents of tests. Re-running costs $0 thanks to the cache.
+- **Did you tune anything on the test split?** No. We only transcribed. Nothing has been tuned yet, and future tuning uses dev only.
+- **Why phone-quality audio?** Equal AI's assistant hears calls. Phone audio made plain STT miss 52% of names vs 44%.
+- **What surprised you?** Code-mixed Hindi and Telugu lines come back in Devanagari or Telugu script, so name matching
+  must cope with more than one alphabet.
