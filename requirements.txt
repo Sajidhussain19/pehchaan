@@ -22,3 +22,6 @@ rapidfuzz==3.14.6          # installed by jiwer; pinned because Module 7 will us
 
 # --- Modules 6+7: candidate matching ---
 metaphone==0.6             # Double Metaphone phonetic keys (BSD licence)
+
+# --- Module 8: decision layer ---
+langgraph==1.2.24          # the routing pipeline (one node per decision step)

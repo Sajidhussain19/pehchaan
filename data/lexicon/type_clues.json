@@ -1,0 +1,10 @@
+{
+  "_comment": "Words that tell us what KIND of entity the sentence is about (Module 8 type check). If the sentence says 'book a table' and the best name match is a PERSON (Dr. Raju), the match does not fit and must not be resolved silently. Keys: 'business:<category>' or 'person:<role group>'. A candidate fits if its type and category/role match one of the expected keys. Places always fit (a place is just where).",
+  "business:restaurant": ["table", "hotel", "restaurant", "biryani", "lunch", "dinner", "breakfast", "meals", "tiffin", "tiffins", "dhaba", "order food", "takeaway", "parcel food", "mess"],
+  "business:pharmacy": ["pharmacy", "tablets", "medicines", "medicine", "chemist", "medical shop", "prescription"],
+  "business:salon": ["haircut", "salon", "parlour", "parlor", "facial", "spa", "hair cut"],
+  "business:shop": ["kirana", "groceries", "grocery", "provisions", "rice", "sweets", "khakhra", "hardware", "jewellers", "opticals", "frames", "bakery", "cake", "store"],
+  "business:school": ["admission", "admissions", "school fees", "convent"],
+  "business:hospital": ["hospital", "admitted", "nursing home", "ward"],
+  "person:doctor|business:clinic|business:hospital": ["appointment", "clinic", "checkup", "consultation", "doctor"]
+}

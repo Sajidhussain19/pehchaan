@@ -1,0 +1,561 @@
+{
+ "1676d53df8e1c986d1cf1358e8c2a85f51bb8db77d4681290fa7c20c71686bdc": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'कॉल करो' does not clearly refer to any of the candidates, as it is a common phrase meaning 'make a call'."
+   }
+  ],
+  "cost_usd": 7.649999999999999e-05,
+  "latency_ms": 2087.8396999905817
+ },
+ "5921fbeb43a490827a159c340c4f5725c198e2dbc19fe5cd8d9051d449c459e3": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'कॉल करो' is a common instruction and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.17e-05,
+  "latency_ms": 2067.562500014901
+ },
+ "f862576b0e3280e3e6a173da3ccae61f3724114c91229eb5bd0541f952ca41dc": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Arunachal' clearly refers to Arunachal Pradesh, which is not any of the candidates listed."
+   }
+  ],
+  "cost_usd": 7.365e-05,
+  "latency_ms": 1237.4718000064604
+ },
+ "0234fb6faa226d036f51b141fad0142fdf23e456edb73336e430d9b9710f0d8f": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'programs' is too generic and does not clearly refer to any specific candidate."
+   }
+  ],
+  "cost_usd": 7.065e-05,
+  "latency_ms": 2799.745000025723
+ },
+ "92b4a857d0060a321e23bcd7c8c1495f7e91650da395eb8f9409d9f17b5978de": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'I distract as' does not clearly refer to any of the candidates, and the match scores are low."
+   },
+   {
+    "phrase": 1,
+    "choice": "person_102",
+    "reason": "The phrase 'used' fits well with person_102, Syed Imtiaz Hussain, as a colleague, and has the highest match score."
+   }
+  ],
+  "cost_usd": 0.00011505,
+  "latency_ms": 2506.0932000051253
+ },
+ "decfc4ae6d15606c280a5e665762391a5ea2dd0066d2880f39e3515bc5584d14": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Diwali' is a common term and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.365e-05,
+  "latency_ms": 1503.9497000398114
+ },
+ "0213fdf61b516429a55da34575f841e99970f80469f93f10ccb505b158afce9e": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is a common term and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.439999999999999e-05,
+  "latency_ms": 1309.9134999793023
+ },
+ "de7c6679d92c1bedbc272a1e9fbd2068fafe234077f3ac5e8d97a93a1a59016b": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Call Teja' does not clearly match any of the candidates, as 'Teja' is not represented in the options."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Sweeney' does not match any of the candidates, as it is not a name present in the options."
+   },
+   {
+    "phrase": 2,
+    "choice": "keep",
+    "reason": "The phrase 'Nalgonda' does not match any of the candidates, as it is not represented in the options."
+   }
+  ],
+  "cost_usd": 0.00015000000000000001,
+  "latency_ms": 2217.9661000263877
+ },
+ "ef5bdfad7681a544cbb21333412e6ec336a7fdbffe1ab91f08b305563da06275": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Mansoor' clearly refers to 'Mansoor Tailors' mentioned in the sentence, which is not represented by any of the candidates."
+   }
+  ],
+  "cost_usd": 7.829999999999999e-05,
+  "latency_ms": 1140.7205000286922
+ },
+ "6ab9b02ed7b677d25121480ec3ea3d8934edf0db114dd91c3c85187b5be4c77d": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'తీసుకున్నారా' does not clearly refer to any of the candidates. It is a common phrase asking if something has been taken or done, which does not specifically relate to Dilsukhnagar, Secunderabad, or Sunita Agarwal."
+   }
+  ],
+  "cost_usd": 9.39e-05,
+  "latency_ms": 1499.4497000006959
+ },
+ "d66a78c79ce51a87f0c779239ac5394d0f1acf414da0191955de1c651cd661ae": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_035",
+    "reason": "The phrase 'Unde Selvi' closely resembles 'Anbuselvi', who is identified as house help, fitting the context of calling about cleaning."
+   }
+  ],
+  "cost_usd": 7.95e-05,
+  "latency_ms": 1355.5822999915108
+ },
+ "49f3aba4bcb3b74f2c480e44e58de2b1e2fd938f87a1a7da2d3c473ac13fb161": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is a common term and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.365e-05,
+  "latency_ms": 1047.9388000094332
+ },
+ "c22c4d7e4b7f5b9dbc272b1297b0e6706517c2d66677d21d1fc03e125d16c91c": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Diwali' is a common term and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.38e-05,
+  "latency_ms": 983.9805000228807
+ },
+ "fd0a8fbc64531fa673071146b932b0ce14afebfd87ab4d98019ea0e6604b8af7": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is a common term and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.424999999999999e-05,
+  "latency_ms": 1015.3418999980204
+ },
+ "0f92a01d4e3acb69746768bcc8e0c6943b7b91f993788b07f946cf343ee5149e": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Sweeney' does not clearly match any of the candidates, as it is a common surname and does not fit the context of the provided candidates."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Nalgonda' refers to a specific place, and none of the candidates match this location."
+   }
+  ],
+  "cost_usd": 0.0001146,
+  "latency_ms": 1501.6860000323504
+ },
+ "2450e8c86c2e719fc2da18ee4ad1610f5a3688d92f947e572921af3171d0fb18": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_048",
+    "reason": "The phrase 'నన్నొత్తి' refers to 'Nanna', which is a term used for grandfather, and the context of asking about BP tablets fits with Dr. Ananthapadmanabhan, who is Nanna's cardiologist."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'తీసుకున్నారా' is a common phrase asking if something has been taken, and does not clearly refer to any specific candidate."
+   }
+  ],
+  "cost_usd": 0.0001386,
+  "latency_ms": 2201.339300023392
+ },
+ "d1adafd48db90568db6c93537ba61a609790dc4bff8107504abe442f6e640b93": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_050",
+    "reason": "The phrase 'Krishna near' closely matches 'Gopikrishnan', and the context of meeting suggests it refers to the friend Gopi Krishna."
+   }
+  ],
+  "cost_usd": 8.084999999999999e-05,
+  "latency_ms": 1297.7382999961264
+ },
+ "87df271af24bb26e21c2f34e3b4eadd205e13e55a8dcb9bf215a6a6ef02318ca": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is a common term and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.35e-05,
+  "latency_ms": 1094.6430999902077
+ },
+ "bdc46ea53c23280b562304765df39848f9724a809fa97efabf9f3f9a578f24d8": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Indians eat' does not clearly refer to any of the candidates, as it is a general statement about food and does not specifically mention a location."
+   }
+  ],
+  "cost_usd": 7.89e-05,
+  "latency_ms": 1284.7095999750309
+ },
+ "ab4afea5e2e51a12c46663ecc75b221baf29e261ebb6c1194a0e4dea28ac4af4": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'barriers' is too generic and does not clearly refer to any specific candidate."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'and ideas with' is also too generic and does not clearly refer to any specific candidate."
+   }
+  ],
+  "cost_usd": 0.00010695,
+  "latency_ms": 1717.0914000016637
+ },
+ "8e4eddce134fdba7507a88e18b991250200285af43ede2f33786413677bc6fd7": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Shampoo and' does not clearly refer to any of the candidates; it is too generic."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Mantra' does not clearly refer to any of the candidates; it is too generic."
+   },
+   {
+    "phrase": 2,
+    "choice": "clarify",
+    "reason": "The phrase 'Chana' could refer to both 'Chikkanna' and 'Chennai', making it unclear which candidate is intended."
+   }
+  ],
+  "cost_usd": 0.00014849999999999998,
+  "latency_ms": 1834.9420000449754
+ },
+ "62fb8b01bbc5ba4c3bbb395218113a9d226ba13d017d9c92d89a5c87835c915a": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Saudi' is too generic and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 7.62e-05,
+  "latency_ms": 975.3696999978274
+ },
+ "226b7e0050d012732d9c0a8e3d8b233ac4235e3d8ad9b97ff93855912a502fa6": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Kodava' refers to a regional language and does not clearly match any of the candidates."
+   }
+  ],
+  "cost_usd": 7.319999999999999e-05,
+  "latency_ms": 1175.7805999950506
+ },
+ "a1eb7521fec12636c1f68e87d90785ea8c3c684524a50e95608e9c2523db25a9": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'कॉल करो' is an ordinary command and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.07e-05,
+  "latency_ms": 1547.0653000520542
+ },
+ "9972fb3d9efb298a43bc68ad877da00cac77b45f9de9f0d0d9d5060b81afb6d1": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Diwali' refers to the festival and does not clearly relate to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.265e-05,
+  "latency_ms": 991.9594000093639
+ },
+ "db512291653a13ce029c6abdc176ccedea116ff3b534400fd291a27497ec2d8a": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.34e-05,
+  "latency_ms": 1018.7718999804929
+ },
+ "15ae92b8b2a7b1a0a6ff29c87e21ed1c94f67b633c7a8f5fa9b071b6c77eab1f": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Call Teja' does not clearly refer to any of the candidates, as 'Teja' is a common name and could refer to multiple people."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Sweeney' does not clearly refer to any of the candidates, as it is not a common name associated with the provided contacts."
+   },
+   {
+    "phrase": 2,
+    "choice": "keep",
+    "reason": "The phrase 'Nalgonda' does not clearly refer to any of the candidates, as it is a common place name and does not match any specific candidate."
+   }
+  ],
+  "cost_usd": 0.0001692,
+  "latency_ms": 2109.490000002552
+ },
+ "a5b4d2484bcdd614972c36cdb0a0e63fd1ea2533b4a86b0657fed094263d7628": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "place_099",
+    "reason": "The phrase 'Mansoor' clearly refers to 'Mansoor Tailors', which is a business, and 'Mysuru' is a place that fits the context of a tailor."
+   }
+  ],
+  "cost_usd": 9.27e-05,
+  "latency_ms": 1418.046900012996
+ },
+ "5ba5ad60cc6752708c5701e6d41239656fd6316d450c7e99fc2bfe4ba4e533b2": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'తీసుకున్నారా' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.429999999999999e-05,
+  "latency_ms": 1157.2690000175498
+ },
+ "bacde303711d4a5589c4071f834ec4fcd7c481993bde2b1a24147e9be6de8178": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_035",
+    "reason": "The phrase 'Unde Selvi' clearly refers to 'Anbuselvi', who is identified as house help, fitting the context of calling about cleaning."
+   }
+  ],
+  "cost_usd": 8.91e-05,
+  "latency_ms": 1208.4125999826938
+ },
+ "7f892ef128947ad549a699a7b9766d6d8e1ad81c37c23b9da6197722a82a8cb1": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.265e-05,
+  "latency_ms": 1154.0083999861963
+ },
+ "57872b872d05fb096aadbe0357c91b63a14a48a8946fb1e89d9fefbaca40be70": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'कॉल करो' is an ordinary command and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.07e-05,
+  "latency_ms": 1020.7946000155061
+ },
+ "c4d7aa287d93f63a50e0fd7422397e8368af6794b28c6cbdff5f84e60c098842": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Diwali' refers to the festival and does not clearly relate to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.28e-05,
+  "latency_ms": 998.9635999663733
+ },
+ "60695eea80994b940535091bf532bd9610b383fc344009128586b888d1cd14a4": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.324999999999999e-05,
+  "latency_ms": 1201.263100025244
+ },
+ "5345d7eb3d8c39f1cd1520ad1b180b344452d6b05fca5c03df34cc506509c1b2": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Sweeney' does not clearly refer to any of the candidates, as it is an ordinary surname."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Nalgonda' does not match any of the candidates, as it is an ordinary place name."
+   }
+  ],
+  "cost_usd": 0.00011879999999999999,
+  "latency_ms": 1461.626200005412
+ },
+ "f12f7fd2a57268c48a260ebe128114f048288312e20cd2b2bac1f8dac305abb4": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_048",
+    "reason": "The phrase 'నన్నొత్తి' refers to 'Nanna', which clearly indicates the user's father. The candidate Dr. Ananthapadmanabhan is Nanna's cardiologist, making this a direct reference."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'తీసుకున్నారా' is an ordinary question about taking tablets and does not clearly refer to any specific candidate."
+   }
+  ],
+  "cost_usd": 0.0001422,
+  "latency_ms": 1606.5479000099003
+ },
+ "ed87a824b03150eca9a93db8ec38c694d624af9819f268e2e10e89e019548483": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "person_050",
+    "reason": "The phrase 'Krishna near' clearly refers to Gopi Krishna, as it matches the name and context of meeting him."
+   }
+  ],
+  "cost_usd": 8.625e-05,
+  "latency_ms": 1052.2967000142671
+ },
+ "42e74abaca73d09062e05af0be45599774a89b271abe9a853af7cb32bc9e7bb4": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'haircut' is an ordinary word and does not clearly refer to any of the candidates."
+   }
+  ],
+  "cost_usd": 8.25e-05,
+  "latency_ms": 1156.325000047218
+ },
+ "79350c2bab2625e885aa72f69636be6ebef0ae1f3779134748d333ec5e9496bc": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Arunachal' refers to Arunachal Pradesh, which is not any of the candidates listed. The candidates are unrelated places."
+   }
+  ],
+  "cost_usd": 8.565e-05,
+  "latency_ms": 1032.3257999843918
+ },
+ "06e3c7432793d9b50ef6132f94305b203a73b2719003a30e8b7328da5b965103": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'I distract as' does not clearly refer to any of the candidates; it contains ordinary words."
+   },
+   {
+    "phrase": 1,
+    "choice": "clarify",
+    "reason": "The phrase 'used' could refer to either Syed Imtiaz Hussain or Joseph Mathew, as both are colleagues and the context does not clarify which one is intended."
+   }
+  ],
+  "cost_usd": 0.00012524999999999998,
+  "latency_ms": 1578.7507999921218
+ },
+ "5373de4d349f5e1f41ab34114aca589d85cff330d47082c7be680bf60e38b764": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Indians eat' does not clearly refer to any of the candidates, as it is an ordinary phrase and does not specifically indicate a location."
+   }
+  ],
+  "cost_usd": 8.669999999999999e-05,
+  "latency_ms": 1178.9303999976255
+ },
+ "dc700b8f5837b34ae81dec5d6f6184a3ad2f5f13d6526dcc474182fa20b557e6": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Shampoo and' does not clearly refer to any of the candidates; it is an ordinary phrase."
+   },
+   {
+    "phrase": 1,
+    "choice": "keep",
+    "reason": "The phrase 'Mantra' does not clearly refer to any of the candidates; it is an ordinary word."
+   },
+   {
+    "phrase": 2,
+    "choice": "keep",
+    "reason": "The phrase 'Chana' does not clearly refer to any of the candidates; it is an ordinary word."
+   }
+  ],
+  "cost_usd": 0.00015450000000000001,
+  "latency_ms": 1938.2208000170067
+ },
+ "d8c847379620f019958bcdcc9d7b7e64c57b6cab78da9beeff5f83978e1b55b1": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Saudi' does not clearly refer to any of the candidates; it is an ordinary word."
+   }
+  ],
+  "cost_usd": 8.64e-05,
+  "latency_ms": 1060.289700049907
+ },
+ "8bbc4d7a971a96ca099262685926d191211622818e2578f0c7614e14aeca2109": {
+  "decisions": [
+   {
+    "phrase": 0,
+    "choice": "keep",
+    "reason": "The phrase 'Kodava' refers to a regional language and does not clearly match any of the candidates."
+   }
+  ],
+  "cost_usd": 8.219999999999999e-05,
+  "latency_ms": 1107.1189000504091
+ }
+}

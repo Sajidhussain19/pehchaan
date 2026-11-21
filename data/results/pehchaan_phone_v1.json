@@ -1,0 +1,1866 @@
+{
+  "meta": {
+    "system": "pehchaan",
+    "audio": "phone",
+    "version": "v1"
+  },
+  "clips": {
+    "s001": {
+      "clip_id": "s001",
+      "system_name": "pehchaan",
+      "heard_transcript": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally. Your appointment is tomorrow at 10 a.m.",
+      "output_transcript": "Hello, calling from Dr. Venkataramana clinic in Kukatpally. Your appointment is tomorrow at 10 a.m.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Venkataramana's",
+          "resolved_entity_id": "person_001",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Dr. Venkataramana (1.00), clear lead of 0.34"
+        },
+        {
+          "heard_text": "Kukatpally",
+          "resolved_entity_id": "place_002",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Kukatpally'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_001",
+        "place_entity_id": "place_002",
+        "time": "10:00",
+        "raw_time_text": "tomorrow at 10 a.m."
+      },
+      "used_llm": false,
+      "latency_ms": 13.4,
+      "cost_usd": 0.0
+    },
+    "s004": {
+      "clip_id": "s004",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to pick up medicines from Sri Venkateshwara Pharmacy on the way back from Gachibowli.",
+      "output_transcript": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Sri Venkateshwara Pharmacy",
+          "resolved_entity_id": "business_001",
+          "confidence": 1.0,
+          "reason": "resolve: 2 close candidates; 'pharmacy' fits Sri Venkateswara Pharmacy"
+        },
+        {
+          "heard_text": "Gachibowli",
+          "resolved_entity_id": "place_003",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Gachibowli'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_001",
+        "place_entity_id": "place_003",
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 16.3,
+      "cost_usd": 0.0
+    },
+    "s007": {
+      "clip_id": "s007",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Srinivasan Iyer and wish him a happy birthday.",
+      "output_transcript": "Call Srinivasan Iyer and wish him a happy birthday.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Srinivasan Iyer",
+          "resolved_entity_id": "person_027",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Srinivasan Iyer'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_027",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.3,
+      "cost_usd": 0.0
+    },
+    "s010": {
+      "clip_id": "s010",
+      "system_name": "pehchaan",
+      "heard_transcript": "रवी तेजक को कॉल करो, पूछो वारंगल पहुँच गया या नहीं।",
+      "output_transcript": "Ravi tejak ko kol karo, puuchho Warangal pahunch gayaa yaa nahiin.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "रवी",
+          "resolved_entity_id": "person_004",
+          "confidence": 0.972,
+          "reason": "resolve: 2 close candidates; 'vaarangal' matches their notes ('warangal')"
+        },
+        {
+          "heard_text": "कॉल करो",
+          "resolved_entity_id": null,
+          "confidence": 0.287,
+          "reason": "keep: 'कॉल करो' is unclear; best guess Kolkata only 0.71"
+        },
+        {
+          "heard_text": "वारंगल",
+          "resolved_entity_id": "place_068",
+          "confidence": 0.956,
+          "reason": "resolve: sounds like Warangal (0.96), clear lead of 0.24"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_004",
+        "place_entity_id": "place_068",
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.6,
+      "cost_usd": 0.0
+    },
+    "s013": {
+      "clip_id": "s013",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call Satyanarayana Murthy garu on Sunday evening.",
+      "output_transcript": "Remind me to call Satyanarayana Murthy garu on Sunday evening.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Satyanarayana Murthy",
+          "resolved_entity_id": "person_022",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Satyanarayana Murthy'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_022",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Sunday evening"
+      },
+      "used_llm": false,
+      "latency_ms": 7.2,
+      "cost_usd": 0.0
+    },
+    "s017": {
+      "clip_id": "s017",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
+      "output_transcript": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Kondapur",
+          "resolved_entity_id": "place_007",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Kondapur'"
+        },
+        {
+          "heard_text": "Rajiv Gandhi International Airport",
+          "resolved_entity_id": "place_067",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Rajiv Gandhi International Airport'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "place_067",
+        "place_entity_id": "place_007",
+        "time": "05:00",
+        "raw_time_text": "at 5 a.m."
+      },
+      "used_llm": false,
+      "latency_ms": 10.2,
+      "cost_usd": 0.0
+    },
+    "s020": {
+      "clip_id": "s020",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Vijayalakshmi Aunty and ask for the Dilshuknagar address.",
+      "output_transcript": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Vijayalakshmi",
+          "resolved_entity_id": "person_015",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Vijayalakshmi'"
+        },
+        {
+          "heard_text": "Dilshuknagar",
+          "resolved_entity_id": "place_009",
+          "confidence": 0.916,
+          "reason": "resolve: sounds like Dilsukhnagar (0.92), clear lead of 0.33"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_015",
+        "place_entity_id": "place_009",
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.2,
+      "cost_usd": 0.0
+    },
+    "s023": {
+      "clip_id": "s023",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Doctor Subramanian and move the root canal to Monday.",
+      "output_transcript": "Call Doctor Subramanian and move the root canal to Monday.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Subramanian",
+          "resolved_entity_id": "person_028",
+          "confidence": 1.0,
+          "reason": "resolve: 2 close candidates; clue 'root canal' -> dentist; clue 'root canal' in their notes; 'doctor' fits Dr. Subramanian"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_028",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "Monday"
+      },
+      "used_llm": false,
+      "latency_ms": 9.4,
+      "cost_usd": 0.0
+    },
+    "s026": {
+      "clip_id": "s026",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Lakshmi Narayanan about the income tax filing before Friday.",
+      "output_transcript": "Call Lakshmi Narayanan about the income tax filing before Friday.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Lakshmi Narayanan",
+          "resolved_entity_id": "person_032",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Lakshmi Narayanan'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_032",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "before Friday"
+      },
+      "used_llm": false,
+      "latency_ms": 7.5,
+      "cost_usd": 0.0
+    },
+    "s030": {
+      "clip_id": "s030",
+      "system_name": "pehchaan",
+      "heard_transcript": "Sar, Chikkana here. The balcony plants need new pots.",
+      "output_transcript": "Sar, Chikkanna here. The balcony plants need new pots.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Chikkana",
+          "resolved_entity_id": "person_044",
+          "confidence": 0.97,
+          "reason": "resolve: the call comes from Chikkanna's saved number"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 8.2,
+      "cost_usd": 0.0
+    },
+    "s033": {
+      "clip_id": "s033",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at seven.",
+      "output_transcript": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at seven.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Sri Kumar Menon",
+          "resolved_entity_id": "person_047",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Sreekumar Menon (1.00), clear lead of 0.41"
+        },
+        {
+          "heard_text": "Thiruvananthapuram",
+          "resolved_entity_id": "place_103",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Thiruvananthapuram'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_047",
+        "place_entity_id": "place_103",
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.2,
+      "cost_usd": 0.0
+    },
+    "s036": {
+      "clip_id": "s036",
+      "system_name": "pehchaan",
+      "heard_transcript": "शर्मा जी बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।",
+      "output_transcript": "Sharma Ji bol rahaa huun, sosaaitii miiting kal shaam saat baje hai.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "शर्मा",
+          "resolved_entity_id": "person_054",
+          "confidence": 0.981,
+          "reason": "resolve: sounds like Sharma Ji (0.98), clear lead of 0.42"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_054",
+        "place_entity_id": null,
+        "time": "19:00",
+        "raw_time_text": "kal shaam saat baje"
+      },
+      "used_llm": false,
+      "latency_ms": 11.0,
+      "cost_usd": 0.0
+    },
+    "s039": {
+      "clip_id": "s039",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Kothi for Friday.",
+      "output_transcript": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Diwali",
+          "resolved_entity_id": null,
+          "confidence": 0.295,
+          "reason": "keep: 'sweets' next to it means an unknown business, not New Delhi"
+        },
+        {
+          "heard_text": "Agarwal Mithai Bhandar",
+          "resolved_entity_id": "business_025",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Agarwal Mithai Bhandar'"
+        },
+        {
+          "heard_text": "Kothi",
+          "resolved_entity_id": "place_029",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Koti (1.00), clear lead of 0.41"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_025",
+        "place_entity_id": "place_029",
+        "time": null,
+        "raw_time_text": "Friday"
+      },
+      "used_llm": false,
+      "latency_ms": 18.2,
+      "cost_usd": 0.0
+    },
+    "s043": {
+      "clip_id": "s043",
+      "system_name": "pehchaan",
+      "heard_transcript": "Hello, Dr. Tanushree Sen here. Your sister's skin test results are normal.",
+      "output_transcript": "Hello, Dr. Tanushree Sen here. Your sister's skin test results are normal.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Dr. Tanushree Sen",
+          "resolved_entity_id": "person_077",
+          "confidence": 0.97,
+          "reason": "resolve: the call comes from Dr. Tanushree Sen's saved number"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 13.5,
+      "cost_usd": 0.0
+    },
+    "s046": {
+      "clip_id": "s046",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Harjeet Kaur aunty and wish her for Lohri.",
+      "output_transcript": "Call Harjeet Kaur aunty and wish her for Lohri.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Harjeet Kaur",
+          "resolved_entity_id": "person_082",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Harjeet Kaur'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_082",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 15.3,
+      "cost_usd": 0.0
+    },
+    "s049": {
+      "clip_id": "s049",
+      "system_name": "pehchaan",
+      "heard_transcript": "जिग्नेश शाह ने बोला स्टेशनरी कल तक रेडी हो जाएगी।",
+      "output_transcript": "Jignesh Shah ne bolaa steshanarii kal tak redii ho jaaegii.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "जिग्नेश",
+          "resolved_entity_id": "person_090",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Jignesh Shah (1.00), clear lead of 0.48"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 24.3,
+      "cost_usd": 0.0
+    },
+    "s052": {
+      "clip_id": "s052",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a table at Juggernaut Bhojanalaya for Sunday lunch.",
+      "output_transcript": "Book a table at Jagannath Bhojanalaya for Sunday lunch.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Juggernaut Bhojanalaya",
+          "resolved_entity_id": "business_058",
+          "confidence": 0.844,
+          "reason": "resolve: sounds like Jagannath Bhojanalaya (0.84), clear lead of 0.31"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_058",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "Sunday"
+      },
+      "used_llm": false,
+      "latency_ms": 13.2,
+      "cost_usd": 0.0
+    },
+    "s056": {
+      "clip_id": "s056",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book an appointment with Dr. Fatima Zahra for my son on Thursday at 5 p.m.",
+      "output_transcript": "Book an appointment with Dr. Fatima Zehra for my son on Thursday at 5 p.m.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Dr. Fatima Zahra",
+          "resolved_entity_id": "person_103",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Dr. Fatima Zehra (1.00), clear lead of 0.39"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_103",
+        "place_entity_id": null,
+        "time": "17:00",
+        "raw_time_text": "on Thursday at 5 p.m."
+      },
+      "used_llm": false,
+      "latency_ms": 11.1,
+      "cost_usd": 0.0
+    },
+    "s059": {
+      "clip_id": "s059",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a table at Nawab Zaika Biryani House in Tolichowki for 9 PM.",
+      "output_transcript": "Book a table at Nawab Zaika Biryani House in Tolichowki for 9 PM.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Nawab Zaika Biryani House",
+          "resolved_entity_id": "business_008",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Nawab Zaika Biryani House'"
+        },
+        {
+          "heard_text": "Tolichowki",
+          "resolved_entity_id": "place_014",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Tolichowki'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_008",
+        "place_entity_id": "place_014",
+        "time": "21:00",
+        "raw_time_text": "9 PM."
+      },
+      "used_llm": false,
+      "latency_ms": 9.6,
+      "cost_usd": 0.0
+    },
+    "s062": {
+      "clip_id": "s062",
+      "system_name": "pehchaan",
+      "heard_transcript": "This is Dr. Benjamin Jebakumar. Please bring your father's knee X-ray on Monday.",
+      "output_transcript": "This is Dr. Benjamin Jebakumar. Please bring your father's knee X-ray on Monday.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Dr. Benjamin Jebakumar",
+          "resolved_entity_id": "person_120",
+          "confidence": 0.97,
+          "reason": "resolve: the call comes from Dr. Benjamin Jebakumar's saved number"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_120",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Monday"
+      },
+      "used_llm": false,
+      "latency_ms": 11.5,
+      "cost_usd": 0.0
+    },
+    "s065": {
+      "clip_id": "s065",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a haircut at Stylezone Unisex Salon in Madhapur for Sunday 11 AM.",
+      "output_transcript": "Book a haircut at Style Zone Unisex Salon in Madhapur for Sunday 11 AM.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "haircut",
+          "resolved_entity_id": null,
+          "confidence": 0.35,
+          "reason": "keep: LLM: The phrase 'haircut' is an ordinary word and does not clearly refer to any of the candidates."
+        },
+        {
+          "heard_text": "Stylezone Unisex Salon",
+          "resolved_entity_id": "business_031",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Style Zone Unisex Salon (1.00), clear lead of 0.48"
+        },
+        {
+          "heard_text": "Madhapur",
+          "resolved_entity_id": "place_006",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Madhapur'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_031",
+        "place_entity_id": "place_006",
+        "time": "11:00",
+        "raw_time_text": "Sunday 11 AM."
+      },
+      "used_llm": true,
+      "latency_ms": 1215.1,
+      "cost_usd": 8.3e-05
+    },
+    "s069": {
+      "clip_id": "s069",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Paige Sweeney and ask if she reached Nalgonda.",
+      "output_transcript": "Call Paige Sweeney and ask if she reached Nalgonda.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Sweeney",
+          "resolved_entity_id": null,
+          "confidence": 0.248,
+          "reason": "keep: LLM: The phrase 'Sweeney' does not clearly refer to any of the candidates, as it is an ordinary surname."
+        },
+        {
+          "heard_text": "Nalgonda",
+          "resolved_entity_id": null,
+          "confidence": 0.292,
+          "reason": "keep: LLM: The phrase 'Nalgonda' does not match any of the candidates, as it is an ordinary place name."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1471.9,
+      "cost_usd": 0.000119
+    },
+    "s072": {
+      "clip_id": "s072",
+      "system_name": "pehchaan",
+      "heard_transcript": "Message Abhinav Kashyap that the match is at six.",
+      "output_transcript": "Message Abhinav Kashyap that the match is at six.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Abhinav",
+          "resolved_entity_id": null,
+          "confidence": 0.291,
+          "reason": "keep: 'Abhinav' is a real name that isn't in your contacts"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 6.8,
+      "cost_usd": 0.0
+    },
+    "s075": {
+      "clip_id": "s075",
+      "system_name": "pehchaan",
+      "heard_transcript": "नमस्ते, प्रदीप लोधा बोल रहा हूँ इंदौर से।",
+      "output_transcript": "namaste, pradiip lodhaa bol rahaa huun indaur se.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 6.6,
+      "cost_usd": 0.0
+    },
+    "s078": {
+      "clip_id": "s078",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to collect the suit from Mansoor Tailors on Friday.",
+      "output_transcript": "Remind me to collect the suit from Mansoor Tailors on Friday.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Mansoor",
+          "resolved_entity_id": null,
+          "confidence": 0.297,
+          "reason": "keep: 'tailors' next to it means an unknown business, not Mysuru"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Friday"
+      },
+      "used_llm": false,
+      "latency_ms": 8.9,
+      "cost_usd": 0.0
+    },
+    "s082": {
+      "clip_id": "s082",
+      "system_name": "pehchaan",
+      "heard_transcript": "Can you cook at home tonight? I'll bring the vegetables.",
+      "output_transcript": "Can you cook at home tonight? I'll bring the vegetables.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tonight"
+      },
+      "used_llm": false,
+      "latency_ms": 8.2,
+      "cost_usd": 0.0
+    },
+    "s085": {
+      "clip_id": "s085",
+      "system_name": "pehchaan",
+      "heard_transcript": "It's very sunny today, so carry a cap.",
+      "output_transcript": "It's very sunny today, so carry a cap.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 6.8,
+      "cost_usd": 0.0
+    },
+    "s088": {
+      "clip_id": "s088",
+      "system_name": "pehchaan",
+      "heard_transcript": "Wake me up at 6:30 tomorrow morning.",
+      "output_transcript": "Wake me up at 6:30 tomorrow morning.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": "06:30",
+        "raw_time_text": "tomorrow morning"
+      },
+      "used_llm": false,
+      "latency_ms": 7.7,
+      "cost_usd": 0.0
+    },
+    "s091": {
+      "clip_id": "s091",
+      "system_name": "pehchaan",
+      "heard_transcript": "Hello sir, your order has been dispatched and will arrive by evening.",
+      "output_transcript": "Hello sir, your order has been dispatched and will arrive by evening.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "by evening"
+      },
+      "used_llm": false,
+      "latency_ms": 9.7,
+      "cost_usd": 0.0
+    },
+    "s095": {
+      "clip_id": "s095",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask Harshel to send the invoice by Friday.",
+      "output_transcript": "Ask Harshil to send the invoice by Friday.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Harshel",
+          "resolved_entity_id": "person_123",
+          "confidence": 0.919,
+          "reason": "resolve: 2 close candidates; clue 'invoice' -> accounts"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_123",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "by Friday"
+      },
+      "used_llm": false,
+      "latency_ms": 7.3,
+      "cost_usd": 0.0
+    },
+    "s098": {
+      "clip_id": "s098",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to send the project deck to Pranay before the client call on Monday.",
+      "output_transcript": "Remind me to send the project deck to Pranay before the client call on Monday.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Pranay",
+          "resolved_entity_id": "person_128",
+          "confidence": 0.98,
+          "reason": "resolve: 2 close candidates; clue 'client' -> client; clue 'client' in their notes; clue 'deck' -> client; clue 'project' -> client; clue 'project' in their notes; 'client' fits their relation (client, project lead); 'project' fits their relation (client, project lead)"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_128",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Monday"
+      },
+      "used_llm": false,
+      "latency_ms": 10.7,
+      "cost_usd": 0.0
+    },
+    "s101": {
+      "clip_id": "s101",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Harshit at five.",
+      "output_transcript": "Call Harshit at five.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "Harshit",
+          "resolved_entity_id": null,
+          "confidence": 1.0,
+          "reason": "clarify: 'Harshit' fits Harshit Sharma and Harshil Patel and Harjeet Kaur almost equally, and nothing in the sentence separates them"
+        }
+      ],
+      "clarify_candidates": [
+        "person_122",
+        "person_123",
+        "person_082"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 3.9,
+      "cost_usd": 0.0
+    },
+    "s103": {
+      "clip_id": "s103",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call Pranav tomorrow morning.",
+      "output_transcript": "Remind me to call Pranav tomorrow morning.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "Pranav",
+          "resolved_entity_id": null,
+          "confidence": 1.0,
+          "reason": "clarify: 'Pranav' fits Pranav Joshi and Pranay Reddy almost equally, and nothing in the sentence separates them"
+        }
+      ],
+      "clarify_candidates": [
+        "person_127",
+        "person_128"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tomorrow morning"
+      },
+      "used_llm": false,
+      "latency_ms": 7.6,
+      "cost_usd": 0.0
+    },
+    "s106": {
+      "clip_id": "s106",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+      "output_transcript": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "Raju",
+          "resolved_entity_id": null,
+          "confidence": 0.98,
+          "reason": "clarify: 'Raju hotel' sounds like a business, but Dr. Raju is your eye specialist: asking instead of guessing"
+        }
+      ],
+      "clarify_candidates": [
+        "person_130"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tomorrow at 9 a.m."
+      },
+      "used_llm": false,
+      "latency_ms": 7.2,
+      "cost_usd": 0.0
+    },
+    "s109": {
+      "clip_id": "s109",
+      "system_name": "pehchaan",
+      "heard_transcript": "Hi, I'm Raju from the bank, calling about your credit card.",
+      "output_transcript": "Hi, I'm Raju from the bank, calling about your credit card.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Raju",
+          "resolved_entity_id": null,
+          "confidence": 0.0,
+          "reason": "keep: an unknown number introducing themself as 'Raju' is a different person, not your Dr. Raju"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 9.4,
+      "cost_usd": 0.0
+    },
+    "s111": {
+      "clip_id": "s111",
+      "system_name": "pehchaan",
+      "heard_transcript": "Good morning, Dr. Subramanian here, from CityCare, calling about a health insurance offer.",
+      "output_transcript": "Good morning, Dr. Subramanian here, from CityCare, calling about a health insurance offer.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Dr. Subramanian",
+          "resolved_entity_id": null,
+          "confidence": 0.0,
+          "reason": "keep: an unknown number introducing themself as 'Dr. Subramanian' is a different person, not your Dr. Subramanian"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "morning"
+      },
+      "used_llm": false,
+      "latency_ms": 10.5,
+      "cost_usd": 0.0
+    },
+    "s114": {
+      "clip_id": "s114",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call my doctor, my tooth is paining.",
+      "output_transcript": "Call my doctor, my tooth is paining.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my doctor",
+          "resolved_entity_id": "person_028",
+          "confidence": 0.9,
+          "reason": "resolve: clue 'tooth' -> dentist"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_028",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 6.6,
+      "cost_usd": 0.0
+    },
+    "s117": {
+      "clip_id": "s117",
+      "system_name": "pehchaan",
+      "heard_transcript": "Message my son's teacher that he has maxed out for tonight's tuition.",
+      "output_transcript": "Message my son's teacher that he has maxed out for tonight's tuition.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my son's teacher",
+          "resolved_entity_id": "person_126",
+          "confidence": 0.9,
+          "reason": "resolve: clue 'tuition' -> tuition teacher; clue 'tuition' in their notes; 'tuition' fits their relation (son's tuition teacher)"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_126",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tonight"
+      },
+      "used_llm": false,
+      "latency_ms": 11.1,
+      "cost_usd": 0.0
+    },
+    "s120": {
+      "clip_id": "s120",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask my driver to come at 8:30 tomorrow.",
+      "output_transcript": "Ask my driver to come at 8:30 tomorrow.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my driver",
+          "resolved_entity_id": "person_003",
+          "confidence": 0.85,
+          "reason": "resolve: DEFAULT for driver"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_003",
+        "place_entity_id": null,
+        "time": "08:30",
+        "raw_time_text": "tomorrow"
+      },
+      "used_llm": false,
+      "latency_ms": 7.6,
+      "cost_usd": 0.0
+    },
+    "s123": {
+      "clip_id": "s123",
+      "system_name": "pehchaan",
+      "heard_transcript": "నన్నొత్తి కాల్చెయ్యి బీపీ ట్యాబ్లెట్స్ తీసుకున్నారా అని అడుగు.",
+      "output_transcript": "nannotti kaalcheyyi biipii tyaablets tiisukunnaaraa ani adugu.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "నన్నొత్తి",
+          "resolved_entity_id": null,
+          "confidence": 0.31,
+          "reason": "keep: 'నన్నొత్తి' is unclear; best guess Dr. Ananthapadmanabhan only 0.69"
+        },
+        {
+          "heard_text": "తీసుకున్నారా",
+          "resolved_entity_id": null,
+          "confidence": 0.342,
+          "reason": "keep: 'తీసుకున్నారా' is unclear; best guess Dilsukhnagar only 0.66"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 11.1,
+      "cost_usd": 0.0
+    },
+    "s126": {
+      "clip_id": "s126",
+      "system_name": "pehchaan",
+      "heard_transcript": "Order Amas tablets from the usual pharmacy.",
+      "output_transcript": "Order Amas tablets from the usual pharmacy.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Amas",
+          "resolved_entity_id": "person_131",
+          "confidence": 0.95,
+          "reason": "resolve: family label: Amma"
+        },
+        {
+          "heard_text": "the usual pharmacy",
+          "resolved_entity_id": "business_001",
+          "confidence": 0.95,
+          "reason": "resolve: USUAL for pharmacy"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_001",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.6,
+      "cost_usd": 0.0
+    },
+    "s130": {
+      "clip_id": "s130",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask my colleague to join the call.",
+      "output_transcript": "Ask my colleague to join the call.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "my colleague",
+          "resolved_entity_id": null,
+          "confidence": 0.5,
+          "reason": "clarify: 19 people fit 'my colleague' and nothing in the sentence separates them"
+        }
+      ],
+      "clarify_candidates": [
+        "person_002",
+        "person_017",
+        "person_023",
+        "person_029",
+        "person_038",
+        "person_046",
+        "person_049",
+        "person_055",
+        "person_063",
+        "person_066",
+        "person_074",
+        "person_083",
+        "person_089",
+        "person_095",
+        "person_102",
+        "person_105",
+        "person_113",
+        "person_119",
+        "person_123"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.3,
+      "cost_usd": 0.0
+    },
+    "s133": {
+      "clip_id": "s133",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call Rohan about the cricket match on Saturday.",
+      "output_transcript": "Remind me to call Rohan about the cricket match on Saturday.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Rohan",
+          "resolved_entity_id": null,
+          "confidence": 0.35,
+          "reason": "keep: 'Rohan' is a real name that isn't in your contacts"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Saturday"
+      },
+      "used_llm": false,
+      "latency_ms": 7.9,
+      "cost_usd": 0.0
+    },
+    "s136": {
+      "clip_id": "s136",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call Sravanthi about the wedding card.",
+      "output_transcript": "Remind me to call Sravanthi about the wedding card.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "Sravanthi",
+          "resolved_entity_id": null,
+          "confidence": 0.873,
+          "reason": "clarify: 'Sravanthi' is a real name that isn't in your contacts: maybe someone new, maybe Sravani Kondapalli?"
+        }
+      ],
+      "clarify_candidates": [
+        "person_017"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.6,
+      "cost_usd": 0.0
+    },
+    "s139": {
+      "clip_id": "s139",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call my doctor about my eye drops.",
+      "output_transcript": "Call my doctor about my eye drops.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my doctor",
+          "resolved_entity_id": "person_130",
+          "confidence": 0.9,
+          "reason": "resolve: clue 'eye' -> eye specialist; clue 'eye' in their notes; clue 'drops' -> eye specialist; clue 'eye drops' -> eye specialist"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_130",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 5.9,
+      "cost_usd": 0.0
+    },
+    "s143": {
+      "clip_id": "s143",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call un Bucelvi about the Sunday cleaning.",
+      "output_transcript": "Remind me to call Anbuselvi about the Sunday cleaning.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "un Bucelvi",
+          "resolved_entity_id": "person_035",
+          "confidence": 0.834,
+          "reason": "resolve: sounds like Anbuselvi (0.83), clear lead of 0.36"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_035",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "Sunday"
+      },
+      "used_llm": false,
+      "latency_ms": 8.4,
+      "cost_usd": 0.0
+    },
+    "s144": {
+      "clip_id": "s144",
+      "system_name": "pehchaan",
+      "heard_transcript": "Tell Velu Anna to keep two cups of tea ready at four p.m.",
+      "output_transcript": "Tell Velu Anna to keep two cups of tea ready at four p.m.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Velu Anna",
+          "resolved_entity_id": "person_036",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Velu Anna'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_036",
+        "place_entity_id": null,
+        "time": "16:00",
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.4,
+      "cost_usd": 0.0
+    },
+    "s145": {
+      "clip_id": "s145",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call Puneet Hegde about the cricket tickets.",
+      "output_transcript": "Remind me to call Puneeth Hegde about the cricket tickets.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Puneet Hegde",
+          "resolved_entity_id": "person_039",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Puneet Hegde'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_039",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 11.7,
+      "cost_usd": 0.0
+    },
+    "s146": {
+      "clip_id": "s146",
+      "system_name": "pehchaan",
+      "heard_transcript": "Message Nagaveni that we will visit on Sunday.",
+      "output_transcript": "Message Nagaveni that we will visit on Sunday.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Nagaveni",
+          "resolved_entity_id": "person_041",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Nagaveni'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_041",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Sunday"
+      },
+      "used_llm": false,
+      "latency_ms": 9.4,
+      "cost_usd": 0.0
+    },
+    "s147": {
+      "clip_id": "s147",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to pick up the frames from Afrin Opticals at Charminar tomorrow at 6 p.m.",
+      "output_transcript": "Remind me to pick up the frames from Afreen Opticals at Charminar tomorrow at 6 p.m.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Afrin Opticals",
+          "resolved_entity_id": "business_020",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Afreen Opticals (1.00), clear lead of 0.46"
+        },
+        {
+          "heard_text": "Charminar",
+          "resolved_entity_id": "place_030",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Charminar'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_020",
+        "place_entity_id": "place_030",
+        "time": "18:00",
+        "raw_time_text": "tomorrow at 6 p.m."
+      },
+      "used_llm": false,
+      "latency_ms": 11.1,
+      "cost_usd": 0.0
+    },
+    "s148": {
+      "clip_id": "s148",
+      "system_name": "pehchaan",
+      "heard_transcript": "Book a table at Ruchi Andhra Pujanam in Kukatpally for 1 p.m.",
+      "output_transcript": "Book a table at Ruchi Andhra Bhojanam in Kukatpally for 1 p.m.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Ruchi Andhra Pujanam",
+          "resolved_entity_id": "business_018",
+          "confidence": 0.947,
+          "reason": "resolve: sounds like Ruchi Andhra Bhojanam (0.95), clear lead of 0.40"
+        },
+        {
+          "heard_text": "Kukatpally",
+          "resolved_entity_id": "place_002",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Kukatpally'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "business_018",
+        "place_entity_id": "place_002",
+        "time": "13:00",
+        "raw_time_text": "1 p.m."
+      },
+      "used_llm": false,
+      "latency_ms": 10.8,
+      "cost_usd": 0.0
+    },
+    "s149": {
+      "clip_id": "s149",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to collect the notebook from Yashodhara on Monday.",
+      "output_transcript": "Remind me to collect the notebook from Yashodhara on Monday.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Yashodhara",
+          "resolved_entity_id": "person_043",
+          "confidence": 0.98,
+          "reason": "resolve: heard exactly 'Yashodhara'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_043",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Monday"
+      },
+      "used_llm": false,
+      "latency_ms": 7.3,
+      "cost_usd": 0.0
+    },
+    "s150": {
+      "clip_id": "s150",
+      "system_name": "pehchaan",
+      "heard_transcript": "Call Ittishree Mishra and ask about the exam results.",
+      "output_transcript": "Call Itishree Mishra and ask about the exam results.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Ittishree Mishra",
+          "resolved_entity_id": "person_098",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Itishree Mishra (1.00), clear lead of 0.41"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_098",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.1,
+      "cost_usd": 0.0
+    },
+    "s151": {
+      "clip_id": "s151",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to meet Gopi Krishna near Habsiguda at 7 PM.",
+      "output_transcript": "Remind me to meet Gopikrishnan Habsiguda at 7 PM.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Gopi",
+          "resolved_entity_id": "person_050",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Gopikrishnan (1.00), clear lead of 0.52"
+        },
+        {
+          "heard_text": "Krishna near",
+          "resolved_entity_id": "person_050",
+          "confidence": 0.652,
+          "reason": "resolve: LLM: The phrase 'Krishna near' clearly refers to Gopi Krishna, as it matches the name and context of meeting him."
+        },
+        {
+          "heard_text": "Habsiguda",
+          "resolved_entity_id": "place_041",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Habsiguda'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_050",
+        "place_entity_id": "place_041",
+        "time": "19:00",
+        "raw_time_text": "at 7 PM."
+      },
+      "used_llm": true,
+      "latency_ms": 1061.8,
+      "cost_usd": 8.6e-05
+    },
+    "s152": {
+      "clip_id": "s152",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask Sasmita Patnaik to send the photos tonight.",
+      "output_transcript": "Ask Sasmita Pattnaik to send the photos tonight.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Sasmita Patnaik",
+          "resolved_entity_id": "person_096",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Sasmita Pattnaik (1.00), clear lead of 0.45"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_096",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tonight"
+      },
+      "used_llm": false,
+      "latency_ms": 6.5,
+      "cost_usd": 0.0
+    },
+    "s153": {
+      "clip_id": "s153",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to wish Subhashis Chatopadhyay for Durga Puja.",
+      "output_transcript": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
+      "behaviour": "correct",
+      "entities": [
+        {
+          "heard_text": "Subhashis Chatopadhyay",
+          "resolved_entity_id": "person_073",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Subhashis Chattopadhyay (1.00), clear lead of 0.43"
+        },
+        {
+          "heard_text": "Durga",
+          "resolved_entity_id": "person_014",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Durga Prasad (1.00), clear lead of 0.34"
+        },
+        {
+          "heard_text": "Puja",
+          "resolved_entity_id": "person_063",
+          "confidence": 1.0,
+          "reason": "resolve: sounds like Pooja Srivastava (1.00), clear lead of 0.37"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_073",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.3,
+      "cost_usd": 0.0
+    },
+    "s154": {
+      "clip_id": "s154",
+      "system_name": "pehchaan",
+      "heard_transcript": "Tell Swathy the college reunion is on Saturday.",
+      "output_transcript": "Tell Swathi the college reunion is on Saturday.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Swathy",
+          "resolved_entity_id": "person_025",
+          "confidence": 0.988,
+          "reason": "resolve: 3 close candidates; 'college' fits their relation (college friend)"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_025",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Saturday"
+      },
+      "used_llm": false,
+      "latency_ms": 7.4,
+      "cost_usd": 0.0
+    },
+    "s155": {
+      "clip_id": "s155",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask Cyclomar when he can finish painting the bedroom.",
+      "output_transcript": "Ask Cyclomar when he can finish painting the bedroom.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 8.2,
+      "cost_usd": 0.0
+    },
+    "s156": {
+      "clip_id": "s156",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to call Anjali tomorrow.",
+      "output_transcript": "Remind me to call Anjali tomorrow.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "Anjali",
+          "resolved_entity_id": null,
+          "confidence": 1.0,
+          "reason": "clarify: 'Anjali' fits Anjali Verma and Anjani Mishra almost equally, and nothing in the sentence separates them"
+        }
+      ],
+      "clarify_candidates": [
+        "person_056",
+        "person_126"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tomorrow"
+      },
+      "used_llm": false,
+      "latency_ms": 5.5,
+      "cost_usd": 0.0
+    },
+    "s157": {
+      "clip_id": "s157",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask my driver to bring the cab to Koramangala at 9 AM.",
+      "output_transcript": "Ask my driver to bring the cab to Koramangala at 9 AM.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my driver",
+          "resolved_entity_id": "person_037",
+          "confidence": 0.9,
+          "reason": "resolve: clue 'cab' -> cab driver; clue 'cab' in their notes"
+        },
+        {
+          "heard_text": "Koramangala",
+          "resolved_entity_id": "place_093",
+          "confidence": 1.0,
+          "reason": "resolve: heard exactly 'Koramangala'"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_037",
+        "place_entity_id": "place_093",
+        "time": "09:00",
+        "raw_time_text": "at 9 AM."
+      },
+      "used_llm": false,
+      "latency_ms": 8.4,
+      "cost_usd": 0.0
+    },
+    "s158": {
+      "clip_id": "s158",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask my accountant whether the income tax refund has come.",
+      "output_transcript": "Ask my accountant whether the income tax refund has come.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my accountant",
+          "resolved_entity_id": "person_032",
+          "confidence": 0.9,
+          "reason": "resolve: clue 'income tax' -> ca; clue 'income tax' in their notes; clue 'tax' -> ca; clue 'tax' in their notes; clue 'refund' -> ca"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_032",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 8.3,
+      "cost_usd": 0.0
+    },
+    "s159": {
+      "clip_id": "s159",
+      "system_name": "pehchaan",
+      "heard_transcript": "Tell my doctor I will come for the check-up next week.",
+      "output_transcript": "Tell my doctor I will come for the check-up next week.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "my doctor",
+          "resolved_entity_id": "person_001",
+          "confidence": 0.9,
+          "reason": "resolve: clue 'check-up' -> general physician"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_001",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 9.3,
+      "cost_usd": 0.0
+    },
+    "s160": {
+      "clip_id": "s160",
+      "system_name": "pehchaan",
+      "heard_transcript": "Remind me to send Aka the train tickets tonight.",
+      "output_transcript": "Remind me to send Aka the train tickets tonight.",
+      "behaviour": "resolve",
+      "entities": [
+        {
+          "heard_text": "Aka",
+          "resolved_entity_id": "person_006",
+          "confidence": 0.95,
+          "reason": "resolve: family label: Akka"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": "person_006",
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tonight"
+      },
+      "used_llm": false,
+      "latency_ms": 7.5,
+      "cost_usd": 0.0
+    },
+    "s161": {
+      "clip_id": "s161",
+      "system_name": "pehchaan",
+      "heard_transcript": "Ask my cousin to pick me up from the station.",
+      "output_transcript": "Ask my cousin to pick me up from the station.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "my cousin",
+          "resolved_entity_id": null,
+          "confidence": 0.5,
+          "reason": "clarify: 8 people fit 'my cousin' and nothing in the sentence separates them"
+        }
+      ],
+      "clarify_candidates": [
+        "person_004",
+        "person_033",
+        "person_068",
+        "person_078",
+        "person_086",
+        "person_093",
+        "person_121",
+        "person_134"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 7.1,
+      "cost_usd": 0.0
+    },
+    "s162": {
+      "clip_id": "s162",
+      "system_name": "pehchaan",
+      "heard_transcript": "Order dinner from Hotel Subramanian tonight.",
+      "output_transcript": "Order dinner from Hotel Subramanian tonight.",
+      "behaviour": "clarify",
+      "entities": [
+        {
+          "heard_text": "Subramanian",
+          "resolved_entity_id": null,
+          "confidence": 1.0,
+          "reason": "clarify: 'Subramanian hotel' sounds like a business, but Dr. Subramanian is your dentist: asking instead of guessing"
+        }
+      ],
+      "clarify_candidates": [
+        "person_028"
+      ],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "tonight"
+      },
+      "used_llm": false,
+      "latency_ms": 6.0,
+      "cost_usd": 0.0
+    },
+    "s163": {
+      "clip_id": "s163",
+      "system_name": "pehchaan",
+      "heard_transcript": "Get me a haircut slot at Sanketesh Salon on Sunday.",
+      "output_transcript": "Get me a haircut slot at Sanketesh Salon on Sunday.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "haircut",
+          "resolved_entity_id": null,
+          "confidence": 0.35,
+          "reason": "keep: LLM: The phrase 'haircut' is an ordinary word and does not clearly refer to any of the candidates."
+        },
+        {
+          "heard_text": "Sanketesh",
+          "resolved_entity_id": null,
+          "confidence": 0.332,
+          "reason": "keep: 'salon' next to it means an unknown business, not Venkatesh Naidu"
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "remind",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": "on Sunday"
+      },
+      "used_llm": true,
+      "latency_ms": 1164.3,
+      "cost_usd": 8.2e-05
+    }
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "meta": {
+    "system": "pehchaan",
+    "audio": "real",
+    "version": "v1"
+  },
+  "clips": {
+    "r001": {
+      "clip_id": "r001",
+      "system_name": "pehchaan",
+      "heard_transcript": "Our district Hassan was the land of the great Hoysala dynasty who ruled over this region from eleventh to fourteenth century CE.",
+      "output_transcript": "Our district Hassan was the land of the great Hoysala dynasty who ruled over this region from eleventh to fourteenth century CE.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 17.1,
+      "cost_usd": 0.0
+    },
+    "r004": {
+      "clip_id": "r004",
+      "system_name": "pehchaan",
+      "heard_transcript": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+      "output_transcript": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Arunachal",
+          "resolved_entity_id": null,
+          "confidence": 0.314,
+          "reason": "keep: LLM: The phrase 'Arunachal' refers to Arunachal Pradesh, which is not any of the candidates listed. The candidates are unrelated places."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1043.0,
+      "cost_usd": 8.6e-05
+    },
+    "r007": {
+      "clip_id": "r007",
+      "system_name": "pehchaan",
+      "heard_transcript": "There have been many attempts recently to make sure that the people maintain their",
+      "output_transcript": "There have been many attempts recently to make sure that the people maintain their",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 11.7,
+      "cost_usd": 0.0
+    },
+    "r010": {
+      "clip_id": "r010",
+      "system_name": "pehchaan",
+      "heard_transcript": "What are the main social welfare and development programs and initiatives in your district?",
+      "output_transcript": "What are the main social welfare and development programs and initiatives in your district?",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 10.9,
+      "cost_usd": 0.0
+    },
+    "r013": {
+      "clip_id": "r013",
+      "system_name": "pehchaan",
+      "heard_transcript": "You see, I distract as my professionalism, but I used to manage some time in writing as well.",
+      "output_transcript": "You see, I distract as my professionalism, but I used to manage some time in writing as well.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "I distract as",
+          "resolved_entity_id": null,
+          "confidence": 0.268,
+          "reason": "keep: LLM: The phrase 'I distract as' does not clearly refer to any of the candidates; it contains ordinary words."
+        },
+        {
+          "heard_text": "used",
+          "resolved_entity_id": null,
+          "confidence": 0.235,
+          "reason": "keep: LLM: The phrase 'used' could refer to either Syed Imtiaz Hussain or Joseph Mathew, as both are colleagues and the context does not clarify which one is intended."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1595.4,
+      "cost_usd": 0.000125
+    },
+    "r016": {
+      "clip_id": "r016",
+      "system_name": "pehchaan",
+      "heard_transcript": "It is something which gives you warmth and the flavors are very different from the kind of food we as North Indians eat.",
+      "output_transcript": "It is something which gives you warmth and the flavors are very different from the kind of food we as North Indians eat.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Indians eat",
+          "resolved_entity_id": null,
+          "confidence": 0.328,
+          "reason": "keep: LLM: The phrase 'Indians eat' does not clearly refer to any of the candidates, as it is an ordinary phrase and does not specifically indicate a location."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1205.2,
+      "cost_usd": 8.7e-05
+    },
+    "r019": {
+      "clip_id": "r019",
+      "system_name": "pehchaan",
+      "heard_transcript": "English breaks the communication barriers between people of diverse cultural background and it creates a new community where people come together and share their cultures and ideas with broader audience.",
+      "output_transcript": "English breaks the communication barriers between people of diverse cultural background and it creates a new community where people come together and share their cultures and ideas with broader audience.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 58.8,
+      "cost_usd": 0.0
+    },
+    "r022": {
+      "clip_id": "r022",
+      "system_name": "pehchaan",
+      "heard_transcript": "To poetry, I can put my thoughts on a display more creatively than",
+      "output_transcript": "To poetry, I can put my thoughts on a display more creatively than",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 11.8,
+      "cost_usd": 0.0
+    },
+    "r025": {
+      "clip_id": "r025",
+      "system_name": "pehchaan",
+      "heard_transcript": "hang on the rock and I find it useful and best because it helped me climb fast.",
+      "output_transcript": "hang on the rock and I find it useful and best because it helped me climb fast.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 17.6,
+      "cost_usd": 0.0
+    },
+    "r028": {
+      "clip_id": "r028",
+      "system_name": "pehchaan",
+      "heard_transcript": "Sand a complaint to consumer service of this company.",
+      "output_transcript": "Sand a complaint to consumer service of this company.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 15.1,
+      "cost_usd": 0.0
+    },
+    "r031": {
+      "clip_id": "r031",
+      "system_name": "pehchaan",
+      "heard_transcript": "Show my DTH bill readings from the last six months.",
+      "output_transcript": "Show my DTH bill readings from the last six months.",
+      "behaviour": "keep",
+      "entities": [],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": false,
+      "latency_ms": 16.9,
+      "cost_usd": 0.0
+    },
+    "r034": {
+      "clip_id": "r034",
+      "system_name": "pehchaan",
+      "heard_transcript": "You are two hours late than the delivery time for my products Pantene Bamboo Shampoo and 24 Mantra Chana Dal.",
+      "output_transcript": "You are two hours late than the delivery time for my products Pantene Bamboo Shampoo and 24 Mantra Chana Dal.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Shampoo and",
+          "resolved_entity_id": null,
+          "confidence": 0.329,
+          "reason": "keep: LLM: The phrase 'Shampoo and' does not clearly refer to any of the candidates; it is an ordinary phrase."
+        },
+        {
+          "heard_text": "Mantra",
+          "resolved_entity_id": null,
+          "confidence": 0.246,
+          "reason": "keep: LLM: The phrase 'Mantra' does not clearly refer to any of the candidates; it is an ordinary word."
+        },
+        {
+          "heard_text": "Chana",
+          "resolved_entity_id": null,
+          "confidence": 0.259,
+          "reason": "keep: LLM: The phrase 'Chana' does not clearly refer to any of the candidates; it is an ordinary word."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1972.1,
+      "cost_usd": 0.000155
+    },
+    "r037": {
+      "clip_id": "r037",
+      "system_name": "pehchaan",
+      "heard_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "output_transcript": "It's an about abused Malayalam in migrant worker employed in Saudi Arabia as a gourd against his will.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Saudi",
+          "resolved_entity_id": null,
+          "confidence": 0.3,
+          "reason": "keep: LLM: The phrase 'Saudi' does not clearly refer to any of the candidates; it is an ordinary word."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1085.2,
+      "cost_usd": 8.6e-05
+    },
+    "r040": {
+      "clip_id": "r040",
+      "system_name": "pehchaan",
+      "heard_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "output_transcript": "Some of the other regional languages are Tulu, Kodava, Konkani, Beary, and Urdu.",
+      "behaviour": "keep",
+      "entities": [
+        {
+          "heard_text": "Kodava",
+          "resolved_entity_id": null,
+          "confidence": 0.303,
+          "reason": "keep: LLM: The phrase 'Kodava' refers to a regional language and does not clearly match any of the candidates."
+        }
+      ],
+      "clarify_candidates": [],
+      "action": {
+        "type": "none",
+        "target_entity_id": null,
+        "place_entity_id": null,
+        "time": null,
+        "raw_time_text": null
+      },
+      "used_llm": true,
+      "latency_ms": 1129.3,
+      "cost_usd": 8.2e-05
+    }
+  }
+}

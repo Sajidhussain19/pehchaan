@@ -689,3 +689,124 @@ call…" template. The test split is unchanged (97 lines). Cost: about $0.11 (au
 Retune on the bigger dev set: recall@3 went from 97/98 to **98/98**, and misheard-name recall@3 from 39/40 to **40/40**.
 The one rescued name: "Cyclomar" (Sai Kumar). False alarms stayed at 2/34. The price: separation fell
 (the most tempting wrong candidate on keep-type clips went from 0.42 to 0.53). Module 8's guards have to absorb that.
+
+---
+
+## Module 8 — Decision layer (LangGraph)
+
+### What we built
+- `app/decide/graph.py`: the LangGraph pipeline, one node per step (below).
+- `app/decide/pehchaan.py`: `resolve(transcript, direction, caller, preferences) -> Decision`, the same format as baseline (c).
+- `app/decide/lexicons.py` + three data files in `data/lexicon/`:
+  - `role_clues.json`: "tooth" -> dentist, "invoice" -> accounts, "cab" -> cab driver…
+  - `type_clues.json`: "table" -> restaurant, "tablets" -> pharmacy, "appointment" -> doctor/clinic…
+  - `indian_first_names.txt`: about 600 names, for the unfamiliar-name guard
+- `app/decide/llm_fallback.py`: the ONE small gpt-4o-mini call for unsure spans. It sends only the sentence and
+  the top-3 candidates, never the whole phone book. Answers are cached.
+- `app/decide/config.py`: thresholds `high=0.80`, `margin=0.20`, `low=0.65`.
+- `scripts/run_pehchaan.py`: runs Pehchaan on the dev split by default (test needs `--final`) and saves Decisions for `evaluate.py`.
+- `tests/test_decide.py`: 14 tests. The whole suite is 131.
+
+### The graph: why each node exists (with one example each)
+```
+START → preferences → candidates → references → context_check → route ─┬─(unsure?)→ llm_fallback ─┐
+                                                                       └──────────────────────────┴→ action → assemble → END
+```
+1. **preferences:** learned answers come first.
+   After the user chose "Always use Harshil for 'my colleague'", "Ask my colleague to join" → Harshil, with no question.
+2. **candidates:** Modules 6+7 (no LLM).
+   "Call Aunt Johnny" → span "Aunt Johnny" with candidates Anthony / Manjunath / Anjani.
+3. **references:** clue → default → ask.
+   - "Call my doctor, my tooth is paining": "tooth" → dentist, even though the default is the family doctor.
+   - "Call my doctor" → the default.
+   - "Ask my colleague…" → 19 fit, no clue, no default → ask.
+4. **context_check:** a name must fit the context.
+   - An **unknown number** saying "Hi, I'm Raju from the bank" is not your Dr. Raju → keep.
+   - "Book a **table** at Raju Hotel" needs a restaurant, and Dr. Raju is a person → ask.
+   - "Mansoor **Tailors**" is an unknown business → can't become Mysuru.
+5. **route:** confidence routing for names.
+   - Exact full name → resolve.
+   - Clear leader (score ≥ 0.80 and ≥ 0.20 ahead) → resolve.
+   - Close call → try clue words (role, notes, relation, a business's area, the expected type).
+     If one wins → resolve ("Harshel … invoice" → Harshil); if not → **ask** ("Call Harshit at 5").
+   - Middling score → the LLM. Weak → keep.
+   - **Unfamiliar-name guard:** "Sravanthi" is a real Indian name that is not a contact. It's probably someone else, not a
+     typo for Sravani, so ask (if acting on them) or keep.
+   - Ordinary English ("used", "ask if") and garbled Indian-script words are kept, never sent to the LLM.
+6. **llm_fallback** (only if some span is still unsure): one small call.
+   "Call Paige Sweeney and ask if she reached Nalgonda" → the LLM says "keep" (a different person).
+7. **action:** the Remind, by rules.
+   "Remind me to meet Gopikrishnan near Habsiguda at 7 PM" → target Gopikrishnan, place Habsiguda, time 19:00.
+   Clarify means no action until the user answers.
+8. **assemble:** the final Decision.
+   - The corrected transcript uses canonical spellings, except a short form the speaker chose ("Harshil") stays short.
+     Indian-script transcripts come back in Latin letters.
+   - Every entity shows **heard → resolved → confidence → reason**.
+   - Then the behaviour, the clarify candidates, latency and cost.
+
+### Changelog (dev split only; max 3 tuning rounds)
+| Round | Change | Key dev result (vs (c)) |
+|---|---|---|
+| 0 | First full pipeline | wrong targets 2/146 (c: 20), missed clarifications 1/16 (c: 15), entity 82/98 (c: 81). The stop condition was already met. Losses: 16 |
+| 1 | type fit breaks close calls; write canonical names; transliterate Indic output; guard asks only on strong matches; order/book targets the business; Telugu intent words; LLM "clarify" only for action targets; "Nanna" ≠ "Nanna's cardiologist" in the LLM prompt | entity 90/98, WER 10%, unnecessary questions 9 → 4, losses 9 |
+| 2 | LLM cache key includes instructions (**bug**); inflected common words ("used"); absorb a surname written in Indian script; clue words matched by sound and relation | entity 96/98, WER 9%, unnecessary questions 0, **but** wrong targets 1 → 5 (a regression we did not keep) |
+| 3 | the span's own words are never clues; a business word next to a name means an unknown business; garbled Indian-script words with middling scores are kept | wrong targets **0**, over-correction **0**, losses 5 |
+| bug fix (no tuning) | "Dr. X**'s** clinic" is the owner, not a mismatch; "two cups … at four p.m." → 16:00 not 14:00 | unnecessary questions 0, time 26/26, losses **4** |
+
+Round 2 is the honest lesson: the rule that made "college reunion" pick Swathi also let the word "doctor" (inside
+"my doctor") count as a clue for "family doctor". We found it by checking wrong targets after every round, not just the totals.
+
+### Final dev results (66 synthetic clips × clean + phone, plus 14 real clips)
+| metric | (c) LLM baseline | Pehchaan |
+|---|---|---|
+| entity accuracy | 81/98 = 83% | **96/98 = 98%** |
+| WER | 238/1575 = 15% | **147/1575 = 9%** |
+| over-correction | 1/34 = 3% | **0/34 = 0%** |
+| behaviour accuracy | 106/146 = 73% | **138/146 = 95%** |
+| exact action target | 63/86 = 73% | **84/86 = 98%** |
+| time accuracy | 25/26 = 96% | **26/26 = 100%** |
+| **wrong-target rate** | 20/146 = 14% | **0/146 = 0%** |
+| unnecessary questions | 2/126 = 2% | **0/126 = 0%** |
+| **missed clarifications** | 15/16 = 94% | **1/16 = 6%** |
+| right clarify candidates | 1/1 | 13/15 = 87% |
+| reference resolution | 12/24 = 50% | **23/24 = 96%** |
+| decided with no LLM | 0/146 = 0% | **132/146 = 90%** |
+| latency mean / median | 1613 / 1562 ms | **136 / 9 ms** |
+| cost per call | ~$0.00098 | **~$0.00001** |
+
+Clip by clip: **Pehchaan wins 54, ties 88, loses 4** against (c). The 4 losses:
+- s004 (clean + phone) and s023 (phone): the right reminder target, but labelled *resolve* where the answer key says
+  *correct*, because we broke a tie with a clue. This is a labelling nuance, not a user-facing error.
+- s123 (phone): a garbled Telugu "Nanna" ("నన్నొత్తి"). We keep it (no action); (c) got the father right.
+  It's a miss rather than a wrong target, the safe side.
+
+**Caution:** these are dev numbers, and we tuned on dev. They are optimistic. Only the held-out test split
+(`--final`, logged) gives the reportable numbers.
+
+### Key concepts
+- **LangGraph:** a small library for writing a program as a graph of steps ("nodes") that share a state.
+  A **conditional edge** chooses the next node at run time: here, "go to the LLM only if something is still unsure".
+- **Confidence routing:** send easy cases down a fast, free path and hard ones to a slower, smarter one.
+- **Margin:** how far the best candidate is ahead of the second. A small margin means "too close to call", so ask.
+- **Clue tie-break:** use the rest of the sentence ("invoice", "tooth", "college") to choose between close candidates.
+- **Type check:** the entity must be the right *kind*: a person can't be "booked a table at".
+- **Unfamiliar-name guard:** a real name that isn't a contact is probably someone new, not a typo.
+- **LLM fallback:** an LLM used only for leftovers, with a tiny prompt and a strict schema limited to the candidates.
+- **Prompt cache key:** everything that shapes an LLM answer (model, instructions, prompt) must be in the cache key,
+  or changes are silently ignored. That was round 2's bug.
+
+### Questions a judge might ask
+- **Isn't this just rules plus an LLM?** Yes, on purpose. Rules handle the 90% of clips where the answer is clear,
+  in about 9 ms for $0, and every decision has a readable reason. The LLM gets only the hard 10%, with a tiny prompt.
+  The design is "trust, but show your work".
+- **Why does it beat one big GPT-4o-mini call?** The big call has the same information, but on dev it guessed in 15 of 16
+  cases where it should have asked, and acted on the wrong person in 20/146 clips ("Raju Hotel" → a fancy store;
+  "my doctor + tooth" → the family doctor). Pehchaan applies clue → default → ask *every* time, and checks type and caller.
+- **Doesn't asking so much annoy users?** Unnecessary questions were 0/126 on dev. It asks only when two real candidates
+  are close and nothing separates them, or when a request clearly doesn't fit a contact.
+- **What if the LLM is down?** The LLM node fails safe: unsure spans are kept as heard, and nothing wrong is done.
+- **How is it so fast?** No network call for 90% of clips. Median 9 ms vs 1.6 s for the LLM baseline.
+- **Did you overfit to dev?** Probably somewhat. We tuned on 66 dev sentences over 3 rounds. That's why the test split is
+  untouched, and why we'll report test numbers once, with `--final`, logged.
+- **What does it still get wrong?** A badly garbled Telugu "Nanna" (we keep it rather than guess). And it occasionally
+  labels a clue-based pick as *resolve* when the answer key says *correct*.

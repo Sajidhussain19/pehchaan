@@ -180,7 +180,39 @@ python scripts/inspect_candidates.py "Call Aunt Johnny and ask if tuition is on"
 python scripts/eval_candidates.py            # dev split: recall@1/@3, false alarms, speed
 ```
 
-**Step 2: decisions (resolve / ask / keep).** *Coming in Module 8.*
+**Step 2: decisions (Module 8, a LangGraph pipeline, one node per step).**
+
+```
+preferences → candidates → references → context_check → route ─(unsure?)→ llm_fallback → action → assemble
+```
+- **References:** a clue in the sentence beats the default ("my doctor, my **tooth**…" → the dentist), the default beats
+  asking ("my doctor" → the family doctor), and otherwise it asks ("my colleague" → 19 people).
+- **Context:** an unknown caller saying "I'm Raju" is not your Dr. Raju; "book a **table** at Raju Hotel" can't silently become a doctor.
+- **Routing:** clear winners resolve; close calls use clue words, otherwise **ask** ("Call Harshit at 5": Harshit or Harshil?);
+  a real name that isn't a contact ("Sravanthi") is never silently "fixed" into Sravani.
+- **The LLM** (gpt-4o-mini) is called only for leftovers, with just the sentence and the top-3 candidates.
+- **Output:** the same `Decision` as baseline (c), with every entity shown as *heard → resolved → confidence → reason*,
+  plus a Remind action (who, where, "HH:MM").
+
+**Dev results vs the strong LLM baseline (c)** (dev split only; we tuned on it, so these are optimistic):
+
+| | (c) one GPT-4o-mini call | Pehchaan |
+|---|---|---|
+| wrong-target rate | 20/146 = 14% | **0/146 = 0%** |
+| missed clarifications | 15/16 = 94% | **1/16 = 6%** |
+| unnecessary questions | 2/126 | **0/126** |
+| over-correction | 1/34 | **0/34** |
+| reference resolution | 12/24 = 50% | **23/24 = 96%** |
+| entity accuracy | 81/98 = 83% | **96/98 = 98%** |
+| decided with no LLM | 0% | **90%** |
+| latency (median) | 1.6 s | **9 ms** |
+
+Clip by clip: Pehchaan wins 54, ties 88, loses 4. *Held-out test-split numbers are reported once, at the end.*
+
+```powershell
+python scripts/run_pehchaan.py            # dev split, clean + phone + real (LLM answers cached)
+python scripts/evaluate.py                # dev report: (a), (b), (c), Pehchaan + win/tie/loss
+```
 
 ## Baselines (Module 4)
 

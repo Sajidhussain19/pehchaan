@@ -4,14 +4,15 @@
   "systems": [
     "a",
     "b",
-    "c"
+    "c",
+    "pehchaan"
   ],
   "overall": {
     "a": {
       "entity_accuracy": {
-        "hits": 41,
-        "total": 64,
-        "rate": 0.640625
+        "hits": 58,
+        "total": 98,
+        "rate": 0.5918367346938775
       },
       "over_correction_rate": {
         "hits": 0,
@@ -19,16 +20,16 @@
         "rate": 0.0
       },
       "wer": {
-        "hits": 277,
-        "total": 1163,
-        "rate": 0.23817712811693895
+        "hits": 322,
+        "total": 1575,
+        "rate": 0.20444444444444446
       }
     },
     "b": {
       "entity_accuracy": {
-        "hits": 49,
-        "total": 64,
-        "rate": 0.765625
+        "hits": 79,
+        "total": 98,
+        "rate": 0.8061224489795918
       },
       "over_correction_rate": {
         "hits": 0,
@@ -36,16 +37,16 @@
         "rate": 0.0
       },
       "wer": {
-        "hits": 248,
-        "total": 1163,
-        "rate": 0.21324161650902837
+        "hits": 271,
+        "total": 1575,
+        "rate": 0.17206349206349206
       }
     },
     "c": {
       "entity_accuracy": {
-        "hits": 55,
-        "total": 64,
-        "rate": 0.859375
+        "hits": 81,
+        "total": 98,
+        "rate": 0.826530612244898
       },
       "over_correction_rate": {
         "hits": 1,
@@ -53,39 +54,39 @@
         "rate": 0.029411764705882353
       },
       "wer": {
-        "hits": 198,
-        "total": 1163,
-        "rate": 0.1702493551160791
+        "hits": 238,
+        "total": 1575,
+        "rate": 0.1511111111111111
       },
       "behaviour_accuracy": {
-        "hits": 85,
-        "total": 104,
-        "rate": 0.8173076923076923
+        "hits": 106,
+        "total": 146,
+        "rate": 0.726027397260274
       },
       "exact_action_target_accuracy": {
-        "hits": 40,
-        "total": 52,
-        "rate": 0.7692307692307693
+        "hits": 63,
+        "total": 86,
+        "rate": 0.7325581395348837
       },
       "time_accuracy": {
-        "hits": 15,
-        "total": 16,
-        "rate": 0.9375
+        "hits": 25,
+        "total": 26,
+        "rate": 0.9615384615384616
       },
       "wrong_target_rate": {
-        "hits": 9,
-        "total": 104,
-        "rate": 0.08653846153846154
+        "hits": 20,
+        "total": 146,
+        "rate": 0.136986301369863
       },
       "unnecessary_question_rate": {
         "hits": 2,
-        "total": 92,
-        "rate": 0.021739130434782608
+        "total": 126,
+        "rate": 0.015873015873015872
       },
       "missed_clarification_rate": {
-        "hits": 7,
-        "total": 8,
-        "rate": 0.875
+        "hits": 15,
+        "total": 16,
+        "rate": 0.9375
       },
       "clarify_candidates_ok": {
         "hits": 1,
@@ -93,27 +94,92 @@
         "rate": 1.0
       },
       "reference_resolution_accuracy": {
-        "hits": 8,
-        "total": 14,
-        "rate": 0.5714285714285714
+        "hits": 12,
+        "total": 24,
+        "rate": 0.5
       },
       "no_llm_rate": {
         "hits": 0,
-        "total": 104,
+        "total": 146,
         "rate": 0.0
       },
-      "latency_ms_mean": 1542.4,
-      "latency_ms_median": 1495.3,
-      "cost_usd_mean": 0.000972
+      "latency_ms_mean": 1613.2,
+      "latency_ms_median": 1561.6,
+      "cost_usd_mean": 0.000978
+    },
+    "pehchaan": {
+      "entity_accuracy": {
+        "hits": 96,
+        "total": 98,
+        "rate": 0.9795918367346939
+      },
+      "over_correction_rate": {
+        "hits": 0,
+        "total": 34,
+        "rate": 0.0
+      },
+      "wer": {
+        "hits": 147,
+        "total": 1575,
+        "rate": 0.09333333333333334
+      },
+      "behaviour_accuracy": {
+        "hits": 138,
+        "total": 146,
+        "rate": 0.9452054794520548
+      },
+      "exact_action_target_accuracy": {
+        "hits": 84,
+        "total": 86,
+        "rate": 0.9767441860465116
+      },
+      "time_accuracy": {
+        "hits": 26,
+        "total": 26,
+        "rate": 1.0
+      },
+      "wrong_target_rate": {
+        "hits": 0,
+        "total": 146,
+        "rate": 0.0
+      },
+      "unnecessary_question_rate": {
+        "hits": 0,
+        "total": 126,
+        "rate": 0.0
+      },
+      "missed_clarification_rate": {
+        "hits": 1,
+        "total": 16,
+        "rate": 0.0625
+      },
+      "clarify_candidates_ok": {
+        "hits": 13,
+        "total": 15,
+        "rate": 0.8666666666666667
+      },
+      "reference_resolution_accuracy": {
+        "hits": 23,
+        "total": 24,
+        "rate": 0.9583333333333334
+      },
+      "no_llm_rate": {
+        "hits": 132,
+        "total": 146,
+        "rate": 0.9041095890410958
+      },
+      "latency_ms_mean": 135.8,
+      "latency_ms_median": 9.4,
+      "cost_usd_mean": 1e-05
     }
   },
   "per_audio": {
     "clean": {
       "a": {
         "entity_accuracy": {
-          "hits": 22,
-          "total": 32,
-          "rate": 0.6875
+          "hits": 32,
+          "total": 49,
+          "rate": 0.6530612244897959
         },
         "over_correction_rate": {
           "hits": 0,
@@ -121,16 +187,16 @@
           "rate": 0.0
         },
         "wer": {
-          "hits": 123,
-          "total": 466,
-          "rate": 0.26394849785407726
+          "hits": 144,
+          "total": 672,
+          "rate": 0.21428571428571427
         }
       },
       "b": {
         "entity_accuracy": {
-          "hits": 24,
-          "total": 32,
-          "rate": 0.75
+          "hits": 39,
+          "total": 49,
+          "rate": 0.7959183673469388
         },
         "over_correction_rate": {
           "hits": 0,
@@ -138,16 +204,16 @@
           "rate": 0.0
         },
         "wer": {
-          "hits": 117,
-          "total": 466,
-          "rate": 0.2510729613733906
+          "hits": 127,
+          "total": 672,
+          "rate": 0.18898809523809523
         }
       },
       "c": {
         "entity_accuracy": {
-          "hits": 29,
-          "total": 32,
-          "rate": 0.90625
+          "hits": 43,
+          "total": 49,
+          "rate": 0.8775510204081632
         },
         "over_correction_rate": {
           "hits": 0,
@@ -155,39 +221,39 @@
           "rate": 0.0
         },
         "wer": {
-          "hits": 90,
-          "total": 466,
-          "rate": 0.19313304721030042
+          "hits": 108,
+          "total": 672,
+          "rate": 0.16071428571428573
         },
         "behaviour_accuracy": {
-          "hits": 37,
-          "total": 45,
-          "rate": 0.8222222222222222
+          "hits": 48,
+          "total": 66,
+          "rate": 0.7272727272727273
         },
         "exact_action_target_accuracy": {
-          "hits": 21,
-          "total": 26,
-          "rate": 0.8076923076923077
+          "hits": 33,
+          "total": 43,
+          "rate": 0.7674418604651163
         },
         "time_accuracy": {
-          "hits": 7,
-          "total": 8,
-          "rate": 0.875
+          "hits": 12,
+          "total": 13,
+          "rate": 0.9230769230769231
         },
         "wrong_target_rate": {
-          "hits": 3,
-          "total": 45,
-          "rate": 0.06666666666666667
+          "hits": 9,
+          "total": 66,
+          "rate": 0.13636363636363635
         },
         "unnecessary_question_rate": {
           "hits": 1,
-          "total": 39,
-          "rate": 0.02564102564102564
+          "total": 56,
+          "rate": 0.017857142857142856
         },
         "missed_clarification_rate": {
-          "hits": 3,
-          "total": 4,
-          "rate": 0.75
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
         },
         "clarify_candidates_ok": {
           "hits": 1,
@@ -195,26 +261,91 @@
           "rate": 1.0
         },
         "reference_resolution_accuracy": {
-          "hits": 4,
-          "total": 7,
-          "rate": 0.5714285714285714
+          "hits": 6,
+          "total": 12,
+          "rate": 0.5
         },
         "no_llm_rate": {
           "hits": 0,
-          "total": 45,
+          "total": 66,
           "rate": 0.0
         },
-        "latency_ms_mean": 1599.5,
-        "latency_ms_median": 1592.9,
-        "cost_usd_mean": 0.00096
+        "latency_ms_mean": 1640.2,
+        "latency_ms_median": 1600.7,
+        "cost_usd_mean": 0.000959
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 49,
+          "total": 49,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 60,
+          "total": 672,
+          "rate": 0.08928571428571429
+        },
+        "behaviour_accuracy": {
+          "hits": 64,
+          "total": 66,
+          "rate": 0.9696969696969697
+        },
+        "exact_action_target_accuracy": {
+          "hits": 43,
+          "total": 43,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 13,
+          "total": 13,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 66,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 56,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "reference_resolution_accuracy": {
+          "hits": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 62,
+          "total": 66,
+          "rate": 0.9393939393939394
+        },
+        "latency_ms_mean": 93.0,
+        "latency_ms_median": 9.3,
+        "cost_usd_mean": 6e-06
       }
     },
     "phone": {
       "a": {
         "entity_accuracy": {
-          "hits": 19,
-          "total": 32,
-          "rate": 0.59375
+          "hits": 26,
+          "total": 49,
+          "rate": 0.5306122448979592
         },
         "over_correction_rate": {
           "hits": 0,
@@ -222,16 +353,16 @@
           "rate": 0.0
         },
         "wer": {
-          "hits": 129,
-          "total": 466,
-          "rate": 0.27682403433476394
+          "hits": 153,
+          "total": 672,
+          "rate": 0.22767857142857142
         }
       },
       "b": {
         "entity_accuracy": {
-          "hits": 25,
-          "total": 32,
-          "rate": 0.78125
+          "hits": 40,
+          "total": 49,
+          "rate": 0.8163265306122449
         },
         "over_correction_rate": {
           "hits": 0,
@@ -239,16 +370,16 @@
           "rate": 0.0
         },
         "wer": {
-          "hits": 114,
-          "total": 466,
-          "rate": 0.2446351931330472
+          "hits": 127,
+          "total": 672,
+          "rate": 0.18898809523809523
         }
       },
       "c": {
         "entity_accuracy": {
-          "hits": 26,
-          "total": 32,
-          "rate": 0.8125
+          "hits": 38,
+          "total": 49,
+          "rate": 0.7755102040816326
         },
         "over_correction_rate": {
           "hits": 1,
@@ -256,38 +387,38 @@
           "rate": 0.1
         },
         "wer": {
-          "hits": 83,
-          "total": 466,
-          "rate": 0.1781115879828326
+          "hits": 105,
+          "total": 672,
+          "rate": 0.15625
         },
         "behaviour_accuracy": {
-          "hits": 34,
-          "total": 45,
-          "rate": 0.7555555555555555
+          "hits": 44,
+          "total": 66,
+          "rate": 0.6666666666666666
         },
         "exact_action_target_accuracy": {
-          "hits": 19,
-          "total": 26,
-          "rate": 0.7307692307692307
+          "hits": 30,
+          "total": 43,
+          "rate": 0.6976744186046512
         },
         "time_accuracy": {
-          "hits": 8,
-          "total": 8,
+          "hits": 13,
+          "total": 13,
           "rate": 1.0
         },
         "wrong_target_rate": {
-          "hits": 6,
-          "total": 45,
-          "rate": 0.13333333333333333
+          "hits": 11,
+          "total": 66,
+          "rate": 0.16666666666666666
         },
         "unnecessary_question_rate": {
           "hits": 1,
-          "total": 39,
-          "rate": 0.02564102564102564
+          "total": 56,
+          "rate": 0.017857142857142856
         },
         "missed_clarification_rate": {
-          "hits": 4,
-          "total": 4,
+          "hits": 8,
+          "total": 8,
           "rate": 1.0
         },
         "clarify_candidates_ok": {
@@ -296,18 +427,83 @@
           "rate": null
         },
         "reference_resolution_accuracy": {
-          "hits": 4,
-          "total": 7,
-          "rate": 0.5714285714285714
+          "hits": 6,
+          "total": 12,
+          "rate": 0.5
         },
         "no_llm_rate": {
           "hits": 0,
-          "total": 45,
+          "total": 66,
           "rate": 0.0
         },
-        "latency_ms_mean": 1608.6,
-        "latency_ms_median": 1541.2,
-        "cost_usd_mean": 0.000995
+        "latency_ms_mean": 1685.4,
+        "latency_ms_median": 1571.8,
+        "cost_usd_mean": 0.001005
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 47,
+          "total": 49,
+          "rate": 0.9591836734693877
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 62,
+          "total": 672,
+          "rate": 0.09226190476190477
+        },
+        "behaviour_accuracy": {
+          "hits": 60,
+          "total": 66,
+          "rate": 0.9090909090909091
+        },
+        "exact_action_target_accuracy": {
+          "hits": 41,
+          "total": 43,
+          "rate": 0.9534883720930233
+        },
+        "time_accuracy": {
+          "hits": 13,
+          "total": 13,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 66,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 56,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "clarify_candidates_ok": {
+          "hits": 6,
+          "total": 7,
+          "rate": 0.8571428571428571
+        },
+        "reference_resolution_accuracy": {
+          "hits": 11,
+          "total": 12,
+          "rate": 0.9166666666666666
+        },
+        "no_llm_rate": {
+          "hits": 62,
+          "total": 66,
+          "rate": 0.9393939393939394
+        },
+        "latency_ms_mean": 83.3,
+        "latency_ms_median": 9.1,
+        "cost_usd_mean": 6e-06
       }
     },
     "real": {
@@ -409,70 +605,32 @@
         "latency_ms_mean": 1146.0,
         "latency_ms_median": 1136.2,
         "cost_usd_mean": 0.000938
-      }
-    }
-  },
-  "per_category": {
-    "ambiguous": {
-      "a": {
-        "entity_accuracy": {
-          "hits": 2,
-          "total": 4,
-          "rate": 0.5
-        },
-        "over_correction_rate": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
-        "wer": {
-          "hits": 3,
-          "total": 68,
-          "rate": 0.04411764705882353
-        }
       },
-      "b": {
+      "pehchaan": {
         "entity_accuracy": {
-          "hits": 2,
-          "total": 4,
-          "rate": 0.5
-        },
-        "over_correction_rate": {
           "hits": 0,
           "total": 0,
           "rate": null
         },
-        "wer": {
-          "hits": 2,
-          "total": 68,
-          "rate": 0.029411764705882353
-        }
-      },
-      "c": {
-        "entity_accuracy": {
-          "hits": 2,
-          "total": 4,
-          "rate": 0.5
-        },
         "over_correction_rate": {
           "hits": 0,
-          "total": 0,
-          "rate": null
+          "total": 14,
+          "rate": 0.0
         },
         "wer": {
-          "hits": 3,
-          "total": 68,
-          "rate": 0.04411764705882353
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
         },
         "behaviour_accuracy": {
-          "hits": 1,
-          "total": 8,
-          "rate": 0.125
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
         },
         "exact_action_target_accuracy": {
-          "hits": 2,
-          "total": 4,
-          "rate": 0.5
+          "hits": 0,
+          "total": 0,
+          "rate": null
         },
         "time_accuracy": {
           "hits": 0,
@@ -480,19 +638,122 @@
           "rate": null
         },
         "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 14,
+          "rate": 0.5714285714285714
+        },
+        "latency_ms_mean": 585.0,
+        "latency_ms_median": 38.2,
+        "cost_usd_mean": 4.4e-05
+      }
+    }
+  },
+  "per_category": {
+    "ambiguous": {
+      "a": {
+        "entity_accuracy": {
           "hits": 3,
           "total": 8,
           "rate": 0.375
         },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 8,
+          "total": 116,
+          "rate": 0.06896551724137931
+        }
+      },
+      "b": {
+        "entity_accuracy": {
+          "hits": 4,
+          "total": 8,
+          "rate": 0.5
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 5,
+          "total": 116,
+          "rate": 0.04310344827586207
+        }
+      },
+      "c": {
+        "entity_accuracy": {
+          "hits": 5,
+          "total": 8,
+          "rate": 0.625
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 5,
+          "total": 116,
+          "rate": 0.04310344827586207
+        },
+        "behaviour_accuracy": {
+          "hits": 2,
+          "total": 14,
+          "rate": 0.14285714285714285
+        },
+        "exact_action_target_accuracy": {
+          "hits": 5,
+          "total": 8,
+          "rate": 0.625
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 5,
+          "total": 14,
+          "rate": 0.35714285714285715
+        },
         "unnecessary_question_rate": {
           "hits": 1,
-          "total": 4,
-          "rate": 0.25
+          "total": 8,
+          "rate": 0.125
         },
         "missed_clarification_rate": {
-          "hits": 3,
-          "total": 4,
-          "rate": 0.75
+          "hits": 5,
+          "total": 6,
+          "rate": 0.8333333333333334
         },
         "clarify_candidates_ok": {
           "hits": 1,
@@ -506,12 +767,77 @@
         },
         "no_llm_rate": {
           "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "latency_ms_mean": 1504.0,
+        "latency_ms_median": 1582.5,
+        "cost_usd_mean": 0.000952
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 3,
+          "total": 116,
+          "rate": 0.02586206896551724
+        },
+        "behaviour_accuracy": {
+          "hits": 13,
+          "total": 14,
+          "rate": 0.9285714285714286
+        },
+        "exact_action_target_accuracy": {
+          "hits": 7,
+          "total": 8,
+          "rate": 0.875
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
           "total": 8,
           "rate": 0.0
         },
-        "latency_ms_mean": 1518.7,
-        "latency_ms_median": 1556.2,
-        "cost_usd_mean": 0.000954
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 4,
+          "total": 6,
+          "rate": 0.6666666666666666
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.0,
+        "latency_ms_median": 7.6,
+        "cost_usd_mean": 0.0
       }
     },
     "context_mismatch": {
@@ -527,9 +853,9 @@
           "rate": null
         },
         "wer": {
-          "hits": 8,
-          "total": 70,
-          "rate": 0.11428571428571428
+          "hits": 9,
+          "total": 102,
+          "rate": 0.08823529411764706
         }
       },
       "b": {
@@ -545,8 +871,8 @@
         },
         "wer": {
           "hits": 8,
-          "total": 70,
-          "rate": 0.11428571428571428
+          "total": 102,
+          "rate": 0.0784313725490196
         }
       },
       "c": {
@@ -561,14 +887,14 @@
           "rate": null
         },
         "wer": {
-          "hits": 8,
-          "total": 70,
-          "rate": 0.11428571428571428
+          "hits": 9,
+          "total": 102,
+          "rate": 0.08823529411764706
         },
         "behaviour_accuracy": {
           "hits": 4,
-          "total": 6,
-          "rate": 0.6666666666666666
+          "total": 10,
+          "rate": 0.4
         },
         "exact_action_target_accuracy": {
           "hits": 0,
@@ -581,9 +907,9 @@
           "rate": null
         },
         "wrong_target_rate": {
-          "hits": 2,
-          "total": 6,
-          "rate": 0.3333333333333333
+          "hits": 3,
+          "total": 10,
+          "rate": 0.3
         },
         "unnecessary_question_rate": {
           "hits": 0,
@@ -591,8 +917,8 @@
           "rate": 0.0
         },
         "missed_clarification_rate": {
-          "hits": 2,
-          "total": 2,
+          "hits": 6,
+          "total": 6,
           "rate": 1.0
         },
         "clarify_candidates_ok": {
@@ -607,12 +933,77 @@
         },
         "no_llm_rate": {
           "hits": 0,
-          "total": 6,
+          "total": 10,
           "rate": 0.0
         },
-        "latency_ms_mean": 1294.9,
+        "latency_ms_mean": 1283.4,
         "latency_ms_median": 1229.8,
-        "cost_usd_mean": 0.00094
+        "cost_usd_mean": 0.000938
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 9,
+          "total": 102,
+          "rate": 0.08823529411764706
+        },
+        "behaviour_accuracy": {
+          "hits": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 10,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 1,
+          "total": 6,
+          "rate": 0.16666666666666666
+        },
+        "clarify_candidates_ok": {
+          "hits": 5,
+          "total": 5,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "latency_ms_mean": 240.5,
+        "latency_ms_median": 10.9,
+        "cost_usd_mean": 1.7e-05
       }
     },
     "control": {
@@ -714,14 +1105,79 @@
         "latency_ms_mean": 1065.4,
         "latency_ms_median": 1070.4,
         "cost_usd_mean": 0.000929
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 4,
+          "total": 76,
+          "rate": 0.05263157894736842
+        },
+        "behaviour_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.9,
+        "latency_ms_median": 7.9,
+        "cost_usd_mean": 0.0
       }
     },
     "in_kb": {
       "a": {
         "entity_accuracy": {
-          "hits": 39,
-          "total": 60,
-          "rate": 0.65
+          "hits": 53,
+          "total": 88,
+          "rate": 0.6022727272727273
         },
         "over_correction_rate": {
           "hits": 0,
@@ -729,16 +1185,16 @@
           "rate": null
         },
         "wer": {
-          "hits": 146,
-          "total": 490,
-          "rate": 0.2979591836734694
+          "hits": 177,
+          "total": 718,
+          "rate": 0.24651810584958217
         }
       },
       "b": {
         "entity_accuracy": {
-          "hits": 47,
-          "total": 60,
-          "rate": 0.7833333333333333
+          "hits": 73,
+          "total": 88,
+          "rate": 0.8295454545454546
         },
         "over_correction_rate": {
           "hits": 0,
@@ -746,16 +1202,16 @@
           "rate": null
         },
         "wer": {
-          "hits": 132,
-          "total": 490,
-          "rate": 0.2693877551020408
+          "hits": 143,
+          "total": 718,
+          "rate": 0.1991643454038997
         }
       },
       "c": {
         "entity_accuracy": {
-          "hits": 53,
-          "total": 60,
-          "rate": 0.8833333333333333
+          "hits": 74,
+          "total": 88,
+          "rate": 0.8409090909090909
         },
         "over_correction_rate": {
           "hits": 0,
@@ -763,34 +1219,34 @@
           "rate": null
         },
         "wer": {
-          "hits": 104,
-          "total": 490,
-          "rate": 0.21224489795918366
+          "hits": 129,
+          "total": 718,
+          "rate": 0.1796657381615599
         },
         "behaviour_accuracy": {
-          "hits": 36,
-          "total": 42,
-          "rate": 0.8571428571428571
+          "hits": 48,
+          "total": 64,
+          "rate": 0.75
         },
         "exact_action_target_accuracy": {
-          "hits": 30,
-          "total": 36,
-          "rate": 0.8333333333333334
+          "hits": 46,
+          "total": 58,
+          "rate": 0.7931034482758621
         },
         "time_accuracy": {
-          "hits": 11,
-          "total": 12,
-          "rate": 0.9166666666666666
+          "hits": 19,
+          "total": 20,
+          "rate": 0.95
         },
         "wrong_target_rate": {
-          "hits": 1,
-          "total": 42,
-          "rate": 0.023809523809523808
+          "hits": 3,
+          "total": 64,
+          "rate": 0.046875
         },
         "unnecessary_question_rate": {
           "hits": 1,
-          "total": 42,
-          "rate": 0.023809523809523808
+          "total": 64,
+          "rate": 0.015625
         },
         "missed_clarification_rate": {
           "hits": 0,
@@ -809,12 +1265,77 @@
         },
         "no_llm_rate": {
           "hits": 0,
-          "total": 42,
+          "total": 64,
           "rate": 0.0
         },
-        "latency_ms_mean": 1816.6,
-        "latency_ms_median": 1779.0,
-        "cost_usd_mean": 0.000989
+        "latency_ms_mean": 1890.9,
+        "latency_ms_median": 1821.1,
+        "cost_usd_mean": 0.001003
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 87,
+          "total": 88,
+          "rate": 0.9886363636363636
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 62,
+          "total": 718,
+          "rate": 0.08635097493036212
+        },
+        "behaviour_accuracy": {
+          "hits": 59,
+          "total": 64,
+          "rate": 0.921875
+        },
+        "exact_action_target_accuracy": {
+          "hits": 58,
+          "total": 58,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 64,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 64,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 60,
+          "total": 64,
+          "rate": 0.9375
+        },
+        "latency_ms_mean": 81.0,
+        "latency_ms_median": 10.4,
+        "cost_usd_mean": 5e-06
       }
     },
     "out_of_kb": {
@@ -916,6 +1437,71 @@
         "latency_ms_mean": 1532.3,
         "latency_ms_median": 1436.9,
         "cost_usd_mean": 0.000957
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 15,
+          "total": 72,
+          "rate": 0.20833333333333334
+        },
+        "behaviour_accuracy": {
+          "hits": 8,
+          "total": 8,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 6,
+          "total": 8,
+          "rate": 0.75
+        },
+        "latency_ms_mean": 454.6,
+        "latency_ms_median": 8.4,
+        "cost_usd_mean": 3.6e-05
       }
     },
     "real_speech": {
@@ -1017,6 +1603,71 @@
         "latency_ms_mean": 1146.0,
         "latency_ms_median": 1136.2,
         "cost_usd_mean": 0.000938
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 25,
+          "total": 231,
+          "rate": 0.10822510822510822
+        },
+        "behaviour_accuracy": {
+          "hits": 14,
+          "total": 14,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 8,
+          "total": 14,
+          "rate": 0.5714285714285714
+        },
+        "latency_ms_mean": 585.0,
+        "latency_ms_median": 38.2,
+        "cost_usd_mean": 4.4e-05
       }
     },
     "reference": {
@@ -1032,9 +1683,9 @@
           "rate": null
         },
         "wer": {
-          "hits": 56,
-          "total": 102,
-          "rate": 0.5490196078431373
+          "hits": 62,
+          "total": 162,
+          "rate": 0.38271604938271603
         }
       },
       "b": {
@@ -1049,9 +1700,9 @@
           "rate": null
         },
         "wer": {
-          "hits": 53,
-          "total": 102,
-          "rate": 0.5196078431372549
+          "hits": 58,
+          "total": 162,
+          "rate": 0.35802469135802467
         }
       },
       "c": {
@@ -1066,19 +1717,19 @@
           "rate": null
         },
         "wer": {
-          "hits": 17,
-          "total": 102,
-          "rate": 0.16666666666666666
+          "hits": 25,
+          "total": 162,
+          "rate": 0.15432098765432098
         },
         "behaviour_accuracy": {
-          "hits": 10,
-          "total": 12,
-          "rate": 0.8333333333333334
+          "hits": 14,
+          "total": 18,
+          "rate": 0.7777777777777778
         },
         "exact_action_target_accuracy": {
-          "hits": 6,
-          "total": 10,
-          "rate": 0.6
+          "hits": 10,
+          "total": 14,
+          "rate": 0.7142857142857143
         },
         "time_accuracy": {
           "hits": 2,
@@ -1086,18 +1737,18 @@
           "rate": 1.0
         },
         "wrong_target_rate": {
-          "hits": 3,
-          "total": 12,
-          "rate": 0.25
+          "hits": 5,
+          "total": 18,
+          "rate": 0.2777777777777778
         },
         "unnecessary_question_rate": {
           "hits": 0,
-          "total": 10,
+          "total": 14,
           "rate": 0.0
         },
         "missed_clarification_rate": {
-          "hits": 2,
-          "total": 2,
+          "hits": 4,
+          "total": 4,
           "rate": 1.0
         },
         "clarify_candidates_ok": {
@@ -1106,26 +1757,91 @@
           "rate": null
         },
         "reference_resolution_accuracy": {
-          "hits": 6,
-          "total": 12,
-          "rate": 0.5
+          "hits": 10,
+          "total": 18,
+          "rate": 0.5555555555555556
         },
         "no_llm_rate": {
           "hits": 0,
-          "total": 12,
+          "total": 18,
           "rate": 0.0
         },
-        "latency_ms_mean": 1578.3,
-        "latency_ms_median": 1498.5,
-        "cost_usd_mean": 0.001032
+        "latency_ms_mean": 1578.8,
+        "latency_ms_median": 1529.1,
+        "cost_usd_mean": 0.001006
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 27,
+          "total": 162,
+          "rate": 0.16666666666666666
+        },
+        "behaviour_accuracy": {
+          "hits": 17,
+          "total": 18,
+          "rate": 0.9444444444444444
+        },
+        "exact_action_target_accuracy": {
+          "hits": 13,
+          "total": 14,
+          "rate": 0.9285714285714286
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 18,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 14,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "clarify_candidates_ok": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "reference_resolution_accuracy": {
+          "hits": 17,
+          "total": 18,
+          "rate": 0.9444444444444444
+        },
+        "no_llm_rate": {
+          "hits": 18,
+          "total": 18,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.4,
+        "latency_ms_median": 7.8,
+        "cost_usd_mean": 0.0
       }
     },
     "stale_default": {
       "a": {
         "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
         },
         "over_correction_rate": {
           "hits": 0,
@@ -1133,16 +1849,16 @@
           "rate": null
         },
         "wer": {
-          "hits": 0,
-          "total": 14,
-          "rate": 0.0
+          "hits": 2,
+          "total": 58,
+          "rate": 0.034482758620689655
         }
       },
       "b": {
         "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
         },
         "over_correction_rate": {
           "hits": 0,
@@ -1150,16 +1866,16 @@
           "rate": null
         },
         "wer": {
-          "hits": 0,
-          "total": 14,
-          "rate": 0.0
+          "hits": 4,
+          "total": 58,
+          "rate": 0.06896551724137931
         }
       },
       "c": {
         "entity_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
         },
         "over_correction_rate": {
           "hits": 0,
@@ -1167,33 +1883,33 @@
           "rate": null
         },
         "wer": {
-          "hits": 2,
-          "total": 14,
-          "rate": 0.14285714285714285
+          "hits": 6,
+          "total": 58,
+          "rate": 0.10344827586206896
         },
         "behaviour_accuracy": {
-          "hits": 2,
-          "total": 2,
+          "hits": 6,
+          "total": 6,
           "rate": 1.0
         },
         "exact_action_target_accuracy": {
           "hits": 2,
+          "total": 6,
+          "rate": 0.3333333333333333
+        },
+        "time_accuracy": {
+          "hits": 2,
           "total": 2,
           "rate": 1.0
         },
-        "time_accuracy": {
-          "hits": 0,
-          "total": 0,
-          "rate": null
-        },
         "wrong_target_rate": {
-          "hits": 0,
-          "total": 2,
-          "rate": 0.0
+          "hits": 4,
+          "total": 6,
+          "rate": 0.6666666666666666
         },
         "unnecessary_question_rate": {
           "hits": 0,
-          "total": 2,
+          "total": 6,
           "rate": 0.0
         },
         "missed_clarification_rate": {
@@ -1208,17 +1924,82 @@
         },
         "reference_resolution_accuracy": {
           "hits": 2,
-          "total": 2,
-          "rate": 1.0
+          "total": 6,
+          "rate": 0.3333333333333333
         },
         "no_llm_rate": {
           "hits": 0,
-          "total": 2,
+          "total": 6,
           "rate": 0.0
         },
-        "latency_ms_mean": 1400.0,
-        "latency_ms_median": 1400.0,
-        "cost_usd_mean": 0.000947
+        "latency_ms_mean": 1625.5,
+        "latency_ms_median": 1584.8,
+        "cost_usd_mean": 0.000958
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wer": {
+          "hits": 2,
+          "total": 58,
+          "rate": 0.034482758620689655
+        },
+        "behaviour_accuracy": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "time_accuracy": {
+          "hits": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "no_llm_rate": {
+          "hits": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 8.1,
+        "latency_ms_median": 8.4,
+        "cost_usd_mean": 0.0
       }
     },
     "unfamiliar_near_match": {
@@ -1320,127 +2101,423 @@
         "latency_ms_mean": 1406.5,
         "latency_ms_median": 1366.5,
         "cost_usd_mean": 0.000945
+      },
+      "pehchaan": {
+        "entity_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "over_correction_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "wer": {
+          "hits": 0,
+          "total": 40,
+          "rate": 0.0
+        },
+        "behaviour_accuracy": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "exact_action_target_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "time_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "wrong_target_rate": {
+          "hits": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "unnecessary_question_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "missed_clarification_rate": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "clarify_candidates_ok": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "reference_resolution_accuracy": {
+          "hits": 0,
+          "total": 0,
+          "rate": null
+        },
+        "no_llm_rate": {
+          "hits": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "latency_ms_mean": 7.9,
+        "latency_ms_median": 7.8,
+        "cost_usd_mean": 0.0
       }
     }
   },
   "comparison": {
     "a": "c",
-    "b": "b",
+    "b": "pehchaan",
     "counts": {
-      "tie": 92,
-      "loss": 4,
-      "win": 8
+      "loss": 54,
+      "win": 4,
+      "tie": 88
     },
     "clips": [
+      {
+        "clip": "s001",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "unnecessary_question",
+        "pehchaan": "ok",
+        "said": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally, your appointment is tomorrow at 10 AM.",
+        "c_text": "Hello, calling from Dr. Venkataramana's clinic in Kukatpally. Your appointment is tomorrow at 10:00.",
+        "pehchaan_text": "Hello, calling from Dr. Venkataramana clinic in Kukatpally. Your appointment is tomorrow at 10 a.m."
+      },
+      {
+        "clip": "s004",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "win",
+        "c": "ok",
+        "pehchaan": "wrong_behaviour",
+        "said": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+        "c_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+        "pehchaan_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli."
+      },
       {
         "clip": "s007",
         "audio": "clean",
         "category": "in_kb",
         "result": "loss",
         "c": "entity_miss",
-        "b": "ok",
+        "pehchaan": "ok",
         "said": "Call Srinivasan Iyer and wish him a happy birthday.",
         "c_text": "Call Srinivas Iyer and wish him a happy birthday.",
-        "b_text": "Call Srinivasan Iyer and wish him a happy birthday."
+        "pehchaan_text": "Call Srinivasan Iyer and wish him a happy birthday."
       },
       {
-        "clip": "s030",
+        "clip": "s017",
         "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_action",
+        "pehchaan": "ok",
+        "said": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
+        "c_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
+        "pehchaan_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m."
+      },
+      {
+        "clip": "s020",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
+        "c_text": "Call Vijayalakshmi and ask for the Dilsukhnagar address.",
+        "pehchaan_text": "Call Vijayalakshmi auntie and ask for the Dilsukhnagar address."
+      },
+      {
+        "clip": "s088",
+        "audio": "clean",
+        "category": "control",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Wake me up at six thirty tomorrow morning.",
+        "c_text": "Wake me up at 6:30 tomorrow morning.",
+        "pehchaan_text": "Wake me up at 6:30 tomorrow morning."
+      },
+      {
+        "clip": "s095",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Ask Harshil to send the invoice by Friday.",
+        "c_text": "Ask Harshal to send the invoice by Friday.",
+        "pehchaan_text": "Ask Harshil to send the invoice by Friday."
+      },
+      {
+        "clip": "s098",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to send the project deck to Pranay before the client call on Monday.",
+        "c_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
+        "pehchaan_text": "Remind me to send the project deck to Pranay before the client call on Monday."
+      },
+      {
+        "clip": "s103",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Remind me to call Pranav tomorrow morning.",
+        "c_text": "Remind me to call Pranav tomorrow morning.",
+        "pehchaan_text": "Remind me to call Pranav tomorrow morning."
+      },
+      {
+        "clip": "s106",
+        "audio": "clean",
+        "category": "context_mismatch",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Book a table at Raju Hotel tomorrow at 9 AM.",
+        "c_text": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+        "pehchaan_text": "Book a table at Raju Hotel tomorrow at 9 a.m."
+      },
+      {
+        "clip": "s114",
+        "audio": "clean",
+        "category": "reference",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Call my doctor, my tooth is paining.",
+        "c_text": "Call my doctor, my tooth is paining.",
+        "pehchaan_text": "Call my doctor, my tooth is paining."
+      },
+      {
+        "clip": "s126",
+        "audio": "clean",
+        "category": "reference",
+        "result": "loss",
+        "c": "wrong_action",
+        "pehchaan": "ok",
+        "said": "Order Amma's tablets from the usual pharmacy.",
+        "c_text": "Order Amas tablets from the usual pharmacy.",
+        "pehchaan_text": "Order Amas tablets from the usual pharmacy."
+      },
+      {
+        "clip": "s130",
+        "audio": "clean",
+        "category": "reference",
+        "result": "loss",
+        "c": "missed_clarification",
+        "pehchaan": "ok",
+        "said": "Ask my colleague to join the call.",
+        "c_text": "Ask my colleague to join the call.",
+        "pehchaan_text": "Ask my colleague to join the call."
+      },
+      {
+        "clip": "s143",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to call Anbuselvi about the Sunday cleaning.",
+        "c_text": "remind me to call Unde Selvi about the Sunday cleaning.",
+        "pehchaan_text": "remind me to call Anbuselvi about the Sunday cleaning."
+      },
+      {
+        "clip": "s144",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Tell Velu Anna to keep two cups of tea ready at 4 PM.",
+        "c_text": "Tell Velu Anna to keep two cups of tea ready at 16:00.",
+        "pehchaan_text": "Tell Velu Anna to keep two cups of tea ready at 4 p.m."
+      },
+      {
+        "clip": "s146",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Message Nagaveni that we will visit on Sunday.",
+        "c_text": "Message Nagaveni that we will visit on Sunday.",
+        "pehchaan_text": "Message Nagaveni that we will visit on Sunday."
+      },
+      {
+        "clip": "s151",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM.",
+        "c_text": "Remind me to meet Gopikrishna near Habsiguda at 19:00.",
+        "pehchaan_text": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM."
+      },
+      {
+        "clip": "s153",
+        "audio": "clean",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
+        "c_text": "Remind me to wish Subhasis Chattopadhyay for Durga Puja.",
+        "pehchaan_text": "Remind me to wish Subhashis Chattopadhyay for Durga Puja."
+      },
+      {
+        "clip": "s154",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Tell Swathi the college reunion is on Saturday.",
+        "c_text": "Tell Swathi the college reunion is on Saturday.",
+        "pehchaan_text": "Tell Swathi the college reunion is on Saturday."
+      },
+      {
+        "clip": "s156",
+        "audio": "clean",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Remind me to call Anjali tomorrow.",
+        "c_text": "Remind me to call Anjali tomorrow.",
+        "pehchaan_text": "Remind me to call Anjali tomorrow."
+      },
+      {
+        "clip": "s157",
+        "audio": "clean",
+        "category": "stale_default",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Ask my driver to bring the cab to Koramangala at 9 AM.",
+        "c_text": "Ask my driver to bring the cab to Koramangala at 09:00.",
+        "pehchaan_text": "Ask my driver to bring the cab to Koramangala at 9 a.m."
+      },
+      {
+        "clip": "s158",
+        "audio": "clean",
+        "category": "stale_default",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Ask my accountant whether the income tax refund has come.",
+        "c_text": "Ask my accountant whether the income tax refund has come.",
+        "pehchaan_text": "Ask my accountant whether the income tax refund has come."
+      },
+      {
+        "clip": "s161",
+        "audio": "clean",
+        "category": "reference",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Ask my cousin to pick me up from the station.",
+        "c_text": "Ask my cousin to pick me up from the station.",
+        "pehchaan_text": "Ask my cousin to pick me up from the station."
+      },
+      {
+        "clip": "s162",
+        "audio": "clean",
+        "category": "context_mismatch",
+        "result": "loss",
+        "c": "missed_clarification",
+        "pehchaan": "ok",
+        "said": "Order dinner from Hotel Subramanian tonight.",
+        "c_text": "Order dinner from Hotel Subramanian tonight.",
+        "pehchaan_text": "Order dinner from Hotel Subramanian tonight."
+      },
+      {
+        "clip": "s163",
+        "audio": "clean",
+        "category": "context_mismatch",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Get me a haircut slot at Venkatesh Salon on Sunday.",
+        "c_text": "Get me a haircut slot at Venkatesh Salon on Sunday.",
+        "pehchaan_text": "Get me a haircut slot at Venkatesh Salon on Sunday."
+      },
+      {
+        "clip": "s004",
+        "audio": "phone",
         "category": "in_kb",
         "result": "win",
         "c": "ok",
-        "b": "entity_miss",
-        "said": "Saar, Chikkanna here, the balcony plants need new pots.",
-        "c_text": "Tsar, Chikkanna here. The balcony plants need new pots.",
-        "b_text": "Sir, Chikkana here. The balcony plants need new pots."
+        "pehchaan": "wrong_behaviour",
+        "said": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+        "c_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli.",
+        "pehchaan_text": "Remind me to pick up medicines from Sri Venkateswara Pharmacy on the way back from Gachibowli."
       },
       {
-        "clip": "s033",
-        "audio": "clean",
+        "clip": "s010",
+        "audio": "phone",
         "category": "in_kb",
-        "result": "win",
-        "c": "ok",
-        "b": "entity_miss",
-        "said": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
-        "c_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
-        "b_text": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at 7."
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "wrong_behaviour",
+        "said": "Ravi Teja ko call karo, pucho Warangal pahunch gaya ya nahi.",
+        "c_text": "Ravi Tej ko call karo, poochho Warangal pahunch gaya ya nahi.",
+        "pehchaan_text": "Ravi tejak ko kol karo, puuchho Warangal pahunch gayaa yaa nahiin."
       },
       {
-        "clip": "s036",
-        "audio": "clean",
+        "clip": "s017",
+        "audio": "phone",
         "category": "in_kb",
-        "result": "win",
-        "c": "ok",
-        "b": "entity_miss",
-        "said": "Sharma Ji bol raha hoon, society meeting kal shaam saat baje hai.",
-        "c_text": "Sharma Ji बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।",
-        "b_text": "शर्मा जी, बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।"
-      },
-      {
-        "clip": "s046",
-        "audio": "clean",
-        "category": "in_kb",
-        "result": "win",
-        "c": "ok",
-        "b": "entity_miss",
-        "said": "Call Harjeet Kaur aunty and wish her for Lohri.",
-        "c_text": "Call Harjeet Kaur Aunty and wish her for Lohri.",
-        "b_text": "Call Harjit Kaur auntie and wish her for Lohri."
-      },
-      {
-        "clip": "s049",
-        "audio": "clean",
-        "category": "in_kb",
-        "result": "win",
-        "c": "ok",
-        "b": "entity_miss",
-        "said": "Jignesh Shah ne bola stationery kal tak ready ho jayegi.",
-        "c_text": "Jignesh Shah ने बोला, स्टेशनरी कल तक रेडी हो जाएगी।",
-        "b_text": "जिग्नेश शाह ने बोला, स्टेशनरी कल तक रेडी हो जाएगी।"
+        "result": "loss",
+        "c": "wrong_action",
+        "pehchaan": "ok",
+        "said": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 AM.",
+        "c_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m.",
+        "pehchaan_text": "Book a cab from Kondapur to Rajiv Gandhi International Airport at 5 a.m."
       },
       {
         "clip": "s020",
         "audio": "phone",
         "category": "in_kb",
         "result": "loss",
-        "c": "entity_miss",
-        "b": "ok",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
         "said": "Call Vijayalakshmi aunty and ask for the Dilsukhnagar address.",
         "c_text": "Call Vijayalakshmi and ask for the Dilshuknagar address.",
-        "b_text": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address."
+        "pehchaan_text": "Call Vijayalakshmi Aunty and ask for the Dilsukhnagar address."
       },
       {
-        "clip": "s030",
+        "clip": "s023",
         "audio": "phone",
         "category": "in_kb",
         "result": "win",
         "c": "ok",
-        "b": "entity_miss",
-        "said": "Saar, Chikkanna here, the balcony plants need new pots.",
-        "c_text": "Sar, Chikkanna here. The balcony plants need new pots.",
-        "b_text": "Sir, Chikkana here. The balcony plants need new pots."
+        "pehchaan": "wrong_behaviour",
+        "said": "Call Dr. Subramanian and move the root canal to Monday.",
+        "c_text": "Call Dr. Subramanian and move the root canal to Monday.",
+        "pehchaan_text": "Call Doctor Subramanian and move the root canal to Monday."
       },
       {
         "clip": "s033",
         "audio": "phone",
         "category": "in_kb",
         "result": "loss",
-        "c": "entity_miss",
-        "b": "ok",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
         "said": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7.",
         "c_text": "Call Sri Kumar Menon and tell him I land in Thiruvananthapuram at seven.",
-        "b_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at 7."
-      },
-      {
-        "clip": "s036",
-        "audio": "phone",
-        "category": "in_kb",
-        "result": "win",
-        "c": "ok",
-        "b": "entity_miss",
-        "said": "Sharma Ji bol raha hoon, society meeting kal shaam saat baje hai.",
-        "c_text": "Sharma Ji बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।",
-        "b_text": "शर्मा जी बोल रहा हूँ, सोसाइटी मीटिंग कल शाम सात बजे है।"
+        "pehchaan_text": "Call Sreekumar Menon and tell him I land in Thiruvananthapuram at seven."
       },
       {
         "clip": "s039",
@@ -1448,21 +2525,296 @@
         "category": "in_kb",
         "result": "loss",
         "c": "entity_miss",
-        "b": "ok",
+        "pehchaan": "ok",
         "said": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday.",
         "c_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Kothi for Friday.",
-        "b_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday."
+        "pehchaan_text": "Book the Diwali sweets order at Agarwal Mithai Bhandar in Koti for Friday."
       },
       {
-        "clip": "s049",
+        "clip": "s052",
         "audio": "phone",
         "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Book a table at Jagannath Bhojanalaya for Sunday lunch.",
+        "c_text": "Book a table at Juggernaut Bhojanalaya for Sunday lunch.",
+        "pehchaan_text": "Book a table at Jagannath Bhojanalaya for Sunday lunch."
+      },
+      {
+        "clip": "s069",
+        "audio": "phone",
+        "category": "out_of_kb",
+        "result": "loss",
+        "c": "over_corrected",
+        "pehchaan": "ok",
+        "said": "Call Tejaswini and ask if she reached Nalgonda.",
+        "c_text": "Call Paige Sweeney and ask if she reached Nalgonda.",
+        "pehchaan_text": "Call Paige Sweeney and ask if she reached Nalgonda."
+      },
+      {
+        "clip": "s088",
+        "audio": "phone",
+        "category": "control",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Wake me up at six thirty tomorrow morning.",
+        "c_text": "Wake me up at 6:30 tomorrow morning.",
+        "pehchaan_text": "Wake me up at 6:30 tomorrow morning."
+      },
+      {
+        "clip": "s095",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "unnecessary_question",
+        "pehchaan": "ok",
+        "said": "Ask Harshil to send the invoice by Friday.",
+        "c_text": "Ask Harshel to send the invoice by Friday.",
+        "pehchaan_text": "Ask Harshil to send the invoice by Friday."
+      },
+      {
+        "clip": "s098",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to send the project deck to Pranay before the client call on Monday.",
+        "c_text": "Remind me to send the project deck to Pranay before the client call on Monday.",
+        "pehchaan_text": "Remind me to send the project deck to Pranay before the client call on Monday."
+      },
+      {
+        "clip": "s101",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Call Harshit at 5.",
+        "c_text": "Call Harshit at five.",
+        "pehchaan_text": "Call Harshit at five."
+      },
+      {
+        "clip": "s103",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Remind me to call Pranav tomorrow morning.",
+        "c_text": "Remind me to call Pranav tomorrow morning.",
+        "pehchaan_text": "Remind me to call Pranav tomorrow morning."
+      },
+      {
+        "clip": "s106",
+        "audio": "phone",
+        "category": "context_mismatch",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Book a table at Raju Hotel tomorrow at 9 AM.",
+        "c_text": "Book a table at Raju Hotel tomorrow at 9 a.m.",
+        "pehchaan_text": "Book a table at Raju Hotel tomorrow at 9 a.m."
+      },
+      {
+        "clip": "s114",
+        "audio": "phone",
+        "category": "reference",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Call my doctor, my tooth is paining.",
+        "c_text": "Call Dr. Venkataramana, my tooth is paining.",
+        "pehchaan_text": "Call my doctor, my tooth is paining."
+      },
+      {
+        "clip": "s123",
+        "audio": "phone",
+        "category": "reference",
         "result": "win",
         "c": "ok",
-        "b": "entity_miss",
-        "said": "Jignesh Shah ne bola stationery kal tak ready ho jayegi.",
-        "c_text": "Jignesh Shah ने बोला स्टेशनरी कल तक रेडी हो जाएगी।",
-        "b_text": "जिग्नेश शाह ने बोला, स्टेशनेरी कल तक रेडी हो जाएगी।"
+        "pehchaan": "wrong_behaviour",
+        "said": "Nanna ki call cheyyi, BP tablets teesukunnara ani adugu.",
+        "c_text": "nannotthi kaalcheyyi BP tablets teesukunnaraa ani adugu.",
+        "pehchaan_text": "nannotti kaalcheyyi biipii tyaablets tiisukunnaaraa ani adugu."
+      },
+      {
+        "clip": "s126",
+        "audio": "phone",
+        "category": "reference",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Order Amma's tablets from the usual pharmacy.",
+        "c_text": "Order Amma's tablets from the usual pharmacy.",
+        "pehchaan_text": "Order Amas tablets from the usual pharmacy."
+      },
+      {
+        "clip": "s130",
+        "audio": "phone",
+        "category": "reference",
+        "result": "loss",
+        "c": "missed_clarification",
+        "pehchaan": "ok",
+        "said": "Ask my colleague to join the call.",
+        "c_text": "Ask my colleague to join the call.",
+        "pehchaan_text": "Ask my colleague to join the call."
+      },
+      {
+        "clip": "s143",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to call Anbuselvi about the Sunday cleaning.",
+        "c_text": "Remind me to call Anbuselvi about the Sunday cleaning.",
+        "pehchaan_text": "Remind me to call Anbuselvi about the Sunday cleaning."
+      },
+      {
+        "clip": "s144",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Tell Velu Anna to keep two cups of tea ready at 4 PM.",
+        "c_text": "Tell Velu Anna to keep two cups of tea ready at 16:00.",
+        "pehchaan_text": "Tell Velu Anna to keep two cups of tea ready at four p.m."
+      },
+      {
+        "clip": "s145",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "entity_miss",
+        "pehchaan": "ok",
+        "said": "Remind me to call Puneeth Hegde about the cricket tickets.",
+        "c_text": "Remind me to call Puneet Hegde about the cricket tickets.",
+        "pehchaan_text": "Remind me to call Puneeth Hegde about the cricket tickets."
+      },
+      {
+        "clip": "s146",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Message Nagaveni that we will visit on Sunday.",
+        "c_text": "Message Nagaveni that we will visit on Sunday.",
+        "pehchaan_text": "Message Nagaveni that we will visit on Sunday."
+      },
+      {
+        "clip": "s150",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Call Itishree Mishra and ask about the exam results.",
+        "c_text": "Call Itishree Mishra and ask about the exam results.",
+        "pehchaan_text": "Call Itishree Mishra and ask about the exam results."
+      },
+      {
+        "clip": "s151",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to meet Gopikrishnan near Habsiguda at 7 PM.",
+        "c_text": "Remind me to meet Gopi Krishna near Habsiguda at 19:00.",
+        "pehchaan_text": "Remind me to meet Gopikrishnan Habsiguda at 7 PM."
+      },
+      {
+        "clip": "s152",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "entity_miss",
+        "pehchaan": "ok",
+        "said": "Ask Sasmita Pattnaik to send the photos tonight.",
+        "c_text": "Ask Sasmita Patnaik to send the photos tonight.",
+        "pehchaan_text": "Ask Sasmita Pattnaik to send the photos tonight."
+      },
+      {
+        "clip": "s153",
+        "audio": "phone",
+        "category": "in_kb",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Remind me to wish Subhashis Chattopadhyay for Durga Puja.",
+        "c_text": "Remind me to wish Subhashis Chatopadhyay for Durga Puja.",
+        "pehchaan_text": "Remind me to wish Subhashis Chattopadhyay for Durga Puja."
+      },
+      {
+        "clip": "s154",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_behaviour",
+        "pehchaan": "ok",
+        "said": "Tell Swathi the college reunion is on Saturday.",
+        "c_text": "Tell Swathi the college reunion is on Saturday.",
+        "pehchaan_text": "Tell Swathi the college reunion is on Saturday."
+      },
+      {
+        "clip": "s156",
+        "audio": "phone",
+        "category": "ambiguous",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Remind me to call Anjali tomorrow.",
+        "c_text": "Remind me to call Anjali tomorrow.",
+        "pehchaan_text": "Remind me to call Anjali tomorrow."
+      },
+      {
+        "clip": "s157",
+        "audio": "phone",
+        "category": "stale_default",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Ask my driver to bring the cab to Koramangala at 9 AM.",
+        "c_text": "Ask my driver to bring the cab to Koramangala at 09:00.",
+        "pehchaan_text": "Ask my driver to bring the cab to Koramangala at 9 AM."
+      },
+      {
+        "clip": "s158",
+        "audio": "phone",
+        "category": "stale_default",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Ask my accountant whether the income tax refund has come.",
+        "c_text": "Ask my accountant whether the income tax refund has come.",
+        "pehchaan_text": "Ask my accountant whether the income tax refund has come."
+      },
+      {
+        "clip": "s161",
+        "audio": "phone",
+        "category": "reference",
+        "result": "loss",
+        "c": "wrong_target",
+        "pehchaan": "ok",
+        "said": "Ask my cousin to pick me up from the station.",
+        "c_text": "Ask my cousin to pick me up from the station.",
+        "pehchaan_text": "Ask my cousin to pick me up from the station."
+      },
+      {
+        "clip": "s162",
+        "audio": "phone",
+        "category": "context_mismatch",
+        "result": "loss",
+        "c": "missed_clarification",
+        "pehchaan": "ok",
+        "said": "Order dinner from Hotel Subramanian tonight.",
+        "c_text": "Order dinner from Hotel Subramanian tonight.",
+        "pehchaan_text": "Order dinner from Hotel Subramanian tonight."
       }
     ]
   }

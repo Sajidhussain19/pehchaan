@@ -1,0 +1,47 @@
+# About 600 common Indian first names (written fresh for this project), across regions and communities.
+# Used by Module 8's UNFAMILIAR-NAME GUARD: if the heard text is itself a well-formed Indian name that is
+# NOT one of the user's KB names/aliases (e.g. "Sravanthi" when the contact is "Sravani", or "Rohan" when
+# the contact is "Rohit"), it may simply be a DIFFERENT person, so we never silently replace it.
+aarav aarti aashish abhay abhijit abhinav abhishek aditi aditya ajay ajit akash akhil akshay alok amar amit
+amitabh amol amrita anand anant ananya anil anirban anita anjana ankit ankita anshul anu anupam anupama
+anurag anushka aparna archana arjun arnav arpita arun aruna arvind asha ashok ashwin atul avinash ayaan
+ayush babita balaji balu bharat bharath bharati bhaskar bhavana bhavya bhushan bindu bipin brijesh chandan
+chandra chandrika chetan chirag chitra damodar darshan deepa deepak deepika dev devansh devendra devi dhanush
+dharmendra dhruv dilip dinesh divya durga eshwar ganesh gaurav gautam geeta geetha girish gita gopal
+govind gowri gunjan gurmeet hari haritha harish harsh harsha hema hemant himanshu indira indu ishaan ishita
+jagdish jai janaki jaya jayant jayesh jeevan jitendra jyoti kailash kalpana kamal kamala kamini kanika
+karan kartik kavya keshav kiran kishore komal krishna kriti kumar kunal lakshman lalit lata latha leela
+madhav madhavi madhu mahesh mala malini mamta manish manisha manoj mansi meena meera megha mehul mihir
+mohan mohini mukesh murali nagesh namita nandini narayan narendra naresh naveen navya neel neelam neeraj
+neha nidhi nikhil nikita nilesh nirmala nisha nitin nitya padma pallavi pankaj parth parvati pavan pavani
+payal pooja prabhu pradeep prakash pramod pranit prasad prashant pratap prateek praveen preeti prem priya
+priyanka puja radha raghav rahul raj rajan rajat rajeev rajendra rajini rakesh ram rama raman ramesh rani
+ranjit rashmi ratan ravindra rekha renu reshma revathi richa rishi ritu rohan rohini roshan ruchi rupa
+sachin sagar sahil sameer sandeep sangeeta sanjay sanjana santosh sapna saranya sarita saroja satish savita
+seema shalini shankar shanti sharad sharmila shashi sheela shilpa shiva shobha shreya shruti shubham
+shweta siddhi smita sneha sonal sonia sravanthi sridhar srikanth srinath subhash sudha sudhir suhas sujata
+sujit sukanya suman sumit sunil sunita supriya suraj surekha suresh surya sushil sushma swapna tanvi tanya
+tarun tejas tejaswini uday uma umesh usha vaibhav vandana varun vasanth vasudha veena venkat vidya vijay
+vikas vikram vimal vinay vineeta vinod vipin vishal vivek yamini yash yogesh yuvraj
+aishwarya akshata alka amala ambika amrutha anagha anvesh aravind arundhati ashwini bala balaram bhanu
+bhargav bhargavi chaitra chandini charan charitha deepthi devika dhanya dheeraj dhanalakshmi ganga gayathri
+goutham guru haripriya hemalatha himaja induja jagadeesh janardhan jayashree jhansi kalyan kalyani kamakshi
+karthik kasturi kaveri keerthana kishan kousalya krishnaveni kumari lahari lavanya lokesh madhuri mahalakshmi
+manasa manjula mounika nagaraju nagarjun nagendra naina narasimha neelima padmaja pallavi prasanna pratibha
+pushpa raghavendra rajasekhar rajeswari ramya ranjani rathna revanth rohith sahithi sailaja sandhya sanjeev
+sarala saraswathi sasikala satya seetha shanmukh shirisha sindhu sireesha soumya sreeja sridevi srilatha
+srinidhi sriram sudheer sujatha suneetha sunitha swaroop tirupathi uday upendra vamsi vani varalakshmi
+varsha vasavi venkatesh vennela vijaya vinitha yamuna yasaswini
+aadil aamir abbas abdul adnan afzal ahmed aiman akbar alia amaan amina anwar arif arshad asad asif asim
+ayesha azhar aziz bilal danish farah farhan faisal fatima feroz ghazala hamid haris hassan hina huma
+imran irfan ishaq jamal javed junaid kabir kareem khalid lubna mahmood majid mariam mehboob mehnaz mohsin
+mumtaz munawar nadeem nafisa naseem nasreen nazia noor parveen rahim rashid razia rehan rizwan rubina saba
+sadiq saeed sajid salim salma sameena sana shabana shafi shahid shakeel shamim shazia sohail sultana tahir
+tanveer tariq yasmin yusuf zaheer zainab zara zeeshan zubeida
+abraham agnes albert alice alwyn angela anita annie benny bindhu celine christy daisy david dennis elsa
+francis george gracy jacob james jenny jerry jessy jijo jinu jobin john johnson jolly joseph joy justin
+lissy mathew merin nancy paul philip reena reji roy rosamma sabu saji santhosh sebastian shibu shiny simi
+sonia stephen sunny teena thomas tintu tom vinu wilson xavier
+amandeep amrit baljit balwinder daljit gagan gurdeep gurjit gurleen harbhajan harman harpreet jasleen jaspreet
+kirpal kuldeep lakhwinder mandeep manjit navdeep navneet parminder prabhjot rajinder ranbir simran sukhdeep
+sukhpreet tejinder

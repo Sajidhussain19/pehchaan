@@ -41,6 +41,9 @@ class Candidate(BaseModel):
     phonetic: float  # sound similarity of the best-matching form
     fuzzy: float  # spelling similarity of the best-matching form
     reasons: list[str]
+    # The KB surface that matched, as the user would write it ("Selvan", "Harshit", "Kukatpally").
+    # Module 8 writes THIS back into the transcript, so an alias the speaker used is kept.
+    form: str = ""
 
 
 class Span(BaseModel):
@@ -51,6 +54,7 @@ class Span(BaseModel):
     type_hint: str | None
     candidates: list[Candidate]
     margin: float  # top1 score - top2 score (1.0 if only one candidate)
+    all_common: bool = False  # every word is common English ("ask if", "a bit"): a weak name signal
 
 
 @dataclass(frozen=True)
@@ -59,6 +63,7 @@ class Form:
     text: str  # e.g. "venkataramana"
     key: str  # indian_phonetic_key(text)
     entity_type: str
+    display: str  # how to write it: the original surface, or a title-cased derived form ("Harshit")
 
 
 def _strip_honorifics(words: list[str]) -> list[str]:
@@ -75,21 +80,21 @@ def form_index() -> tuple[list[Form], dict[str, list[int]]]:
     forms: list[Form] = []
     seen = set()
     for e in load_kb():
-        texts = set()
+        texts: dict[str, str] = {}  # normalised form -> how to display it
         for surface in (e.name, *e.aliases):
             words = normalise(surface).split()
-            texts.add(" ".join(words))
+            texts.setdefault(" ".join(words), surface)  # full name/alias: keep the original spelling
             bare = _strip_honorifics(words)
             if bare:
-                texts.add(" ".join(bare))
+                texts.setdefault(" ".join(bare), " ".join(bare).title())
                 if e.type == "person":
-                    texts.add(bare[0])  # first name alone: "Harshit"
+                    texts.setdefault(bare[0], bare[0].title())  # first name alone: "Harshit"
                     if len(bare) > 2:
-                        texts.add(f"{bare[0]} {bare[-1]}")  # first + surname: "Bibhuti Sahoo"
-        for t in texts:
+                        texts.setdefault(f"{bare[0]} {bare[-1]}", f"{bare[0]} {bare[-1]}".title())  # "Bibhuti Sahoo"
+        for t, display in texts.items():
             if t and (e.id, t) not in seen:
                 seen.add((e.id, t))
-                forms.append(Form(e.id, t, indian_phonetic_key(t), e.type))
+                forms.append(Form(e.id, t, indian_phonetic_key(t), e.type, display))
     by_metaphone: dict[str, list[int]] = {}
     for idx, f in enumerate(forms):
         for code in metaphone_keys(f.text):
@@ -161,12 +166,12 @@ def _score_name_span(span: RawSpan, w: MatchWeights) -> list[Candidate]:
             continue  # tiny forms ("Sid", "Sai", "Mou") only match exactly: "said" is not "Sid"
         result = score_form(span, span_text, span_key, form, w)
         if form.entity_id not in best or result[0] > best[form.entity_id][0]:
-            best[form.entity_id] = (*result, form.text)
+            best[form.entity_id] = (*result, form.text, form.display)
 
     ranked = sorted(best.items(), key=lambda kv: kv[1][0], reverse=True)[: w.top_k]
     return [Candidate(entity_id=eid, name=get_by_id(eid).name, score=round(s, 3), phonetic=round(p, 3),
-                      fuzzy=round(f, 3), reasons=[f"matches form '{form_text}'", *r])
-            for eid, (s, p, f, r, form_text) in ranked]
+                      fuzzy=round(f, 3), reasons=[f"matches form '{form_text}'", *r], form=display)
+            for eid, (s, p, f, r, form_text, display) in ranked]
 
 
 def _overlaps(a: Span, b: Span) -> bool:
@@ -196,7 +201,8 @@ def find_candidates(transcript: str, weights: MatchWeights = DEFAULT) -> list[Sp
         cands[0].reasons.extend(raw.features)
         margin = cands[0].score - (cands[1].score if len(cands) > 1 else 0.0)
         scored.append(Span(start=raw.start, end=raw.end, heard_text=transcript[raw.start:raw.end], kind="name",
-                           type_hint=raw.type_hint, candidates=cands, margin=round(margin, 3)))
+                           type_hint=raw.type_hint, candidates=cands, margin=round(margin, 3),
+                           all_common=raw.all_common))
     # Ties go to the longer span ("Thirumalai Selvan" beats "Selvan" at equal score).
     for span in sorted(scored, key=lambda s: (s.candidates[0].score, s.end - s.start), reverse=True):
         if not any(_overlaps(span, k) for k in kept):

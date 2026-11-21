@@ -38,6 +38,9 @@ def normalise_time(text: str | None) -> str | None:
     elif m := re.search(r"\b(\d{1,2})\s*(am|pm)?\b(?!\s*(?:th|st|nd|rd|minutes|hours))", t):
         # A bare number like "the 10th" or "in 10 minutes" is NOT a clock time (excluded above).
         hour, minute = int(m.group(1)), 0
+    elif m := re.search(rf"\b({'|'.join(NUMBER_WORDS)})(?:\s+({'|'.join(MINUTE_WORDS)}))?\s+(am|pm|baje|oclock|o clock)\b", t):
+        # A number word right before am/pm/baje is the time ("four p.m."), not an earlier "two cups".
+        hour, minute = NUMBER_WORDS[m.group(1)], MINUTE_WORDS.get(m.group(2) or "", 0)
     else:
         for word, value in NUMBER_WORDS.items():
             if re.search(rf"\b{word}\b", t) and not re.search(rf"\bevery {word}\b", t):

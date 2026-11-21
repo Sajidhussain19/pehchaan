@@ -83,6 +83,18 @@ def common_words() -> frozenset[str]:
     return frozenset(words)
 
 
+def is_common(word: str) -> bool:
+    """A common English (or everyday Hindi/Telugu) word, also allowing simple inflections:
+    "used" (use), "asked" (ask), "calling" (call), "calls" (call), "tried" (try)."""
+    common = common_words()
+    if word in common or word in STOPWORDS:
+        return True
+    for suffix, repl in (("ing", ""), ("ing", "e"), ("ed", ""), ("ed", "e"), ("ied", "y"), ("es", ""), ("s", "")):
+        if word.endswith(suffix) and len(word) > len(suffix) + 2 and word[: -len(suffix)] + repl in common:
+            return True
+    return False
+
+
 # Letters plus the Devanagari and Telugu blocks (so vowel signs stay inside their word),
 # plus an optional possessive "'s".
 _TOKEN_RE = re.compile(r"[A-Za-z0-9ऀ-ॿఀ-౿]+(?:'[A-Za-z]+)?")
@@ -132,7 +144,7 @@ def name_spans(tokens: list[Token], max_tokens: int = 4) -> list[RawSpan]:
             hint, notes = _type_hint(tokens, i, j)
             # Capitalised words that are NOT just the first word of the sentence.
             capitalised = all(t.text[:1].isupper() for t in chunk) and not (i == 0 and j == 1)
-            all_common = all(n in common or n in STOPWORDS for n in norms)
+            all_common = all(is_common(n) for n in norms)
             if capitalised:
                 notes.append("capitalised")
             if all_common:

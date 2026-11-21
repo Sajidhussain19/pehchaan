@@ -1,6 +1,9 @@
 # data/results — Results
 
-Transcripts and evaluation reports. Written by **Modules 4-5**.
+Transcripts, decisions and evaluation reports. Written by **Modules 4, 5 and 8**.
+
+- `pehchaan_{audio}_{version}.json`: Module 8 Pehchaan decisions (same `Decision` format as baseline (c)).
+- `pehchaan_llm_cache.json`: cached answers of Pehchaan's small LLM fallback (key = model + instructions + prompt).
 
 - `llm_baseline_{audio}_{model}.json`: Module 5 baseline (c) decisions, one `Decision` per clip id (cached).
 - `report_{split}_{audio}.md/.json`: Module 5 evaluation reports (`scripts/evaluate.py`).
