@@ -1,6 +1,6 @@
 # Pehchaan evaluation: dev split, audio = all
 
-Generated 2026-11-21T14:50:28. Systems: (a) plain STT, (b) STT + hints, (c) LLM baseline. Not available yet: Pehchaan.
+Generated 2026-11-21T14:53:15. Systems: (a) plain STT, (b) STT + hints, (c) LLM baseline. Not available yet: Pehchaan.
 
 Every number is shown with raw counts. A clarify decision takes no action until the user answers.
 

@@ -129,8 +129,8 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 3. Test set builder  (DONE)
 4. Baseline transcription: baselines (a) and (b)  (DONE)
 5. Evaluation, including the strong LLM baseline (c) and win/tie/loss reporting  (DONE)
-6. Entity span detection
-7. Matching engine (phonetic + fuzzy + confidence)
+6. Entity span detection  (DONE, with Module 7)
+7. Matching engine (phonetic + fuzzy + confidence)  (DONE)
 8. LangGraph correction pipeline
 9. Remind action + API (real stored reminders, learning with consent, latency/cost per call)
 10. Demo UI + live mic + AWS deploy

@@ -557,3 +557,116 @@ become training data. The next test score is then optimistic, because we fitted 
   never scored, because we don't guess AM or PM on anyone's behalf.
 - **Have you looked at the test split?** Not yet. `data/results/test_runs.log` doesn't exist. All numbers here are dev.
 - **How much did this cost?** About $0.10 for baseline (c) on dev, plus a few cents of smoke tests.
+
+---
+
+## Modules 6+7 — Candidate spans + phonetic matching (no LLM, no decisions)
+
+### What we built
+- `app/match/translit.py`: Devanagari and Telugu script -> Latin letters ("रवी तेजक" -> "ravii tejak").
+- `app/match/phonetic.py`: `normalise`, `indian_phonetic_key` (Indian-English sound rules), Double Metaphone
+  keys (the `metaphone` library), and `phonetic_similarity` (0-1).
+- `app/match/spans.py`: tokens with character positions; every 1-4 word span with context features;
+  personal-reference phrases.
+- `app/match/candidates.py`: scores KB entities per span, keeps the top 3, removes overlapping spans.
+- `app/match/config.py`: every weight in one place: `INITIAL`, then `TUNED` on dev.
+- `data/lexicon/common_english_words.txt`: about 3,300 common English words, plus everyday Hindi/Telugu words in Latin script.
+- `scripts/inspect_candidates.py` and `scripts/eval_candidates.py`, which runs on the dev split only.
+- `tests/test_match.py`: 26 tests. The whole suite is 118 tests.
+
+### How it works, step by step
+1. **Tokenise** the transcript, remembering each word's character position, so every span can point back into the text.
+   Indian-script words are transliterated first.
+2. **Personal references** are found by exact phrase rules: "my <role>" (my doctor, my son's teacher),
+   "call/ask/tell **the** <role>" (the electrician), family words (Amma, Nanna, Akka, Bhaiya…), "the usual <category>"
+   and "same <x> as last time". Each one gets **all** fitting entities from the loader: "my doctor" gives
+   3 doctors, with the default marked. These spans always keep their words.
+3. **Name spans:** every run of 1-4 words, skipping runs made only of tiny words like "the" or "to". Each span gets context
+   features: a place word before it ("in", "at", "from", "nunchi") hints place/business; "call", "tell", "Dr",
+   "garu", "anna", "here" hint person; capitalisation; and whether every word is common English.
+4. **Forms:** every way a KB entity can be written. That's the name, the aliases, the name without honorifics
+   ("Venkataramana"), and for people the first name and first + surname. About 1,500 forms in all.
+5. **Shortlist, then score:** a fast RapidFuzz search on sound keys picks about 25 forms, plus any form with the
+   *same* Double Metaphone code. Each is then scored:
+   `base = 0.45·sound + 0.55·spelling`, minus a length penalty, minus a common-English penalty (unless the text is
+   exactly that name), plus a capital bonus. The best form per entity counts, and the top 3 entities are kept.
+6. **Non-max suppression:** sort the spans by best score, keep a span only if it doesn't overlap one already kept,
+   and on equal scores prefer the longer span.
+7. **Output:** `Span{start, end, heard_text, kind, type_hint, candidates[top 3: entity, score, sound, spelling, reasons], margin}`.
+   About **7-9 ms per sentence** on average and 20-40 ms at worst, with no LLM.
+
+### The sound rules (examples)
+Spaces are removed first, because names get split into English words ("Aunt Johnny" = "auntjohnny"). Then:
+- **th→t, dh→d, bh→b, ph→f, kh→k, gh→g:** "the roomer" ~ "Thirumalai", "Madhapur" ~ "Madapur"
+- **hard c / ck / q → k:** "cook at" ~ "Kukat", "Cockatiel" ~ "Kakatiya", "Qureshi" ~ "Kureshi"
+- **w→v, z→j, sh→s:** "Warrier" ~ "Varrier", "Zehra" ~ "Jehra", "Sharma" ~ "Sarma"
+- **aa→a, ee/ii→i, oo/uu→u, final y→i:** "Keerthi" ~ "Kirthi", "the roomer" ~ "tiru", "Johnny" ~ "Joni"
+- **silent h after a vowel, trailing h, double letters → single:** "Shah" ~ "Sha", "Kukatpally" ~ "Kukatpali"
+
+Double Metaphone is a classic English sound code and gives a second opinion: "cook at polly" and "Kukatpally" both
+become **KKTPL**. Our Indian key knows Indian spellings; Metaphone knows English spelling habits. We blend them 60/40.
+
+### Bugs the dev evaluation caught (and what we changed)
+- **"The cook at the polling booth" became a reference to the user's cook.** "the <role>" now only counts
+  after a request verb ("Call **the electrician**"). "my <role>" always counts.
+- **"said" → "Sid"** (an alias of Siddharth) scored 0.78. Forms of 3 letters or fewer now match only exactly, and
+  the common-English penalty applies in full unless the text spells that exact name.
+- **"father's" → Fr. Anthony Raj, "Doctor" → Dr. Raju.** The alias "Father Anthony Raj" had produced the first name
+  "father". "doctor", "father" and "sister" are now stripped as honorifics.
+- **Hindi "कल तक" (*kal tak*, "by tomorrow") → Cuttack (0.82).** Added everyday Hindi/Telugu words to the
+  common-word list.
+- **Telugu "నాన్న" ("naanna") missed the family label "Nanna".** Family words are now compared by sound key, and
+  "Amas" (STT's version of "Amma's") also matches.
+After these fixes, high-confidence wrong candidates on in-KB dev clips went from **15/79 to 0/60**, and reference
+recall from **10/14 to 13/14**.
+
+### Tuning, honestly (dev only)
+| | INITIAL weights | TUNED weights |
+|---|---|---|
+| recall@1 / recall@3 (all KB names) | 64/64 / 64/64 | 64/64 / 64/64 |
+| recall@1 / recall@3 (misheard names only) | 23/23 / 23/23 | 23/23 / 23/23 |
+| reference recall | 13/14 | 13/14 |
+| false-alarm clips (≥ 0.80 on keep-type clips) | 2/34 (both "Sravanthi" -> Sravani) | 2/34 |
+| margin of correct top candidate (mean) | 0.26 | **0.33** |
+| best wrong score on keep-type clips (mean) | 0.56 | **0.42** |
+
+**Recall on dev was already 100%,** so tuning couldn't improve it. The grid was decided by *separation*: right
+answers stand out more, and clips with no KB names look less tempting. Both make Module 8's thresholds safer.
+What changed:
+- sound 0.6 → 0.45 and spelling 0.4 → 0.55, because sound alone flattered wrong names
+- length penalty 0.3 → 0.5
+- type bonus 0.08 → 0
+- common penalty 0.25 → 0.15
+- minimum span score 0.55 → 0.6
+
+**Caveat we are not hiding.** The dev split has only 23 misheard names, and all were found. That's too few to tune
+recall. While inspecting the 5 dramatic mistakes (as asked), we saw that 4 of them are **test** clips. There, the tuned
+weights drop "sweetie" → Swati and "a bit" → Abids below the 0.6 span cut-off, and Anjani falls to #3 behind
+"Anthony". We did **not** change anything because of that, since it would be tuning on test. The right fix is more hard
+mishearings in **dev** (new TTS sentences), so future tuning can see them.
+
+### Key concepts
+- **Span / n-gram:** a run of n consecutive words. We try n = 1-4, because names get split.
+- **Phonetic key:** a spelling-independent code for how something sounds.
+- **Double Metaphone:** a well-known phonetic algorithm for English spelling. "Double" means it can give two codes.
+- **RapidFuzz ratio:** a 0-100 string similarity based on edit distance (how many edits turn one string into the other). It's very fast.
+- **Transliteration:** writing words from one script in another (Devanagari -> Latin), not translating them.
+- **Recall@k:** is the right answer among the top k candidates?
+- **False alarm:** a confident candidate where nothing should be linked, i.e. an over-correction risk.
+- **Margin:** best score minus second-best. A small margin means two candidates are too close to call, so Module 8 should ask.
+- **Non-max suppression (NMS):** keep the best of overlapping guesses and drop the rest (a term borrowed from object detection).
+
+### Questions a judge might ask
+- **Why not just ask an LLM to find the names?** It costs ~1.5 s and money per call, and baseline (c) shows it
+  guesses. This layer finds candidates in about 8 ms with no API call, and shows *why* (sound, spelling, context).
+  Module 8 uses an LLM only for the unsure cases.
+- **How do you handle "Kukatpally" → "cook at Polly"?** Spans cross word boundaries and spaces are removed before
+  comparing sounds. "cook at polly" and "Kukatpally" even get the same Metaphone code.
+- **What stops "lucky" or "the cook" from becoming a contact?** A common-English penalty, a length penalty, exact-only
+  matching for very short names, and "the <role>" only counting after a request verb. Control sentences produce no confident candidates.
+- **What about Hindi or Telugu output from speech-to-text?** A built-in transliteration table turns it into Latin
+  letters first, so "कल तक" can be recognised as ordinary Hindi ("by tomorrow"), not Cuttack.
+- **Are your recall numbers too good?** On dev, yes, partly. Many names were transcribed correctly, so we also report
+  the 23 *misheard* ones separately. And we say plainly that dev has too few hard mishearings to tune recall.
+- **Did you tune on the test set?** No. `eval_candidates.py` only reads dev. We looked at 4 test clips only to show
+  the dramatic examples, and changed nothing because of them.

@@ -19,3 +19,6 @@ soundfile==0.14.0          # read/write WAV files (no ffmpeg needed)
 # --- Module 5: evaluation ---
 jiwer==4.0.0               # word error rate (WER)
 rapidfuzz==3.14.6          # installed by jiwer; pinned because Module 7 will use it for fuzzy matching
+
+# --- Modules 6+7: candidate matching ---
+metaphone==0.6             # Double Metaphone phonetic keys (BSD licence)

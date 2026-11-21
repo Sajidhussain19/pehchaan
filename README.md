@@ -164,7 +164,23 @@ python scripts/build_audio.py      # (re)build audio; existing clips are skipped
 ```
 
 ## How it works
-*Coming in later modules (6-9).*
+
+**Step 1: candidate spans + phonetic matching (Modules 6+7, no LLM, ~8 ms per sentence).**
+- **Spans:** every 1-4 word chunk of the transcript is compared by **sound** to every way a KB entity can be written.
+  Speech-to-text splits names into English words: "Aunt Johnny" (Anjani), "a bit" (Abids), "the roomer life" (Thirumalai).
+- **Sound keys:** Indian-English rules (th→t, aa→a, w→v, sh→s…) plus Double Metaphone ("cook at polly" and
+  "Kukatpally" both become `KKTPL`).
+- **Indian scripts:** code-mixed lines that STT wrote in Devanagari or Telugu are transliterated first.
+- **Personal references** ("my doctor", "Amma", "the usual pharmacy") are found by phrase rules, with every fitting entity attached.
+- **Protection:** common-English and length penalties keep "lucky", "the cook" and "said" away from contacts.
+- **Output:** each span with its top 3 candidates, scores, the margin between the top two, and the reasons.
+
+```powershell
+python scripts/inspect_candidates.py "Call Aunt Johnny and ask if tuition is on"
+python scripts/eval_candidates.py            # dev split: recall@1/@3, false alarms, speed
+```
+
+**Step 2: decisions (resolve / ask / keep).** *Coming in Module 8.*
 
 ## Baselines (Module 4)
 
