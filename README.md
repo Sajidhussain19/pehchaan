@@ -388,7 +388,50 @@ python scripts/demo_flow.py --compare    # + baseline (c) on the book-B sentence
 ```
 
 The held-out clips where Pehchaan and (c) diverge, plus one honest Pehchaan failure, are in
-`data/results/demo_candidates.md`. *The demo page with live mic comes in Module 10.*
+`data/results/demo_candidates.md`.
 
-## Deployment (AWS EC2)
-*Coming in Module 10.*
+## Run the demo
+
+```powershell
+.\venv\Scripts\Activate.ps1
+uvicorn app.main:app --port 8000
+```
+
+Open **http://localhost:8000** in Chrome or Edge. The page (`web/`, plain HTML + CSS + JavaScript, no build step) has:
+
+- **Header:**
+  - the contact book (*Full contacts*, *A: one doctor*, *B: two doctors, no default*)
+  - "Compare with strong AI" (on by default)
+  - the **Scoreboard** tab
+  - **▶ Demo mode** (the doctor story, one Next click per step)
+- **Left, three ways in:**
+  - demo clips from the held-out run, each labelled with its failure type, plus one labelled *Known failure*, with ▶ Play and a clean/phone switch
+  - **Tap to record** (live mic, at most 15 s)
+  - a text box
+- **Middle:**
+  - *Strong AI* vs *Pehchaan*: the transcript with names highlighted, *heard → resolved*, a confidence chip, the reason (click), the decision in plain words, and speech-to-text and decision time, AI call or not, and cost
+  - for test-set clips, a verdict in words (✓ Correct / ✗ Wrong target / ✗ Should have asked …) from the same scoring code as the evaluation
+  - when Pehchaan asks, candidate cards with **Use this time** / **Always use for '…'**
+- **Right:** the real saved reminders (click to open), and **Reset demo**.
+
+The microphone works on **localhost** or **https://** only (a browser rule). The public demo runs behind CloudFront
+for HTTPS: see [DEPLOY.md](DEPLOY.md). A 2-minute backup recording script is in [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
+
+**Protection for a public link:**
+- `POST /api/process` is limited to 20 requests per 10 minutes per visitor.
+- OpenAI spend is capped at $2/day (tracked in SQLite).
+- Optional `DEMO_KEY` password.
+- Requests from other websites are refused.
+
+The OpenAI key never reaches the browser.
+
+## Live demo link
+
+**https://&lt;to be added after deployment&gt;.cloudfront.net** (see [DEPLOY.md](DEPLOY.md): EC2 t3.small in us-west-2
+behind CloudFront). If it is down, run it locally as above; the mic works on localhost.
+
+## Deployment (AWS)
+
+Docker image (`Dockerfile`, non-root, port 8000; the key is passed at run time and is never in the image) on EC2,
+with CloudFront in front for HTTPS. Step-by-step: [DEPLOY.md](DEPLOY.md). Update after a push: `./deploy/update.sh`
+on the server.

@@ -57,6 +57,23 @@ class Settings(BaseSettings):
     # --- App info ---
     project_name: str = "Pehchaan"
 
+    # --- Public demo protection (Module 10) ---
+    # Optional shared password for the public demo. If set, the page asks for it once and sends it
+    # in the X-Demo-Key header; every changing /api request without it is refused.
+    demo_key: SecretStr | None = None
+    daily_budget_usd: float = 2.0  # stop calling OpenAI for the rest of the (UTC) day after this much spend
+    rate_limit_requests: int = 20  # per client IP...
+    rate_limit_window_seconds: int = 600  # ...per 10 minutes, on POST /api/process
+    # Other origins (scheme://host) allowed to call the API, comma-separated, e.g. the CloudFront URL.
+    # The app's own origin is always allowed; everything else is refused.
+    allowed_origins: str = ""
+    # Behind CloudFront the client's IP is in X-Forwarded-For. Only trust that header when we really are
+    # behind a proxy (TRUST_PROXY=true on the server), otherwise anyone could fake their IP.
+    trust_proxy: bool = False
+    # Where runtime state lives (reminders DB, learned preferences of demo books). Default: data/ and
+    # data/kb/books/. In Docker set STATE_DIR=/app/state and mount a volume there, so it survives restarts.
+    state_dir: Path | None = None
+
     # Tell pydantic-settings where the .env file is and how to read it.
     # extra="ignore": if .env has variables we don't define here, skip them quietly.
     model_config = SettingsConfigDict(

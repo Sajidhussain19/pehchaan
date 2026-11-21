@@ -10,6 +10,8 @@ WHAT: GET  /api/books                     contact books with a one-line descript
       POST /api/preferences/reset?book=B  forget what a book learned (for repeated demos)
       GET  /api/reminders, GET /api/reminders/{id}, DELETE /api/reminders
       GET  /api/metrics                   summary of the FINAL held-out test report (for the scoreboard)
+      GET  /api/config                    what the page needs to know (demo key required? limits)
+      Guards (Module 10, app/api/guard.py): per-IP rate limit and a daily OpenAI budget on /api/process.
 WHY:  This is what the demo page (Module 10) and the demo script talk to. Each endpoint only checks its
       inputs and calls app/api/flow.py, so the logic stays testable without HTTP.
 """
@@ -17,16 +19,21 @@ WHY:  This is what the demo page (Module 10) and the demo script talk to. Each e
 import json
 import tempfile
 import time
+from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, Path as PathParam, Query, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Path as PathParam, Query, Request, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 from app.api import audio as audio_io
-from app.api import flow
-from app.eval.runs import load_transcripts
+from app.api import flow, guard
+from app.config import settings
+from app.eval.decision import Decision
+from app.eval.metrics import clip_outcome
+from app.eval.runs import load_decision_objects, load_transcripts
+from app.testset.validate import load_realspeech, load_testset
 from app.kb.loader import DEFAULT_BOOK, available_books
 from app.stt.baseline import RESULTS_DIR
 from app.stt.transcribe import get_client, transcribe
@@ -50,6 +57,28 @@ class _LazyOpenAI:
 def openai_client():
     """FastAPI dependency: tests replace it with a fake client (app.dependency_overrides)."""
     return _LazyOpenAI()
+
+
+# How each evaluation outcome is said on screen (in words, never colour alone).
+VERDICT_WORDS = {"ok": "✓ Correct", "wrong_target": "✗ Wrong target", "missed_clarification": "✗ Should have asked",
+                 "unnecessary_question": "✗ Asked when it didn't need to",
+                 "over_corrected": "✗ Changed a name that should stay", "wrong_behaviour": "✗ Wrong decision",
+                 "wrong_action": "✗ Reminder details wrong", "entity_miss": "~ Right decision, name not fixed in text"}
+
+
+@lru_cache(maxsize=1)
+def _ground_truth() -> dict:
+    gt = {s.id: s for s in load_testset()}
+    gt.update({c.id: c for c in load_realspeech()})
+    return gt
+
+
+def _verdict(gt, decision: dict | None) -> dict | None:
+    """Score one system on one clip with the SAME function the evaluation uses (app/eval/metrics.py)."""
+    if gt is None or decision is None:
+        return None
+    outcome = clip_outcome(gt, decision["output_transcript"], Decision.model_validate(decision))
+    return {"outcome": outcome, "label": VERDICT_WORDS.get(outcome, outcome), "ok": outcome == "ok"}
 
 
 def _check_book(book: str) -> str:
@@ -77,10 +106,18 @@ def clip_audio(variant: str = PathParam(pattern=r"^(clean|phone|real)$"),
         raise HTTPException(exc.status, str(exc)) from exc
 
 
+@router.get("/api/config")
+def config() -> dict:
+    return {"demo_key_required": settings.demo_key is not None, "daily_budget_usd": settings.daily_budget_usd,
+            "rate_limit": f"{settings.rate_limit_requests} per {settings.rate_limit_window_seconds // 60} min",
+            "max_upload_mb": audio_io.MAX_UPLOAD_BYTES // (1024 * 1024), "max_seconds": audio_io.MAX_SECONDS}
+
+
 @router.post("/api/process")
-def process(file: UploadFile | None = File(None), clip_id: str | None = Form(None),
+def process(request: Request, file: UploadFile | None = File(None), clip_id: str | None = Form(None),
             variant: Literal["clean", "phone", "real"] = Form("clean"), text: str | None = Form(None),
             book: str = Form(DEFAULT_BOOK), compare: bool = Form(False), live_stt: bool = Form(False),
+            live_baseline: bool = Form(False),
             direction: Literal["outgoing", "incoming"] | None = Form(None), caller_contact_id: str | None = Form(None),
             client=Depends(openai_client)) -> dict:
     """Exactly one input: an uploaded recording, a clip (clip_id + variant), or plain text."""
@@ -88,6 +125,8 @@ def process(file: UploadFile | None = File(None), clip_id: str | None = Form(Non
     given = [name for name, v in (("file", file), ("clip_id", clip_id), ("text", text)) if v]
     if len(given) != 1:
         raise HTTPException(422, "send exactly one input: an audio file, a clip_id (+ variant), or text")
+    guard.check_rate(request)  # 429 if this visitor sent too many requests recently
+    guard.check_budget()  # 503 if today's OpenAI budget is used up
     t_start = time.perf_counter()
     stt = {"stt_ms": 0.0, "stt_cost_usd": 0.0, "stt_source": "none (text input)"}
     direction_used, caller = direction or "outgoing", caller_contact_id
@@ -123,16 +162,34 @@ def process(file: UploadFile | None = File(None), clip_id: str | None = Form(Non
     if not transcript:
         raise HTTPException(422, "speech-to-text heard nothing; please try again")
 
+    # For a clip whose transcript is the saved evaluation input, (c)'s saved evaluation answer is reused
+    # (same input -> same numbers as the report, $0). Mic and text input always run (c) live.
+    saved_c = None
+    if compare and clip is not None and stt["stt_source"].startswith("saved") and not live_baseline and book == DEFAULT_BOOK:
+        saved_c = load_decision_objects("llm_baseline", variant, settings.chat_model).get(clip_id)
     result = flow.process(transcript, book=book, direction=direction_used, caller=caller, client=client,
-                          compare=compare)
+                          compare=compare and saved_c is None)
+    if saved_c is not None:
+        result.update(baseline=saved_c.model_dump(), baseline_ms=saved_c.latency_ms, baseline_cost_usd=0.0)
     decision = result["decision"]
+    gt = _ground_truth().get(clip_id) if clip is not None and book == DEFAULT_BOOK else None
     total_ms = (time.perf_counter() - t_start) * 1000
+    guard.record_spend(stt["stt_cost_usd"] + decision["cost_usd"] + (result["baseline_cost_usd"] or 0))
     return {
         "input": given[0], "book": book, "clip": {"clip_id": clip_id, "variant": variant, "said": clip.get("text")}
         if clip else None, "direction": direction_used, "caller_contact_id": caller,
         "heard_transcript": transcript, "output_transcript": decision["output_transcript"],
         "spans": result["spans"], "decision": decision, "reminder": result["reminder"], "pending": result["pending"],
         "baseline": result["baseline"],
+        "baseline_source": None if not compare else ("saved from the final evaluation run" if saved_c is not None
+                                                     else "live GPT-4o-mini call"),
+        # Ground truth only for test-set clips on the evaluated (default) contact book.
+        "expected": {"behaviour": gt.expected_behaviour,
+                     "target_entity_id": getattr(getattr(gt, "expected_action", None), "target_entity_id", None)}
+        if gt is not None else None,
+        "verdict": {"pehchaan": _verdict(gt, decision), "baseline": _verdict(gt, result["baseline"])}
+        if gt is not None else None,
+        "names": _names_for(book, decision, result["baseline"]),
         "timings": {"stt_ms": stt["stt_ms"], "pehchaan_ms": result["pehchaan_ms"], "store_ms": result["store_ms"],
                     "baseline_ms": result["baseline_ms"], "total_ms": round(total_ms, 1)},
         "stt_source": stt["stt_source"], "used_llm": decision["used_llm"],
@@ -140,6 +197,23 @@ def process(file: UploadFile | None = File(None), clip_id: str | None = Form(Non
         "cost_usd": round(stt["stt_cost_usd"] + decision["cost_usd"], 6),
         "baseline_cost_usd": result["baseline_cost_usd"],
     }
+
+
+def _names_for(book: str, *decisions: dict | None) -> dict:
+    """{entity id: {name, role}} for every id the decisions mention, looked up in the same contact book,
+    so the page can say "Dr. Subramanian (dentist)" instead of "person_028"."""
+    from app.kb.loader import get_by_id, use_book
+    ids = set()
+    for d in decisions:
+        if d:
+            ids |= {e["resolved_entity_id"] for e in d["entities"] if e["resolved_entity_id"]}
+            ids |= set(d["clarify_candidates"]) | {d["action"]["target_entity_id"], d["action"]["place_entity_id"]}
+    out = {}
+    with use_book(book):
+        for eid in sorted(i for i in ids if i):
+            e = get_by_id(eid)
+            out[eid] = {"name": e.name, "role": flow.role_of(e)} if e else {"name": eid, "role": None}
+    return out
 
 
 def _speech_to_text(data: bytes, suffix: str, seconds: float | None, client) -> tuple[str, dict]:
@@ -162,11 +236,13 @@ class ClarifyAnswer(BaseModel):
 @router.post("/api/clarify/{pending_id}")
 def clarify(answer: ClarifyAnswer, pending_id: str = PathParam(pattern=r"^[0-9a-f]{16}$"),
             client=Depends(openai_client)) -> dict:
+    guard.check_budget()
     try:
         result = flow.answer(pending_id, answer.entity_id, answer.remember, client=client)
     except flow.FlowError as exc:
         raise HTTPException(exc.status, str(exc)) from exc
     d = result["decision"]
+    guard.record_spend(d["cost_usd"])
     return {"pending_id": pending_id, "remember": answer.remember, "saved_preference": result["saved_preference"],
             "heard_transcript": d["heard_transcript"], "output_transcript": d["output_transcript"],
             "spans": result["spans"], "decision": d, "reminder": result["reminder"], "pending": result["pending"],
@@ -210,7 +286,8 @@ def metrics() -> dict:
             "behaviour_accuracy", "time_accuracy", "no_llm_rate", "latency_ms_mean", "latency_ms_median",
             "cost_usd_mean")
     pick = lambda m: {k: m[k] for k in keep if k in m}  # noqa: E731
-    return {"label": "held-out TEST split, run once (tag final-eval-v1)", "split": report["split"],
+    return {"label": "Held-out TEST split, run once (tag final-eval-v1); repeated after one approved change with "
+                     "identical scores (final-eval-v1.1)", "split": report["split"],
             "overall": {s: pick(report["overall"][s]) for s in ("c", "pehchaan")},
             "per_audio": {a: {s: pick(m[s]) for s in ("c", "pehchaan") if s in m}
                           for a, m in report["per_audio"].items()},

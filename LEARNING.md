@@ -934,3 +934,90 @@ few readable lines.
   that contact book. "This time" saves nothing, and a reset endpoint clears it.
 - **How fast and cheap is one interaction?** Live, measured on a phone clip: speech-to-text ~2.3 s ($0.0002), Pehchaan
   59 ms ($0, no LLM), storing the reminder 18 ms. Baseline (c) on the same transcript: ~2.1 s ($0.00095).
+
+---
+
+## Module 10 — Demo UI, live mic, public-demo protection, deployment
+
+### Step 0: the approved change (disclosed)
+**A clue in the sentence now beats a saved preference.** Rule: clue → saved preference → default → ask.
+Before, after "Always use Dr. Subramanian for 'my doctor'", the sentence "call my doctor about my **fever**" also went
+to the dentist. Now "fever" picks the GP, and the reason says "beats your saved choice". This changed frozen logic, so we:
+1. got explicit approval,
+2. re-ran the final held-out evaluation once with `--final`: **all 366 decisions identical**, every score identical
+   (evaluation uses no saved preferences, so this was expected, and now it is proven),
+3. disclosed it in README ("Changes after final-eval-v1"), re-recorded the freeze fingerprint, and tagged `final-eval-v1.1`.
+
+Only latency changed: it is re-measured on every run, and the second run reused cached LLM answers, so
+Pehchaan's mean fell from 298 to 170 ms. Slides keep the first, more conservative number.
+
+### What we built
+- **`web/`**: the demo page. Plain HTML + CSS + JavaScript; no framework, no build step.
+  - **Header:** contact book, "Compare with strong AI", Live demo / Scoreboard tabs, ▶ Demo mode.
+  - **Left:** demo clips (▶ Play, clean/phone), **Tap to record** (max 15 s), a text box.
+  - **Middle:** what was said / heard; Pehchaan's question (when it asks); Strong AI vs Pehchaan cards with
+    highlighted names, *heard → resolved*, a confidence chip, the reason (click), the decision in plain words, timings,
+    an "AI call" / "No AI call" badge, cost, and for test-set clips a **verdict in words**.
+  - **Right:** saved reminders (click for details) and Reset demo.
+  - **Scoreboard:** the final held-out table with raw counts and "Better" / "Worse" in words, including the two rows
+    where Pehchaan is worse.
+- **Verdicts use the evaluation's own scoring code** (`clip_outcome` in `app/eval/metrics.py`), and demo clips reuse
+  the saved evaluation transcript and the strong AI's saved answer. So what the audience sees on a clip is exactly
+  what the scoreboard counted.
+- **`app/api/guard.py`**: per-IP rate limit, daily OpenAI budget (SQLite), optional `DEMO_KEY`, own-origin check.
+- **`Dockerfile`**, **`.dockerignore`**, **`DEPLOY.md`** (EC2 + CloudFront), **`deploy/update.sh`**, **`DEMO_SCRIPT.md`**.
+- Tests: `tests/test_web_guard.py` (the page and its assets, rate limit and spoofing, budget, demo key, origin),
+  plus 2 new decision tests. 156 tests in total.
+
+### How it was checked
+- In real Chrome (headless, driven by a script): every clip type, the clarify buttons, all 5 Demo-mode steps, the
+  reminder dialog, the scoreboard, and the error banner.
+- **The live mic, for real:** Chrome's fake-microphone option played a test-set WAV *into the microphone*. The page
+  recorded it with MediaRecorder (WebM, ~100 KB), uploaded it, and it went through live speech-to-text → Pehchaan →
+  a reminder.
+- The screenshots found three real bugs, all fixed:
+  - an empty error banner and the scoreboard showing on the demo tab (CSS `display` overrode `hidden`)
+  - "null" printed on the page
+  - the question panel was off-screen at 1280×800
+- Docker: this laptop's Docker can't reach pypi.org (TLS timeouts from inside containers; the host is fine). So we
+  built a test copy whose only change is installing from pre-downloaded Linux wheels. It ran as a non-root user, had
+  no `.env` inside, served the page and API, kept a reminder across a restart, and reported healthy.
+
+### Why the mic needs HTTPS (or localhost)
+Browsers treat the microphone as a **powerful feature**: a page may only ask for it in a **secure context**, which
+means `https://` or `http://localhost`. On plain `http://<some-ip>:8000`, `navigator.mediaDevices` doesn't exist at
+all, so the page shows a clear message instead. That's why the public demo goes behind **CloudFront**, which gives a
+free HTTPS address, while on the presenting laptop `http://localhost:8000` works as is.
+
+### Key concepts
+- **MediaRecorder:** the browser API that records the mic into a file (WebM/Opus in Chrome, MP4 in Safari).
+- **Secure context:** https or localhost; required for the mic.
+- **Rate limit (sliding window):** remember each visitor's recent request times; refuse once there are too many
+  within the last 10 minutes.
+- **Spend cap:** add up what each request actually cost; stop calling the paid API once today's total would pass the budget.
+- **Same-origin check:** a browser tells the server which website a request comes from (the `Origin` header). We
+  refuse changing requests from other websites, so nobody can embed our demo and spend our budget.
+- **X-Forwarded-For:** behind a proxy, the visitor's IP is in this header. CloudFront **appends** the real IP, so we
+  take the **last** entry; the first one can be faked by the visitor.
+- **CDN / CloudFront:** a worldwide network that sits in front of a server. Here it is used for its free HTTPS, with
+  caching switched off.
+- **Docker image / container / volume:** an image is a packaged app, a container is a running copy, and a volume is a
+  folder that outlives containers (our reminders).
+- **Non-root container:** the app runs as a normal user, so a bug can't take over the machine.
+- **Secrets at run time:** the key is passed with `--env-file` from a root-only file on the server. It is never in
+  git or in the image.
+
+### Questions a judge might ask
+- **Is the demo the same system as the numbers?** Yes. The clips replay the saved evaluation inputs and the strong
+  AI's saved answers, and the verdict comes from the evaluation's own scoring function. The decision code is
+  fingerprinted; the one later change was approved, disclosed, and the final run was repeated (identical scores).
+- **Why do you show where Pehchaan is worse?** Because it is. Over-correction (11 vs 3 of 70) and unnecessary questions
+  (15 of 198) are on the scoreboard, and the "Known failure" clip shows one live.
+- **Could someone run up your OpenAI bill?** 20 requests per 10 minutes per visitor, a $2/day global cap, an optional
+  demo key, and other websites are refused. The key never reaches the browser.
+- **Why no React?** One page, three files, no build step: it loads instantly, works offline-ish on localhost, and
+  every line can be explained.
+- **What if AWS fails during the demo?** `uvicorn` on the laptop and `http://localhost:8000`: the mic works on
+  localhost. As a last resort, the 2-minute recording from `DEMO_SCRIPT.md`.
+- **Why CloudFront and not a load balancer with a certificate?** A certificate needs a domain name, which we don't
+  have. CloudFront gives HTTPS on its own address for free, in a few clicks.

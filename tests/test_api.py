@@ -228,7 +228,7 @@ def test_path_traversal_and_bad_clip_ids_are_blocked(api):
 
 def test_metrics_and_clips_and_reset(api):
     m = api.get("/api/metrics").json()
-    assert "held-out" in m["label"] and set(m["overall"]) == {"c", "pehchaan"}
+    assert "held-out" in m["label"].lower() and set(m["overall"]) == {"c", "pehchaan"}
     assert m["overall"]["pehchaan"]["wrong_target_rate"]["total"] > 0  # raw counts, not just a percentage
     clips = api.get("/api/clips").json()
     assert clips[0]["group"].startswith("demo") and any(c["group"] == "dev" for c in clips)

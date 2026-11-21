@@ -1,0 +1,165 @@
+<!doctype html>
+<!--
+  web/index.html — Pehchaan's demo page (Module 10), served by FastAPI at "/".
+
+  WHAT: One page, three columns: how a call/voice note comes in (demo clips, the live mic, typed text),
+        the side-by-side result (strong AI vs Pehchaan, with the clarify question), and the real saved reminders.
+        A second tab shows the FINAL held-out scoreboard. A "Demo mode" button walks through the doctor story.
+  WHY:  Judges score a working end-to-end demo. Plain HTML + CSS + JavaScript: no build step, no framework,
+        nothing to install, and every line can be explained. The OpenAI key never reaches the browser:
+        the page only talks to our own /api endpoints.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pehchaan — who you mean</title>
+  <meta name="description" content="Pehchaan: AI assistants hear words. Pehchaan understands who you mean.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header: name + tagline, contact book, compare toggle, tabs, demo mode -->
+  <header class="top">
+    <div class="brand">
+      <h1>Pehchaan</h1>
+      <p class="tagline">AI assistants hear words. <strong>Pehchaan understands who you mean.</strong></p>
+    </div>
+    <div class="controls">
+      <label class="control">
+        <span class="control-label">Contact book</span>
+        <select id="book" aria-describedby="book-help"></select>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="compare" checked>
+        <span class="switch-track" aria-hidden="true"></span>
+        <span>Compare with strong AI</span>
+      </label>
+      <nav class="tabs" aria-label="Views">
+        <button class="tab active" data-view="demo" type="button">Live demo</button>
+        <button class="tab" data-view="score" type="button">Scoreboard</button>
+      </nav>
+    </div>
+  </header>
+  <div class="subbar">
+    <p id="book-help" class="book-help"></p>
+    <button id="demo-mode" class="btn btn-accent" type="button">▶ Demo mode</button>
+  </div>
+
+  <!-- Errors and notices: announced to screen readers, never silent -->
+  <div id="banner" class="banner" role="alert" hidden>
+    <span id="banner-text"></span>
+    <button type="button" class="banner-close" aria-label="Close message">×</button>
+  </div>
+
+  <main id="view-demo" class="grid">
+    <!-- LEFT: three ways in -->
+    <section class="col col-in" aria-labelledby="in-title">
+      <h2 id="in-title">Incoming call / voice note</h2>
+
+      <div class="block">
+        <div class="block-head">
+          <h3>Demo clips</h3>
+          <div class="seg" role="group" aria-label="Audio quality">
+            <button type="button" class="seg-btn active" data-variant="clean">Clean</button>
+            <button type="button" class="seg-btn" data-variant="phone">Phone</button>
+          </div>
+        </div>
+        <ul id="clips" class="clips" aria-label="Demo clips"></ul>
+      </div>
+
+      <div class="block mic-block">
+        <h3>Try it yourself</h3>
+        <button id="mic" class="mic" type="button" aria-pressed="false">
+          <span class="mic-dot" aria-hidden="true"></span><span id="mic-label">Tap to record</span>
+        </button>
+        <p class="mic-timer"><span id="mic-time">0:00</span> / 0:15</p>
+        <p id="mic-note" class="muted small"></p>
+      </div>
+
+      <form id="text-form" class="block">
+        <h3><label for="text">Or type a sentence</label></h3>
+        <textarea id="text" rows="3" maxlength="1000" placeholder="Remind me to call my doctor at 6 PM."></textarea>
+        <button class="btn btn-dark" type="submit">Run</button>
+      </form>
+    </section>
+
+    <!-- MIDDLE: what was said/heard, then the two systems side by side -->
+    <section class="col col-mid" aria-labelledby="result-title">
+      <h2 id="result-title" class="sr-only">Result</h2>
+      <div id="input-summary" class="input-summary">
+        <p class="muted">Pick a demo clip, tap the mic, or type a sentence.</p>
+      </div>
+      <!-- Clarify: Pehchaan asks; the user answers with consent ("this time" vs "always") -->
+      <section id="clarify" class="clarify" hidden aria-live="polite"></section>
+      <div class="cards">
+        <article class="card card-base" aria-labelledby="base-title">
+          <header class="card-head">
+            <h3 id="base-title">Strong AI</h3>
+            <p class="card-sub">GPT-4o-mini + the same contacts</p>
+          </header>
+          <div id="base-body" class="card-body"><p class="muted">Waiting for input.</p></div>
+        </article>
+        <article class="card card-peh" aria-labelledby="peh-title">
+          <header class="card-head">
+            <h3 id="peh-title">Pehchaan</h3>
+            <p class="card-sub">sound matching + your context, AI only if unsure</p>
+          </header>
+          <div id="peh-body" class="card-body"><p class="muted">Waiting for input.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- RIGHT: the real, stored reminders -->
+    <section class="col col-rem" aria-labelledby="rem-title">
+      <div class="block-head">
+        <h2 id="rem-title">Reminders</h2>
+        <button id="reset" class="btn btn-ghost" type="button">Reset demo</button>
+      </div>
+      <p class="muted small">Saved in the app's database. Click one to open it.</p>
+      <ul id="reminders" class="reminders"></ul>
+    </section>
+  </main>
+
+  <!-- SCOREBOARD: the final held-out numbers -->
+  <main id="view-score" class="score" hidden>
+    <h2>Held-out results: strong AI vs Pehchaan</h2>
+    <p id="score-sub" class="muted"></p>
+    <div id="score-wtl" class="wtl"></div>
+    <table id="score-table" class="score-table"></table>
+    <p class="muted small">220 held-out clips, run once. Fictional contact data; real speakers from
+      AI4Bharat Svarah (CC BY 4.0). "Better" / "Worse" compare Pehchaan with the strong AI.</p>
+  </main>
+
+  <!-- Demo mode guide: one step per Next click -->
+  <aside id="guide" class="guide" hidden aria-live="polite">
+    <p class="guide-step" id="guide-step"></p>
+    <p class="guide-text" id="guide-text"></p>
+    <div class="guide-actions">
+      <button id="guide-exit" class="btn btn-ghost-dark" type="button">Exit</button>
+      <button id="guide-next" class="btn btn-accent" type="button">Next ▶</button>
+    </div>
+  </aside>
+
+  <!-- Reminder detail -->
+  <dialog id="reminder-dialog" class="dialog" aria-labelledby="rd-title">
+    <form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form>
+    <div id="rd-body"></div>
+  </dialog>
+
+  <!-- Demo key (only if the server asks for one) -->
+  <dialog id="key-dialog" class="dialog">
+    <form id="key-form" method="dialog">
+      <h2>Demo key</h2>
+      <p>This public demo is protected. Please enter the demo key from the presenter.</p>
+      <input id="key-input" type="password" autocomplete="off" required aria-label="Demo key">
+      <button class="btn btn-dark" type="submit">Continue</button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -15,9 +15,10 @@ Tests point DB_PATH at a temporary file, so they never touch the demo database.
 import sqlite3
 from contextlib import contextmanager
 
-from app.config import PROJECT_ROOT
+from app.config import PROJECT_ROOT, settings
 
-DB_PATH = PROJECT_ROOT / "data" / "app.db"  # git-ignored: it is runtime state, not project data
+# git-ignored: it is runtime state, not project data. STATE_DIR (Docker) moves it to a mounted volume.
+DB_PATH = (settings.state_dir or PROJECT_ROOT / "data") / "app.db"
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS reminders (

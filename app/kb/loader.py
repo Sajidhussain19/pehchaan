@@ -27,7 +27,7 @@ from contextvars import ContextVar
 from functools import lru_cache, wraps
 from pathlib import Path
 
-from app.config import PROJECT_ROOT
+from app.config import PROJECT_ROOT, settings
 from app.kb.models import Entity, Preference
 
 KB_DIR = PROJECT_ROOT / "data" / "kb"
@@ -329,7 +329,8 @@ def get_usual_business(category: str) -> Entity | None:
 # ---------------------------------------------------------------------------
 
 PREFERENCES_PATH = KB_DIR / "preferences.json"
-RUNTIME_PREFS_DIR = BOOKS_DIR  # where the demo books' learned answers are written (git-ignored files)
+# Where the demo books' learned answers are written (git-ignored files; STATE_DIR in Docker).
+RUNTIME_PREFS_DIR = settings.state_dir or BOOKS_DIR
 
 
 def preferences_path(book: str | None = None) -> Path:

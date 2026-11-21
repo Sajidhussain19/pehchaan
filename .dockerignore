@@ -1,0 +1,18 @@
+# .dockerignore — files that must NEVER go into the image (secrets) or don't need to (junk, local state).
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.git/
+.vscode/
+.idea/
+data/app.db
+data/state/
+data/kb/books/preferences_*.json
+data/pending/
+*.log

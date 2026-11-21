@@ -133,7 +133,7 @@ pytest, a simple HTML/JS page served by FastAPI. Deploy on AWS EC2 later.
 7. Matching engine (phonetic + fuzzy + confidence)  (DONE)
 8. LangGraph correction pipeline  (DONE: app/decide, dev results in LEARNING.md)
 9. Remind action + API (real stored reminders, learning with consent, latency/cost per call)  (DONE: app/api, app/store, data/kb/books; final held-out run tagged final-eval-v1)
-10. Demo UI + live mic + AWS deploy
+10. Demo UI + live mic + AWS deploy  (DONE: web/, app/api/guard.py, Dockerfile, DEPLOY.md, DEMO_SCRIPT.md; AWS steps run by the developer)
 
 ## Decision-logic freeze (since Module 9, before the final held-out run)
 - Do NOT change logic or thresholds in `app/match/`, `app/decide/`, `data/lexicon/` or the base KB files
