@@ -317,9 +317,12 @@ function renderResult(r, meta) {
       el("p", { class: "timing" },
         el("span", {}, sttWords(r)),
         el("span", {}, "decision " + ms(r.timings.baseline_ms)),
-        el("span", { class: "badge ai" }, "1 AI call"),
+        el("span", { class: "badge ai" }, "1 LLM call"),
         el("span", {}, b.cost_usd ? usd(b.cost_usd) : "")),
       el("p", { class: "source" }, r.baseline_source || ""));
+  } else if (r.baseline_error) {
+    // Strong-AI side failed (network / API trouble): say so on the card; Pehchaan's answer is still shown.
+    fill($("#base-body"), el("p", { class: "verdict bad" }, r.baseline_error));
   } else {
     fill($("#base-body"), el("p", { class: "muted" }, "Comparison is off. Switch on “Compare with strong AI” in the header."));
   }
@@ -354,7 +357,8 @@ function renderResult(r, meta) {
     el("p", { class: "timing" },
       el("span", {}, sttWords(r)),
       el("span", {}, "decision " + ms(r.timings.pehchaan_ms)),
-      el("span", { class: "badge " + (r.used_llm ? "ai" : "no-ai") }, r.used_llm ? "AI fallback used" : "No AI call"),
+      el("span", { class: "badge " + (r.used_llm ? "ai" : "no-ai") }, r.used_llm ? "LLM reasoning used" : "Fast path · no LLM call needed"),
+      r.ai_unavailable ? el("span", { class: "badge warn" }, "AI unavailable — asked you instead") : null,
       el("span", {}, "cost " + usd(r.cost_usd))),
     r.pehchaan_source ? el("p", { class: "source" }, r.pehchaan_source) : null);
 
@@ -481,7 +485,7 @@ const SCORE_ROWS = [
   ["wer", "Word error rate", true],
   ["over_correction_rate", "Over-correction (changed a name that should stay)", true],
   ["unnecessary_question_rate", "Unnecessary questions", true],
-  ["no_llm_rate", "Decided with no AI call", false],
+  ["no_llm_rate", "Decided on the fast path (no LLM call)", false],
 ];
 let scoreLoaded = false;
 async function loadScoreboard() {

@@ -164,6 +164,7 @@ button.hl { cursor: pointer; }
 .badge { font-size: 0.78rem; font-weight: 700; border-radius: 6px; padding: 2px 8px; }
 .badge.no-ai { background: var(--lime); color: var(--navy); }
 .badge.ai { background: #E6E2F5; color: #3B2E7A; }
+.badge.warn { background: #FBF0D6; color: var(--warn); }
 .verdict { font-weight: 700; font-size: 1.02rem; padding: 6px 10px; border-radius: 8px; margin: 0; }
 .verdict.ok { background: #E2F1E6; color: var(--good); }
 .verdict.bad { background: #FBE7E4; color: var(--bad); }

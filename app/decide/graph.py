@@ -414,9 +414,18 @@ def llm_fallback_node(state: State) -> dict:
         # A test passes its own fake client: then never read or write the real cache file.
         answers, cost, latency = ask_llm(state["transcript"], [i.span for i in pending], client=state.get("client"),
                                          use_cache=state.get("client") is None)
-    except Exception as err:  # noqa: BLE001 (network or API trouble: be safe, keep as heard)
+    except Exception as err:  # noqa: BLE001 (timeout, 5xx, rate limit, no key...)
+        # Approved change after final evaluation (AI-failure branch only): never guess and never silently drop
+        # an unsure name. If it has plausible candidates, ASK the user; otherwise keep it as heard.
+        # (No saved evaluation decision ever took this branch, so no reported number changes.)
+        cfg = state["config"]
         for item in pending:
-            item.set("keep", "llm_error", f"LLM unavailable ({type(err).__name__}): kept as heard")
+            ids = [c.entity_id for c in item.span.candidates if c.score >= cfg.low][:2]
+            if ids:
+                item.set("clarify", "llm_error", f"AI unavailable — asked you instead ({type(err).__name__})",
+                         clarify_ids=ids)
+            else:
+                item.set("keep", "llm_error", f"AI unavailable — kept as heard ({type(err).__name__})")
         return {"items": state["items"]}
     by_phrase = {a["phrase"]: a for a in answers}
     for idx, item in enumerate(pending):

@@ -139,12 +139,17 @@ def process(transcript: str, book: str = "default", direction: str = "outgoing",
     """Pehchaan on one transcript -> reminder or pending question (+ baseline (c) side by side if compare)."""
     result = _decide_and_store(transcript, book, direction, caller, client)
     result["baseline"], result["baseline_ms"], result["baseline_cost_usd"] = None, None, None
+    result["baseline_error"] = None
     if compare:
         # Baseline (c) gets exactly the same transcript, caller info and contact book. It only DECIDES:
         # nothing it says is stored, so the comparison can't change the user's reminders.
         t0 = time.perf_counter()
-        with use_book(book):
-            base = llm_resolver.resolve("live", transcript, direction, caller, client=client)
+        try:
+            with use_book(book):
+                base = llm_resolver.resolve("live", transcript, direction, caller, client=client)
+        except Exception as err:  # noqa: BLE001  If OpenAI is down, Pehchaan's answer must still come back.
+            result["baseline_error"] = f"Strong AI unavailable ({type(err).__name__}) — comparison skipped"
+            return result
         result["baseline"] = base.model_dump()
         result["baseline_ms"] = round((time.perf_counter() - t0) * 1000, 1)
         result["baseline_cost_usd"] = base.cost_usd

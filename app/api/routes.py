@@ -23,6 +23,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
+import openai
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Path as PathParam, Query, Request, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
@@ -194,7 +195,10 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
         "heard_transcript": transcript, "output_transcript": decision["output_transcript"],
         "spans": result["spans"], "decision": decision, "reminder": result["reminder"], "pending": result["pending"],
         "baseline": result["baseline"],
-        "baseline_source": None if not compare else ("saved from the final evaluation run" if saved_c is not None
+        "baseline_error": result.get("baseline_error"),
+        # True when Pehchaan's LLM step failed and it asked (or kept) instead of deciding.
+        "ai_unavailable": any("AI unavailable" in e["reason"] for e in decision["entities"]),
+        "baseline_source": None if not compare or result.get("baseline_error") else ("saved from the final evaluation run" if saved_c is not None
                                                      else "live GPT-4o-mini call"),
         # Ground truth only for test-set clips on the evaluated (default) contact book.
         "expected": {"behaviour": gt.expected_behaviour,
@@ -240,7 +244,11 @@ def _speech_to_text(data: bytes, suffix: str, seconds: float | None, client) -> 
         path = Path(tmp) / f"upload{suffix}"
         path.write_bytes(data)
         # Unknown length (webm/m4a): the cost estimate uses the 30 s upper bound, so it never under-reports.
-        out = transcribe(path, client=client, seconds=seconds if seconds is not None else audio_io.MAX_SECONDS)
+        try:
+            out = transcribe(path, client=client, seconds=seconds if seconds is not None else audio_io.MAX_SECONDS)
+        except (openai.OpenAIError, RuntimeError) as err:  # timeout, 5xx, rate limit (after retries), no key
+            raise HTTPException(503, f"Speech-to-text is unavailable right now ({type(err).__name__}). "
+                                     "Demo clips and typed sentences still work.") from err
     return out["text"], {"stt_ms": out["latency_ms"], "stt_cost_usd": out["cost_estimate_usd"],
                          "stt_source": f"live {out['model']}"}
 

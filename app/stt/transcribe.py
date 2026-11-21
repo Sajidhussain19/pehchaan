@@ -45,7 +45,8 @@ def get_client() -> openai.OpenAI:
     """One shared OpenAI client. max_retries=0 because we do our own, visible retry loop below."""
     if settings.openai_api_key is None:
         raise RuntimeError("OPENAI_API_KEY is not set. Add it to .env (see .env.example).")
-    return openai.OpenAI(api_key=settings.openai_api_key.get_secret_value(), max_retries=0)
+    # timeout=20 s: the SDK default is 600 s, and a hung call would stall a live demo request for minutes.
+    return openai.OpenAI(api_key=settings.openai_api_key.get_secret_value(), max_retries=0, timeout=20.0)
 
 
 def audio_seconds(audio_path: Path) -> float:

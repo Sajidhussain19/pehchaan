@@ -29,6 +29,8 @@ phonetic + fuzzy matching and a confidence score. An LLM is used only when it's 
 It never hides what it heard: every result shows *heard -> resolved -> confidence -> reason*.
 The one real action is **Remind**: a stored reminder with the person, time and place, plus heard vs resolved.
 
+Pehchaan is **a hybrid AI system: speech AI on every request, LLM reasoning only for hard cases.** Most requests are decided on the fast path (sound matching + your personal context, no LLM call needed).
+
 ## Results (held-out test split, run once)
 
 Measured on the **held-out test split** (97 sentences × clean + phone audio, plus 26 real-speaker clips = 220 clips),
@@ -381,11 +383,12 @@ From the final held-out run on, **Pehchaan's decision logic is frozen**: `app/ma
 and the base KB files. Their fingerprints (SHA-256) are in `data/results/frozen_logic.json`, and `tests/test_freeze.py`
 fails if any of them changes. Any later change needs explicit approval, a repeated final run (`--final`), and a note here.
 
-### Changes after final-eval-v1
+### Changes after final evaluation
 | Tag | Change | Approved | Effect on the held-out numbers |
 |---|---|---|---|
 | `final-eval-v1.1` | **A clue in the sentence beats a saved preference** (rule: clue -> saved preference -> default -> ask). Before, "Always use Dr. Subramanian for 'my doctor'" also sent "call my doctor about my **fever**" to the dentist; now the clue "fever" picks the GP. Only for references ("my doctor"); learned answers for plain names are unchanged. | yes, by the developer (Module 10) | Re-ran the final evaluation once with `--final`: **all 366 decisions (dev + test, every audio) identical**, every scored metric identical (evaluation uses no saved preferences). Only latency was re-measured (Pehchaan mean 298 -> 170 ms, median 10.9 -> 9.4 ms; cached LLM answers reuse their recorded time). The Results table keeps the first, more conservative latency. |
 | `pehchaan-v2` | **v2: over-correction fixes** (everyday-word guard, longest match first, caller evidence, unknown-caller surname, LLM prefers keep). Developer-approved unfreeze. | yes (v2 brief) | The v1 headline is unchanged and still reproducible from `final-eval-v1.1`. v2 is proven on the fresh test-2 set (see "v2 changes"); on the original test set it is reported only as "already seen". |
+| (after `pehchaan-v2`) | **AI-failure branch only:** if Pehchaan's LLM step fails (timeout, 5xx, rate limit, no key) it now **asks** with the top candidates ("AI unavailable — asked you instead") instead of keeping the name; with no plausible candidate it keeps it. Also outside the decision logic: a failing strong-AI comparison no longer breaks the response, live speech-to-text failures return a clear 503, and OpenAI calls time out after 20 s. | yes (developer) | **None.** No saved evaluation decision ever took this branch (none contains "LLM unavailable"). Re-running all 146 dev decisions with the new code: **0 differ**. Held-out sets were not re-run. Fingerprint re-recorded. |
 
 *Made just before the freeze (Module 9 plumbing, no logic change):* the KB-derived caches in `app/match` and
 `app/decide` became per-contact-book caches, and `resolve()` gained a `book=` argument. Re-running Pehchaan on all
@@ -464,7 +467,7 @@ Open **http://localhost:8000** in Chrome or Edge. The page (`web/`, plain HTML +
   - **Tap to record** (live mic, at most 15 s)
   - a text box
 - **Middle:**
-  - *Strong AI* vs *Pehchaan*: the transcript with names highlighted, *heard → resolved*, a confidence chip, the reason (click), the decision in plain words, and speech-to-text and decision time, AI call or not, and cost
+  - *Strong AI* vs *Pehchaan*: the transcript with names highlighted, *heard → resolved*, a confidence chip, the reason (click), the decision in plain words, and speech-to-text and decision time, *Fast path · no LLM call needed* or *LLM reasoning used*, and cost
   - for test-set clips, a verdict in words (✓ Correct / ✗ Wrong target / ✗ Should have asked …) from the same scoring code as the evaluation
   - when Pehchaan asks, candidate cards with **Use this time** / **Always use for '…'**
 - **Right:** the real saved reminders (click to open), and **Reset demo**.

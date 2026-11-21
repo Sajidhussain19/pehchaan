@@ -1,6 +1,6 @@
 {
   "_about": "Fingerprint of Pehchaan's decision logic, recorded before the final held-out run. tests/test_freeze.py fails if any of these files change. Changing them needs explicit approval, a repeated final run (--final) and a disclosure in README.",
-  "recorded_at": "2026-11-21T19:02:57",
+  "recorded_at": "2026-11-21T22:49:31",
   "files": {
     "app/match/__init__.py": "14b3e72296c08653a1d53b650f186f3d39c50dec66281fc8900e593406177342",
     "app/match/candidates.py": "7cd936783d30556dbc68d9ba2bb130944135574d7d31e18d5b663611e9edaafa",
@@ -10,7 +10,7 @@
     "app/match/translit.py": "8fba175a671791b5835062e8c9af7a86ca388c8b5d0d4a3e2c05c2e566f8f243",
     "app/decide/__init__.py": "b7d678fd4e061ceb5c795ee5afc5e06b21592df5e9bb24ed675bd63b2c00b499",
     "app/decide/config.py": "5beab781d73da1490ca76e355ac6f1662dbae81041bf39cb84d5f70becee5854",
-    "app/decide/graph.py": "46b20d4b8e54d4e4733e8e01e91d39d7ff05c0841af176e00695f72c26bcf689",
+    "app/decide/graph.py": "66b38e122516751e197b2392fc764fe5f6807706f08d389294bc32e7654294aa",
     "app/decide/lexicons.py": "dad9bf44a824d04aafe67a3ca51e60e40eda3714790daf6043b2c122eafdd1d5",
     "app/decide/llm_fallback.py": "01686507b47ea3e9e870e9bd8b2437080f74e0976bc1fddff4c58b1ec5977138",
     "app/decide/pehchaan.py": "7787f8b70ec6ea119d1b56069e2d9addcc2746e00a6757b6bc5835dafd5e671a",
