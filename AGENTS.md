@@ -113,8 +113,8 @@ Checked on a fresh clone with **no `.env` and no key in the environment**:
 | **Live strong-AI comparison** on typed sentences, mic, books A/B or with `live_baseline=true` | ❌ needs key | `baseline_error: "Strong AI unavailable (RuntimeError) — comparison skipped"`; Pehchaan's own answer is still returned |
 | **Pehchaan's LLM fallback** (only for unsure spans, ~7–13% of clips) | ❌ needs key | Fails safe: it **asks** instead of guessing; reason `clarify: AI unavailable — asked you instead`, and `ai_unavailable: true` |
 
-With a key, a typed sentence with comparison on costs about $0.001 (strong AI only), and a mic recording costs about
-$0.0002 for speech-to-text, plus the strong AI if comparison is on.
+With a key, a typed sentence with comparison on costs about $0.001–0.002 (strong AI only; Pehchaan's fast path is $0),
+and a mic recording costs about $0.0002 for speech-to-text, plus the strong AI if comparison is on.
 
 ## 6. Test logins
 
@@ -187,7 +187,7 @@ curl -s -X POST $B/api/clarify/<pending.id> -H "X-Visitor-Id: $V" -H "Content-Ty
 curl -s -X POST $B/api/process -H "X-Visitor-Id: $V" -F "text=Remind me to call my doctor at 6 PM." -F book=B -F compare=false
 #   -> Dr. Subramanian, resolution "preference"
 curl -s -X POST $B/api/process -H "X-Visitor-Id: $V" -F "text=Call my doctor about my fever." -F book=B -F compare=false
-#   -> Dr. Venkataramana (general physician), reason "clue 'fever' -> general physician"
+#   -> Dr. Venkataramana (general physician), reason "resolve: clue 'fever' -> general physician; beats your saved choice"
 
 # Mic equivalent: upload audio (needs key; webm/ogg/wav/mp3/m4a, <= 5 MB, <= 30 s)
 curl -s -X POST $B/api/process -H "X-Visitor-Id: $V" -F "file=@data/testset/audio/clean/s104.wav" -F compare=false
@@ -287,11 +287,15 @@ allowed to ask.
 
 ## Verified on a fresh clone
 
-On 2026-11-22, a `git clone` of this repo into an empty folder on Windows 11, Python 3.12.10:
+On 2026-11-22, a `git clone` of this repo into an empty folder on Windows 11, Python 3.12.10, following this file literally:
 
 - **No `.env`, no key:** `pip install -r requirements.txt` OK → `pytest -q`: **199 passed** → server started →
-  `/health` OK → journeys 1–8 and 10–12 gave exactly the results above (clips via replay, doctor demo via book A/B +
-  clarify + preference, typed sentence → Dr. Subramanian 18:00) → mic upload returned the expected 503 → dev
-  evaluation reproduced `report_dev_all.md`. Without `RATE_LIMIT_REQUESTS`, the 21st process call returned 429, as designed.
-- **With a `.env` containing a key:** typed sentence → Dr. Subramanian 18:00 with a live strong-AI answer
-  (~2.8 s, $0.00096); audio upload → live transcript in ~1.4 s ($0.00017); the LLM fallback and the live baseline ran.
+  `/health` OK → every curl in section 8 gave the results shown (clip replays with the verdicts in section 7, doctor
+  demo through book A/B + clarify + preference + clue, typed sentence → Dr. Subramanian 18:00, scoreboard
+  49/149/22 and 25/62/3) → audio upload returned the expected 503 → `scripts/evaluate.py --out dev_check`
+  reproduced `report_dev_all.md` → `scripts/demo_flow.py` finished. Without `RATE_LIMIT_REQUESTS`, the 21st process
+  call returned 429, as designed.
+- **Docker (Option B), no key:** `docker build` OK; the container reported `healthy`, and the same section-8 curls gave identical results.
+- **With a `.env` containing a key:** typed sentence → Dr. Subramanian 18:00, plus a live strong-AI answer
+  (it picked the family doctor; 2.8–3.3 s, $0.001–0.002); audio upload → live transcript "Call Rohit at 6 p.m." in
+  ~1.5 s ($0.00017) → clarify; the LLM fallback and the live baseline also ran.
