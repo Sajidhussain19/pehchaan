@@ -243,8 +243,11 @@ def test_rehearsed_clips_come_first_and_are_labelled_honestly(api):
     assert [c["clip_id"] for c in clips[:4]] == ["s104", "s140", "s067", "s090"]
     assert all(c["group"] == "Original test set (seen before v2)" for c in clips[:4])
     assert clips[3]["label"] in ("v1 failure — fixed in v2", "Known failure")  # computed from saved v2 results
-    assert [c["clip_id"] for c in clips[4:10]] == ["s202", "s208", "s203", "s199", "s206", "s185"]
-    assert clips[9]["label"] == "Known failure (v2)"
+    assert [c["clip_id"] for c in clips].count("s101") == 1
+    assert clips[4]["clip_id"] == "s101" and clips[4]["group"] == "Dev set (used for tuning)"
+    assert clips[4]["label"] == "near-identical names — Harshit or Harshil? (best on Phone audio)"
+    assert [c["clip_id"] for c in clips[5:11]] == ["s202", "s208", "s203", "s199", "s206", "s185"]
+    assert clips[10]["label"] == "Known failure (v2)"
 
 
 def test_clip_verdict_uses_the_saved_v2_decision(api, fake):

@@ -115,14 +115,15 @@ def clip_audio_path(variant: str, clip_id: str) -> Path:
     return path
 
 
-# The clips the presenter rehearsed with (original held-out test set). Since v2 they are "seen": v2's fixes were
-# designed after looking at v1's failures on that set, so the group label says so.
-REHEARSED = [("s104", "missed clarification — Rohit vs Rohith"),
-             ("s140", "clue vs default — tooth → dentist"),
-             ("s067", "misheard name — Bhagyalakshmi Jewellers, Panjagutta"),
-             ("s090", None)]  # label computed from the saved v2 results (see _s090_label)
 GROUP_SEEN = "Original test set (seen before v2)"
 GROUP_TEST2 = "Held-out test-2 (v2)"
+FEATURED_CLIPS = [
+    ("s104", GROUP_SEEN, "missed clarification — Rohit vs Rohith"),
+    ("s140", GROUP_SEEN, "clue vs default — tooth → dentist"),
+    ("s067", GROUP_SEEN, "misheard name — Bhagyalakshmi Jewellers, Panjagutta"),
+    ("s090", GROUP_SEEN, None),  # label computed from the saved v2 results (see _s090_label)
+    ("s101", "Dev set (used for tuning)", "near-identical names — Harshit or Harshil? (best on Phone audio)"),
+]
 
 
 def _v2_ok_on_both_audios(clip_id: str) -> bool:
@@ -148,15 +149,15 @@ def _s090_label() -> tuple[str, bool]:
 
 
 def list_clips() -> list[dict]:
-    """Rehearsed clips (original test set, seen) first, then the test-2 demo clips, then every dev clip."""
+    """Featured clips in presentation order, then test-2 demo clips and the remaining dev clips."""
     out, seen = [], set()
     texts = {c["id"]: c for c in _manifests()["clean"].values()}
-    for cid, label in REHEARSED:
+    for cid, group, label in FEATURED_CLIPS:
         failure = False
         if label is None:
             label, failure = _s090_label()
         c = texts[cid]
-        out.append({"clip_id": cid, "group": GROUP_SEEN, "text": c["text"], "category": c["category"],
+        out.append({"clip_id": cid, "group": group, "text": c["text"], "category": c["category"],
                     "demo_kind": label, "label": label, "honest_failure": failure,
                     "fixed_in_v2": cid == "s090" and not failure,
                     "audio": {v: f"/audio/{v}/{cid}.wav" for v in ("clean", "phone")}})
