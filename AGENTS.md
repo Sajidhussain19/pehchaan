@@ -248,7 +248,7 @@ They default to the dev split and skip clips that are already saved.
 | `data/results/` | Saved transcripts, decisions and all evaluation reports |
 | `scripts/` | Command-line tools (evaluate, run baselines, demo flow, fetch real speech, freeze check) |
 | `tests/` | pytest suite (199 tests) |
-| `deliverables/` | Slide deck (PDF + PPTX), cheat sheet, demo video (see [VIDEO.md](VIDEO.md)) |
+| `deliverables/` | Slide deck (PDF + PPTX with speaker notes), cheat sheet, narrated demo video `Pehchaan_demo_full.mp4`, 4:55 (see [VIDEO.md](VIDEO.md)) |
 | `Dockerfile`, `deploy/`, `DEPLOY.md` | Container and AWS deployment |
 | `README.md`, `LEARNING.md`, `DEMO_SCRIPT.md`, `CLAUDE.md` | Overview and results, module-by-module notes, demo script, project brief |
 

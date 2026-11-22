@@ -498,10 +498,10 @@ behind CloudFront). If it is down, run it locally as above; the mic works on loc
 
 | File | What it is |
 |---|---|
-| [deliverables/Pehchaan_Slides.pdf](deliverables/Pehchaan_Slides.pdf) | Pitch deck (5 slides) |
-| [deliverables/Pehchaan_Slides.pptx](deliverables/Pehchaan_Slides.pptx) | The same deck as PowerPoint (each slide is the PDF page as a full-slide image) |
+| [deliverables/Pehchaan_Slides.pdf](deliverables/Pehchaan_Slides.pdf) | Pitch deck (7 slides: 5 main + 2 appendix) |
+| [deliverables/Pehchaan_Slides.pptx](deliverables/Pehchaan_Slides.pptx) | The same deck as PowerPoint, with speaker notes |
 | [deliverables/Pehchaan_Cheatsheet.pdf](deliverables/Pehchaan_Cheatsheet.pdf) | One-page cheat sheet |
-| [deliverables/Pehchaan_demo_voice.mp4](deliverables/Pehchaan_demo_voice.mp4) | Narrated demo video, 2:58 ([VIDEO.md](VIDEO.md)) |
+| [deliverables/Pehchaan_demo_full.mp4](deliverables/Pehchaan_demo_full.mp4) | Narrated demo video, 4:55, 1080p ([VIDEO.md](VIDEO.md)) |
 
 **To run, test and evaluate it yourself (or with an AI agent): [AGENTS.md](AGENTS.md).**
 
