@@ -27,6 +27,8 @@
     <div class="brand">
       <h1>Pehchaan</h1>
       <p class="tagline">AI assistants hear words. <strong>Pehchaan understands who you mean.</strong></p>
+      <p class="tagline">Hear 'my doctor'. Find the right contact. Save the reminder.</p>
+      <button id="demo-mode" class="btn btn-accent start-doctor" type="button">▶ Start the 5-step doctor demo</button>
     </div>
     <div class="controls">
       <label class="control">
@@ -46,7 +48,6 @@
   </header>
   <div class="subbar">
     <p id="book-help" class="book-help"></p>
-    <button id="demo-mode" class="btn btn-accent" type="button">▶ Demo mode</button>
   </div>
 
   <!-- Errors and notices: announced to screen readers, never silent -->
@@ -77,7 +78,7 @@
           <span class="mic-dot" aria-hidden="true"></span><span id="mic-label">Tap to record</span>
         </button>
         <p class="mic-timer"><span id="mic-time">0:00</span> / 0:15</p>
-        <p id="mic-note" class="muted small"></p>
+        <p id="mic-note" class="muted small" role="status"></p>
       </div>
 
       <form id="text-form" class="block">
@@ -98,17 +99,16 @@
       <div class="cards">
         <article class="card card-base" aria-labelledby="base-title">
           <header class="card-head">
-            <h3 id="base-title">Strong AI</h3>
-            <p class="card-sub">GPT-4o-mini + the same contacts</p>
+            <h3 id="base-title">Strong AI (GPT-4o-mini with the same contacts)</h3>
           </header>
-          <div id="base-body" class="card-body"><p class="muted">Waiting for input.</p></div>
+          <div id="base-body" class="card-body"><button class="btn btn-accent start-doctor" type="button">▶ Start the 5-step doctor demo</button></div>
         </article>
         <article class="card card-peh" aria-labelledby="peh-title">
           <header class="card-head">
             <h3 id="peh-title">Pehchaan</h3>
             <p class="card-sub">sound matching + your context, AI only if unsure</p>
           </header>
-          <div id="peh-body" class="card-body"><p class="muted">Waiting for input.</p></div>
+          <div id="peh-body" class="card-body"><button class="btn btn-accent start-doctor" type="button">▶ Start the 5-step doctor demo</button></div>
         </article>
       </div>
     </section>
@@ -127,16 +127,17 @@
 
   <!-- SCOREBOARD: the final held-out numbers -->
   <main id="view-score" class="score" hidden>
-    <h2>Held-out results: strong AI vs Pehchaan</h2>
-    <p id="score-sub" class="muted"></p>
-    <div id="score-wtl" class="wtl"></div>
-    <table id="score-table" class="score-table"></table>
     <section id="score-v2" class="score-v2" hidden>
-      <h2>v2 fix, proven on a fresh held-out set (test-2)</h2>
-      <p id="score-v2-sub" class="muted"></p>
+      <h2>Fresh held-out test (v2, test-2)</h2>
+      <p class="score-lead" id="score-v2-lead"></p>
+      <p class="score-caveat" id="score-v2-caveat"></p>
+      <p>Each recording is scored by its most serious mistake: a better Pehchaan score is a win, equal scores are a tie, and a better Strong AI score is a loss.</p>
       <div id="score-v2-wtl" class="wtl"></div>
-      <table id="score-v2-table" class="score-table"></table>
+      <div class="table-scroll" role="region" aria-label="Test-2 results" tabindex="0"><table id="score-v2-table" class="score-table"></table></div>
     </section>
+    <h2>Original held-out test (v1, before the fix)</h2>
+    <div id="score-wtl" class="wtl"></div>
+    <div class="table-scroll" role="region" aria-label="Original test results" tabindex="0"><table id="score-table" class="score-table"></table></div>
     <p class="muted small">220 held-out clips; evaluated once after the decision logic was frozen (a disclosed repeat after one approved change gave identical scores). Fictional contact data; real speakers from
       AI4Bharat Svarah (CC BY 4.0). "Better" / "Worse" compare Pehchaan with the strong AI.</p>
   </main>

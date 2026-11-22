@@ -59,7 +59,7 @@ test("a refresh error leaves successful process cards visible", async () => {
 
 test("guide retries a failed step and reports the actual comparison card", async () => {
   const { run, element } = page();
-  run("resetDemo = async () => {}; setBook = () => {}; runText = async () => null;");
+  run("api = async () => ({}); setBook = () => {}; runText = async () => null;");
   await element("#guide-next").click();
   assert.equal(run("stepIndex"), -1);
   assert.match(element("#guide-next").textContent, /Retry/);
@@ -90,6 +90,6 @@ for (const failure of ["construct", "start"]) {
     await element("#mic").click();
     assert.equal(stopped, 1);
     assert.equal(run("recorder"), null);
-    assert.match(element("#banner-text").textContent, /Microphone not available/);
+    assert.match(element("#mic-note").textContent, /Microphone not available/);
   });
 }

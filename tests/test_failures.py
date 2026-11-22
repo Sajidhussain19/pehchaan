@@ -134,5 +134,5 @@ def test_live_deadline_cancels_stalled_upload(monkeypatch, visitor_headers, tmp_
 
 def test_page_uses_the_new_wording():
     js = TestClient(app).get("/app.js").text
-    assert "Fast path · no LLM call needed" in js and "LLM reasoning used" in js
-    assert "Decided on the fast path (no LLM call)" in js and "No AI call" not in js
+    assert "Matched without an AI call" in js and "AI reasoning used" in js
+    assert "Decided without an AI call" in js and "No AI call" not in js

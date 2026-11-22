@@ -171,6 +171,9 @@ def test_clarify_this_time_then_always_then_automatic(api):
     auto = process(api, text=DOCTOR_SENTENCE, book="B").json()
     assert auto["pending"] is None and auto["reminder"]["target_name"] == "Dr. Subramanian"
     assert auto["reminder"]["resolution"] == "preference"
+    assert (auto["decision_source"], auto["latency_scope"]) == ("live", "end to end")
+    stored = api.get(f"/api/reminders/{auto['reminder']['id']}").json()["entities"][0]
+    assert (stored["name"], stored["role"], stored["method"]) == ("Dr. Subramanian", "dentist", "learned preference")
     assert "you told me" in auto["spans"][0]["reason"]
 
     # 5. The preference belongs to book B only; book A is unaffected. Reset brings the question back.
@@ -212,9 +215,43 @@ def test_compare_runs_baseline_c_side_by_side_without_storing_it(api, fake):
 
 def test_clip_uses_the_saved_transcript_and_serves_audio(api, fake):
     body = process(api, clip_id="s140", variant="clean", book="default").json()
-    assert body["stt_source"].startswith("saved") and body["reminder"]["target_name"] == "Dr. Subramanian"
+    assert body["decision_source"] == "saved evaluation replay" and body["latency_scope"] == "decision only"
+    assert body["names"][body["decision"]["action"]["target_entity_id"]]["name"] == "Dr. Subramanian"
+    assert body["reminder"] is None and body["pending"] is None
+    assert api.get("/api/reminders").json() == []
     assert not fake.calls
     assert api.get("/audio/phone/s140.wav").headers["content-type"] == "audio/wav"
+
+
+@pytest.mark.parametrize("variant", ["clean", "phone"])
+def test_replay_uses_saved_output_and_timing_without_live_decisions(api, fake, monkeypatch, variant):
+    from app.api import flow
+    from app.eval.runs import load_decision_objects
+
+    monkeypatch.setattr(flow, "_decide", lambda *args, **kwargs: pytest.fail("replay invoked a live decision"))
+    body = process(api, clip_id="s090", variant=variant, compare=True).json()
+    saved = load_decision_objects("pehchaan", variant, "v2")["s090"]
+    assert body["v1_output"] == load_decision_objects("pehchaan", variant, "v1")["s090"].output_transcript
+    assert body["decision"] == saved.model_dump()
+    assert body["timings"]["pehchaan_ms"] == saved.latency_ms
+    assert body["cost_usd"] == 0 and not fake.calls
+
+
+def test_live_clip_override_previews_without_storing(api, fake):
+    body = process(api, clip_id="s140", live_stt=True).json()
+    assert (body["decision_source"], body["latency_scope"]) == ("live", "end to end")
+    assert body["decision"]["action"]["type"] == "remind" and body["reminder"] is None
+    assert fake.calls and api.get("/api/reminders").json() == []
+
+
+def test_replayed_question_has_candidates_without_pending_item(api):
+    replay = process(api, clip_id="s101").json()
+    assert replay["pending"] is None and replay["spans"][0]["close_match_count"] == 3
+    assert replay["v1_output"] is None
+    with db.connect() as conn:
+        assert conn.execute("SELECT COUNT(*) FROM pending").fetchone()[0] == 0
+    live = process(api, book="B", text=DOCTOR_SENTENCE).json()
+    assert live["spans"][0]["close_match_count"] == len(live["pending"]["candidates"]) == 2
 
 
 def test_uploaded_wav_goes_through_speech_to_text(api, fake):
@@ -275,7 +312,7 @@ def test_clip_verdict_uses_the_saved_v2_decision(api, fake):
     body = process(api, clip_id="s104", variant="clean", compare=True).json()
     assert body["verdict"]["pehchaan"]["label"] == "✓ Correct"  # asks Rohit Chaturvedi or Rohith Reddy
     assert body["verdict"]["baseline"]["label"] == "✗ Wrong target"  # (c)'s saved answer guessed
-    assert body["pehchaan_source"].startswith("saved") and "differs" not in body["pehchaan_source"]
+    assert body["decision_source"] == body["baseline_source"] == "saved evaluation replay"
     assert not fake.calls  # saved transcript + saved (c) + cached LLM answers: no API call at all
 
 

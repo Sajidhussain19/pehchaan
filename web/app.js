@@ -132,7 +132,7 @@ $("#key-form").addEventListener("submit", () => {
 const BOOK_LABELS = {
   default: "Full contacts (evaluated)",
   A: "A: one doctor",
-  B: "B: two doctors, no default",
+  B: "B: two doctors (starts with no default)",
 };
 let bookDescriptions = {};
 
@@ -146,7 +146,7 @@ async function loadBooks() {
 function setBook(book) {
   state.book = book;
   $("#book").value = book;
-  $("#book-help").textContent = "Contact book: " + (bookDescriptions[book] || book);
+  $("#book-help").textContent = book === "default" ? "Fictional contacts for one user (340 people, places and shops)" : bookDescriptions[book];
 }
 $("#book").addEventListener("change", (e) => setBook(e.target.value));
 $("#compare").addEventListener("change", (e) => { state.compare = e.target.checked; });
@@ -176,24 +176,31 @@ function play(url, button) {
   player.play().catch((e) => showBanner("Could not play audio: " + e.message));
 }
 
+const CLIP_CATEGORIES = {
+  in_kb: "Known name", out_of_kb: "Name outside the contact book", control: "Everyday speech",
+  ambiguous: "Similar names", context_mismatch: "Name used in a different context",
+  reference: "Personal reference", unfamiliar_near_match: "Unfamiliar name", stale_default: "Clue overrides the usual choice",
+  real_speech: "Real speaker",
+};
+
 async function loadClips() {
   const clips = await api("/api/clips");
   const list = $("#clips");
   let lastGroup = null;
   fill(list, ...clips.flatMap((c) => {
-    // A heading whenever the group changes: rehearsed (seen) clips, test-2 clips, dev clips.
+    // Keep the source grouping supplied by the clip list.
     const heading = c.group !== lastGroup ? el("li", { class: "clip-group" }, c.group) : null;
     lastGroup = c.group;
-    const kind = c.label || c.demo_kind || c.category;
+    const kind = c.label || c.demo_kind || CLIP_CATEGORIES[c.category] || "Practice recording";
     const variant = () => (c.audio[state.variant] ? state.variant : Object.keys(c.audio)[0]);
     const playBtn = el("button", { class: "icon-btn", type: "button", "aria-label": `Play clip ${c.clip_id}` }, "▶ Play");
     playBtn.onclick = () => play(c.audio[variant()], playBtn);
     return [heading, el("li", { class: "clip", "data-clip": c.clip_id },
       el("span", { class: "clip-kind" + (c.honest_failure ? " fail" : c.fixed_in_v2 ? " fixed" : "") }, `${c.clip_id} · ${kind}`),
+      el("span", { class: "clip-text" }, c.text),
       el("span", { class: "clip-actions" },
         playBtn,
-        el("button", { class: "icon-btn clip-run", type: "button", onclick: () => runClip(c.clip_id, variant()) }, "Run")),
-      el("span", { class: "clip-text" }, c.text))];
+        el("button", { class: "icon-btn clip-run", type: "button", onclick: () => runClip(c.clip_id, variant()) }, "Run")))];
   }));
 }
 
@@ -233,10 +240,11 @@ async function process(form, meta) {
   try {
     const result = await api("/api/process", { method: "POST", body: form });
     renderResult(result, meta);
-    await refreshAfterSave(result.reminder && result.reminder.id);
+    if (result.reminder) await refreshAfterSave(result.reminder.id);
     return result;
   } catch (err) {
     showBanner(err.message);
+    if (meta.microphone) $("#mic-note").textContent = err.message;
     fill($("#base-body"), el("p", { class: "muted" }, "No result."));
     fill($("#peh-body"), el("p", { class: "muted" }, "No result: " + err.message));
     return null;
@@ -268,9 +276,9 @@ function decisionWords(d, names, stored, isPehchaan) {
     return "Asked: " + (who.length > 1 ? who.slice(0, -1).join(", ") + " or " + who.at(-1) : (who[0] || "someone")) + "?";
   }
   const a = d.action;
-  if (a.type === "remind" && a.target_entity_id) {
-    const verb = isPehchaan ? (stored ? "Created a reminder for " : "Would remind about ") : "Would create a reminder for ";
-    let s = verb + withRole(names, a.target_entity_id);
+  if (a.type === "remind") {
+    let s = isPehchaan && stored ? "Created a reminder" : "Would create a reminder";
+    if (a.target_entity_id) s += " for " + withRole(names, a.target_entity_id);
     if (a.time) s += " at " + a.time;
     else if (a.raw_time_text) s += ` (“${a.raw_time_text}”, no clear clock time)`;
     if (a.place_entity_id && a.place_entity_id !== a.target_entity_id) s += ", near " + nameOf(names, a.place_entity_id);
@@ -310,6 +318,12 @@ function verdictLine(v) {
   return el("p", { class: "verdict " + cls }, v.label);
 }
 
+function provenance(r, source) {
+  const scope = source === r.decision_source ? r.latency_scope : source === "live" ? "end to end" : "decision only";
+  const time = scope === "end to end" ? ` · ${ms(r.timings.total_ms)} for this request` : "";
+  return el("p", { class: "source" }, `${source} · ${scope}${time}`);
+}
+
 function renderResult(r, meta) {
   const names = r.names || {};
   // What was said (only known for clips) and what speech-to-text heard.
@@ -317,7 +331,7 @@ function renderResult(r, meta) {
     el("p", {}, el("span", { class: "label" }, "Input"), meta.label, r.book !== "default" ? ` · book ${r.book}` : ""),
     r.clip && r.clip.said ? el("p", {}, el("span", { class: "label" }, "Said"), r.clip.said) : null,
     el("p", {}, el("span", { class: "label" }, "Heard"), r.heard_transcript,
-      el("span", { class: "muted small" }, `  (${r.stt_source})`)));
+      el("span", { class: "muted small" }, `  (${sttWords(r)})`)));
 
   // --- strong AI card ---
   if (r.baseline) {
@@ -336,14 +350,14 @@ function renderResult(r, meta) {
     }
     fill($("#base-body"), 
       verdictLine(r.verdict && r.verdict.baseline),
+      provenance(r, r.baseline_source),
       highlighted(b.output_transcript, marks),
       el("p", { class: "decision" }, decisionWords(b, names, null, false)),
       el("p", { class: "timing" },
         el("span", {}, sttWords(r)),
         el("span", {}, "decision " + ms(r.timings.baseline_ms)),
-        el("span", { class: "badge ai" }, "1 LLM call"),
-        el("span", {}, b.cost_usd ? usd(b.cost_usd) : "")),
-      el("p", { class: "source" }, r.baseline_source || ""));
+        el("span", { class: "badge ai" }, "One AI decision"),
+        el("span", {}, "cost " + usd(r.baseline_cost_usd))));
   } else if (r.baseline_error) {
     // Strong-AI side failed (network / API trouble): say so on the card; Pehchaan's answer is still shown.
     fill($("#base-body"), el("p", { class: "verdict bad" }, r.baseline_error));
@@ -355,6 +369,9 @@ function renderResult(r, meta) {
   const rows = [];
   const marks = [];
   r.spans.forEach((s, i) => {
+    const asking = s.reason.startsWith("clarify:");
+    const count = s.close_match_count;
+    const matches = count ? `${count} close ${count === 1 ? "match" : "matches"}` : "Close matches";
     const id = "why-" + i;
     const why = el("p", { class: "why", id, hidden: true }, s.reason);
     const toggle = () => { why.hidden = !why.hidden; row.querySelector("button").setAttribute("aria-expanded", String(!why.hidden)); };
@@ -362,29 +379,30 @@ function renderResult(r, meta) {
       el("button", { type: "button", "aria-expanded": "false", "aria-controls": id, onclick: toggle },
         el("span", {}, `“${s.heard_text}”`), el("span", { class: "arrow" }, "→"),
         el("strong", {}, s.resolved_name ? (s.role ? `${s.resolved_name} (${s.role})` : s.resolved_name)
-          : s.reason.startsWith("clarify") ? "asking you (see the question)" : "kept as heard"),
-        confChip(s.confidence), el("span", { class: "muted small" }, "why ▾")),
+          : asking ? "needs clarification" : "kept as heard"),
+        asking ? el("span", { class: "chip" }, matches) : confChip(s.confidence), el("span", { class: "muted small" }, "why ▾")),
       why);
     rows.push(row);
     if (s.output_start !== null) {
       marks.push({ start: s.output_start, end: s.output_end,
         node: (t) => el("button", { type: "button", class: "hl" + (s.resolved_entity_id ? "" : " kept"),
-          title: `heard “${s.heard_text}” → ${s.resolved_name || "kept"}`, onclick: toggle }, t) });
+          title: `heard “${s.heard_text}” → ${s.resolved_name || (asking ? "needs clarification" : "kept")}`, onclick: toggle }, t) });
     }
   });
   const d = r.decision;
   fill($("#peh-body"), 
     verdictLine(r.verdict && r.verdict.pehchaan),
+    r.v1_output != null ? el("p", { class: "source" }, `v1 said: ${r.v1_output}`) : null,
+    provenance(r, r.decision_source),
     highlighted(r.output_transcript, marks),
     rows.length ? el("ul", { class: "entities", "aria-label": "Names: heard, resolved, confidence, reason" }, rows) : null,
     el("p", { class: "decision" }, decisionWords(d, names, r.reminder, true)),
     el("p", { class: "timing" },
       el("span", {}, sttWords(r)),
       el("span", {}, "decision " + ms(r.timings.pehchaan_ms)),
-      el("span", { class: "badge " + (r.used_llm ? "ai" : "no-ai") }, r.used_llm ? "LLM reasoning used" : "Fast path · no LLM call needed"),
+      el("span", { class: "badge " + (r.used_llm ? "ai" : "no-ai") }, r.used_llm ? "AI reasoning used" : "Matched without an AI call"),
       r.ai_unavailable ? el("span", { class: "badge warn" }, "AI unavailable — asked you instead") : null,
-      el("span", {}, "cost " + usd(r.cost_usd))),
-    r.pehchaan_source ? el("p", { class: "source" }, r.pehchaan_source) : null);
+      el("span", {}, "cost " + usd(r.cost_usd))));
 
   renderClarify(r.pending, null);
   if (r.pending) $("#clarify").scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -392,7 +410,7 @@ function renderResult(r, meta) {
 
 /** How the transcript was obtained, in words (typed text has no speech-to-text step). */
 function sttWords(r) {
-  if (r.stt_source.startsWith("none")) return "typed: no speech-to-text";
+  if (r.input === "text") return "typed: no speech-to-text";
   if (r.stt_source.startsWith("saved")) return "speech-to-text: saved transcript";
   return "speech-to-text " + ms(r.timings.stt_ms);
 }
@@ -480,15 +498,17 @@ function openReminder(id) {
   const row = (k, v) => [el("dt", {}, k), el("dd", {}, v || "–")];
   fill($("#rd-body"), 
     el("h2", { id: "rd-title" }, `Reminder #${r.id}: ${r.target_name || "(no person)"}`),
+    el("p", {}, el("strong", {}, "Original request: "), r.heard_transcript),
     el("dl", {},
-      row("Person", r.target_name), row("Role", r.target_role),
       row("Time", r.time || (r.raw_time_text ? `“${r.raw_time_text}” (no clear clock time)` : null)),
-      row("Place", r.place_name), row("Heard", r.heard_transcript), row("Resolved text", r.output_transcript),
-      row("Decided by", RESOLUTION_WORDS[r.resolution] || r.resolution), row("Contact book", r.contact_book),
+      row("Place", r.place_name),
+      row("Contact book", r.contact_book),
       row("Created", r.created_at)),
-    el("h3", {}, "Heard → resolved → confidence → reason"),
+    r.entities.length ? el("h3", {}, "Name resolutions") : null,
     el("ul", { class: "entities" }, r.entities.map((e) => el("li", { class: "entity" },
-      el("p", { class: "why" }, `“${e.heard_text}” → ${e.resolved_entity_id || "kept"} · ${Math.round(e.confidence * 100)}% · ${e.reason}`)))));
+      el("p", { class: "why" }, e.resolved_entity_id
+        ? `‘${e.heard_text}’ → ${e.name || "Unavailable contact"}${e.role ? ` (${e.role})` : ""} · ${e.method}`
+        : `‘${e.heard_text}’ · kept as heard`)))));
   $("#reminder-dialog").showModal();
 }
 
@@ -518,7 +538,7 @@ const SCORE_ROWS = [
   ["wer", "Word error rate", true],
   ["over_correction_rate", "Over-correction (changed a name that should stay)", true],
   ["unnecessary_question_rate", "Unnecessary questions", true],
-  ["no_llm_rate", "Decided on the fast path (no LLM call)", false],
+  ["no_llm_rate", "Decided without an AI call", false],
 ];
 let scoreLoaded = false;
 async function loadScoreboard() {
@@ -526,7 +546,6 @@ async function loadScoreboard() {
   const m = await api("/api/metrics");
   const c = m.overall.c, p = m.overall.pehchaan;
   const cell = (x) => `${x.hits}/${x.total} = ${Math.round(x.rate * 100)}%`;
-  $("#score-sub").textContent = m.label;
   const w = m.win_tie_loss || {};
   fill($("#score-wtl"), 
     el("div", {}, el("strong", {}, w.win ?? "–"), "Pehchaan wins"),
@@ -551,18 +570,20 @@ async function loadScoreboard() {
     el("td", { class: "num" }, "$" + c.cost_usd_mean.toFixed(6)), el("td", { class: "num" }, "$" + p.cost_usd_mean.toFixed(6)),
     el("td", { class: "cmp-better" }, "Better")));
   fill($("#score-table"), 
-    el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Strong AI (c)"), el("th", {}, "Pehchaan"), el("th", {}, "Pehchaan is"))),
+    el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Strong AI"), el("th", {}, "Pehchaan"), el("th", {}, "Pehchaan is"))),
     el("tbody", {}, rows));
   renderV2(m.v2);
   scoreLoaded = true;
 }
 
-/** Second section: the v2 fix on test-2. "Better"/"Worse" compare v2 with the strong AI, in words. */
+/** Fresh held-out test-2 results. "Better"/"Worse" compare v2 with the strong AI, in words. */
 function renderV2(v2) {
   if (!v2) return;
   const { c, v1, v2: p } = v2.overall;
   const cell = (x) => (x ? `${x.hits}/${x.total} = ${Math.round(x.rate * 100)}%` : "–");
-  fill($("#score-v2-sub"), v2.label);
+  const wrong = p.wrong_target_rate;
+  $("#score-v2-lead").textContent = `Wrong-target actions on the same ${wrong.total} held-out recordings: Strong AI ${c.wrong_target_rate.hits} · Pehchaan ${wrong.hits}`;
+  $("#score-v2-caveat").textContent = `Still worse: ${p.unnecessary_question_rate.hits} unnecessary questions vs ${c.unnecessary_question_rate.hits}`;
   const w = v2.win_tie_loss || {};
   fill($("#score-v2-wtl"),
     el("div", {}, el("strong", {}, w.win ?? "–"), "v2 wins"),
@@ -582,7 +603,7 @@ function renderV2(v2) {
     el("td", { class: "num" }, `${Math.round(p.latency_ms_median)} / ${Math.round(p.latency_ms_mean)} ms`),
     el("td", { class: "cmp-better" }, "Better")));
   fill($("#score-v2-table"),
-    el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Strong AI (c)"), el("th", {}, "Pehchaan v1"),
+    el("thead", {}, el("tr", {}, el("th", {}, "Metric"), el("th", {}, "Strong AI"), el("th", {}, "Pehchaan v1"),
       el("th", {}, "Pehchaan v2"), el("th", {}, "v2 vs strong AI"))),
     el("tbody", {}, rows));
   $("#score-v2").hidden = false;
@@ -603,8 +624,9 @@ function pickMime() {
 $("#mic").addEventListener("click", async () => {
   if (recorder && recorder.state === "recording") { recorder.stop(); return; }
   hideBanner();
+  $("#mic-note").textContent = "";
   if (!window.isSecureContext || !navigator.mediaDevices) {
-    showBanner("The browser only allows the microphone on https:// or on localhost. Open the https link, or run the app locally.");
+    $("#mic-note").textContent = "Open the HTTPS link or use localhost to record.";
     return;
   }
   let stream;
@@ -617,7 +639,7 @@ $("#mic").addEventListener("click", async () => {
   } catch (err) {
     if (stream) stream.getTracks().forEach((track) => track.stop());
     recorder = null;
-    showBanner("Microphone not available: " + (err.name === "NotAllowedError" ? "permission was denied. Allow the mic in the address bar." : err.message));
+    $("#mic-note").textContent = "Microphone not available: " + (err.name === "NotAllowedError" ? "Allow microphone access in the address bar." : err.message);
     return;
   }
   recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
@@ -631,11 +653,11 @@ $("#mic").addEventListener("click", async () => {
     const blob = new Blob(chunks, { type });
     const ext = type.includes("mp4") ? "m4a" : type.includes("ogg") ? "ogg" : "webm";
     const seconds = (Date.now() - startedAt) / 1000;
-    if (seconds < 0.7 || blob.size < 1000) { showBanner("That recording was too short. Tap, speak a sentence, then tap again."); return; }
+    if (seconds < 0.7 || blob.size < 1000) { $("#mic-note").textContent = "That recording was too short. Tap, speak a sentence, then tap again."; return; }
     $("#mic-note").textContent = `Sent ${seconds.toFixed(1)} s of audio (${Math.round(blob.size / 1024)} KB, ${ext}).`;
     const form = new FormData();
     form.append("file", blob, "mic." + ext);
-    await process(form, { label: `Your voice (${seconds.toFixed(1)} s)` });
+    await process(form, { label: `Your voice (${seconds.toFixed(1)} s)`, microphone: true });
   };
   startedAt = Date.now();
   $("#mic").classList.add("recording");
@@ -653,7 +675,7 @@ const SENTENCE = "Remind me to call my doctor at 6 PM.";
 let lastResult = null;
 const STEPS = [
   { text: "Same sentence, two users. Book A has ONE doctor.", run: async () => {
-      await resetDemo("B");
+      await api("/api/preferences/reset?book=B", { method: "POST" });
       setBook("A"); $("#text").value = SENTENCE;
       return runText(SENTENCE);
     } },
@@ -685,11 +707,12 @@ function showGuide(stepLabel, text, nextLabel) {
   $("#guide-text").textContent = text;
   $("#guide-next").textContent = nextLabel;
 }
-$("#demo-mode").addEventListener("click", () => {
+document.querySelectorAll(".start-doctor").forEach((button) => button.addEventListener("click", () => {
+  if (state.busy || $("#guide-next").disabled) return;
   stepIndex = -1;
   document.querySelector('.tab[data-view="demo"]').click();
-  showGuide("Demo mode", "The doctor story in " + STEPS.length + " steps. Click Next to run each step.", "Start ▶");
-});
+  $("#guide-next").click();
+}));
 $("#guide-exit").addEventListener("click", () => { $("#guide").hidden = true; });
 $("#guide-next").addEventListener("click", async () => {
   if (stepIndex >= STEPS.length - 1) { $("#guide").hidden = true; return; }

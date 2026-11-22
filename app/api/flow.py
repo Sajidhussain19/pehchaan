@@ -50,14 +50,23 @@ def role_of(entity) -> str | None:
     return "place"
 
 
-def marked_spans(decision: Decision) -> list[dict]:
+def marked_spans(decision: Decision, items=None) -> list[dict]:
     """Every entity with WHERE it is, so the UI can highlight it in both transcripts.
 
     heard_start/heard_end: character positions in the heard transcript; output_start/output_end: in the
     corrected transcript (None when the text can't be found, e.g. after transliteration).
     """
     out, heard_pos, out_pos = [], 0, 0
+    questions = iter(i for i in (items or []) if i.status == "clarify")
+    asks = sum(e.reason.startswith("clarify:") for e in decision.entities)
     for e in decision.entities:
+        count = None
+        if e.reason.startswith("clarify:"):
+            question = next(questions, None)
+            if question is not None:
+                count = len(question.clarify_ids)
+            elif asks == 1:  # Saved decisions contain the combined list for all questions.
+                count = len(decision.clarify_candidates)
         entity = get_by_id(e.resolved_entity_id) if e.resolved_entity_id else None
         hs = decision.heard_transcript.find(e.heard_text, heard_pos)
         written = next((w for w in ([entity.name, *entity.aliases] if entity else []) + [e.heard_text]
@@ -65,7 +74,7 @@ def marked_spans(decision: Decision) -> list[dict]:
         os_ = decision.output_transcript.find(written, out_pos) if written else -1
         out.append({"heard_text": e.heard_text, "resolved_entity_id": e.resolved_entity_id,
                     "resolved_name": entity.name if entity else None, "role": role_of(entity),
-                    "confidence": e.confidence, "reason": e.reason,
+                    "confidence": e.confidence, "reason": e.reason, "close_match_count": count,
                     "heard_start": hs if hs >= 0 else None, "heard_end": hs + len(e.heard_text) if hs >= 0 else None,
                     "output_start": os_ if os_ >= 0 else None,
                     "output_end": os_ + len(written) if os_ >= 0 else None})
@@ -85,6 +94,26 @@ def _reminder_from(decision: Decision, book: str, resolution: str) -> Reminder:
                     place_entity_id=a.place_entity_id, place_name=place.name if place else None,
                     time=a.time, raw_time_text=a.raw_time_text,
                     entities=[e.model_dump() for e in decision.entities], resolution=resolution)
+
+
+def reminder_view(reminder: Reminder) -> dict:
+    """Resolve display names for both current and previously stored reminders."""
+    data = reminder.model_dump()
+    with use_book(reminder.contact_book):
+        for span in data["entities"]:
+            eid = span.get("resolved_entity_id")
+            entity = get_by_id(eid) if eid else None
+            span["name"] = entity.name if entity else None
+            span["role"] = role_of(entity) if entity else None
+            if eid and eid == reminder.target_entity_id:
+                span["name"] = reminder.target_name or span["name"]
+                span["role"] = reminder.target_role or span["role"]
+            if span.get("reason", "").startswith("resolve: you told me"):
+                span["method"] = {"clarified_this_time": "your choice this time",
+                                  "clarified_always": "your saved choice"}.get(reminder.resolution, "learned preference")
+            else:
+                span["method"] = "automatic match" if eid else "kept as heard"
+    return data
 
 
 def _first_question(state: dict) -> dict | None:
@@ -116,7 +145,7 @@ def _store(conn, visitor_id, state, pehchaan_ms, book, direction, caller, resolu
     transcript = decision.heard_transcript
     result = {"decision": decision.model_dump(), "reminder": None, "pending": None, "pehchaan_ms": round(pehchaan_ms, 1)}
     with use_book(book):  # names and roles come from the same contact book the decision used
-        result["spans"] = marked_spans(decision)
+        result["spans"] = marked_spans(decision, state["items"])
         if decision.behaviour == "clarify":
             q = _first_question(state)
             if q:  # store the question; nothing is done until the user answers
@@ -134,18 +163,29 @@ def _store(conn, visitor_id, state, pehchaan_ms, book, direction, caller, resolu
             else:
                 resolution = resolution_if_resolved
             reminder = _reminder_from(decision, book, resolution)
-            result["reminder"] = reminder_store.create(conn, reminder, visitor_id).model_dump()
+            result["reminder"] = reminder_view(reminder_store.create(conn, reminder, visitor_id))
     return result
 
 
 def process(transcript: str, *, visitor_id: str, book: str = "default", direction: str = "outgoing", caller: str | None = None,
-            client=None, compare: bool = False) -> dict:
-    """Pehchaan on one transcript -> reminder or pending question (+ baseline (c) side by side if compare)."""
-    state, ms = _decide(transcript, book, direction, caller, client)
-    store_started = time.perf_counter()
-    with connect() as conn:
-        result = _store(conn, visitor_id, state, ms, book, direction, caller)
-    result["store_ms"] = round((time.perf_counter() - store_started) * 1000, 1)
+            client=None, compare: bool = False, preview: bool = False, saved_decision: Decision | None = None) -> dict:
+    """A clip previews its action. Only interactive inputs can persist a reminder or question."""
+    state = None
+    if saved_decision is None:
+        state, ms = _decide(transcript, book, direction, caller, client)
+        decision = state["decision"]
+    else:
+        decision, ms = saved_decision, saved_decision.latency_ms
+    if preview or saved_decision is not None:
+        with use_book(book):
+            spans = marked_spans(decision, state["items"] if state is not None else None)
+            result = {"decision": decision.model_dump(), "spans": spans, "pehchaan_ms": ms,
+                      "reminder": None, "pending": None, "store_ms": 0.0}
+    else:
+        store_started = time.perf_counter()
+        with connect() as conn:
+            result = _store(conn, visitor_id, state, ms, book, direction, caller)
+        result["store_ms"] = round((time.perf_counter() - store_started) * 1000, 1)
     result["baseline"], result["baseline_ms"], result["baseline_cost_usd"] = None, None, None
     result["baseline_error"] = None
     if compare:

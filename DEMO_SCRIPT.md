@@ -14,27 +14,27 @@ Add the captions afterwards as text overlays (Clipchamp/OBS), large and bottom-c
 The first four clips are your rehearsed ones, from the **original test set**. The page labels that group
 "Original test set (seen before v2)": v2's fixes were designed after looking at v1's mistakes there, so those
 clips show the system working, and **test-2 on the scoreboard is the clean proof**. Every clip replays the saved
-evaluation transcript and both systems' saved decisions, so what you record is exactly what the scoreboard counts.
+evaluation transcript and both systems’ saved decisions as previews. The scoreboard reports each held-out set separately.
 
 | Time | Click / do | On-screen caption |
 |---|---|---|
 | 0:00–0:06 | Show the page, still | **Speech-to-text hears words. It doesn't know *your* contacts.** Pehchaan: speech AI on every voice request (demo clips replay their saved transcripts), LLM reasoning only for hard cases. |
 | 0:06–0:22 | Clips → **s104 · missed clarification — Rohit vs Rohith** → **▶ Play** (let it play), then **Run** | "Call Rohit at 6 PM." You have **two** Rohits. |
-| | Point at the cards and the question panel | Strong AI **guesses** Rohith Reddy: **✗ Wrong target**. Pehchaan **asks**: Rohit Chaturvedi or Rohith Reddy? **✓ Correct** |
+| | Point at the two decision cards | Strong AI **guesses** Rohith Reddy: **✗ Wrong target**. Pehchaan **asks**: Rohit Chaturvedi or Rohith Reddy? **✓ Correct** |
 | 0:22–0:38 | **s140 · clue vs default — tooth → dentist** → **Run** | "…ask my doctor about the **tooth filling** on Friday." |
 | | Click the "my doctor" highlight in the Pehchaan card to open *why* | Strong AI uses the default family doctor: **✗**. Pehchaan: clue **"tooth" → Dr. Subramanian, the dentist**. **✓** |
 | 0:38–0:50 | **s067 · misheard name — Bhagyalakshmi Jewellers, Panjagutta** → **Run** | Speech-to-text wrote "**Padyalakshmi Jewelers in Punjabuta**". |
 | | Point at the Pehchaan highlights | Strong AI changes nothing: **✗**. Pehchaan fixes both by sound: **Bhagyalakshmi Jewellers**, **Panjagutta**, in ~13 ms on the fast path (no LLM call needed). **✓** |
 | 0:50–1:00 | **s090 · v1 failure — fixed in v2** → **Run** | Telugu "ee **roju**" = "today". v1 turned it into "Dr. Raju". **v2 keeps it: everyday speech, not a name.** ✓ |
-| 1:00–1:04 | Click **▶ Demo mode** → **Start** | **Same sentence, two different users.** |
-| 1:04–1:10 | **Next** (step 1, book A) | User A has one doctor → reminder for **Dr. Venkataramana**. |
+| 1:00–1:04 | Click **▶ Start the 5-step doctor demo** | **Same sentence, two different users.** |
+| 1:04–1:10 | Show step 1, book A | User A has one doctor → reminder for **Dr. Venkataramana**. |
 | 1:10–1:17 | **Next** (step 2, book B) | User B has two doctors, no default → Pehchaan **asks**. Show what the Strong AI card actually returned, or its comparison status. |
 | 1:17–1:23 | **Next** (step 3: "Always use Dr. Subramanian") | Learned **only with consent**: "Always use" (vs "Use this time"). |
 | 1:23–1:28 | **Next** (step 4) | Same sentence again → resolved from the **learned preference**. |
 | 1:28–1:33 | **Next** (step 5: "…about my fever") | A clue still wins: **"fever" → the GP**, not the saved dentist. |
 | 1:33–1:36 | Click a reminder on the right | Real saved reminders: person, role, time, heard → resolved, how it was decided. |
-| 1:36–1:43 | Tab **Scoreboard** (top table) | **v1, 220 held-out clips, run once.** Wrong target **11 vs 24**. Weak spot: over-correction **11 vs 3**. |
-| 1:43–1:50 | Scroll to **"v2 fix, proven on a fresh held-out set"** | **Fresh test-2, frozen before v2 ran:** over-correction **2 vs 3**, wrong target **2 vs 10**. Still "Worse": 4 unnecessary questions. |
+| 1:36–1:43 | Tab **Scoreboard** (top table) | **Fresh test-2:** wrong targets **2 vs 10**. Still worse: **4** unnecessary questions vs **0**. |
+| 1:43–1:50 | Scroll to **Original held-out test (v1, before the fix)** | **v1, 220 clips:** wrong targets **11 vs 24**. Weak spot: over-correction **11 vs 3**. |
 | 1:50–1:58 | Tab **Live demo**, scroll the clips list to **s185 · Known failure (v2)** → **Run** | Known failure in v2: "**Dhiraj**" became "**Dr. Raju**". Strong AI: ✓. We show it. |
 | 1:58–2:00 | Still | **Pehchaan: AI assistants hear words. Pehchaan understands who you mean.** |
 

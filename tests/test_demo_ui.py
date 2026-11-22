@@ -20,6 +20,16 @@ def test_demo_wording_matches_the_saved_clip_groups():
             "(a disclosed repeat after one approved change gave identical scores)") in footer
 
 
+def test_first_screen_and_scoreboard_order():
+    html = (ROOT / "web/index.html").read_text(encoding="utf-8")
+    assert html.count("▶ Start the 5-step doctor demo") == 3  # header and both empty cards
+    assert "Waiting for input" not in html
+    assert "Hear 'my doctor'. Find the right contact. Save the reminder." in html
+    assert "Strong AI (GPT-4o-mini with the same contacts)" in html
+    assert html.index('id="score-v2-lead"') < html.index('id="score-v2-caveat"') < html.index('id="score-v2-table"')
+    assert html.index('id="score-v2-table"') < html.index("Original held-out test (v1, before the fix)")
+
+
 @pytest.mark.skipif(not shutil.which("node"), reason="browser unit tests require Node.js")
 def test_browser_event_handlers():
     subprocess.run(["node", "--test", str(ROOT / "tests/web_ui.test.cjs")], check=True)

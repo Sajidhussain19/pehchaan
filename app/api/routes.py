@@ -83,12 +83,6 @@ def _verdict(gt, decision: dict | None) -> dict | None:
     return {"outcome": outcome, "label": VERDICT_WORDS.get(outcome, outcome), "ok": outcome == "ok"}
 
 
-def _same_decision(a: dict, b: dict) -> bool:
-    keys = lambda d: (d["output_transcript"], d["behaviour"], d["action"]["target_entity_id"],  # noqa: E731
-                      sorted(d["clarify_candidates"]))
-    return keys(a) == keys(b)
-
-
 def visitor_id(request: Request) -> str:
     """An anonymous browser's UUID is its bearer credential for its own demo items."""
     raw = request.headers.get("x-visitor-id", "")
@@ -146,9 +140,11 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
     if len(given) != 1:
         raise HTTPException(422, "send exactly one input: an audio file, a clip_id (+ variant), or text")
     guard.check_rate(request)  # 429 if this visitor sent too many requests recently
-    guard.check_budget()  # 503 if today's OpenAI budget is used up
+    replay = bool(clip_id and book == DEFAULT_BOOK and not live_stt and direction is None and caller_contact_id is None)
+    if not replay or (compare and live_baseline):
+        guard.check_budget()
     t_start = time.perf_counter()
-    stt = {"stt_ms": 0.0, "stt_cost_usd": 0.0, "stt_source": "none (text input)"}
+    stt = {"stt_ms": 0.0, "stt_cost_usd": 0.0, "stt_source": "typed sentence"}
     direction_used, caller = direction or "outgoing", caller_contact_id
     clip = None
 
@@ -176,58 +172,60 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
         saved = None if live_stt else load_transcripts("plain", variant).get(clip_id)
         if saved is not None:  # the same Module 4 transcript the evaluation used: free and repeatable
             transcript = saved
-            stt = {"stt_ms": 0.0, "stt_cost_usd": 0.0, "stt_source": "saved baseline (a) transcript"}
+            stt = {"stt_ms": 0.0, "stt_cost_usd": 0.0, "stt_source": "saved transcript"}
+        elif replay:
+            raise HTTPException(404, "No saved transcript for this recording")
         else:
             transcript, stt = _speech_to_text(path.read_bytes(), ".wav", clip.get("duration_seconds"))
     if not transcript:
         raise HTTPException(422, "speech-to-text heard nothing; please try again")
 
-    # For a clip whose transcript is the saved evaluation input, (c)'s saved evaluation answer is reused
-    # (same input -> same numbers as the report, $0). Mic and text input always run (c) live.
-    saved_c = None
-    if compare and clip is not None and stt["stt_source"].startswith("saved") and not live_baseline and book == DEFAULT_BOOK:
-        saved_c = load_decision_objects("llm_baseline", variant, settings.chat_model).get(clip_id)
-    # Clips replay the evaluation: Pehchaan's verdict is scored on its SAVED decision from the evaluation run
-    # (the same files the reports were computed from), and the live re-run (which creates the reminder or the
-    # question) uses the evaluation's stored LLM answers (client=None -> cache), so it matches that decision.
-    saved_p = None
-    if clip is not None and stt["stt_source"].startswith("saved") and book == DEFAULT_BOOK:
+    saved_p = saved_c = None
+    if replay:
         saved_p = load_decision_objects("pehchaan", variant, VERSION).get(clip_id)
+        if saved_p is None:
+            raise HTTPException(404, "No saved Pehchaan decision for this recording")
+        if compare and not live_baseline:
+            saved_c = load_decision_objects("llm_baseline", variant, "gpt-4o-mini").get(clip_id)
+    live_compare = compare and (not replay or live_baseline)
     result = flow.process(transcript, visitor_id=owner, book=book, direction=direction_used, caller=caller,
-                          client=None if saved_p is not None else client, compare=compare and saved_c is None)
+                          client=client, preview=clip is not None, saved_decision=saved_p, compare=live_compare)
+    if replay and compare and not live_compare and saved_c is None:
+        result["baseline_error"] = "Strong AI has no saved answer for this recording."
     if saved_c is not None:
         result.update(baseline=saved_c.model_dump(), baseline_ms=saved_c.latency_ms, baseline_cost_usd=0.0)
     decision = result["decision"]
     gt = _ground_truth().get(clip_id) if clip is not None and book == DEFAULT_BOOK else None
     total_ms = (time.perf_counter() - t_start) * 1000
-    guard.record_spend(stt["stt_cost_usd"] + decision["cost_usd"] + (result["baseline_cost_usd"] or 0))
+    cost = stt["stt_cost_usd"] + (0.0 if replay else decision["cost_usd"])
+    guard.record_spend(cost + (result["baseline_cost_usd"] or 0))
+    previous = load_decision_objects("pehchaan", variant, "v1").get(clip_id) if replay and clip_id == "s090" else None
     return {
+        "v1_output": previous.output_transcript if previous else None,
         "input": given[0], "book": book, "clip": {"clip_id": clip_id, "variant": variant, "said": clip.get("text")}
         if clip else None, "direction": direction_used, "caller_contact_id": caller,
         "heard_transcript": transcript, "output_transcript": decision["output_transcript"],
         "spans": result["spans"], "decision": decision, "reminder": result["reminder"], "pending": result["pending"],
+        "pehchaan_source": f"saved {VERSION} decision from the evaluation run" if replay else None,
+        "decision_source": "saved evaluation replay" if replay else "live",
+        "latency_scope": "decision only" if replay else "end to end",
         "baseline": result["baseline"],
         "baseline_error": result.get("baseline_error"),
         # True when Pehchaan's LLM step failed and it asked (or kept) instead of deciding.
         "ai_unavailable": any("AI unavailable" in e["reason"] for e in decision["entities"]),
-        "baseline_source": None if not compare or result.get("baseline_error") else ("saved from the final evaluation run" if saved_c is not None
-                                                     else "live GPT-4o-mini call"),
+        "baseline_source": None if not compare or result.get("baseline_error") else ("saved evaluation replay" if saved_c is not None else "live"),
         # Ground truth only for test-set clips on the evaluated (default) contact book.
         "expected": {"behaviour": gt.expected_behaviour,
                      "target_entity_id": getattr(getattr(gt, "expected_action", None), "target_entity_id", None)}
         if gt is not None else None,
-        "verdict": {"pehchaan": _verdict(gt, saved_p.model_dump() if saved_p is not None else decision),
+        "verdict": {"pehchaan": _verdict(gt, decision),
                     "baseline": _verdict(gt, result["baseline"])} if gt is not None else None,
-        "pehchaan_source": None if saved_p is None else (
-            f"saved {VERSION} decision from the evaluation run" + (
-                "" if _same_decision(saved_p.model_dump(), decision)
-                else " (NOTE: this live re-run differs; the verdict uses the saved decision)")),
         "names": _names_for(book, decision, result["baseline"]),
         "timings": {"stt_ms": stt["stt_ms"], "pehchaan_ms": result["pehchaan_ms"], "store_ms": result["store_ms"],
                     "baseline_ms": result["baseline_ms"], "total_ms": round(total_ms, 1)},
         "stt_source": stt["stt_source"], "used_llm": decision["used_llm"],
         # Cost of the whole interaction up to the reminder: speech-to-text + Pehchaan (baseline listed apart).
-        "cost_usd": round(stt["stt_cost_usd"] + decision["cost_usd"], 6),
+        "cost_usd": round(cost, 6),
         "baseline_cost_usd": result["baseline_cost_usd"],
     }
 
@@ -269,6 +267,7 @@ class ClarifyAnswer(BaseModel):
 @router.post("/api/clarify/{pending_id}")
 def clarify(answer: ClarifyAnswer, pending_id: str = PathParam(pattern=r"^[0-9a-f]{16}$"),
             owner: str = Depends(visitor_id), client=Depends(openai_client)) -> dict:
+    started = time.perf_counter()
     guard.check_budget()
     try:
         result = flow.answer(pending_id, answer.entity_id, answer.remember, visitor_id=owner, client=client)
@@ -276,10 +275,11 @@ def clarify(answer: ClarifyAnswer, pending_id: str = PathParam(pattern=r"^[0-9a-
         raise HTTPException(exc.status, str(exc)) from exc
     d = result["decision"]
     guard.record_spend(d["cost_usd"])
-    return {"pending_id": pending_id, "remember": answer.remember, "saved_preference": result["saved_preference"],
+    return {"decision_source": "live", "latency_scope": "end to end", "pending_id": pending_id, "remember": answer.remember, "saved_preference": result["saved_preference"],
             "heard_transcript": d["heard_transcript"], "output_transcript": d["output_transcript"],
             "spans": result["spans"], "decision": d, "reminder": result["reminder"], "pending": result["pending"],
-            "timings": {"pehchaan_ms": result["pehchaan_ms"], "store_ms": result["store_ms"]},
+            "timings": {"pehchaan_ms": result["pehchaan_ms"], "store_ms": result["store_ms"],
+                        "total_ms": round((time.perf_counter() - started) * 1000, 1)},
             "used_llm": d["used_llm"], "cost_usd": d["cost_usd"]}
 
 
@@ -291,7 +291,7 @@ def reset_preferences(book: str = Query(...)) -> dict:
 
 @router.get("/api/reminders")
 def list_reminders(owner: str = Depends(visitor_id)) -> list[dict]:
-    return [r.model_dump() for r in reminder_store.list_all(owner)]
+    return [flow.reminder_view(r) for r in reminder_store.list_all(owner)]
 
 
 @router.get("/api/reminders/{reminder_id}")
@@ -299,7 +299,7 @@ def get_reminder(reminder_id: int, owner: str = Depends(visitor_id)) -> dict:
     r = reminder_store.get(reminder_id, owner)
     if r is None:
         raise HTTPException(404, f"no reminder {reminder_id}")
-    return r.model_dump()
+    return flow.reminder_view(r)
 
 
 @router.delete("/api/reminders")

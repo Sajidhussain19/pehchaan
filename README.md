@@ -461,16 +461,16 @@ uvicorn app.main:app --port 8000
 Open **http://localhost:8000** in Chrome or Edge. The page (`web/`, plain HTML + CSS + JavaScript, no build step) has:
 
 - **Header:**
-  - the contact book (*Full contacts*, *A: one doctor*, *B: two doctors, no default*)
+  - the contact book (*Full contacts*, *A: one doctor*, *B: two doctors (starts with no default)*)
   - "Compare with strong AI" (on by default)
   - the **Scoreboard** tab
-  - **▶ Demo mode** (the doctor story, one Next click per step)
+  - **▶ Start the 5-step doctor demo**
 - **Left, three ways in:**
-  - demo clips from the held-out run, each labelled with its failure type, plus one labelled *Known failure*, with ▶ Play and a clean/phone switch
+  - clip previews from the labelled groups above, with Play, Run and a Clean/Phone switch. Replays display the saved action without creating a reminder or pending question
   - **Tap to record** (live mic, at most 15 s)
   - a text box
 - **Middle:**
-  - *Strong AI* vs *Pehchaan*: the transcript with names highlighted, *heard → resolved*, a confidence chip, the reason (click), the decision in plain words, and speech-to-text and decision time, *Fast path · no LLM call needed* or *LLM reasoning used*, and cost
+  - *Strong AI* vs *Pehchaan*: the transcript with names highlighted, *heard → resolved*, a confidence chip or a count of close matches, the reason (click), the action, and the source and timing scope for each decision
   - for test-set clips, a verdict in words (✓ Correct / ✗ Wrong target / ✗ Should have asked …) from the same scoring code as the evaluation
   - when Pehchaan asks, candidate cards with **Use this time** / **Always use for '…'**
 - **Right:** the real saved reminders (click to open), and **Reset demo**.
