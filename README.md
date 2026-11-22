@@ -8,6 +8,9 @@
 
 *Built solo for Builders 2026 by OpenAI x Equal AI, Hyderabad. Track: Build Challenging — Voice AI for India.*
 
+**Live demo:** https://d1rcvr2z1hg6u0.cloudfront.net · **Run it / test it / judge it:** [AGENTS.md](AGENTS.md) ·
+**Deck, cheat sheet, video:** [Deliverables](#deliverables)
+
 ## The problem
 
 General speech-to-text models often get Indian names wrong:
@@ -488,8 +491,19 @@ The OpenAI key never reaches the browser.
 
 ## Live demo link
 
-**https://&lt;to be added after deployment&gt;.cloudfront.net** (see [DEPLOY.md](DEPLOY.md): EC2 t3.small in us-west-2
+**https://d1rcvr2z1hg6u0.cloudfront.net** (see [DEPLOY.md](DEPLOY.md): EC2 t3.small in us-west-2
 behind CloudFront). If it is down, run it locally as above; the mic works on localhost.
+
+## Deliverables
+
+| File | What it is |
+|---|---|
+| [deliverables/Pehchaan_Slides.pdf](deliverables/Pehchaan_Slides.pdf) | Pitch deck (5 slides) |
+| [deliverables/Pehchaan_Slides.pptx](deliverables/Pehchaan_Slides.pptx) | The same deck as PowerPoint (each slide is the PDF page as a full-slide image) |
+| [deliverables/Pehchaan_Cheatsheet.pdf](deliverables/Pehchaan_Cheatsheet.pdf) | One-page cheat sheet |
+| [deliverables/Pehchaan_demo_voice.mp4](deliverables/Pehchaan_demo_voice.mp4) | Narrated demo video, 2:58 ([VIDEO.md](VIDEO.md)) |
+
+**To run, test and evaluate it yourself (or with an AI agent): [AGENTS.md](AGENTS.md).**
 
 ## Deployment (AWS)
 
