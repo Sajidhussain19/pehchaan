@@ -1,8 +1,25 @@
 # AGENTS.md — run, test and evaluate Pehchaan
 
-This file is for AI agents and reviewers who need to install Pehchaan on a fresh machine and use it end to end.
-Every command and expected result below was checked on a fresh `git clone`, first with **no `.env`** and then with
-an OpenAI key (see [Verified on a fresh clone](#verified-on-a-fresh-clone)).
+## 30-second verification
+
+From the extracted project directory, install with `python -m pip install -r requirements.txt` in a Python 3.12 virtual environment.
+Then run `python scripts/e2e_check.py` and look for **ALL PASSED**. Allow extra time for installation.
+
+## Judge summary
+
+- Indian names and phrases like “my doctor” can send a voice reminder to the wrong person.
+- Pehchaan uses personal contacts and sentence clues to pick the recipient, asks when needed and stores the reminder.
+- On the same 90 fresh held-out recordings, wrong-target actions fell from 10 with Strong AI to 2 with Pehchaan. Pehchaan also asked 4 unnecessary questions versus 0.
+- [Try the live five-step doctor demo](https://d1rcvr2z1hg6u0.cloudfront.net).
+- After installation, verify in about 30 seconds with `python scripts/e2e_check.py`. The keyless run skips live AI calls.
+
+No database setup or seeding is needed: the knowledge base and test data are in the repo; SQLite is created automatically on first start when the app first accesses storage.
+
+## What is simulated, mocked or not finished
+
+- Contacts are fictional. The clean and phone recordings use synthetic TTS. The original held-out set also includes 26 real Svarah speakers, distinguished by speaker profile. Their audio is excluded. Downloading it requires a Hugging Face token and accepting the dataset terms.
+- Demo clips replay saved evaluation transcripts and decisions. Typed text, the microphone and the guided doctor demo use the live decision pipeline. Live speech transcription needs an OpenAI key.
+- Remind is the only action executed. Call and Book targets can be evaluated but no calls or bookings are placed. Time parsing handles simple expressions such as “6 PM”.
 
 ## 1. What Pehchaan is
 
@@ -20,11 +37,11 @@ uses GPT-4o-mini only when it is unsure, and **asks** when two contacts fit equa
 
 | Need | Details |
 |---|---|
-| Python | **3.12** (tested: 3.12.10 on Windows 11; the Docker image uses `python:3.12-slim` on Linux). 3.11 should also work, but it was not tested. |
-| OS | Linux, macOS or Windows. All dependencies are pinned wheels (`requirements.txt`); no compiler, ffmpeg or database server is needed. SQLite comes with Python. |
-| Disk / network | About 300 MB for the virtual environment, about 75 MB for the repo. Internet is needed for `pip install`, and for OpenAI only if you set a key. |
+| Python | Use **3.12** (tested on Windows 11 with 3.12.10). The Linux Docker image uses `python:3.12-slim`. |
+| OS | Linux, macOS or Windows. The project pins its Python requirements. SQLite comes with Python. |
+| Disk / network | Internet is needed to install dependencies and for live OpenAI calls. The featured recordings, saved decisions and scoreboard are included in the submission. |
 | Browser (for the UI) | Chrome or Edge. The **microphone only works on `http://localhost` or `https://`** (a browser rule). On a remote server opened by plain `http://<ip>`, everything except the mic works. |
-| Optional | Docker (tested with Docker 29) as an alternative to the venv. An **OpenAI API key** for live speech-to-text, the live strong-AI comparison and the LLM fallback (see section 5). |
+| Optional | Docker as an alternative to the venv. An **OpenAI API key** for live speech-to-text, live Strong AI comparison and the LLM fallback (see section 5). Node.js runs the browser event-handler test inside pytest. |
 
 ## 3. Environment variables
 
@@ -58,17 +75,18 @@ for books A/B (git-ignored, or in `STATE_DIR`), and `data/kb/preferences.json` f
 ### Option A: Python virtual environment (Linux / macOS)
 
 ```bash
+# From GitHub (skip this line if already inside the extracted pehchaan/ directory):
 git clone https://github.com/Sajidhussain19/pehchaan.git && cd pehchaan
 python3.12 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-pytest -q                              # expect: 199 passed (about 45 s)
+pytest -q                              # expect the full suite to pass with Node.js installed
 # optional: cp .env.example .env  and put your real OPENAI_API_KEY in it (delete the HF_TOKEN placeholder line)
 export RATE_LIMIT_REQUESTS=1000        # recommended for automated testing (see section 3)
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-On **Windows PowerShell** the differences are: `python -m venv venv`, `.\venv\Scripts\Activate.ps1`,
+On **Windows PowerShell** the differences are: `py -3.12 -m venv venv`, `.\venv\Scripts\Activate.ps1`,
 `$env:RATE_LIMIT_REQUESTS = "1000"`, and in the examples below use `curl.exe` instead of `curl`.
 
 Check it runs (in a second terminal):
@@ -101,7 +119,7 @@ Checked on a fresh clone with **no `.env` and no key in the environment**:
 | Feature | Without key | Why |
 |---|---|---|
 | Server start, `/health`, `/docs`, the web page | ✅ works | |
-| All tests (`pytest -q`) | ✅ 199 passed | OpenAI is faked in tests |
+| All tests (`pytest -q`) | ✅ works | Tests isolate external AI calls |
 | **Demo clip replays** (s104, s140, s067, s090, s101, s185 and all other listed clips, Clean or Phone) | ✅ works, $0 | They replay the **saved** speech-to-text transcript and the **saved** Pehchaan and strong-AI decisions from the evaluation run, with ✓/✗ verdicts |
 | Clip audio playback (`/audio/...wav`) | ✅ works | WAV files are in the repo |
 | **Typed sentences** | ✅ works whenever the fast path decides (most sentences, e.g. the tooth → dentist example) | No speech-to-text and no LLM is needed |
@@ -153,6 +171,10 @@ they never store a reminder. Typed, mic and doctor-demo runs store real reminder
 | 12 | Tab **Live demo** → **Reset demo** (top of Reminders) → confirm | Banner "Demo reset: reminders cleared, book … forgot its learned answers." The reminder list empties. |
 
 ## 8. The same journeys via the API (curl)
+
+`python scripts/e2e_check.py` starts a local server on a temporary port with its own SQLite database and book preferences.
+For an existing **test instance**, use `python scripts/e2e_check.py --base-url http://127.0.0.1:8000`. This clears the shared book B preference.
+When that server requires a demo password, supply it through the `DEMO_KEY` environment variable. A configured OpenAI key enables a live upload and comparison check, which can incur API charges.
 
 ```bash
 B=http://127.0.0.1:8000
@@ -208,11 +230,10 @@ The response always includes `heard_transcript`, `output_transcript`, `decision.
 ## 9. Tests and evaluation reports
 
 ```bash
-pytest -q                                   # 199 passed; no key or network needed
-python scripts/evaluate.py --out dev_check  # re-scores the DEV split from saved outputs, $0, no key
-#   -> data/results/dev_check.md (+ .json). It matches the committed data/results/report_dev_all.md:
+pytest -q                                   # no key or network needed
+python scripts/evaluate.py --split dev --systems c v1 v2 --compare v2 c --out dev_check
+#   -> data/results/dev_check.json matches report_dev_all.json. This reads saved dev outputs.
 #      Pehchaan v2 wins 54, ties 88, loses 4 vs the strong AI; wrong targets 0/146 vs 20/146.
-#      (The console line "c vs pehchaan: {'loss': 54, 'win': 4, ...}" counts from (c)'s side.)
 python scripts/demo_flow.py                 # the two-book doctor story through the API, $0, temporary DB
 ```
 
@@ -247,7 +268,7 @@ They default to the dev split and skip clips that are already saved.
 | `data/realspeech/` | Manifest + attribution for real Svarah speakers (audio not included) |
 | `data/results/` | Saved transcripts, decisions and all evaluation reports |
 | `scripts/` | Command-line tools (evaluate, run baselines, demo flow, fetch real speech, freeze check) |
-| `tests/` | pytest suite (199 tests) |
+| `tests/` | pytest suite, including the decision fingerprint and the judge journeys |
 | `deliverables/` | Slide deck (PDF + PPTX with speaker notes), cheat sheet, narrated demo video `Pehchaan_demo_full.mp4`, 4:55 (see [VIDEO.md](VIDEO.md)) |
 | `Dockerfile`, `deploy/`, `DEPLOY.md` | Container and AWS deployment |
 | `README.md`, `LEARNING.md`, `DEMO_SCRIPT.md`, `CLAUDE.md` | Overview and results, module-by-module notes, demo script, project brief |
@@ -293,7 +314,7 @@ On 2026-11-22, a `git clone` of this repo into an empty folder on Windows 11, Py
   `/health` OK → every curl in section 8 gave the results shown (clip replays with the verdicts in section 7, doctor
   demo through book A/B + clarify + preference + clue, typed sentence → Dr. Subramanian 18:00, scoreboard
   49/149/22 and 25/62/3) → audio upload returned the expected 503 → `scripts/evaluate.py --out dev_check`
-  reproduced `report_dev_all.md` → `scripts/demo_flow.py` finished. Without `RATE_LIMIT_REQUESTS`, the 21st process
+  reproduced the v2 headline counts → `scripts/demo_flow.py` finished. Without `RATE_LIMIT_REQUESTS`, the 21st process
   call returned 429, as designed.
 - **Docker (Option B), no key:** `docker build` OK; the container reported `healthy`, and the same section-8 curls gave identical results.
 - **With a `.env` containing a key:** typed sentence → Dr. Subramanian 18:00, plus a live strong-AI answer

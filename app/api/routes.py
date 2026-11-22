@@ -122,7 +122,8 @@ def clip_audio(variant: str = PathParam(pattern=r"^(clean|phone|real)$"),
 
 @router.get("/api/config")
 def config() -> dict:
-    return {"demo_key_required": settings.demo_key is not None, "daily_budget_usd": settings.daily_budget_usd,
+    return {"live_ai_configured": bool(settings.openai_api_key),
+            "demo_key_required": settings.demo_key is not None, "daily_budget_usd": settings.daily_budget_usd,
             "rate_limit": f"{settings.rate_limit_requests} per {settings.rate_limit_window_seconds // 60} min",
             "max_upload_mb": audio_io.MAX_UPLOAD_BYTES // (1024 * 1024), "max_seconds": audio_io.MAX_SECONDS}
 

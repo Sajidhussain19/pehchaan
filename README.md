@@ -1,5 +1,13 @@
 # Pehchaan
 
+## Judge summary
+
+- Indian names and phrases like “my doctor” can send a voice reminder to the wrong person.
+- Pehchaan uses personal contacts and sentence clues to pick the recipient, asks when needed and stores the reminder.
+- On the same 90 fresh held-out recordings, wrong-target actions fell from 10 with Strong AI to 2 with Pehchaan. Pehchaan also asked 4 unnecessary questions versus 0.
+- [Try the live five-step doctor demo](https://d1rcvr2z1hg6u0.cloudfront.net).
+- After installing the requirements on Python 3.12, verify in about 30 seconds with `python scripts/e2e_check.py`. [Evaluator guide](AGENTS.md)
+
 **AI assistants hear words. Pehchaan understands who you mean.**
 
 > No speech model can know *your* contacts, so personal context has to live outside the model.
@@ -8,7 +16,6 @@
 
 *Built solo for Builders 2026 by OpenAI x Equal AI, Hyderabad. Track: Build Challenging — Voice AI for India.*
 
-**Live demo:** https://d1rcvr2z1hg6u0.cloudfront.net · **Run it / test it / judge it:** [AGENTS.md](AGENTS.md) ·
 **Deck, cheat sheet, video:** [Deliverables](#deliverables)
 
 ## The problem
@@ -125,7 +132,7 @@ v2. The clip list starts with the original test set (seen before v2), followed b
 
 ## Setup (Windows PowerShell)
 
-Requires Python 3.11+ (we use 3.12).
+Use Python 3.12. The local demo, saved clips and evaluator check work without an OpenAI key.
 
 ```powershell
 # 1. Create and activate a virtual environment
@@ -135,20 +142,18 @@ py -3.12 -m venv venv
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Add your OpenAI key: copy the template, then edit .env and paste your key
-copy .env.example .env
+# 3. Verify the judge journeys (expected: ALL PASSED)
+python scripts/e2e_check.py
 
-# 4. Check the key works
-python scripts/check_openai.py
-
-# 5. Run the server, then open http://127.0.0.1:8000/health
+# 4. Run the server, then open http://127.0.0.1:8000
 uvicorn app.main:app --reload
 
-# 6. Run the tests
-pytest -v
+# 5. Run the tests
+pytest -q
 ```
 
-On macOS/Linux, activate with `source venv/bin/activate` and copy with `cp .env.example .env`.
+On macOS/Linux, create the environment with `python3.12 -m venv venv` and activate with `source venv/bin/activate`.
+For live transcription and live AI comparison, optionally configure `OPENAI_API_KEY` as described in [AGENTS.md](AGENTS.md#3-environment-variables).
 
 ## Project layout
 
@@ -368,8 +373,7 @@ like calling the wrong person. And raw counts show how much evidence each percen
 
 ```powershell
 python scripts/run_llm_baseline.py --limit 3     # baseline (c), dev split, cached
-python scripts/evaluate.py                       # dev report -> data/results/report_dev_all.md
-python scripts/evaluate.py --split test --final --compare pehchaan c   # done ONCE (logged, tag final-eval-v1)
+python scripts/evaluate.py --split dev --systems c v1 v2 --compare v2 c --out dev_check
 ```
 
 ### Test-set errata (fixed before the final run)

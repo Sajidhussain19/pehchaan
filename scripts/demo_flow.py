@@ -1,7 +1,7 @@
 """
 scripts/demo_flow.py — runs the "two contact books" doctor demo end to end through the API, step by step.
 
-WHAT: The same sentence, "Remind me to call my doctor at six.", for two users:
+WHAT: The same sentence, "Remind me to call my doctor at 6 PM.", for two users:
         Book A (one doctor)                     -> reminder for Dr. Venkataramana, no question
         Book B (two doctors, no default)        -> Pehchaan ASKS
           answer "Use Dr. Subramanian this time" -> reminder, nothing learned; asking again still asks
@@ -30,7 +30,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-SENTENCE = "Remind me to call my doctor at six."
+SENTENCE = "Remind me to call my doctor at 6 PM."
 
 
 def show(step: str, body: dict) -> None:
