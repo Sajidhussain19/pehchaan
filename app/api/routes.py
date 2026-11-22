@@ -17,12 +17,12 @@ WHY:  This is what the demo page (Module 10) and the demo script talk to. Each e
 """
 
 import json
-import tempfile
 import time
 from functools import lru_cache
-from pathlib import Path
 from typing import Literal
+from uuid import UUID
 
+import anyio
 import openai
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Path as PathParam, Query, Request, UploadFile
 from fastapi.responses import FileResponse
@@ -38,7 +38,7 @@ from app.eval.runs import load_decision_objects, load_transcripts
 from app.testset.validate import load_realspeech, load_testset
 from app.kb.loader import DEFAULT_BOOK, available_books
 from app.stt.baseline import RESULTS_DIR
-from app.stt.transcribe import get_client, transcribe
+from app.stt.transcribe import get_client, transcribe_live
 from app.store import preferences as preference_store
 from app.store import reminders as reminder_store
 
@@ -89,6 +89,18 @@ def _same_decision(a: dict, b: dict) -> bool:
     return keys(a) == keys(b)
 
 
+def visitor_id(request: Request) -> str:
+    """An anonymous browser's UUID is its bearer credential for its own demo items."""
+    raw = request.headers.get("x-visitor-id", "")
+    try:
+        value = UUID(raw)
+        if value.version == 4 and str(value) == raw.lower():
+            return str(value)
+    except ValueError:
+        pass
+    raise HTTPException(400, "X-Visitor-Id must be a valid random UUID (v4)")
+
+
 def _check_book(book: str) -> str:
     if book not in available_books():
         raise HTTPException(404, f"unknown contact book {book!r}; available: {', '.join(available_books())}")
@@ -127,7 +139,7 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
             book: str = Form(DEFAULT_BOOK), compare: bool = Form(False), live_stt: bool = Form(False),
             live_baseline: bool = Form(False),
             direction: Literal["outgoing", "incoming"] | None = Form(None), caller_contact_id: str | None = Form(None),
-            client=Depends(openai_client)) -> dict:
+            owner: str = Depends(visitor_id), client=Depends(openai_client)) -> dict:
     """Exactly one input: an uploaded recording, a clip (clip_id + variant), or plain text."""
     _check_book(book)
     given = [name for name, v in (("file", file), ("clip_id", clip_id), ("text", text)) if v]
@@ -150,7 +162,7 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
             suffix, seconds = audio_io.check_upload(file.filename, data)
         except audio_io.AudioError as exc:
             raise HTTPException(exc.status, str(exc)) from exc
-        transcript, stt = _speech_to_text(data, suffix, seconds, client)
+        transcript, stt = _speech_to_text(data, suffix, seconds)
     else:
         try:
             clip = audio_io.clip_info(variant, clip_id)
@@ -166,7 +178,7 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
             transcript = saved
             stt = {"stt_ms": 0.0, "stt_cost_usd": 0.0, "stt_source": "saved baseline (a) transcript"}
         else:
-            transcript, stt = _speech_to_text(path.read_bytes(), ".wav", clip.get("duration_seconds"), client)
+            transcript, stt = _speech_to_text(path.read_bytes(), ".wav", clip.get("duration_seconds"))
     if not transcript:
         raise HTTPException(422, "speech-to-text heard nothing; please try again")
 
@@ -181,7 +193,7 @@ def process(request: Request, file: UploadFile | None = File(None), clip_id: str
     saved_p = None
     if clip is not None and stt["stt_source"].startswith("saved") and book == DEFAULT_BOOK:
         saved_p = load_decision_objects("pehchaan", variant, VERSION).get(clip_id)
-    result = flow.process(transcript, book=book, direction=direction_used, caller=caller,
+    result = flow.process(transcript, visitor_id=owner, book=book, direction=direction_used, caller=caller,
                           client=None if saved_p is not None else client, compare=compare and saved_c is None)
     if saved_c is not None:
         result.update(baseline=saved_c.model_dump(), baseline_ms=saved_c.latency_ms, baseline_cost_usd=0.0)
@@ -237,18 +249,14 @@ def _names_for(book: str, *decisions: dict | None) -> dict:
     return out
 
 
-def _speech_to_text(data: bytes, suffix: str, seconds: float | None, client) -> tuple[str, dict]:
-    """Plain speech-to-text (baseline (a)) on audio bytes. The OpenAI API needs a named file, so we use a
-    temporary file that is deleted right after."""
-    with tempfile.TemporaryDirectory() as tmp:
-        path = Path(tmp) / f"upload{suffix}"
-        path.write_bytes(data)
-        # Unknown length (webm/m4a): the cost estimate uses the 30 s upper bound, so it never under-reports.
-        try:
-            out = transcribe(path, client=client, seconds=seconds if seconds is not None else audio_io.MAX_SECONDS)
-        except (openai.OpenAIError, RuntimeError) as err:  # timeout, 5xx, rate limit (after retries), no key
-            raise HTTPException(503, f"Speech-to-text is unavailable right now ({type(err).__name__}). "
-                                     "Demo clips and typed sentences still work.") from err
+def _speech_to_text(data: bytes, suffix: str, seconds: float | None) -> tuple[str, dict]:
+    """Await cancellable live STT from FastAPI's synchronous request worker."""
+    estimated_seconds = seconds if seconds is not None else audio_io.MAX_SECONDS
+    try:
+        out = anyio.from_thread.run(transcribe_live, data, suffix, estimated_seconds)
+    except (openai.OpenAIError, RuntimeError, TimeoutError) as err:
+        raise HTTPException(503, f"Speech-to-text is unavailable right now ({type(err).__name__}). "
+                                 "Demo clips and typed sentences still work.") from err
     return out["text"], {"stt_ms": out["latency_ms"], "stt_cost_usd": out["cost_estimate_usd"],
                          "stt_source": f"live {out['model']}"}
 
@@ -260,10 +268,10 @@ class ClarifyAnswer(BaseModel):
 
 @router.post("/api/clarify/{pending_id}")
 def clarify(answer: ClarifyAnswer, pending_id: str = PathParam(pattern=r"^[0-9a-f]{16}$"),
-            client=Depends(openai_client)) -> dict:
+            owner: str = Depends(visitor_id), client=Depends(openai_client)) -> dict:
     guard.check_budget()
     try:
-        result = flow.answer(pending_id, answer.entity_id, answer.remember, client=client)
+        result = flow.answer(pending_id, answer.entity_id, answer.remember, visitor_id=owner, client=client)
     except flow.FlowError as exc:
         raise HTTPException(exc.status, str(exc)) from exc
     d = result["decision"]
@@ -282,21 +290,21 @@ def reset_preferences(book: str = Query(...)) -> dict:
 
 
 @router.get("/api/reminders")
-def list_reminders() -> list[dict]:
-    return [r.model_dump() for r in reminder_store.list_all()]
+def list_reminders(owner: str = Depends(visitor_id)) -> list[dict]:
+    return [r.model_dump() for r in reminder_store.list_all(owner)]
 
 
 @router.get("/api/reminders/{reminder_id}")
-def get_reminder(reminder_id: int) -> dict:
-    r = reminder_store.get(reminder_id)
+def get_reminder(reminder_id: int, owner: str = Depends(visitor_id)) -> dict:
+    r = reminder_store.get(reminder_id, owner)
     if r is None:
         raise HTTPException(404, f"no reminder {reminder_id}")
     return r.model_dump()
 
 
 @router.delete("/api/reminders")
-def delete_reminders() -> dict:
-    return {"deleted": reminder_store.delete_all()}
+def delete_reminders(owner: str = Depends(visitor_id)) -> dict:
+    return {"deleted": reminder_store.delete_all(owner)}
 
 
 def _v2_summary(pick) -> dict | None:

@@ -1,6 +1,6 @@
 # Backup demo recording: 2 minutes, captions instead of voice
 
-Pehchaan is **a hybrid AI system: speech AI on every request, LLM reasoning only for hard cases.** Most requests are decided on the fast path (sound matching + your personal context, no LLM call needed).
+Pehchaan is **a hybrid AI system: speech AI on every voice request (demo clips replay their saved transcripts), LLM reasoning only for hard cases.** Most requests are decided on the fast path (sound matching + your personal context, no LLM call needed).
 
 **Purpose:** if the live demo fails (Wi-Fi, AWS, mic), play this screen recording. Record it at **1280×800**,
 browser zoom 100%, on `http://localhost:8000`. Use any screen recorder (Windows: Win+Alt+R with Xbox Game Bar, or OBS).
@@ -18,7 +18,7 @@ evaluation transcript and both systems' saved decisions, so what you record is e
 
 | Time | Click / do | On-screen caption |
 |---|---|---|
-| 0:00–0:06 | Show the page, still | **Speech-to-text hears words. It doesn't know *your* contacts.** Pehchaan: speech AI on every request, LLM reasoning only for hard cases. |
+| 0:00–0:06 | Show the page, still | **Speech-to-text hears words. It doesn't know *your* contacts.** Pehchaan: speech AI on every voice request (demo clips replay their saved transcripts), LLM reasoning only for hard cases. |
 | 0:06–0:22 | Clips → **s104 · missed clarification — Rohit vs Rohith** → **▶ Play** (let it play), then **Run** | "Call Rohit at 6 PM." You have **two** Rohits. |
 | | Point at the cards and the question panel | Strong AI **guesses** Rohith Reddy: **✗ Wrong target**. Pehchaan **asks**: Rohit Chaturvedi or Rohith Reddy? **✓ Correct** |
 | 0:22–0:38 | **s140 · clue vs default — tooth → dentist** → **Run** | "…ask my doctor about the **tooth filling** on Friday." |
@@ -28,7 +28,7 @@ evaluation transcript and both systems' saved decisions, so what you record is e
 | 0:50–1:00 | **s090 · v1 failure — fixed in v2** → **Run** | Telugu "ee **roju**" = "today". v1 turned it into "Dr. Raju". **v2 keeps it: everyday speech, not a name.** ✓ |
 | 1:00–1:04 | Click **▶ Demo mode** → **Start** | **Same sentence, two different users.** |
 | 1:04–1:10 | **Next** (step 1, book A) | User A has one doctor → reminder for **Dr. Venkataramana**. |
-| 1:10–1:17 | **Next** (step 2, book B) | User B has two doctors, no default → Pehchaan **asks**. The strong AI guesses. |
+| 1:10–1:17 | **Next** (step 2, book B) | User B has two doctors, no default → Pehchaan **asks**. Show what the Strong AI card actually returned, or its comparison status. |
 | 1:17–1:23 | **Next** (step 3: "Always use Dr. Subramanian") | Learned **only with consent**: "Always use" (vs "Use this time"). |
 | 1:23–1:28 | **Next** (step 4) | Same sentence again → resolved from the **learned preference**. |
 | 1:28–1:33 | **Next** (step 5: "…about my fever") | A clue still wins: **"fever" → the GP**, not the saved dentist. |

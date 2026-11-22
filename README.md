@@ -29,7 +29,7 @@ phonetic + fuzzy matching and a confidence score. An LLM is used only when it's 
 It never hides what it heard: every result shows *heard -> resolved -> confidence -> reason*.
 The one real action is **Remind**: a stored reminder with the person, time and place, plus heard vs resolved.
 
-Pehchaan is **a hybrid AI system: speech AI on every request, LLM reasoning only for hard cases.** Most requests are decided on the fast path (sound matching + your personal context, no LLM call needed).
+Pehchaan is **a hybrid AI system: speech AI on every voice request (demo clips replay their saved transcripts), LLM reasoning only for hard cases.** Most requests are decided on the fast path (sound matching + your personal context, no LLM call needed).
 
 ## Results (held-out test split, run once)
 
@@ -106,7 +106,7 @@ at v1's losses there; `data/results/report_test_v2_SEEN.md`): wrong targets 8/22
 **Disclosed:** the first v1 run on test-2 was invalid. The temporary worktree had no `.env`, so v1's LLM fallback
 could not run and "kept" those spans. It was discarded **before any scoring**, the runner was fixed (it now passes
 the key to the child process and refuses to save a run with LLM failures), and v1 was run again. The demo now runs
-v2; its demo clips come from test-2 (`data/results/demo_candidates.md`).
+v2. The clip list starts with the original test set (seen before v2), followed by dev clip s101 (used for tuning), the held-out test-2 examples (`data/results/demo_candidates.md`), and the remaining dev clips.
 
 ## The 4 levels
 
@@ -410,6 +410,8 @@ Start the server: `uvicorn app.main:app --reload`, then open http://127.0.0.1:80
 | `GET /api/reminders`, `GET /api/reminders/{id}`, `DELETE /api/reminders` | the stored reminders |
 | `GET /api/metrics` | the FINAL held-out numbers, (c) vs Pehchaan with raw counts, for the scoreboard |
 
+The browser sends a random UUIDv4 in `X-Visitor-Id`. Reuse it on process, clarify, and reminder requests. Reminders and questions belong to that visitor. Learned preferences are shared per book.
+
 `POST /api/process` runs **speech-to-text → Pehchaan → a stored reminder, or a pending question**. With `compare=true`
 it also runs baseline (c) on the same transcript and returns its decision side by side (never stored). The response
 has the heard transcript, the corrected transcript with every span marked (heard text, resolved name, role,
@@ -417,8 +419,9 @@ confidence, reason, character positions for highlighting), the decision, and tim
 `baseline_ms`, `total_ms`, plus `used_llm` and `cost_usd` (speech-to-text + Pehchaan).
 
 ```powershell
-curl.exe -X POST http://127.0.0.1:8000/api/process -F "text=Remind me to call my doctor at six." -F book=B
-curl.exe -X POST http://127.0.0.1:8000/api/process -F clip_id=s140 -F variant=phone -F compare=true
+$visitor = [guid]::NewGuid().ToString()
+curl.exe -X POST http://127.0.0.1:8000/api/process -H "X-Visitor-Id: $visitor" -F "text=Remind me to call my doctor at six." -F book=B
+curl.exe -X POST http://127.0.0.1:8000/api/process -H "X-Visitor-Id: $visitor" -F clip_id=s140 -F variant=phone -F compare=true
 ```
 
 Reminders live in SQLite (`data/app.db`, Python's built-in `sqlite3`, no ORM). Each one stores the person, role,
@@ -477,7 +480,7 @@ for HTTPS: see [DEPLOY.md](DEPLOY.md). A 2-minute backup recording script is in 
 
 **Protection for a public link:**
 - `POST /api/process` is limited to 20 requests per 10 minutes per visitor.
-- OpenAI spend is capped at $2/day (tracked in SQLite).
+- OpenAI spending has an approximate $2/day cap (tracked in SQLite).
 - Optional `DEMO_KEY` password.
 - Requests from other websites are refused.
 

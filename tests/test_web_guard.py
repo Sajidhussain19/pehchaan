@@ -20,19 +20,21 @@ from app.api import guard
 from app.api.routes import openai_client
 from app.config import settings
 from app.main import app
-from tests.test_api import FakeOpenAI, wav_bytes
+from tests.test_api import FakeOpenAI, mock_live_stt, wav_bytes
 
 SENTENCE = {"text": "Remind me to call my doctor at 6 PM.", "book": "A"}
 
 
 @pytest.fixture
-def api(tmp_path, monkeypatch):
+def api(tmp_path, monkeypatch, visitor_headers):
     monkeypatch.setattr(db, "DB_PATH", tmp_path / "app.db")
     monkeypatch.setattr(loader, "RUNTIME_PREFS_DIR", tmp_path)
     monkeypatch.setattr(loader, "PREFERENCES_PATH", tmp_path / "preferences_default.json")
     guard.reset_rate_limits()
-    app.dependency_overrides[openai_client] = lambda: FakeOpenAI()
-    yield TestClient(app)
+    fake = FakeOpenAI()
+    mock_live_stt(monkeypatch, fake)
+    app.dependency_overrides[openai_client] = lambda: fake
+    yield TestClient(app, headers=visitor_headers)
     app.dependency_overrides.clear()
     guard.reset_rate_limits()
 

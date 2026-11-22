@@ -40,7 +40,7 @@ class Reminder(BaseModel):
 
 COLUMNS = ("created_at", "contact_book", "heard_transcript", "output_transcript", "target_entity_id", "target_name",
            "target_role", "place_entity_id", "place_name", "time", "raw_time_text", "entities_json", "resolution",
-           "status")
+           "status", "visitor_id")
 
 
 def _from_row(row) -> Reminder:
@@ -49,30 +49,30 @@ def _from_row(row) -> Reminder:
     return Reminder(**data)
 
 
-def create(reminder: Reminder) -> Reminder:
+def create(conn, reminder: Reminder, visitor_id: str) -> Reminder:
     """Store a reminder and return it with its new id."""
     values = reminder.model_dump()
     values["entities_json"] = json.dumps(values.pop("entities"), ensure_ascii=False)
+    values["visitor_id"] = visitor_id
+    cur = conn.execute(f"INSERT INTO reminders ({', '.join(COLUMNS)}) VALUES ({', '.join('?' * len(COLUMNS))})",
+                       [values[c] for c in COLUMNS])
+    return reminder.model_copy(update={"id": cur.lastrowid})
+
+
+def list_all(visitor_id: str) -> list[Reminder]:
+    """This visitor’s reminders, newest first."""
     with connect() as conn:
-        # "?" placeholders: sqlite3 fills in the values safely (no SQL injection from transcripts).
-        cur = conn.execute(f"INSERT INTO reminders ({', '.join(COLUMNS)}) VALUES ({', '.join('?' * len(COLUMNS))})",
-                           [values[c] for c in COLUMNS])
-        return reminder.model_copy(update={"id": cur.lastrowid})
+        rows = conn.execute("SELECT * FROM reminders WHERE visitor_id = ? ORDER BY id DESC", (visitor_id,))
+        return [_from_row(row) for row in rows]
 
 
-def list_all() -> list[Reminder]:
-    """All reminders, newest first."""
+def get(reminder_id: int, visitor_id: str) -> Reminder | None:
     with connect() as conn:
-        return [_from_row(r) for r in conn.execute("SELECT * FROM reminders ORDER BY id DESC")]
-
-
-def get(reminder_id: int) -> Reminder | None:
-    with connect() as conn:
-        row = conn.execute("SELECT * FROM reminders WHERE id = ?", (reminder_id,)).fetchone()
+        row = conn.execute("SELECT * FROM reminders WHERE id = ? AND visitor_id = ?", (reminder_id, visitor_id)).fetchone()
         return _from_row(row) if row else None
 
 
-def delete_all() -> int:
-    """Remove every reminder (to reset between demos). Returns how many were deleted."""
+def delete_all(visitor_id: str) -> int:
+    """Remove this visitor’s reminders (to reset between demos). Returns how many were deleted."""
     with connect() as conn:
-        return conn.execute("DELETE FROM reminders").rowcount
+        return conn.execute("DELETE FROM reminders WHERE visitor_id = ?", (visitor_id,)).rowcount

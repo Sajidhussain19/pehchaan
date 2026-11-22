@@ -13,6 +13,7 @@ import time
 from functools import lru_cache
 from pathlib import Path
 
+import anyio
 import openai
 import soundfile as sf
 
@@ -38,6 +39,39 @@ RETRYABLE_ERRORS = (
     openai.APIConnectionError,  # includes timeouts
     openai.InternalServerError,
 )
+
+
+# Live uploads have a wall-clock deadline across the connection, both attempts and backoff.
+LIVE_STT_DEADLINE = 18.0
+LIVE_STT_ATTEMPT_TIMEOUT = 8.0
+LIVE_STT_BACKOFF = 1.0
+
+
+def _live_client():
+    if settings.openai_api_key is None:
+        raise RuntimeError("OPENAI_API_KEY is not set")
+    return openai.AsyncOpenAI(api_key=settings.openai_api_key.get_secret_value(), max_retries=0)
+
+
+async def transcribe_live(data: bytes, suffix: str, seconds: float) -> dict:
+    model = settings.transcription_model
+    if model not in SUPPORTED_MODELS:
+        raise RuntimeError("Unsupported speech-to-text model")
+    started = time.perf_counter()
+    with anyio.fail_after(LIVE_STT_DEADLINE):
+        async with _live_client() as client:
+            for attempt in range(2):
+                try:
+                    response = await client.audio.transcriptions.create(
+                        model=model, file=(f"upload{suffix}", data), timeout=LIVE_STT_ATTEMPT_TIMEOUT)
+                    break
+                except RETRYABLE_ERRORS:
+                    if attempt == 1:
+                        raise
+                    await anyio.sleep(LIVE_STT_BACKOFF)
+    return {"text": response.text.strip(), "model": model,
+            "latency_ms": round((time.perf_counter() - started) * 1000, 1),
+            "cost_estimate_usd": round(estimate_cost(seconds, model), 6)}
 
 
 @lru_cache(maxsize=1)

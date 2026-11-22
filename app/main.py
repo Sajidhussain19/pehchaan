@@ -30,7 +30,7 @@ app = FastAPI(
 app.include_router(router)  # every /api/... and /audio/... endpoint (Module 9)
 # Same-origin by default: only origins listed in ALLOWED_ORIGINS may call the API from another site.
 app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.allowed_origins.split(",") if o.strip()],
-                   allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type", "X-Demo-Key"])
+                   allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type", "X-Demo-Key", "X-Visitor-Id"])
 app.middleware("http")(security_middleware)  # own-origin check + optional demo key on changing requests
 
 

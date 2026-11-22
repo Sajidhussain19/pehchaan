@@ -62,7 +62,16 @@ def connect():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row  # rows can be read like dicts: row["target_name"]
     try:
-        conn.executescript(SCHEMA)  # "IF NOT EXISTS": safe to run every time
+        if conn.execute("PRAGMA user_version").fetchone()[0] == 0:
+            # First open, including upgrades from the original shared DB. Existing rows
+            # keep a NULL owner and cannot be read or claimed by any browser.
+            conn.executescript("BEGIN IMMEDIATE;\n" + SCHEMA)
+            for table in ("reminders", "pending"):
+                columns = conn.execute(f"PRAGMA table_info({table})").fetchall()
+                if not any(column["name"] == "visitor_id" for column in columns):
+                    conn.execute(f"ALTER TABLE {table} ADD COLUMN visitor_id TEXT")
+            conn.execute("PRAGMA user_version = 1")
+            conn.commit()
         yield conn
         conn.commit()
     except Exception:

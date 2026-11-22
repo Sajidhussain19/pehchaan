@@ -5,9 +5,16 @@ WHY: the per-IP rate limiter (app/api/guard.py) remembers requests in memory. Wi
      tests in a row would hit the limit and fail with 429. Each test starts with a clean limiter.
 """
 
+from uuid import uuid4
+
 import pytest
 
 from app.api import guard
+
+
+@pytest.fixture
+def visitor_headers():
+    return {"X-Visitor-Id": str(uuid4())}
 
 
 @pytest.fixture(autouse=True)

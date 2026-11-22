@@ -10,22 +10,21 @@ WHAT: A fake OpenAI client that FAILS in each of those ways is plugged into the 
 WHY:  On stage the Wi-Fi or the API can fail. The safe behaviour must be tested, not hoped for.
 """
 
-import functools
 from types import SimpleNamespace
 
+import anyio
 import httpx
 import openai
 import pytest
 from fastapi.testclient import TestClient
 from pydantic import SecretStr
 
-import app.api.routes as routes
 import app.kb.loader as loader
 import app.store.db as db
 from app.api.routes import openai_client
 from app.main import app
 from app.stt import transcribe as stt
-from tests.test_api import wav_bytes
+from tests.test_api import FakeOpenAI, mock_live_stt, wav_bytes
 
 REQ = httpx.Request("POST", "https://api.openai.com/v1/x")
 FAILURES = {
@@ -48,13 +47,13 @@ class FailingOpenAI:
 
 
 @pytest.fixture(params=list(FAILURES))
-def api(request, tmp_path, monkeypatch):
+def api(request, tmp_path, monkeypatch, visitor_headers):
     monkeypatch.setattr(db, "DB_PATH", tmp_path / "app.db")
     monkeypatch.setattr(loader, "RUNTIME_PREFS_DIR", tmp_path)
-    # Speech-to-text retries with real waits (1+2+4 s); skip the waiting in tests.
-    monkeypatch.setattr(routes, "transcribe", functools.partial(stt.transcribe, sleep=lambda s: None))
-    app.dependency_overrides[openai_client] = lambda: FailingOpenAI(FAILURES[request.param])
-    yield TestClient(app, raise_server_exceptions=False)  # like a real server: a crash would be an HTTP 500
+    fake = FailingOpenAI(FAILURES[request.param])
+    mock_live_stt(monkeypatch, fake)
+    app.dependency_overrides[openai_client] = lambda: fake
+    yield TestClient(app, headers=visitor_headers, raise_server_exceptions=False)  # like a real server: a crash would be an HTTP 500
     app.dependency_overrides.clear()
 
 
@@ -96,6 +95,41 @@ def test_demo_clips_and_plain_text_still_work(api):
 def test_openai_client_has_a_short_timeout(monkeypatch):
     monkeypatch.setattr(stt.settings, "openai_api_key", SecretStr("sk-test-not-real"))
     assert stt.get_client().timeout == 20.0
+
+
+def test_live_stt_times_both_attempts_and_backoff(monkeypatch):
+    create = mock_live_stt(monkeypatch, FakeOpenAI())
+    create.side_effect = [FAILURES["timeout"](), SimpleNamespace(text="heard")]
+    monkeypatch.setattr(stt, "LIVE_STT_BACKOFF", 0.03)
+    out = anyio.run(stt.transcribe_live, b"audio", ".wav", 2.0)
+    assert out["text"] == "heard" and out["latency_ms"] >= 29
+    assert [call.kwargs["timeout"] for call in create.await_args_list] == [8.0, 8.0]
+
+    create.reset_mock()
+    create.side_effect = [FAILURES["rate_limit"](), FAILURES["rate_limit"](), AssertionError("third attempt")]
+    with pytest.raises(openai.RateLimitError):
+        anyio.run(stt.transcribe_live, b"audio", ".wav", 2.0)
+    assert create.await_count == 2
+
+
+def test_live_deadline_cancels_stalled_upload(monkeypatch, visitor_headers, tmp_path):
+    cancelled = []
+
+    async def stalled(**kwargs):
+        try:
+            await anyio.sleep_forever()
+        finally:
+            cancelled.append(True)
+
+    create = mock_live_stt(monkeypatch, FakeOpenAI())
+    create.side_effect = stalled
+    monkeypatch.setattr(db, "DB_PATH", tmp_path / "live.db")
+    assert stt.LIVE_STT_DEADLINE < 20
+    monkeypatch.setattr(stt, "LIVE_STT_DEADLINE", 0.05)
+    with TestClient(app, headers=visitor_headers) as client:
+        response = client.post("/api/process", files={"file": ("mic.wav", wav_bytes(1), "audio/wav")})
+    assert response.status_code == 503 and "Speech-to-text is unavailable" in response.json()["detail"]
+    assert cancelled == [True]
 
 
 def test_page_uses_the_new_wording():

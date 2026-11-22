@@ -25,6 +25,7 @@ Run from the project root:
 import argparse
 import sys
 import tempfile
+from uuid import uuid4
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -62,6 +63,8 @@ def show(step: str, body: dict) -> None:
 
 
 def run(api, compare: bool) -> int:
+    api.headers["X-Visitor-Id"] = str(uuid4())
+
     def post(url, **kw):
         r = api.post(url, **kw)
         if r.status_code != 200:

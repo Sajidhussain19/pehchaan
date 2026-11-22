@@ -26,6 +26,7 @@ from app.match.phonetic import normalise
 from app.store import pending as pending_store
 from app.store import preferences as preference_store
 from app.store import reminders as reminder_store
+from app.store.db import connect
 from app.store.reminders import Reminder
 
 
@@ -103,20 +104,23 @@ def _first_question(state: dict) -> dict | None:
             "candidates": candidates}
 
 
-def _decide_and_store(transcript: str, book: str, direction: str, caller: str | None, client,
-                      preferences=None, resolution_if_resolved: str | None = None) -> dict:
-    """Run Pehchaan, then store a reminder or a pending question. Returns the result plus timings."""
+def _decide(transcript, book, direction, caller, client, preferences=None):
+    """Run the decision before taking a database write lock."""
     t0 = time.perf_counter()
     state = trace(transcript, direction, caller, preferences=preferences, client=client, book=book)
+    return state, (time.perf_counter() - t0) * 1000
+
+
+def _store(conn, visitor_id, state, pehchaan_ms, book, direction, caller, resolution_if_resolved=None):
     decision: Decision = state["decision"]
-    pehchaan_ms = (time.perf_counter() - t0) * 1000
+    transcript = decision.heard_transcript
     result = {"decision": decision.model_dump(), "reminder": None, "pending": None, "pehchaan_ms": round(pehchaan_ms, 1)}
     with use_book(book):  # names and roles come from the same contact book the decision used
         result["spans"] = marked_spans(decision)
         if decision.behaviour == "clarify":
             q = _first_question(state)
             if q:  # store the question; nothing is done until the user answers
-                item = pending_store.create(book, transcript, direction, caller, q["phrase"], q["reason"],
+                item = pending_store.create(conn, visitor_id, book, transcript, direction, caller, q["phrase"], q["reason"],
                                             q["candidates"])
                 result["pending"] = {**item, "heard_text": q["heard_text"],
                                      "buttons": [{"label": f"Use {c['name']} this time", "entity_id": c["entity_id"],
@@ -129,15 +133,19 @@ def _decide_and_store(transcript: str, book: str, direction: str, caller: str | 
                 resolution = "preference" if learned else "auto"
             else:
                 resolution = resolution_if_resolved
-            result["reminder"] = reminder_store.create(_reminder_from(decision, book, resolution)).model_dump()
-    result["store_ms"] = round((time.perf_counter() - t0) * 1000 - pehchaan_ms, 1)
+            reminder = _reminder_from(decision, book, resolution)
+            result["reminder"] = reminder_store.create(conn, reminder, visitor_id).model_dump()
     return result
 
 
-def process(transcript: str, book: str = "default", direction: str = "outgoing", caller: str | None = None,
+def process(transcript: str, *, visitor_id: str, book: str = "default", direction: str = "outgoing", caller: str | None = None,
             client=None, compare: bool = False) -> dict:
     """Pehchaan on one transcript -> reminder or pending question (+ baseline (c) side by side if compare)."""
-    result = _decide_and_store(transcript, book, direction, caller, client)
+    state, ms = _decide(transcript, book, direction, caller, client)
+    store_started = time.perf_counter()
+    with connect() as conn:
+        result = _store(conn, visitor_id, state, ms, book, direction, caller)
+    result["store_ms"] = round((time.perf_counter() - store_started) * 1000, 1)
     result["baseline"], result["baseline_ms"], result["baseline_cost_usd"] = None, None, None
     result["baseline_error"] = None
     if compare:
@@ -156,9 +164,9 @@ def process(transcript: str, book: str = "default", direction: str = "outgoing",
     return result
 
 
-def answer(pending_id: str, entity_id: str, remember: str, client=None) -> dict:
+def answer(pending_id: str, entity_id: str, remember: str, *, visitor_id: str, client=None) -> dict:
     """The user picked `entity_id` for a pending question. Creates the reminder; 'always' also learns."""
-    item = pending_store.get(pending_id)
+    item = pending_store.get(pending_id, visitor_id)
     if item is None:
         raise FlowError(f"no pending question {pending_id!r}", status=404)
     if item["status"] != "open":
@@ -169,16 +177,23 @@ def answer(pending_id: str, entity_id: str, remember: str, client=None) -> dict:
         raise FlowError("remember must be 'this_time' or 'always'", status=400)
 
     book = item["contact_book"]
-    saved = None
-    if remember == "always":  # consent given: save it for this book, so next time no question is asked
-        saved = preference_store.save(book, item["phrase"], entity_id).model_dump(mode="json")
     with use_book(book):
         prefs = load_preferences()
     # For this one run, the answer acts like a preference (also for "this_time", where it is NOT saved).
     prefs = [*prefs, Preference(phrase_pattern=item["phrase"], entity_id=entity_id, created_at=datetime.now())]
     resolution = "clarified_always" if remember == "always" else "clarified_this_time"
-    result = _decide_and_store(item["heard_transcript"], book, item["direction"], item["caller_contact_id"], client,
-                               preferences=prefs, resolution_if_resolved=resolution)
-    pending_store.mark_answered(pending_id, result["reminder"]["id"] if result["reminder"] else None)
-    result["saved_preference"] = saved
+    direction, caller = item["direction"], item["caller_contact_id"]
+    state, ms = _decide(item["heard_transcript"], book, direction, caller, client, preferences=prefs)
+    store_started = time.perf_counter()
+    with connect() as conn:
+        if not pending_store.claim(conn, pending_id, visitor_id):
+            raise FlowError("this question was already answered", status=409)
+        result = _store(conn, visitor_id, state, ms, book, direction, caller, resolution)
+        if result["reminder"]:
+            pending_store.link_reminder(conn, pending_id, visitor_id, result["reminder"]["id"])
+        result["saved_preference"] = None
+        if remember == "always":
+            preference = preference_store.save(book, item["phrase"], entity_id)
+            result["saved_preference"] = preference.model_dump(mode="json")
+    result["store_ms"] = round((time.perf_counter() - store_started) * 1000, 1)
     return result

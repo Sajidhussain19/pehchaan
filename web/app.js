@@ -40,7 +40,31 @@ function fill(node, ...children) {
   return node;
 }
 
+function newVisitorId() {
+  if (crypto.randomUUID) return crypto.randomUUID();
+  // Plain HTTP demo pages still have getRandomValues, even without randomUUID.
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 15) | 64;
+  bytes[8] = (bytes[8] & 63) | 128;
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20)].join("-");
+}
+
+function browserVisitorId() {
+  const key = "pehchaan-visitor-id";
+  try {
+    const saved = localStorage.getItem(key);
+    if (/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(saved)) return saved;
+    const id = newVisitorId();
+    localStorage.setItem(key, id);
+    return id;
+  } catch (_) {
+    return newVisitorId();  // Storage blocked: this page still has its own private session.
+  }
+}
+
 const state = {
+  visitorId: browserVisitorId(),
   book: "default",
   compare: true,
   variant: "clean",
@@ -68,7 +92,7 @@ $(".banner-close").addEventListener("click", hideBanner);
 
 /** Call our API. Adds the demo key if we have one. Throws an Error with the server's message. */
 async function api(path, options = {}) {
-  const headers = Object.assign({}, options.headers || {});
+  const headers = { ...options.headers, "X-Visitor-Id": state.visitorId };
   if (state.demoKey) headers["X-Demo-Key"] = state.demoKey;
   let response;
   try {
@@ -209,7 +233,7 @@ async function process(form, meta) {
   try {
     const result = await api("/api/process", { method: "POST", body: form });
     renderResult(result, meta);
-    await loadReminders(result.reminder && result.reminder.id);
+    await refreshAfterSave(result.reminder && result.reminder.id);
     return result;
   } catch (err) {
     showBanner(err.message);
@@ -413,7 +437,7 @@ async function answer(pending, cand, remember) {
     // Update Pehchaan's decision line to the answered decision.
     const dline = $("#peh-body .decision");
     if (dline && rem) dline.textContent = msg.replace(/^✓ /, "");
-    await loadReminders(rem && rem.id);
+    await refreshAfterSave(rem && rem.id);
     return r;
   } catch (err) {
     showBanner(err.message);
@@ -426,8 +450,17 @@ async function answer(pending, cand, remember) {
 
 // ---------- reminders ----------
 let remindersById = {};
+async function refreshAfterSave(highlightId) {
+  try {
+    await loadReminders(highlightId);
+  } catch (_) {
+    $("#reminder-note").textContent = "Couldn't refresh reminders.";
+  }
+}
+
 async function loadReminders(highlightId) {
   const list = await api("/api/reminders");
+  $("#reminder-note").textContent = "";
   remindersById = Object.fromEntries(list.map((r) => [r.id, r]));
   const ul = $("#reminders");
   if (!list.length) {
@@ -460,7 +493,7 @@ function openReminder(id) {
 }
 
 $("#reset").addEventListener("click", async () => {
-  if (!confirm(`Reset the demo? This deletes ALL reminders and what book ${state.book} has learned.`)) return;
+  if (!confirm(`Reset the demo? This deletes your reminders and what book ${state.book} has learned.`)) return;
   try {
     await resetDemo(state.book);
     showBanner(`Demo reset: reminders cleared, book ${state.book} forgot its learned answers.`, "info");
@@ -577,13 +610,16 @@ $("#mic").addEventListener("click", async () => {
   let stream;
   try {
     stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mime = pickMime();
+    recorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    chunks = [];
+    recorder.start();
   } catch (err) {
+    if (stream) stream.getTracks().forEach((track) => track.stop());
+    recorder = null;
     showBanner("Microphone not available: " + (err.name === "NotAllowedError" ? "permission was denied. Allow the mic in the address bar." : err.message));
     return;
   }
-  const mime = pickMime();
-  recorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
-  chunks = [];
   recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
   recorder.onstop = async () => {
     clearInterval(timer);
@@ -591,7 +627,7 @@ $("#mic").addEventListener("click", async () => {
     $("#mic").classList.remove("recording");
     $("#mic").setAttribute("aria-pressed", "false");
     $("#mic-label").textContent = "Tap to record";
-    const type = recorder.mimeType || mime || "audio/webm";
+    const type = recorder.mimeType || "audio/webm";
     const blob = new Blob(chunks, { type });
     const ext = type.includes("mp4") ? "m4a" : type.includes("ogg") ? "ogg" : "webm";
     const seconds = (Date.now() - startedAt) / 1000;
@@ -601,7 +637,6 @@ $("#mic").addEventListener("click", async () => {
     form.append("file", blob, "mic." + ext);
     await process(form, { label: `Your voice (${seconds.toFixed(1)} s)` });
   };
-  recorder.start();
   startedAt = Date.now();
   $("#mic").classList.add("recording");
   $("#mic").setAttribute("aria-pressed", "true");
@@ -620,26 +655,27 @@ const STEPS = [
   { text: "Same sentence, two users. Book A has ONE doctor.", run: async () => {
       await resetDemo("B");
       setBook("A"); $("#text").value = SENTENCE;
-      lastResult = await runText(SENTENCE);
-    }, after: "Book A: only one doctor, so Pehchaan creates the reminder for Dr. Venkataramana. No question." },
+      return runText(SENTENCE);
+    } },
   { text: "Now user B: two doctors and no default. Same sentence.", run: async () => {
       setBook("B");
-      lastResult = await runText(SENTENCE);
-    }, after: "Book B: two doctors fit ‘my doctor’ and nothing separates them, so Pehchaan ASKS instead of guessing. The strong AI guesses." },
+      return runText(SENTENCE);
+    } },
   { text: "The user taps “Always use Dr. Subramanian for ‘my doctor’”.", run: async () => {
       const p = lastResult && lastResult.pending;
       if (!p) throw new Error("No question is open. Run the previous step again.");
-      const c = p.candidates.find((x) => x.name === "Dr. Subramanian") || p.candidates[0];
-      await answer(p, c, "always");
-    }, after: "A reminder for Dr. Subramanian, and book B learned it, only because the user chose ‘always’." },
+      const c = p.candidates.find((x) => x.name === "Dr. Subramanian");
+      if (!c) throw new Error("Dr. Subramanian was not offered for this question.");
+      return answer(p, c, "always");
+    } },
   { text: "Book B says the same sentence again.", run: async () => {
-      lastResult = await runText(SENTENCE);
-    }, after: "No question this time: resolved from the learned preference (see ‘learned preference’ on the reminder)." },
+      return runText(SENTENCE);
+    } },
   { text: "“Call my doctor about my fever.”", run: async () => {
       const t = "Call my doctor about my fever.";
       $("#text").value = t;
-      lastResult = await runText(t);
-    }, after: "‘fever’ is a clue for the general physician: a clue in the sentence beats the saved choice. Demo complete." },
+      return runText(t);
+    } },
 ];
 let stepIndex = -1;
 
@@ -663,8 +699,13 @@ $("#guide-next").addEventListener("click", async () => {
   showGuide(label, step.text, "Working…");
   $("#guide-next").disabled = true;
   try {
-    await step.run();
-    showGuide(label, step.after, stepIndex === STEPS.length - 1 ? "Finish" : "Next ▶");
+    const result = await step.run();
+    if (!result) throw new Error($("#banner-text").textContent || "The step did not complete.");
+    lastResult = result;
+    // Use the text actually displayed by each card, including comparison off/outage states.
+    const peh = $("#peh-body .decision")?.textContent || "";
+    const base = $("#base-body .decision")?.textContent || $("#base-body").textContent;
+    showGuide(label, `Pehchaan · ${peh} Strong AI · ${base}`, stepIndex === STEPS.length - 1 ? "Finish" : "Next ▶");
   } catch (err) {
     showBanner(err.message);
     stepIndex -= 1;  // let the presenter retry this step

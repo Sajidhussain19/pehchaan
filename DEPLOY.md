@@ -10,7 +10,7 @@ browser --HTTPS--> CloudFront (dxxxx.cloudfront.net) --HTTP :8000--> EC2 t3.smal
 ```
 
 **Cost:** a t3.small is about $0.02 per hour (about $0.50 per day). CloudFront is free at demo traffic.
-OpenAI spend is capped by the app at `DAILY_BUDGET_USD` (default $2/day).
+The app has an approximate $2/day cap on OpenAI spending, configurable with `DAILY_BUDGET_USD`.
 **Secrets:** the OpenAI key lives ONLY in `/etc/pehchaan.env` on the server. It is never in git, never in the image.
 
 Region for everything below: **us-west-2 (Oregon)**. Replace `<...>` placeholders with your values.
@@ -121,7 +121,7 @@ curl -s localhost:8000/health        # -> {"status":"ok","project":"Pehchaan"}
   - Allowed HTTP methods: **GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE** (uploads and the API need POST/DELETE)
   - Cache policy: **CachingDisabled** (simplest: nothing is cached, so `/api/*` is always live and the page updates at once)
   - Origin request policy: **AllViewerExceptHostHeader** (forwards every header the app needs: `Content-Type` for
-    uploads, `Origin`, `X-Demo-Key`, plus query strings such as `?book=B`)
+    uploads, `Origin`, `X-Visitor-Id`, `X-Demo-Key`, plus query strings such as `?book=B`)
 - Web Application Firewall: **Do not enable** (not needed for a demo; it costs extra)
 - Price class: **Use North America, Europe, Asia, Middle East, and Africa** (includes India)
 - Create. Wait about 5 minutes until "Last modified" shows a date, then copy the **Distribution domain name**,
@@ -146,7 +146,7 @@ are at most 5 MB / 30 s; CloudFront's 30 s origin timeout is enough (a request t
 | Restart | `sudo docker restart pehchaan` |
 | Status / health | `sudo docker ps` and `curl -s localhost:8000/health` |
 | Stop | `sudo docker stop pehchaan` |
-| Reset demo data | open the page → "Reset demo", or `curl -X DELETE localhost:8000/api/reminders` |
+| Reset demo data | open the page → "Reset demo" to clear that browser’s reminders and reset its selected book’s preferences |
 | Update after a `git push` | `cd ~/pehchaan && ./deploy/update.sh` |
 
 `deploy/update.sh` pulls the code, rebuilds the image and replaces the container (state is kept in the volume).

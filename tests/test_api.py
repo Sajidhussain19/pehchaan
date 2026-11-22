@@ -13,7 +13,13 @@ WHY:  These are the promises the demo makes on stage. Every test uses a temporar
       temporary preference files, so it never touches the real demo state.
 """
 
+from contextlib import asynccontextmanager
+from unittest.mock import AsyncMock
 import io
+import sqlite3
+from concurrent.futures import ThreadPoolExecutor
+from threading import Barrier
+from uuid import uuid4
 import json
 from types import SimpleNamespace
 
@@ -59,19 +65,34 @@ class FakeOpenAI:
                                usage=SimpleNamespace(prompt_tokens=500, completion_tokens=50, prompt_tokens_details=None))
 
 
+def mock_live_stt(monkeypatch, fake):
+    from app.stt import transcribe as stt
+
+    create = AsyncMock(side_effect=fake.audio.transcriptions.create)
+
+    @asynccontextmanager
+    async def client():
+        yield SimpleNamespace(audio=SimpleNamespace(transcriptions=SimpleNamespace(create=create)))
+
+    monkeypatch.setattr(stt, "_live_client", client)
+    monkeypatch.setattr(stt, "LIVE_STT_BACKOFF", 0)
+    return create
+
+
 @pytest.fixture
 def fake():
     return FakeOpenAI()
 
 
 @pytest.fixture
-def api(tmp_path, monkeypatch, fake):
+def api(tmp_path, monkeypatch, fake, visitor_headers):
     """A TestClient with a temporary database, temporary preference files and the fake OpenAI client."""
     monkeypatch.setattr(db, "DB_PATH", tmp_path / "app.db")
     monkeypatch.setattr(loader, "RUNTIME_PREFS_DIR", tmp_path)
     monkeypatch.setattr(loader, "PREFERENCES_PATH", tmp_path / "preferences_default.json")
+    mock_live_stt(monkeypatch, fake)
     app.dependency_overrides[openai_client] = lambda: fake
-    yield TestClient(app)
+    yield TestClient(app, headers=visitor_headers)
     app.dependency_overrides.clear()
 
 
@@ -256,3 +277,76 @@ def test_clip_verdict_uses_the_saved_v2_decision(api, fake):
     assert body["verdict"]["baseline"]["label"] == "✗ Wrong target"  # (c)'s saved answer guessed
     assert body["pehchaan_source"].startswith("saved") and "differs" not in body["pehchaan_source"]
     assert not fake.calls  # saved transcript + saved (c) + cached LLM answers: no API call at all
+
+
+def test_visitor_owns_reminders_and_questions(api):
+    other = {"X-Visitor-Id": str(uuid4())}
+    mine = process(api, text=DOCTOR_SENTENCE, book="A").json()["reminder"]["id"]
+    question = process(api, text=DOCTOR_SENTENCE, book="B").json()["pending"]["id"]
+    choice = {"entity_id": "person_028", "remember": "always"}
+    assert api.get("/api/reminders", headers=other).json() == []
+    assert api.get(f"/api/reminders/{mine}", headers=other).status_code == 404
+    assert api.post(f"/api/clarify/{question}", headers=other, json=choice).status_code == 404
+    assert api.post(f"/api/clarify/{question}", json=choice).status_code == 200
+    # Learning is still shared within a book, while the resulting reminder belongs to its caller.
+    learned = api.post("/api/process", headers=other, data={"text": DOCTOR_SENTENCE, "book": "B"}).json()
+    assert learned["reminder"]["resolution"] == "preference"
+    assert api.delete("/api/reminders", headers=other).json() == {"deleted": 1}
+    assert len(api.get("/api/reminders").json()) == 2
+
+
+@pytest.mark.parametrize("header", [None, "invalid"])
+def test_private_endpoints_require_valid_visitor(api, header):
+    del api.headers["X-Visitor-Id"]
+    if header is not None:
+        api.headers["X-Visitor-Id"] = header
+    for method, url, kwargs in [
+        ("GET", "/api/reminders", {}), ("GET", "/api/reminders/1", {}), ("DELETE", "/api/reminders", {}),
+        ("POST", "/api/clarify/0123456789abcdef", {"json": {"entity_id": "person_028", "remember": "always"}}),
+        ("POST", "/api/process", {"data": {"text": DOCTOR_SENTENCE}}),
+    ]:
+        response = api.request(method, url, **kwargs)
+        assert response.status_code == 400 and "X-Visitor-Id" in response.json()["detail"]
+    for path in ("/", "/api/clips", "/api/metrics"):
+        assert api.get(path).status_code == 200
+
+
+def test_upgrade_preserves_and_hides_unowned_legacy_rows(api):
+    with sqlite3.connect(db.DB_PATH) as old:
+        old.executescript(db.SCHEMA)
+        old.execute("INSERT INTO reminders (created_at, contact_book, heard_transcript, output_transcript,"
+                    " entities_json, resolution) VALUES ('then','A','legacy','legacy','[]','auto')")
+        old.execute("INSERT INTO pending (id, created_at, contact_book, heard_transcript, direction, phrase,"
+                    " reason, candidates_json) VALUES ('0123456789abcdef','then','B','legacy','outgoing','x','x','[]')")
+    assert api.get("/api/reminders").json() == []
+    assert api.get("/api/reminders/1").status_code == 404
+    assert api.delete("/api/reminders").json() == {"deleted": 0}
+    assert api.post("/api/clarify/0123456789abcdef", json={"entity_id": "x", "remember": "this_time"}).status_code == 404
+    with db.connect() as conn:
+        assert conn.execute("SELECT COUNT(*) FROM reminders WHERE visitor_id IS NULL").fetchone()[0] == 1
+        assert conn.execute("SELECT status FROM pending WHERE visitor_id IS NULL").fetchone()[0] == "open"
+
+
+def test_simultaneous_answers_create_one_reminder_and_one_preference(api, monkeypatch):
+    from app.store import pending
+
+    question = process(api, text=DOCTOR_SENTENCE, book="B").json()["pending"]["id"]
+    both_ready = Barrier(2, timeout=5)
+    claim = pending.claim
+
+    def simultaneous_claim(*args):
+        both_ready.wait()
+        return claim(*args)
+
+    monkeypatch.setattr(pending, "claim", simultaneous_claim)
+
+    def submit(entity_id):
+        return api.post(f"/api/clarify/{question}", json={"entity_id": entity_id, "remember": "always"})
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        results = sorted(pool.map(submit, ["person_001", "person_028"]), key=lambda r: r.status_code)
+    assert [r.status_code for r in results] == [200, 409]
+    assert "already answered" in results[1].json()["detail"]
+    assert api.get("/api/reminders").json() == [results[0].json()["reminder"]]
+    with loader.use_book("B"):
+        assert [p.entity_id for p in loader.load_preferences()] == [results[0].json()["reminder"]["target_entity_id"]]
